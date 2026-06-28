@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Free Odoo Discovery Call | Dhiren Narola</title>
+    <meta name="description"
+        content="Book a free 30-minute Odoo discovery call with certified ERP architect Dhiren Narola. No sales pitch — a focused conversation about your ERP, rescue, or custom build.">
+    <link rel="canonical" href="https://dhirennarola.github.io/portfolio/meeting.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Book a Free Odoo Discovery Call — Dhiren Narola">
+    <meta property="og:description" content="A focused 30-minute conversation about your Odoo ERP. No obligation.">
+    <meta property="og:url" content="https://dhirennarola.github.io/portfolio/meeting.html">
+    <meta property="og:image" content="https://dhirennarola.github.io/portfolio/assets/profile.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="assets/profile-240w.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Dhiren<span>.</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#industries">Industries</a></li>
+                <li><a href="index.html#projects">Work</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="subhero">
+        <div class="subhero-inner">
+            <div class="crumbs"><a href="index.html">Home</a> / Book a Discovery Call</div>
+            <h1>Book a Free <span class="accent-handwritten">Discovery Call</span></h1>
+            <p class="sub">A focused 30-minute conversation about your Odoo ERP — whether you're planning a new
+                implementation, rescuing a stalled one, or scoping a custom build. No sales pitch, no obligation.</p>
+            <div class="subhero-trust">
+                <span>30 minutes</span>
+                <span>Video or phone</span>
+                <span>I come prepared with questions</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- BOOKING -->
+    <section class="section">
+        <div class="booking-grid">
+            <aside class="booking-info reveal">
+                <h2>What to expect</h2>
+                <ul class="check-list">
+                    <li>A clear picture of your current situation and goals.</li>
+                    <li>My honest take on whether Odoo is the right fit — and what it would take.</li>
+                    <li>An outline of scope, rough timeline, and next steps.</li>
+                    <li>If it's a rescue: an initial read on what's salvageable.</li>
+                </ul>
+                <h2 style="margin-top:2rem;">Best fit for</h2>
+                <ul class="check-list">
+                    <li>Businesses evaluating or starting an Odoo ERP.</li>
+                    <li>Companies with a failed or stalled Odoo implementation.</li>
+                    <li>Teams needing custom modules, integrations, or ZATCA compliance.</li>
+                    <li>Agencies &amp; partners needing dedicated Odoo capacity.</li>
+                </ul>
+                <p class="booking-alt">Prefer to write first? <a href="index.html#contact">Send a message →</a> &nbsp;·&nbsp;
+                    <a href="https://wa.me/918469876302?text=Hi%20Dhiren%2C%20I%27d%20like%20to%20book%20an%20Odoo%20discovery%20call." target="_blank" rel="noopener">WhatsApp me →</a></p>
+            </aside>
+            <div class="calendly-wrap reveal">
+                <!-- Calendly inline widget -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/dhnarola12/30min?hide_gdpr_banner=1&primary_color=2563eb" style="min-width:300px;height:720px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                <noscript><a href="https://calendly.com/dhnarola12/30min" target="_blank" rel="noopener">Open the booking calendar →</a></noscript>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>© 2026 Dhiren Narola — Odoo ERP Architect &amp; Implementation Lead. <a href="index.html" style="color:inherit;">Back to home</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('open');
+                const spans = navToggle.querySelectorAll('span');
+                if (navLinks.classList.contains('open')) {
+                    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                    spans[1].style.opacity = '0';
+                    spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+                } else {
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                }
+            });
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.05 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

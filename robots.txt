@@ -1,12 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap
 Sitemap: https://dhirennarola.github.io/portfolio/sitemap.xml
-
-# Crawl Delay
-Crawl-delay: 1
-
-# Disallow specific paths if needed
-# Disallow: /private/
-# Disallow: /temp/

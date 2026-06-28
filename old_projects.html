@@ -324,9 +324,8 @@
         }
 
         .project-card.expanded .project-details {
-            max-height: none;
+            max-height: 800px;
             opacity: 1;
-            overflow: visible;
         }
 
         .project-details-inner {
@@ -456,90 +455,6 @@
             border-width: 0;
         }
 
-        /* ===== IMAGE LIGHTBOX MODAL ===== */
-        .lightbox-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .lightbox-modal.active {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90vh;
-            position: relative;
-            animation: zoomIn 0.3s ease;
-        }
-
-        .lightbox-content img {
-            width: 100%;
-            height: auto;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 10000;
-        }
-
-        .lightbox-close:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            transform: rotate(90deg);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
         @media (prefers-reduced-motion: reduce) {
 
             *,
@@ -667,87 +582,6 @@
                 font-size: 1.1rem;
             }
         }
-
-
-        /* ===== PROJECT VISUALS ===== */
-        .project-visuals {
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 12px;
-            overflow: visible;
-            border: 1px solid var(--border);
-            background: var(--bg-secondary);
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .project-visuals.hidden {
-            display: none;
-        }
-
-        .project-visuals:not(.hidden) {
-            display: flex;
-        }
-
-        .project-visuals img {
-            width: 100%;
-            height: auto;
-            max-height: none;
-            display: block;
-            object-fit: contain;
-            transition: transform 0.4s ease, opacity 0.3s ease;
-            cursor: pointer;
-            border-radius: 8px;
-        }
-
-        .project-card:hover .project-visuals img {
-            transform: scale(1.02);
-        }
-
-        .project-visuals img:hover {
-            opacity: 0.9;
-        }
-
-        /* Image gallery for multiple screenshots */
-        .project-visuals.gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 0.75rem;
-            padding: 0.75rem;
-        }
-
-        .project-visuals.gallery img {
-            border-radius: 8px;
-            aspect-ratio: 4 / 3;
-        }
-
-        .detail-group-title {
-            display: block;
-            font-weight: 600;
-            color: var(--accent);
-            margin-top: 0.8rem;
-            margin-bottom: 0.3rem;
-            font-size: 0.95rem;
-        }
-
-        .project-detail-list li strong {
-            color: var(--text-primary);
-        }
-
-        @media (max-width: 768px) {
-            .project-visuals {
-                margin-top: 1rem;
-                margin-bottom: 0.75rem;
-            }
-
-            .project-visuals.gallery {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-                padding: 0.5rem;
-            }
-        }
     </style>
 </head>
 
@@ -796,11 +630,11 @@
         <!-- STATS -->
         <div class="stats-bar reveal">
             <div class="stat-item">
-                <div class="stat-number">12+</div>
+                <div class="stat-number">10+</div>
                 <div class="stat-label">Projects Delivered</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">10+</div>
+                <div class="stat-number">6+</div>
                 <div class="stat-label">Industries Served</div>
             </div>
             <div class="stat-item">
@@ -816,165 +650,66 @@
         <!-- PROJECTS -->
         <div class="projects-grid">
 
-            <!-- Project 1: Solar Sales & Installation (NEW) -->
+            <!-- Project 1: Car Servicing -->
             <div class="project-card reveal" onclick="toggleProject(this)">
                 <div class="project-header">
                     <div>
-                        <span class="project-industry">Renewable Energy & Construction</span>
-                        <span class="project-version">v18</span>
-                        <h3>Solar Power Sales & Installation ERP</h3>
+                        <span class="project-industry">Automotive & Retail</span>
+                        <span class="project-version">v15 & v18</span>
+                        <h3>Premium Car Servicing & Spare Parts ERP</h3>
                     </div>
                     <div class="project-toggle">
                         <span>Details</span>
                         <span class="project-toggle-icon">▾</span>
                     </div>
                 </div>
-                <div class="project-visuals hidden">
-                    <!-- <img src="assets/solar-install.jpg" alt="Solar ERP Dashboard" loading="lazy"> -->
-                </div>
                 <p class="project-summary">
-                    Architected and developed a comprehensive end-to-end ERP system for a solar power company, managing
-                    the complete project lifecycle from initial Lead generation through final Installation and ongoing
-                    Maintenance. Features an advanced <strong>Dual-Ledger Financial System</strong> enabling parallel
-                    management of segregated payment flows, along with automated partner portals and commission
-                    calculation engines.
+                    Led the full-scale ERP implementation for a premium car servicing and spare parts company.
+                    Designed and deployed 11 Odoo modules covering HR, Payroll, Sales, Purchase, Accounting,
+                    CRM, Helpdesk, and more.
                 </p>
                 <div class="project-tags">
-                    <span class="project-tag">CRM</span>
+                    <span class="project-tag">Payroll</span>
+                    <span class="project-tag">HR</span>
+                    <span class="project-tag">Attendance</span>
+                    <span class="project-tag">Appraisals</span>
                     <span class="project-tag">Sales</span>
-                    <span class="project-tag">Accounting</span>
-                    <span class="project-tag">Project</span>
-                    <span class="project-tag">Field Service</span>
                     <span class="project-tag">Purchase</span>
-                    <span class="project-tag">Inventory</span>
-                    <span class="project-tag">HR & Payroll</span>
-                    <span class="project-tag">Portal</span>
-                    <span class="project-tag">WhatsApp</span>
-                </div>
-                <div class="project-details">
-                    <div class="project-details-inner">
-                        <ul class="project-detail-list">
-                            <li class="detail-group-title">Sales & Project Management</li>
-                            <li><strong>Complete Project Lifecycle:</strong> Designed and implemented seamless workflow
-                                from CRM Lead Capture → Quotation → Sales Order → Project Initiation. Automated project
-                                stages including Site Survey, Technical Documentation, Fabrication Coordination,
-                                Installation Execution, Meter Installation, Subsidy Documentation Processing, Meter
-                                Approval, and Final Handover.</li>
-                            <li><strong>Warranty Management Module:</strong> Developed comprehensive warranty tracking
-                                system to monitor product serial numbers, warranty periods, expiration alerts, and
-                                complete replacement history for all solar panels, inverters, and components across the
-                                product lifecycle.</li>
-                            <li><strong>Maintenance & Repair Management:</strong> Integrated post-installation service
-                                management with scheduled preventive maintenance, repair tracking, and service history
-                                documentation linked to original installation projects.</li>
-
-                            <li class="detail-group-title">Advanced Financial Architecture</li>
-                            <li><strong>Dual-Ledger Accounting System:</strong> Engineered a sophisticated parallel
-                                accounting architecture enabling simultaneous management of two completely segregated
-                                financial flows ("White" standard payments and restricted "Cash" payments) within
-                                individual sales orders, with mixed-percentage allocation across different order lines.
-                            </li>
-                            <li><strong>Segregated Invoice & Payment Processing:</strong> Automated generation of
-                                separate invoices, distinct journal entries, and independent ledger accounts for each
-                                payment type from a single sales order, ensuring complete financial segregation with
-                                separate Chart of Accounts (COA) structure.</li>
-                            <li><strong>Restricted Access Financial Dashboard:</strong> Implemented security-hardened
-                                financial reporting where restricted payment ledgers, partner accounts, payment
-                                histories, and financial dashboards are completely hidden from standard views and
-                                accessible only through password-protected menu access with multi-factor authentication.
-                            </li>
-                            <li><strong>Dual Expense & Income Management:</strong> Developed parallel expense and income
-                                tracking modules maintaining completely separate financial records for standard and
-                                restricted payment flows, ensuring comprehensive financial segregation at all
-                                operational levels.</li>
-
-                            <li class="detail-group-title">Partner Management & Automation</li>
-                            <li><strong>Fabrication & Installation Partner Portal:</strong> Built dedicated web portal
-                                enabling external fabrication and installation partners to access assigned tasks, view
-                                project specifications, update work progress, and submit completion reports with photo
-                                documentation.</li>
-                            <li><strong>Automated Commission Calculation:</strong> Developed intelligent commission
-                                engine with configurable rules to automatically calculate, track, and manage commission
-                                payouts for dealers, fabricators, and installers based on project milestones, completion
-                                status, and performance metrics.</li>
-
-                            <li class="detail-group-title">HR & Operations</li>
-                            <li><strong>Biometric Attendance Integration:</strong> Connected with biometric attendance
-                                machines to automatically fetch and synchronize attendance data. Implemented customized
-                                overtime calculation rules and automated checkout workflows with gender-specific
-                                policies for office staff.</li>
-                            <li><strong>WhatsApp Customer Communication:</strong> Integrated WhatsApp API for automated
-                                customer communication including project status updates, installation scheduling
-                                notifications, subsidy processing alerts, maintenance reminders, and post-installation
-                                follow-up messages.</li>
-
-                            <li class="detail-group-title">Integrated Modules</li>
-                            <li><strong>Modules Deployed:</strong> CRM, Sales, Project, Field Service, Purchase,
-                                Inventory, Accounting, Dashboard, Maintenance, Repairs, Warranty, Website, Social
-                                Marketing, Email Marketing, Employee, Payroll, Attendance, Expense, WhatsApp Integration
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 2: Medical Service Multi-Branch (NEW) -->
-            <div class="project-card reveal" onclick="toggleProject(this)">
-                <div class="project-header">
-                    <div>
-                        <span class="project-industry">Medical Services & Retail</span>
-                        <span class="project-version">v19.0</span>
-                        <h3>Multi-National Medical Services ERP</h3>
-                    </div>
-                    <div class="project-toggle">
-                        <span>Details</span>
-                        <span class="project-toggle-icon">▾</span>
-                    </div>
-                </div>
-                <div class="project-visuals hidden">
-                    <!-- <img src="assets/medical-erp.jpg" alt="Medical ERP Hierarchy" loading="lazy"> -->
-                </div>
-                <p class="project-summary">
-                    A massive-scale backend setup for a medical chain with 27 branches across multiple countries.
-                    Focuses on <strong>Multi-Company / Multi-Currency</strong> architecture, centralized HR
-                    functionality,
-                    and inter-branch operational synchronization.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">Multi-Company</span>
                     <span class="project-tag">Accounting</span>
-                    <span class="project-tag">HR & Payroll</span>
-                    <span class="project-tag">Inventory</span>
-                    <span class="project-tag">Analytics</span>
+                    <span class="project-tag">Time-off</span>
+                    <span class="project-tag">Expense</span>
+                    <span class="project-tag">Helpdesk</span>
+                    <span class="project-tag">CRM</span>
                 </div>
                 <div class="project-details">
                     <div class="project-details-inner">
                         <ul class="project-detail-list">
-                            <li><strong>Multi-Entity Architecture:</strong> Configured a rigorous Parent → Child →
-                                Sub-child company hierarchy with multi-currency support, ensuring consolidated reporting
-                                while maintaining branch-level independence.</li>
-                            <li><strong>Inter-Branch Inventory:</strong> Managing stock levels across all 27 branches
-                                with automated Valuation and Inter-Branch Transfer protocols.</li>
-                            <li class="detail-group-title">HR & Payroll</li>
-                            <li><strong>Centralized Payroll & Attendance:</strong> Synced attendance machines across all
-                                countries to a central server. Employees working at different branches have their
-                                attendance consolidated for a single payroll run from their home branch.</li>
-                            <li><strong>Cross-Branch Billing:</strong> Developed logic to automatically calculate and
-                                bill employee costs to the specific branch where they performed services, ensuring
-                                accurate profit center accounting.</li>
-                            <li class="detail-group-title">Financials & Operations</li>
-                            <li><strong>Granular Analytics:</strong> Implemented deep analytic accounting to track
-                                Revenue and Expenses per <strong>Doctor</strong>, <strong>Clinic</strong>,
-                                <strong>Service</strong>, and <strong>Department</strong>.
-                            </li>
-                            <li><strong>Operational Modules:</strong> Integrated Appointment Planning, Frontdesk, Fleet
-                                Management for logistics, and Recruitment/Appraisal workflows for medical staff.</li>
+                            <li>Developed a comprehensive <strong>Employee Portal</strong> — employees can view
+                                attendance, time-off, payslips, contract details, bonuses, violations (deductions),
+                                managed equipments & services, submitted documents, and request certificates for
+                                taxation or other purposes (auto-generated).</li>
+                            <li>Built portal features for ticket creation & management, appraisal viewing & feedback,
+                                meeting/appointment management, and loan request submission.</li>
+                            <li>Designed a custom <strong>Organisation Chart</strong> with multi-level unfold support
+                                and dedicated assistant/PA positions displayed on left/right of the employee node.</li>
+                            <li>Customized overtime management (regular and on-call) with automated violation tracking
+                                for labor law and policy compliance.</li>
+                            <li>Designed custom appraisal workflows including bonus/allowance management and streamlined
+                                contract processes.</li>
+                            <li>Developed systems for exceptional increase management, end-of-service rewards, employee
+                                loans, and time-off approvals.</li>
+                            <li>Created a fully custom payroll solution and integrated automatic attendance
+                                synchronization from BioTime devices.</li>
+                            <li>Implemented sales and purchase approval workflows for multi-company setups.</li>
+                            <li>Integrated WooCommerce orders with Odoo accounting for accurate synchronization.</li>
+                            <li>Collaborated on multi-channel helpdesk integration with WhatsApp bot support for
+                                streamlined ticket management.</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 3: Medical Equipment Manufacturing (EXISTING) -->
+            <!-- Project 2: Medical Equipment Manufacturing -->
             <div class="project-card reveal" onclick="toggleProject(this)">
                 <div class="project-header">
                     <div>
@@ -987,15 +722,10 @@
                         <span class="project-toggle-icon">▾</span>
                     </div>
                 </div>
-                <div class="project-visuals hidden">
-                    <!-- <img src="assets/med-mfg.jpg" alt="Manufacturing Workflow" loading="lazy"> -->
-                </div>
                 <p class="project-summary">
-                    As lead developer, spearheaded the comprehensive implementation, strategic planning, and development
-                    of critical
-                    functionalities during the migration from Odoo v11 to v18 — redesigning manufacturing workflows
-                    for a medical device equipment company to meet pharmaceutical industry standards and regulatory
-                    compliance.
+                    As lead developer, spearheaded the implementation, planning, and development of critical
+                    functionalities during migration from Odoo v11 to v18 — redesigning manufacturing workflows
+                    for a medical device equipment company.
                 </p>
                 <div class="project-tags">
                     <span class="project-tag">Sales</span>
@@ -1051,73 +781,7 @@
                 </div>
             </div>
 
-            <!-- Project 4: Car Servicing (EXISTING) -->
-            <div class="project-card reveal" onclick="toggleProject(this)">
-                <div class="project-header">
-                    <div>
-                        <span class="project-industry">Automotive & Retail</span>
-                        <span class="project-version">v15 & v18</span>
-                        <h3>Premium Car Servicing & Spare Parts ERP</h3>
-                    </div>
-                    <div class="project-toggle">
-                        <span>Details</span>
-                        <span class="project-toggle-icon">▾</span>
-                    </div>
-                </div>
-                <div class="project-visuals hidden">
-                    <!-- <img src="assets/car-erp.jpg" alt="Car Servicing Portal" loading="lazy"> -->
-                </div>
-                <p class="project-summary">
-                    Led the full-scale ERP implementation for a premium car servicing and spare parts company.
-                    Designed and deployed 11 Odoo modules covering HR, Payroll, Sales, Purchase, Accounting,
-                    CRM, Helpdesk, and more — with a comprehensive employee portal system.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">Payroll</span>
-                    <span class="project-tag">HR</span>
-                    <span class="project-tag">Attendance</span>
-                    <span class="project-tag">Appraisals</span>
-                    <span class="project-tag">Sales</span>
-                    <span class="project-tag">Purchase</span>
-                    <span class="project-tag">Accounting</span>
-                    <span class="project-tag">Time-off</span>
-                    <span class="project-tag">Expense</span>
-                    <span class="project-tag">Helpdesk</span>
-                    <span class="project-tag">CRM</span>
-                </div>
-                <div class="project-details">
-                    <div class="project-details-inner">
-                        <ul class="project-detail-list">
-                            <li>Developed a comprehensive <strong>Employee Portal</strong> — employees can view
-                                attendance, time-off, payslips, contract details, bonuses, violations (deductions),
-                                managed equipments & services, submitted documents, and request certificates for
-                                taxation or other purposes (auto-generated).</li>
-                            <li>Built portal features for ticket creation & management, appraisal viewing & feedback,
-                                meeting/appointment management, and loan request submission.</li>
-                            <li>Designed a custom <strong>Organisation Chart</strong> with multi-level unfold support
-                                and dedicated assistant/PA positions displayed on left/right of the employee node.</li>
-                            <li>Customized overtime management (regular and on-call) with automated violation tracking
-                                for labor law and policy compliance.</li>
-                            <li>Designed custom appraisal workflows including bonus/allowance management and streamlined
-                                contract processes.</li>
-                            <li>Developed systems for exceptional increase management, end-of-service rewards, employee
-                                loans, and time-off approvals.</li>
-                            <li>Created a fully custom payroll solution and integrated automatic attendance
-                                synchronization from BioTime devices.</li>
-                            <li>Implemented sales and purchase approval workflows for multi-company setups.</li>
-                            <li>Integrated WooCommerce orders with Odoo accounting for accurate synchronization.</li>
-                            <li>Collaborated on multi-channel helpdesk integration with WhatsApp bot support for
-                                streamlined ticket management.</li>
-                        </ul>
-                        <!-- Placeholder: Replace this certificate image with car servicing ERP screenshot -->
-                        <div class="project-visuals" style="margin-top: 1.5rem;">
-                            <img src="assets/certificate.jpg" alt="Car Servicing ERP Dashboard" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 5: Solar Panel Manufacturing (EXISTING) -->
+            <!-- Project 3: Solar Manufacturing -->
             <div class="project-card reveal" onclick="toggleProject(this)">
                 <div class="project-header">
                     <div>
@@ -1130,13 +794,9 @@
                         <span class="project-toggle-icon">▾</span>
                     </div>
                 </div>
-                <div class="project-visuals hidden">
-                    <!-- <img src="assets/solar-mfg.jpg" alt="Solar Manufacturing" loading="lazy"> -->
-                </div>
                 <p class="project-summary">
                     Led manufacturing development and implementation for a solar panel manufacturing and sales
-                    company — customizing production workflows, quality grading, and inventory management
-                    to maximize yield efficiency and product value.
+                    company — customizing production workflows, quality grading, and inventory management.
                 </p>
                 <div class="project-tags">
                     <span class="project-tag">Manufacturing</span>
@@ -1168,26 +828,22 @@
                 </div>
             </div>
 
-            <!-- Project 6: Elevator Maintenance (EXISTING) -->
+            <!-- Project 4: Elevator Maintenance -->
             <div class="project-card reveal" onclick="toggleProject(this)">
                 <div class="project-header">
                     <div>
                         <span class="project-industry">Facilities Management</span>
                         <span class="project-version">v13</span>
-                        <h3>Elevator Maintenance & Subscription ERP</h3>
+                        <h3>Elevator Maintenance & Service Management ERP</h3>
                     </div>
                     <div class="project-toggle">
                         <span>Details</span>
                         <span class="project-toggle-icon">▾</span>
                     </div>
                 </div>
-                <div class="project-visuals hidden">
-                    <!-- <img src="assets/elevator.jpg" alt="Maintenance Schedule" loading="lazy"> -->
-                </div>
                 <p class="project-summary">
                     Led the development of CRM, Subscription, and Maintenance modules for an elevator
-                    maintenance company — automating scheduling, customer communication, and workforce tracking
-                    for enhanced service excellence.
+                    maintenance company — automating scheduling, customer communication, and workforce tracking.
                 </p>
                 <div class="project-tags">
                     <span class="project-tag">CRM</span>
@@ -1220,14 +876,6 @@
         </div>
 
     </main>
-
-    <!-- IMAGE LIGHTBOX MODAL -->
-    <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
-        <div class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close image">×</div>
-        <div class="lightbox-content">
-            <img id="lightboxImage" src="" alt="Full size view">
-        </div>
-    </div>
 
     <!-- FOOTER -->
     <footer role="contentinfo">
@@ -1288,51 +936,6 @@
             });
         }, { threshold: 0.1 });
         revealElements.forEach(el => revealObserver.observe(el));
-
-        // Image Lightbox functionality
-        function openLightbox(imageSrc, imageAlt) {
-            const modal = document.getElementById('lightboxModal');
-            const modalImage = document.getElementById('lightboxImage');
-            modalImage.src = imageSrc;
-            modalImage.alt = imageAlt || 'Full size view';
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        }
-
-        function closeLightbox(event) {
-            if (event) {
-                // Only close if clicking on the modal background or close button
-                if (event.target.classList.contains('lightbox-modal') ||
-                    event.target.classList.contains('lightbox-close') ||
-                    event.target.textContent === '×') {
-                    const modal = document.getElementById('lightboxModal');
-                    modal.classList.remove('active');
-                    document.body.style.overflow = ''; // Restore scrolling
-                }
-            }
-        }
-
-        // Add click listeners to all project images
-        document.addEventListener('DOMContentLoaded', () => {
-            const projectImages = document.querySelectorAll('.project-visuals img');
-            projectImages.forEach(img => {
-                img.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Prevent project card toggle
-                    openLightbox(img.src, img.alt);
-                });
-            });
-        });
-
-        // Close lightbox on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const modal = document.getElementById('lightboxModal');
-                if (modal.classList.contains('active')) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            }
-        });
     </script>
 </body>
 

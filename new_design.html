@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhiren Narola — Odoo Techno-Functional Consultant & Developer</title>
+    <meta name="description" content="Dhiren Narola — Certified Odoo 18 Consultant & Development Team Lead. 15+ end-to-end ERP implementations. Available for freelance & remote engagements.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #714B67;
+            --primary-light: #8F6B83;
+            --primary-dark: #5B3A53;
+            --accent: #017e84;
+            --accent-light: #00a09a;
+            --bg: #ffffff;
+            --bg-soft: #f8f5f3;
+            --bg-section: #f3eff5;
+            --bg-card: #ffffff;
+            --bg-dark: #2c2c3a;
+            --bg-hero: #714B67;
+            --text: #2c2c3a;
+            --text-secondary: #585862;
+            --text-muted: #8f8f9d;
+            --text-on-primary: #ffffff;
+            --border: #e5dfe3;
+            --border-light: #f0eaee;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+            --font: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            --max-w: 1200px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+        .navbar.scrolled { box-shadow: var(--shadow-sm); }
+        .navbar-inner {
+            max-width: var(--max-w); margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.9rem 2rem;
+        }
+        .nav-brand {
+            font-weight: 700; font-size: 1.3rem; color: var(--primary);
+            text-decoration: none; letter-spacing: -0.02em;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .nav-brand .dot { color: var(--accent); font-size: 1.8rem; line-height: 1; }
+        .nav-links { display: flex; gap: 0.3rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.88rem; font-weight: 500; padding: 0.5rem 1rem;
+            border-radius: 8px; transition: var(--transition);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary); background: var(--bg-section);
+        }
+        .nav-cta {
+            padding: 0.55rem 1.4rem !important;
+            background: var(--primary) !important; color: var(--text-on-primary) !important;
+            border-radius: 8px !important; font-weight: 500 !important;
+        }
+        .nav-cta:hover { background: var(--primary-dark) !important; transform: translateY(-1px); }
+        .nav-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            cursor: pointer; background: none; border: none; padding: 4px;
+        }
+        .nav-toggle span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: var(--transition); }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-hero) 0%, #5B3A53 50%, #3a2540 100%);
+            padding: 10rem 2rem 6rem; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -30%; left: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0,160,154,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-inner {
+            max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 1;
+            display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: center;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.4rem 1rem; background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 30px;
+            font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem; backdrop-filter: blur(10px);
+        }
+        .hero-badge .pulse {
+            width: 8px; height: 8px; background: #00e6a0; border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.7); } }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 900;
+            color: #fff; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1rem;
+        }
+        .hero .subtitle {
+            font-size: 1.15rem; font-weight: 400; color: rgba(255,255,255,0.75);
+            line-height: 1.7; margin-bottom: 2rem; max-width: 520px;
+        }
+        .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+        .btn {
+            padding: 0.85rem 2rem; border-radius: 8px; font-family: var(--font);
+            font-size: 0.92rem; font-weight: 500; text-decoration: none;
+            cursor: pointer; transition: var(--transition); display: inline-flex;
+            align-items: center; gap: 0.5rem; border: none;
+        }
+        .btn-white { background: #fff; color: var(--primary); }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+        .btn-outline-white {
+            background: transparent; color: #fff;
+            border: 1.5px solid rgba(255,255,255,0.35);
+        }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); transform: translateY(-2px); }
+        .btn-primary-solid { background: var(--primary); color: #fff; }
+        .btn-primary-solid:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-outline {
+            background: transparent; color: var(--primary);
+            border: 1.5px solid var(--border);
+        }
+        .btn-outline:hover { border-color: var(--primary); background: var(--bg-section); transform: translateY(-2px); }
+
+        .hero-stats {
+            display: flex; gap: 2.5rem; padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+        .hero-stat .number { font-size: 2rem; font-weight: 900; color: #fff; }
+        .hero-stat .label { font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-top: 0.1rem; }
+        .hero-photo {
+            width: 280px; height: 340px; border-radius: var(--radius-lg);
+            overflow: hidden; border: 3px solid rgba(255,255,255,0.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3); position: relative;
+        }
+        .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ===== SECTIONS COMMON ===== */
+        .section { padding: 6rem 2rem; max-width: var(--max-w); margin: 0 auto; }
+        .section-alt { background: var(--bg-section); }
+        .section-alt .section { margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-tag {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--primary);
+            padding: 0.4rem 1rem; background: rgba(113,75,103,0.08);
+            border-radius: 20px; margin-bottom: 1rem;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 900;
+            color: var(--text); letter-spacing: -0.03em; line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .section-desc {
+            font-size: 1.05rem; color: var(--text-secondary);
+            max-width: 600px; margin: 0 auto; line-height: 1.8;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-text p { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; margin-bottom: 1.2rem; }
+        .about-text strong { color: var(--text); font-weight: 700; }
+        .about-cards {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;
+        }
+        .about-card {
+            padding: 1.2rem; background: var(--bg-card); border: 1px solid var(--border-light);
+            border-radius: var(--radius); transition: var(--transition);
+        }
+        .about-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .about-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .about-card h4 { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+        .about-card p { font-size: 0.78rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+        .about-visual {
+            display: flex; flex-direction: column; gap: 1.5rem; align-items: center;
+        }
+        .cert-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 2rem; text-align: center;
+            box-shadow: var(--shadow-md); width: 100%; max-width: 380px;
+        }
+        .cert-card .cert-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.4rem 1rem; background: rgba(113,75,103,0.08);
+            border: 1px solid rgba(113,75,103,0.15); border-radius: 20px;
+            font-size: 0.75rem; font-weight: 700; color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .cert-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+        .cert-card p { font-size: 0.85rem; color: var(--text-secondary); }
+        .cert-card img {
+            width: 100%; border-radius: var(--radius); margin-top: 1rem;
+            border: 1px solid var(--border-light);
+        }
+
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+        }
+        .service-card {
+            padding: 2rem; background: var(--bg-card);
+            border: 1px solid var(--border-light); border-radius: var(--radius-lg);
+            transition: var(--transition); position: relative; overflow: hidden;
+        }
+        .service-card::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 3px; background: var(--primary); transform: scaleX(0);
+            transition: transform 0.4s ease; transform-origin: left;
+        }
+        .service-card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .service-card:hover::after { transform: scaleX(1); }
+        .service-icon {
+            width: 50px; height: 50px; border-radius: 12px;
+            background: rgba(113,75,103,0.08); display: flex;
+            align-items: center; justify-content: center;
+            margin-bottom: 1.2rem; font-size: 1.4rem;
+        }
+        .service-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--text); }
+        .service-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; }
+
+        /* ===== EXPERIENCE TIMELINE ===== */
+        .timeline { position: relative; padding-left: 2.5rem; }
+        .timeline::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 2px; background: linear-gradient(to bottom, var(--primary), var(--border));
+        }
+        .timeline-item { position: relative; padding-bottom: 2.5rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -2.75rem; top: 0.3rem;
+            width: 14px; height: 14px; border-radius: 50%;
+            background: var(--primary); border: 3px solid var(--bg);
+            box-shadow: 0 0 0 3px rgba(113,75,103,0.2);
+        }
+        .timeline-item:first-child::before { background: var(--accent); box-shadow: 0 0 0 3px rgba(1,126,132,0.2); }
+        .timeline-date {
+            font-size: 0.75rem; font-weight: 700; color: var(--primary);
+            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem;
+        }
+        .timeline-item h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.15rem; }
+        .timeline-company { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.6rem; }
+        .timeline-item ul { list-style: none; }
+        .timeline-item li {
+            font-size: 0.88rem; color: var(--text-secondary); padding-left: 1.2rem;
+            position: relative; margin-bottom: 0.4rem; line-height: 1.6;
+        }
+        .timeline-item li::before {
+            content: '→'; position: absolute; left: 0; color: var(--primary); font-weight: 600;
+        }
+
+        /* ===== PROJECTS ===== */
+        .projects-featured { display: grid; gap: 2rem; margin-bottom: 3rem; }
+        .project-featured {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+            background: var(--bg-card); border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg); overflow: hidden;
+            transition: var(--transition);
+        }
+        .project-featured:hover { border-color: var(--primary); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+        .project-featured .project-img {
+            background: var(--bg-section); min-height: 300px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); font-size: 0.85rem; padding: 2rem;
+        }
+        .project-featured .project-img img { width: 100%; height: 100%; object-fit: cover; }
+        .project-featured .project-content { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+        .project-badge {
+            display: inline-flex; padding: 0.3rem 0.8rem; border-radius: 20px;
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; margin-bottom: 1rem; width: fit-content;
+        }
+        .badge-ksa { background: rgba(1,126,132,0.1); color: var(--accent); }
+        .badge-pharma { background: rgba(113,75,103,0.1); color: var(--primary); }
+        .badge-elevator { background: rgba(234,179,8,0.1); color: #b45309; }
+        .project-featured h3 { font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 0.8rem; line-height: 1.3; }
+        .project-featured p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.2rem; }
+        .project-metrics {
+            display: flex; gap: 1.5rem; padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+        }
+        .metric .metric-value { font-size: 1.3rem; font-weight: 900; color: var(--primary); }
+        .metric .metric-label { font-size: 0.72rem; color: var(--text-muted); }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+        .tag {
+            font-size: 0.7rem; padding: 0.25rem 0.65rem;
+            background: var(--bg-section); border: 1px solid var(--border-light);
+            border-radius: 6px; color: var(--text-secondary); font-weight: 500;
+        }
+
+        /* Other Projects Grid */
+        .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .project-card {
+            padding: 1.8rem; background: var(--bg-card);
+            border: 1px solid var(--border-light); border-radius: var(--radius);
+            transition: var(--transition);
+        }
+        .project-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+        .project-card h4 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+        .project-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+
+        /* ===== SKILLS ===== */
+        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .skill-group h3 {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--primary); margin-bottom: 1rem;
+            padding-bottom: 0.5rem; border-bottom: 2px solid rgba(113,75,103,0.15);
+        }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-tag {
+            padding: 0.45rem 0.9rem; background: var(--bg-card);
+            border: 1px solid var(--border-light); border-radius: 8px;
+            font-size: 0.82rem; font-weight: 500; color: var(--text-secondary);
+            transition: var(--transition);
+        }
+        .skill-tag:hover { border-color: var(--primary); color: var(--primary); background: rgba(113,75,103,0.05); transform: translateY(-1px); }
+        .skill-tag.featured { border-color: var(--primary); color: var(--primary); background: rgba(113,75,103,0.06); }
+
+        /* ===== WHY ME ===== */
+        .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .why-card {
+            padding: 2rem; background: var(--bg-card);
+            border: 1px solid var(--border-light); border-radius: var(--radius-lg);
+            transition: var(--transition); text-align: center;
+        }
+        .why-card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .why-card .why-icon {
+            width: 56px; height: 56px; border-radius: 14px;
+            background: rgba(113,75,103,0.08); display: flex;
+            align-items: center; justify-content: center;
+            margin: 0 auto 1.2rem; font-size: 1.5rem;
+        }
+        .why-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+        .why-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
+
+        /* ===== CONTACT ===== */
+        .contact-section {
+            background: linear-gradient(135deg, var(--bg-hero) 0%, #3a2540 100%);
+            padding: 6rem 2rem;
+        }
+        .contact-inner { max-width: var(--max-w); margin: 0 auto; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-info h2 { font-size: 2.2rem; font-weight: 900; color: #fff; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .contact-info p { font-size: 1rem; color: rgba(255,255,255,0.7); margin-bottom: 2rem; line-height: 1.8; }
+        .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+        .contact-link {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 1rem 1.5rem; background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius);
+            text-decoration: none; color: #fff; transition: var(--transition);
+        }
+        .contact-link:hover { background: rgba(255,255,255,0.15); transform: translateX(4px); }
+        .contact-link .c-icon {
+            width: 42px; height: 42px; border-radius: 10px;
+            background: rgba(255,255,255,0.1); display: flex;
+            align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+        }
+        .contact-link .c-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+        .contact-link .c-value { font-size: 0.95rem; font-weight: 500; }
+        .contact-form {
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg); padding: 2.5rem;
+            backdrop-filter: blur(10px);
+        }
+        .contact-form h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 1.5rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label {
+            font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.6);
+            margin-bottom: 0.4rem; display: block; letter-spacing: 0.03em;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 0.85rem 1rem;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px; color: #fff; font-family: var(--font); font-size: 0.9rem;
+            outline: none; transition: var(--transition);
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.1);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .btn-submit {
+            width: 100%; padding: 0.9rem; background: #fff; color: var(--primary);
+            border: none; border-radius: 8px; font-family: var(--font);
+            font-size: 0.95rem; font-weight: 700; cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 2rem; text-align: center;
+            border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.82rem;
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .services-grid, .skills-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(255,255,255,0.98); flex-direction: column;
+                padding: 1rem; border-bottom: 1px solid var(--border); backdrop-filter: blur(20px);
+            }
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: flex; }
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-photo { display: none; }
+            .hero .subtitle { margin: 0 auto 2rem; }
+            .hero-ctas { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .about-grid { grid-template-columns: 1fr; }
+            .services-grid, .skills-grid, .why-grid, .projects-grid { grid-template-columns: 1fr; }
+            .project-featured { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .section { padding: 4rem 1.2rem; }
+        }
+        @media (max-width: 480px) {
+            .hero { padding: 7rem 1rem 4rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+            .section-title { font-size: 1.5rem; }
+            .about-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+        <a href="#" class="nav-brand">Dhiren<span class="dot">.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#whyme">Why Me</a></li>
+            <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-inner">
+        <div class="hero-text">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                Available for Freelance & Remote Work
+            </div>
+            <h1>Odoo Techno-Functional<br>Consultant & Team Lead</h1>
+            <p class="subtitle">
+                Certified Odoo 18 Consultant with 4+ years delivering 15+ end-to-end ERP implementations.
+                From requirement analysis to go-live — I own the entire project lifecycle.
+            </p>
+            <div class="hero-ctas">
+                <a href="#contact" class="btn btn-white">Start a Project →</a>
+                <a href="#projects" class="btn btn-outline-white">View Case Studies</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="number">15+</div>
+                    <div class="label">ERP Implementations</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number">4+</div>
+                    <div class="label">Years Experience</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number">7</div>
+                    <div class="label">Team Members Led</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number">v11-19</div>
+                    <div class="label">Odoo Versions</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-photo">
+            <img src="assets/profile.png" alt="Dhiren Narola" loading="eager">
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+    <div class="section-header reveal">
+        <div class="section-tag">👤 About Me</div>
+        <h2 class="section-title">Building Business Solutions, Not Just Software</h2>
+        <p class="section-desc">I bridge the gap between business needs and technical execution — delivering ERP solutions that drive real business outcomes.</p>
+    </div>
+    <div class="about-grid">
+        <div class="about-text reveal">
+            <p><strong>Techno-Functional Odoo Consultant</strong> & <strong>Development Team Lead</strong> at <strong>Synodica Solutions</strong> (Odoo Silver Partner), managing multiple concurrent projects while driving client strategy, hiring, and technical mentorship.</p>
+            <p>I specialize in <strong>complete project ownership</strong> — handling client communication, gap analysis, solution design, custom development, integrations, server setup, and user training. Experienced across <strong>Odoo 11.0–19.0</strong>.</p>
+            <div class="about-cards">
+                <div class="about-card">
+                    <div class="icon">🏢</div>
+                    <h4>Team Leadership</h4>
+                    <p>Leading 7 developers across 4+ concurrent projects</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">📈</div>
+                    <h4>30% Productivity Boost</h4>
+                    <p>AI-driven dev workflows & mentoring</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">🌍</div>
+                    <h4>Global Projects</h4>
+                    <p>India, KSA, UAE, US, Europe</p>
+                </div>
+                <div class="about-card">
+                    <div class="icon">🎓</div>
+                    <h4>CAT 96.61 Percentile</h4>
+                    <p>Top 3% — strong analytical ability</p>
+                </div>
+            </div>
+        </div>
+        <div class="about-visual reveal">
+            <div class="cert-card">
+                <div class="cert-badge">✦ Officially Certified</div>
+                <h3>Odoo 18 Functional Certification</h3>
+                <p>Certified by Odoo S.A. — validating deep functional expertise across all core business modules</p>
+                <img src="assets/certificate.jpg" alt="Odoo 18 Certification" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<div class="section-alt">
+    <section class="section" id="services">
+        <div class="section-header reveal">
+            <div class="section-tag">⚡ Services</div>
+            <h2 class="section-title">End-to-End Odoo Expertise</h2>
+            <p class="section-desc">From initial consultation to post go-live support — everything you need for a successful ERP journey.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">🚀</div>
+                <h3>ERP Implementation</h3>
+                <p>Full-cycle ERP deployments — requirement gathering, gap analysis, configuration, data migration, testing, and go-live support.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🔧</div>
+                <h3>Custom Module Development</h3>
+                <p>Tailored modules built with clean Python, OWL/JS, and XML to match your unique business processes, not workarounds.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🔗</div>
+                <h3>Third-Party Integration</h3>
+                <p>REST API integrations — WooCommerce, ZATCA, WhatsApp, payment gateways, attendance devices, and custom webhooks.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">📋</div>
+                <h3>Functional Consulting</h3>
+                <p>Business process analysis, solution design, and workflow optimization across Accounting, HR, Manufacturing, Sales & more.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🖥️</div>
+                <h3>Server & Deployment</h3>
+                <p>End-to-end server setup on AWS, GCP, Contabo, and Odoo.sh — with CI/CD, security hardening, and backup strategies.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🎓</div>
+                <h3>Training & Support</h3>
+                <p>User training, admin handoff, documentation, and ongoing support to ensure your team maximizes their Odoo investment.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+    <div class="section-header reveal">
+        <div class="section-tag">💼 Career</div>
+        <h2 class="section-title">Professional Journey</h2>
+        <p class="section-desc">Growing from developer to team lead at an Odoo Silver Partner.</p>
+    </div>
+    <div class="timeline reveal">
+        <div class="timeline-item">
+            <div class="timeline-date">Sep 2024 – Present</div>
+            <h3>Development Team Lead</h3>
+            <div class="timeline-company">Synodica Solutions Pvt. Ltd. — Odoo Silver Partner, Surat</div>
+            <ul>
+                <li>Leading 7 developers across 4 concurrent projects; driving architecture decisions and delivery timelines</li>
+                <li>Led talent acquisition — conducting technical interviews and finalizing hires</li>
+                <li>Increased team productivity by <strong>30%</strong> through AI-driven development workflows</li>
+                <li>Reduced project delivery delays by <strong>25%</strong> through streamlined deployment processes</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">Mar 2024 – Present</div>
+            <h3>Senior Software Engineer</h3>
+            <div class="timeline-company">Synodica Solutions Pvt. Ltd.</div>
+            <ul>
+                <li>Delivered <strong>15+ full-cycle ERP projects</strong> across HR, Retail, Manufacturing, and IT Services</li>
+                <li>Independently managed client relationships, achieving <strong>20%</strong> improvement in client retention</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">Dec 2022 – Feb 2024</div>
+            <h3>Software Engineer</h3>
+            <div class="timeline-company">Synodica Solutions Pvt. Ltd.</div>
+            <ul>
+                <li>Revamped a <strong>10,000+ line legacy module</strong>, improving system performance by <strong>30%</strong></li>
+                <li>Delivered <strong>4 projects</strong>, increasing client satisfaction by <strong>20%</strong></li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">Sep 2021 – Nov 2022</div>
+            <h3>Junior Software Engineer</h3>
+            <div class="timeline-company">Synodica Solutions Pvt. Ltd.</div>
+            <ul>
+                <li>Customized and maintained Odoo applications including module design, troubleshooting, and testing</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<div class="section-alt">
+    <section class="section" id="projects">
+        <div class="section-header reveal">
+            <div class="section-tag">🏆 Portfolio</div>
+            <h2 class="section-title">Featured Case Studies</h2>
+            <p class="section-desc">Deep dives into complex ERP implementations. Client names are confidential under NDAs.</p>
+        </div>
+
+        <!-- Featured / Case Study Projects (2-3 detailed) -->
+        <div class="projects-featured">
+            <div class="project-featured reveal">
+                <div class="project-img">📸 Project Screenshots Coming Soon</div>
+                <div class="project-content">
+                    <div class="project-badge badge-ksa">🇸🇦 Automotive · KSA</div>
+                    <h3>Premium Car Servicing & Spare Parts Reseller</h3>
+                    <p>End-to-end HR, Payroll, Accounting & Sales ecosystem for 300+ employees with multi-company, multi-branch setup — reducing manual work by 60%.</p>
+                    <div class="project-tags">
+                        <span class="tag">Accounting</span><span class="tag">Payroll</span>
+                        <span class="tag">HR</span><span class="tag">WooCommerce</span>
+                        <span class="tag">ZATCA</span><span class="tag">WhatsApp Bot</span>
+                        <span class="tag">Portal</span>
+                    </div>
+                    <div class="project-metrics">
+                        <div class="metric"><div class="metric-value">300+</div><div class="metric-label">Employees</div></div>
+                        <div class="metric"><div class="metric-value">1,500+</div><div class="metric-label">Invoices/mo</div></div>
+                        <div class="metric"><div class="metric-value">60%</div><div class="metric-label">Less Manual Work</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-featured reveal">
+                <div class="project-content">
+                    <div class="project-badge badge-pharma">🏭 Manufacturing · India</div>
+                    <h3>Pharma & Medical Equipment Manufacturer</h3>
+                    <p>Full manufacturing workflow — raw materials to finished goods — with strict regulatory compliance for 225 employees. Consolidated 3 separate systems into 1 unified ERP.</p>
+                    <div class="project-tags">
+                        <span class="tag">Manufacturing</span><span class="tag">Quality Control</span>
+                        <span class="tag">Shopfloor</span><span class="tag">Tally Integration</span>
+                        <span class="tag">Dashboards</span>
+                    </div>
+                    <div class="project-metrics">
+                        <div class="metric"><div class="metric-value">225</div><div class="metric-label">Employees</div></div>
+                        <div class="metric"><div class="metric-value">50%</div><div class="metric-label">Fewer Errors</div></div>
+                        <div class="metric"><div class="metric-value">3→1</div><div class="metric-label">Systems Unified</div></div>
+                    </div>
+                </div>
+                <div class="project-img">📸 Project Screenshots Coming Soon</div>
+            </div>
+        </div>
+
+        <!-- Other Projects Grid -->
+        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text);" class="reveal">More Projects</h3>
+        <div class="projects-grid">
+            <div class="project-card reveal">
+                <div class="project-badge badge-elevator" style="margin-bottom:0.8rem;">🛗 Facility Mgmt</div>
+                <h4>Elevator Maintenance & Subscription</h4>
+                <p>Automated scheduling for 35+ technicians, WhatsApp flow for 4,000+ customers replacing 50% of call center.</p>
+                <div class="project-tags"><span class="tag">Subscription</span><span class="tag">WhatsApp</span><span class="tag">Maintenance</span></div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-badge badge-ksa" style="margin-bottom:0.8rem;">💻 IT Services</div>
+                <h4>Hourly Billing & Subscription Platform</h4>
+                <p>Subscription-based hourly billing with auto-allocation, customer portal, and Backblaze storage integration.</p>
+                <div class="project-tags"><span class="tag">Subscription</span><span class="tag">Portal</span><span class="tag">Timesheet</span></div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-badge badge-pharma" style="margin-bottom:0.8rem;">💎 Jewellery</div>
+                <h4>Jewellery Sales & Product Tags</h4>
+                <p>Custom product tagging system and optimized sales management for jewellery retail operations.</p>
+                <div class="project-tags"><span class="tag">Sales</span><span class="tag">Product Tags</span><span class="tag">Custom Module</span></div>
+            </div>
+            <!-- Placeholder cards for remaining projects -->
+            <div class="project-card reveal" style="opacity:0.6; border-style: dashed;">
+                <h4>+ More Projects</h4>
+                <p>9-10 additional projects will be added here with brief descriptions covering various industries and Odoo modules.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+    <div class="section-header reveal">
+        <div class="section-tag">🛠️ Tech Stack</div>
+        <h2 class="section-title">Technical & Functional Expertise</h2>
+    </div>
+    <div class="skills-grid reveal">
+        <div class="skill-group">
+            <h3>Technical</h3>
+            <div class="skill-tags">
+                <span class="skill-tag featured">Python</span>
+                <span class="skill-tag featured">PostgreSQL</span>
+                <span class="skill-tag featured">JavaScript / OWL</span>
+                <span class="skill-tag">XML</span>
+                <span class="skill-tag">REST APIs</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Linux</span>
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">GCP</span>
+                <span class="skill-tag">Odoo.sh</span>
+            </div>
+        </div>
+        <div class="skill-group">
+            <h3>Functional Modules</h3>
+            <div class="skill-tags">
+                <span class="skill-tag featured">Accounting</span>
+                <span class="skill-tag featured">Manufacturing</span>
+                <span class="skill-tag featured">HR & Payroll</span>
+                <span class="skill-tag">Sales</span>
+                <span class="skill-tag">Purchase</span>
+                <span class="skill-tag">Inventory</span>
+                <span class="skill-tag">CRM</span>
+                <span class="skill-tag">Helpdesk</span>
+                <span class="skill-tag">Subscription</span>
+                <span class="skill-tag">Quality</span>
+                <span class="skill-tag">Project</span>
+            </div>
+        </div>
+        <div class="skill-group">
+            <h3>Leadership & Process</h3>
+            <div class="skill-tags">
+                <span class="skill-tag featured">Team Lead (7 Devs)</span>
+                <span class="skill-tag">Requirement Analysis</span>
+                <span class="skill-tag">Architecture & Planning</span>
+                <span class="skill-tag">Client Communication</span>
+                <span class="skill-tag">Talent Acquisition</span>
+                <span class="skill-tag">Agile / Scrum</span>
+                <span class="skill-tag">Code Review</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY ME -->
+<div class="section-alt">
+    <section class="section" id="whyme">
+        <div class="section-header reveal">
+            <div class="section-tag">✨ Differentiators</div>
+            <h2 class="section-title">Why Work With Me</h2>
+        </div>
+        <div class="why-grid">
+            <div class="why-card reveal">
+                <div class="why-icon">🎯</div>
+                <h3>Full Project Ownership</h3>
+                <p>From requirement analysis to go-live — I handle every phase so you get a single accountable point of contact.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-icon">🏆</div>
+                <h3>Certified & Proven</h3>
+                <p>Odoo 18 Certified with 15+ successful implementations across automotive, pharma, IT, and facility management.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-icon">⚡</div>
+                <h3>Techno-Functional Edge</h3>
+                <p>Unique blend of deep technical skills and business consulting — I speak both developer and C-suite languages.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-icon">🌍</div>
+                <h3>Global Experience</h3>
+                <p>Delivered projects for clients in India, KSA, UAE, USA, and Europe — familiar with diverse regulations and workflows.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-icon">🤝</div>
+                <h3>Client-First Approach</h3>
+                <p>20% improvement in client retention by translating business needs into precise technical solutions with minimal rework.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-icon">🚀</div>
+                <h3>AI-Enhanced Delivery</h3>
+                <p>Leveraging AI-driven development workflows to boost team productivity by 30% and deliver faster results.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+    <div class="contact-inner">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Let's Build<br>Something Great</h2>
+                <p>Whether you need a full ERP implementation, custom module, or technical consultation — I'm ready to help you scale your business with Odoo.</p>
+                <div class="contact-links">
+                    <a href="mailto:dhnarola12@gmail.com" class="contact-link">
+                        <div class="c-icon">✉️</div>
+                        <div><div class="c-label">Email</div><div class="c-value">dhnarola12@gmail.com</div></div>
+                    </a>
+                    <a href="tel:+918469876302" class="contact-link">
+                        <div class="c-icon">📞</div>
+                        <div><div class="c-label">Phone</div><div class="c-value">+91 8469876302</div></div>
+                    </a>
+                    <a href="https://linkedin.com/in/dhirennarola" target="_blank" class="contact-link">
+                        <div class="c-icon">🔗</div>
+                        <div><div class="c-label">LinkedIn</div><div class="c-value">linkedin.com/in/dhirennarola</div></div>
+                    </a>
+                    <a href="https://github.com/dhirennarola" target="_blank" class="contact-link">
+                        <div class="c-icon">💻</div>
+                        <div><div class="c-label">GitHub</div><div class="c-value">github.com/dhirennarola</div></div>
+                    </a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Send a Message</h3>
+                <div class="form-row">
+                    <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"></div>
+                    <div class="form-group"><label>Email</label><input type="email" placeholder="email@example.com"></div>
+                </div>
+                <div class="form-group"><label>Subject</label><input type="text" placeholder="Project inquiry..."></div>
+                <div class="form-group"><label>Message</label><textarea placeholder="Tell me about your project..."></textarea></div>
+                <button class="btn-submit">Send Message →</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2025 Dhiren Narola. Built with passion for clean design and great UX.</p>
+</footer>
+
+<script>
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile toggle
+    document.getElementById('navToggle').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Active nav link
+    const sections = document.querySelectorAll('section[id], .section-alt section[id], .contact-section');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(s => {
+            if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
+        });
+        document.querySelectorAll('.nav-links a').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+        });
+    });
+</script>
+</body>
+</html>
