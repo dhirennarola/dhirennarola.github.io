@@ -18,20 +18,20 @@ const fmt = (d: Date) =>
   path="/insights"
   jsonLd={[breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Insights', path: '/insights' }])]}
 >
-  <header class="subhero">
+  <header class="hero hero--sub on-dark">
     <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb">
+      <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Insights</span>
       </nav>
-      <h1>Field notes, not content marketing.</h1>
-      <p class="lede">
+      <h1 class="rv-h hub-h1" data-h="2">Field notes, not content marketing.</h1>
+      <p class="lede rv-h" data-h="3">
         What I've learned delivering ERP and automation projects in production —
         written for the people who have to make these decisions with real budgets.
       </p>
     </div>
   </header>
 
-  <section class="section section--tight">
+  <section class="section">
     <div class="container">
       <div class="posts">
         {posts.map((post, i) => (
@@ -58,6 +58,10 @@ const fmt = (d: Date) =>
 </Base>
 
 <style>
+  .hub-h1 {
+    font-size: var(--text-3xl);
+  }
+
   .posts {
     display: flex;
     flex-direction: column;

@@ -15,6 +15,9 @@ heroKpis:
   - { value: '60%', label: 'less manual work', basis: 'across invoicing, payroll & job cards' }
   - { value: '1,500+', label: 'ZATCA e-invoices / month', basis: 'production volume' }
   - { value: '~40%', label: 'faster ticket response', basis: 'client-reported after WhatsApp helpdesk launch' }
+story:
+  problem: 'Spreadsheets everywhere, manual Saudi payroll, hard ZATCA deadline.'
+  impact: '<strong>60% less manual work</strong> · 1,500+ e-invoices/mo · ~40% faster service.'
 modules:
   [
     'Accounting',

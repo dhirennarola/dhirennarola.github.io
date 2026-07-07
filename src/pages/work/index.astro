@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { getCollection } from 'astro:content';
-import { countriesServed, numbers } from '../../data/facts';
 import { breadcrumbs } from '../../data/schema';
 
 const work = (await getCollection('work')).sort(
@@ -11,57 +10,64 @@ const work = (await getCollection('work')).sort(
 ---
 
 <Base
-  title="Work — Odoo ERP Case Studies | Dhiren Narola"
-  description="Case studies from 20+ Odoo implementations: ZATCA-compliant ERP for a 300-employee automotive group, pharma manufacturing consolidation, subscription automation at scale, and more."
+  title="Work — Odoo ERP Case Studies & Projects | Dhiren Narola"
+  description="Case studies from 22 Odoo implementations across 13 countries: ZATCA-compliant ERP for a 300-employee automotive group, pharma manufacturing consolidation, WhatsApp automation at 4,000-customer scale, and more."
   path="/work"
+  keywords={[
+    'Odoo case study',
+    'Odoo implementation example',
+    'Odoo project portfolio',
+    'ERP case study',
+    'ZATCA Odoo implementation',
+  ]}
   jsonLd={[breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Work', path: '/work' }])]}
 >
-  <header class="subhero">
+  <header class="hero hero--sub on-dark">
     <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb">
+      <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Work</span>
       </nav>
-      <h1>Selected work, with the numbers left in.</h1>
-      <p class="lede">
-        {numbers.implementations} implementations across {numbers.countries}
-        countries. Client names stay under NDA; architecture decisions and
-        measured outcomes don't. These case studies are written for the people
-        who sign off on ERP budgets.
+      <h1 class="rv-h hub-h1" data-h="2">Selected work, with the numbers left in.</h1>
+      <p class="lede rv-h" data-h="3">
+        22 implementations across 13 countries — five published as full case
+        studies, the rest confidential under NDA. Written for the people who
+        sign off on ERP budgets.
       </p>
     </div>
   </header>
 
-  <section class="section section--tight">
+  <section class="section">
     <div class="container">
-      <div class="work-grid">
+      <div class="cards" data-stagger>
         {work.map((cs, i) => (
-          <a href={`/work/${cs.id}`} class:list={['card', 'card--hover', 'work-item', 'reveal', i % 2 === 1 && 'reveal-d1']}>
-            <div class="work-meta">
+          <a href={`/work/${cs.id}`} class="card card--hover">
+            <div class="tag-row">
               <span class="tag">{cs.data.industry}</span>
               <span class="tag">{cs.data.country}</span>
               <span class="tag">{cs.data.odooVersion}</span>
+              {i === 0 && <span class="pill pill--accent flag-pill">Flagship</span>}
             </div>
-            <h2>{cs.data.title}</h2>
-            <p>{cs.data.summary}</p>
-            <div class="work-kpis">
-              {cs.data.heroKpis.map((kpi) => (
-                <div class="stat">
-                  <div class="stat-num">{kpi.value}</div>
-                  <div class="stat-label">{kpi.label}</div>
-                </div>
-              ))}
-            </div>
-            <span class="pillar-link">Read the case study →</span>
+            <h2 class="work-h">{cs.data.title}</h2>
+            {cs.data.story ? (
+              <div class="story grow">
+                <div class="story-row"><b>Problem</b><span set:html={cs.data.story.problem} /></div>
+                <div class="story-row"><b>Impact</b><span set:html={cs.data.story.impact} /></div>
+              </div>
+            ) : (
+              <p class="work-sum grow">{cs.data.summary}</p>
+            )}
+            <span class="link-arr">Read the case study <span class="arr" aria-hidden="true">→</span></span>
           </a>
         ))}
+        <div class="card nda-card">
+          <h3 class="nda-h">+ 17 more under NDA</h3>
+          <p>
+            US and European enterprise engagements, Gulf implementations, and the
+            ongoing New Zealand telecom ERP. References available privately on
+            request.
+          </p>
+        </div>
       </div>
-
-      <p class="more-note reveal">
-        …plus further projects delivered across the United States, Europe
-        (Netherlands, Germany), UAE, Qatar, Egypt, Australia, Mexico &amp; Laos —
-        including US and European enterprise engagements that remain fully
-        confidential under NDA. References available privately on request.
-      </p>
     </div>
   </section>
 
@@ -69,59 +75,38 @@ const work = (await getCollection('work')).sort(
 </Base>
 
 <style>
-  .work-grid {
-    display: grid;
-    gap: var(--s-5);
+  .hub-h1 {
+    font-size: var(--text-3xl);
+    max-width: 22ch;
   }
 
-  @media (min-width: 860px) {
-    .work-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .work-item:first-child {
-      grid-column: span 2;
-    }
+  .flag-pill {
+    padding-block: 0.15rem;
   }
 
-  .work-item {
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-4);
-  }
-
-  .work-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-  }
-
-  .work-item h2 {
+  .work-h {
     font-size: var(--text-xl);
-    font-family: var(--font-body);
-    font-weight: 650;
     margin: 0;
   }
 
-  .work-item > p {
-    color: var(--ink-soft);
-    font-size: var(--text-sm);
-    margin: 0;
-    flex-grow: 1;
-  }
-
-  .work-kpis {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--s-4);
-    border-top: 1px solid var(--line);
-    padding-top: var(--s-4);
-  }
-
-  .more-note {
-    margin-top: var(--s-6);
+  .work-sum {
     font-size: var(--text-sm);
     color: var(--ink-faint);
-    max-width: 62ch;
+    margin: 0;
+  }
+
+  .nda-card {
+    justify-content: center;
+    background: var(--bg-subtle);
+  }
+
+  .nda-h {
+    font-size: var(--text-lg);
+  }
+
+  .nda-card p {
+    font-size: var(--text-sm);
+    color: var(--ink-faint);
+    margin: 0;
   }
 </style>

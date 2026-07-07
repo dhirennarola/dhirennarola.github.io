@@ -50,27 +50,27 @@ const jsonLd = [
   ogType="article"
   jsonLd={jsonLd}
 >
-  <header class="subhero cs-hero">
+  <header class="hero hero--sub on-dark cs-hero">
     <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb">
+      <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span>
         <a href="/work">Work</a> <span aria-hidden="true">/</span>
         <span>{d.industry}</span>
       </nav>
-      <div class="work-meta">
+      <div class="work-meta rv-h" data-h="1">
         <span class="tag">{d.industry}</span>
         <span class="tag">{d.country}</span>
         <span class="tag">{d.odooVersion}</span>
-        <span class="tag tag--live">{d.status}</span>
+        <span class="pill pill--ok status-pill"><span class="dot" aria-hidden="true"></span> {d.status}</span>
       </div>
-      <h1>{d.title}</h1>
-      <p class="lede">{d.summary}</p>
+      <h1 class="rv-h cs-h1" data-h="2">{d.title}</h1>
+      <p class="lede rv-h" data-h="3">{d.summary}</p>
 
-      <dl class="cs-kpis">
+      <dl class="proofbar cs-kpis rv-h" data-h="4">
         {d.heroKpis.map((kpi) => (
           <div class="stat">
             <dd class="stat-num">{kpi.value}</dd>
-            <dt class="stat-label">{kpi.label}{kpi.basis && <span class="kpi-basis"> — {kpi.basis}</span>}</dt>
+            <dt class="stat-lbl">{kpi.label}{kpi.basis && <span class="kpi-basis"> — {kpi.basis}</span>}</dt>
           </div>
         ))}
       </dl>
@@ -154,24 +154,25 @@ const jsonLd = [
     margin-bottom: var(--s-4);
   }
 
-  .cs-hero h1 {
+  .cs-h1 {
     max-width: 24ch;
+    font-size: clamp(1.9rem, 1.4rem + 2.4vw, 3.1rem);
   }
 
-  .tag--live {
-    background: var(--ok-tint);
-    border-color: #c3ecc9;
-    color: #1e6b30;
+  .status-pill {
+    padding-block: 0.2rem;
   }
 
   .cs-kpis {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: var(--s-5);
+    max-width: 680px;
     margin: var(--s-6) 0 0;
-    padding-top: var(--s-5);
-    border-top: 1px solid var(--line);
-    max-width: 720px;
+    padding-top: var(--s-6);
+  }
+
+  @media (min-width: 700px) {
+    .cs-kpis {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   .cs-kpis dd {
@@ -179,7 +180,8 @@ const jsonLd = [
   }
 
   .kpi-basis {
-    color: var(--ink-faint);
+    color: var(--td-faint);
+    font-weight: 400;
   }
 
   .cs-layout {

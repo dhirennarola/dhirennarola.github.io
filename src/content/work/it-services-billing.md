@@ -15,6 +15,9 @@ heroKpis:
   - { value: '100%', label: 'of manual billing eliminated', basis: 'auto-allocation + auto-renewal' }
   - { value: '45%', label: 'fewer client queries', basis: 'after customer portal launch' }
   - { value: '2FA', label: 'enforced platform-wide', basis: 'with fraud detection at onboarding' }
+story:
+  problem: 'Hour packages in spreadsheets; billing disputes every month-end.'
+  impact: '<strong>100% of manual billing eliminated</strong> · 45% fewer client queries.'
 modules: ['Subscriptions', 'Project', 'Timesheets', 'Sales', 'Purchase', 'Website']
 integrations: ['Backblaze B2 (documents + automated backups)', 'Odoo.sh deployment']
 tags: ['Billing Automation', 'Customer Portal', 'Subscriptions', 'SaaS']

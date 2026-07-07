@@ -54,8 +54,9 @@ const skills = [
 
 <Base
   title="Résumé — Dhiren Narola, Odoo Architect & AI Automation Engineer"
-  description="One-page consultant profile: Odoo 18 certified architect, 20+ implementations across 12+ countries, ERP rescue and AI automation specialist."
+  description="One-page consultant profile: Odoo 18 certified architect, 20+ implementations across 13 countries, ERP rescue and AI automation specialist."
   path="/profile"
+  headerLight
 >
   <div class="profile-toolbar">
     <div class="container toolbar-inner">
@@ -78,10 +79,10 @@ const skills = [
           <p class="r-title">{site.title}</p>
         </div>
         <div class="r-contact">
-          <span>dhirennarola.com</span>
-          <span>{contact.email}</span>
-          <span>{contact.phoneDisplay}</span>
-          <span>linkedin.com/in/dhirennarola</span>
+          <a href={site.url}>dhirennarola.com</a>
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+          <a href={`tel:+${contact.whatsappNumber}`}>{contact.phoneDisplay}</a>
+          <a href={contact.linkedin}>linkedin.com/in/dhirennarola</a>
           <span>Surat, India · working globally</span>
         </div>
       </header>
@@ -277,6 +278,21 @@ const skills = [
     color: var(--ink-soft);
     gap: 0.1rem;
     text-align: right;
+  }
+
+  .r-contact a {
+    color: var(--ink-soft);
+  }
+
+  .r-contact a:hover {
+    color: var(--accent-strong);
+  }
+
+  @media print {
+    .r-contact a {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
   }
 
   .r-summary {

@@ -23,6 +23,13 @@ const work = defineCollection({
         basis: z.string().optional(),
       })
     ),
+    /** Problem/impact one-liners for storytelling cards (work index + home). May contain inline HTML. */
+    story: z
+      .object({
+        problem: z.string(),
+        impact: z.string(),
+      })
+      .optional(),
     modules: z.array(z.string()),
     integrations: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),

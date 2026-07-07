@@ -1,11 +1,12 @@
 ---
 import '@fontsource-variable/inter';
-import '@fontsource-variable/fraunces';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/manrope';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
-import { site, contact } from '../data/facts';
+import { site, contact, numbers, odooStoreApps } from '../data/facts';
 
 interface Props {
   title: string;
@@ -16,6 +17,10 @@ interface Props {
   ogType?: 'website' | 'article' | 'profile';
   jsonLd?: object[];
   noindex?: boolean;
+  /** Utility pages with light backgrounds start the header in its white-glass state */
+  headerLight?: boolean;
+  /** Extra keywords appended to the site-wide set */
+  keywords?: string[];
 }
 
 const {
@@ -26,47 +31,111 @@ const {
   ogType = 'website',
   jsonLd = [],
   noindex = false,
+  headerLight = false,
+  keywords = [],
 } = Astro.props;
 
 const canonical = new URL(path.endsWith('/') || path.includes('.') ? path : path + '/', site.url).href;
 const ogImageAbs = new URL(ogImage, site.url).href;
 
-/** Person schema present on every page. */
+const baseKeywords = [
+  'Dhiren Narola',
+  'Odoo Architect',
+  'Odoo Developer',
+  'Odoo Consultant',
+  'Odoo Expert',
+  'Odoo ERP Implementation',
+  'ERP Rescue',
+  'AI Automation Engineer',
+  'ZATCA e-invoicing Odoo',
+  'Odoo Customization',
+  'hire Odoo developer',
+  'freelance Odoo consultant',
+];
+const allKeywords = [...new Set([...baseKeywords, ...keywords])].join(', ');
+
+/** Person schema present on every page — the entity Google associates with "Dhiren Narola". */
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${site.url}/#person`,
   name: site.name,
-  jobTitle: site.title,
+  alternateName: ['Dhiren', 'Dhiren Narola Odoo'],
+  jobTitle: 'Odoo Architect & AI Automation Engineer',
+  description:
+    'Odoo 18 certified ERP architect and AI automation engineer with 20+ Odoo implementations delivered across 12+ countries. Specialist in Odoo ERP implementation, ERP rescue, ZATCA e-invoicing compliance, and AI-powered business automation.',
   url: site.url,
   image: `${site.url}/assets/dhiren-narola.jpg`,
   email: `mailto:${contact.email}`,
+  telephone: contact.phoneDisplay,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Surat',
     addressRegion: 'Gujarat',
     addressCountry: 'IN',
   },
+  nationality: { '@type': 'Country', name: 'India' },
   sameAs: [contact.linkedin, contact.github, contact.odooApps],
+  knowsLanguage: ['en', 'hi', 'gu'],
   knowsAbout: [
     'Odoo ERP',
+    'Odoo Development',
+    'Odoo Implementation',
+    'Odoo Customization',
+    'ERP Architecture',
     'ERP Implementation',
-    'ERP Rescue',
+    'ERP Rescue and Recovery',
     'AI Automation',
-    'ZATCA e-invoicing',
-    'Business Process Automation',
-    'Odoo Manufacturing',
-    'Python',
+    'AI Agents',
     'LLM Integration',
+    'ZATCA Phase 2 e-invoicing',
+    'WhatsApp Business API automation',
+    'Business Process Automation',
+    'Odoo Manufacturing MRP',
+    'Odoo Accounting',
+    'Saudi Arabia payroll (GOSI, EOS)',
+    'WooCommerce Odoo integration',
+    'Python',
+    'PostgreSQL',
   ],
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: 'Odoo Architect / Odoo Developer / ERP Consultant',
+    occupationalCategory: 'Software Architect',
+    skills:
+      'Odoo 11–19, ERP implementation, ERP rescue, AI automation, ZATCA e-invoicing, Python, PostgreSQL, WhatsApp Business API, LLM integrations',
+  },
   hasCredential: {
     '@type': 'EducationalOccupationalCredential',
     credentialCategory: 'certification',
     name: 'Odoo 18 Functional Certification',
     recognizedBy: { '@type': 'Organization', name: 'Odoo S.A.' },
   },
+  owns: odooStoreApps.map((app) => ({
+    '@type': 'SoftwareApplication',
+    name: app.name,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Odoo 19',
+    description: app.desc,
+    url: contact.odooApps,
+    author: { '@id': `${site.url}/#person` },
+  })),
 };
 
-const allSchemas = [personSchema, ...jsonLd];
+/** WebSite schema — helps "Dhiren Narola" brand queries resolve to this site. */
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${site.url}/#website`,
+  name: `${site.name} — Odoo Architect & AI Automation Engineer`,
+  alternateName: ['Dhiren Narola', 'dhirennarola.com'],
+  url: site.url,
+  description: site.tagline,
+  inLanguage: 'en',
+  publisher: { '@id': `${site.url}/#person` },
+};
+
+const allSchemas = [personSchema, websiteSchema, ...jsonLd];
 ---
 
 <!doctype html>
@@ -76,18 +145,27 @@ const allSchemas = [personSchema, ...jsonLd];
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={allKeywords} />
     <link rel="canonical" href={canonical} />
     <meta name="author" content={site.name} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="creator" content={site.name} />
+    <meta name="publisher" content={site.name} />
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={`${site.name} — ${site.title}`} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImageAbs} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name} — ${site.title}`} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -95,7 +173,7 @@ const allSchemas = [personSchema, ...jsonLd];
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
-    <meta name="theme-color" content="#fbfaf9" />
+    <meta name="theme-color" content="#0a1a33" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     {allSchemas.map((schema) => (
@@ -116,7 +194,7 @@ const allSchemas = [personSchema, ...jsonLd];
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
-    <Nav />
+    <Nav light={headerLight} />
     <main id="main">
       <slot />
     </main>
@@ -124,11 +202,13 @@ const allSchemas = [personSchema, ...jsonLd];
     <WhatsAppFloat />
 
     <script>
-      // Scroll reveal — IntersectionObserver only, no scroll listeners.
+      // All motion: IntersectionObserver + transform/opacity only. No scroll jank.
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const els = document.querySelectorAll('.reveal');
+
+      /* Reveal + stagger + section-head underline */
+      const revealEls = document.querySelectorAll('.reveal, [data-stagger]');
       if (reduced) {
-        els.forEach((el) => el.classList.add('visible'));
+        revealEls.forEach((el) => el.classList.add('visible'));
       } else {
         const io = new IntersectionObserver(
           (entries) => {
@@ -141,8 +221,76 @@ const allSchemas = [personSchema, ...jsonLd];
           },
           { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
         );
-        els.forEach((el) => io.observe(el));
+        revealEls.forEach((el) => io.observe(el));
       }
+
+      /* Animated counters */
+      const animateCount = (el: HTMLElement) => {
+        const target = parseFloat(el.dataset.count || '0');
+        const suffix = el.dataset.suffix || '';
+        const t0 = performance.now();
+        const dur = 900;
+        const step = (t: number) => {
+          const p = Math.min((t - t0) / dur, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased).toLocaleString('en-US') + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+      const counters = document.querySelectorAll<HTMLElement>('[data-count]');
+      if (reduced) {
+        counters.forEach((el) => {
+          el.textContent =
+            parseFloat(el.dataset.count || '0').toLocaleString('en-US') + (el.dataset.suffix || '');
+        });
+      } else {
+        const cio = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                animateCount(e.target as HTMLElement);
+                cio.unobserve(e.target);
+              }
+            }),
+          { threshold: 0.6 }
+        );
+        counters.forEach((el) => cio.observe(el));
+      }
+
+      /* Rotating skill line (fixed height — zero layout shift) */
+      document.querySelectorAll('.rotator').forEach((rot) => {
+        const items = [...rot.querySelectorAll('span')];
+        if (items.length < 2) return;
+        let i = 0;
+        items[0].classList.add('on');
+        if (reduced) return;
+        setInterval(() => {
+          items[i].classList.remove('on');
+          items[i].classList.add('off');
+          const prev = i;
+          i = (i + 1) % items.length;
+          items[i].classList.remove('off');
+          items[i].classList.add('on');
+          setTimeout(() => items[prev].classList.remove('off'), 500);
+        }, 3200);
+      });
+
+      /* Tabs (industry expertise) */
+      document.querySelectorAll('[role="tablist"]').forEach((list) => {
+        const tabs = [...list.querySelectorAll<HTMLButtonElement>('.tab')];
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            tabs.forEach((t) => t.setAttribute('aria-selected', 'false'));
+            tab.setAttribute('aria-selected', 'true');
+            const scope = list.closest('section') || document;
+            scope.querySelectorAll('.tabpanel').forEach((p) => p.classList.remove('active'));
+            scope
+              .querySelector('#' + tab.getAttribute('aria-controls'))
+              ?.classList.add('active');
+          });
+        });
+      });
     </script>
   </body>
 </html>

@@ -11,14 +11,14 @@ const { eyebrow, title, desc, align = 'left' } = Astro.props;
 
 <div class:list={['section-header', 'reveal', { center: align === 'center' }]}>
   {eyebrow && <span class="eyebrow">{eyebrow}</span>}
-  <h2 set:html={title} />
+  <h2 class="ul-anim" set:html={title} />
   {desc && <p class="section-desc">{desc}</p>}
 </div>
 
 <style>
   .section-header {
-    max-width: 46rem;
-    margin-bottom: var(--s-7);
+    max-width: 640px;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
   }
 
   .section-header.center {
@@ -26,9 +26,17 @@ const { eyebrow, title, desc, align = 'left' } = Astro.props;
     text-align: center;
   }
 
+  .section-header.center .eyebrow {
+    justify-content: center;
+  }
+
   .section-desc {
-    font-size: var(--text-lg);
-    color: var(--ink-soft);
+    font-size: 1.15rem;
+    color: var(--ink-faint);
     margin: 0;
+  }
+
+  :global(.on-dark) .section-desc {
+    color: var(--td-soft);
   }
 </style>

@@ -17,8 +17,8 @@ export const site = {
 
 export const contact = {
   email: 'dhnarola12@gmail.com', // TODO: switch to hello@dhirennarola.com once domain mail is configured
-  phoneDisplay: '+91 84698 76302',
-  whatsappNumber: '918469876302',
+  phoneDisplay: '+91 97144 15771',
+  whatsappNumber: '919714415771',
   whatsappMessage:
     "Hi Dhiren, I'd like to discuss an Odoo ERP project. Are you available?",
   calendly: 'https://calendly.com/dhnarola12/30min',

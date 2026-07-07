@@ -179,15 +179,15 @@ export const services: Service[] = [
     whatsappMsg: 'Hi Dhiren, our Odoo project is in trouble and I need a rescue assessment.',
   },
   {
-    slug: 'ai-automation',
-    nav: 'AI & Automation',
-    name: 'AI & Business Automation',
-    pill: { label: 'The multiplier', kind: 'accent' },
+    slug: 'ai-odoo',
+    nav: 'AI + Odoo',
+    name: 'AI + Odoo — Intelligent ERP',
+    pill: { label: 'Flagship offering', kind: 'accent' },
     headline: 'AI where it pays for itself — inside the system that runs your business.',
     lede: 'WhatsApp self-service that replaced half a call center. Billing that runs itself. Documents that become records without retyping. I build automation into Odoo where the ROI is measurable — and I’ll tell you where AI is just expensive.',
-    metaTitle: 'AI & Business Automation for Odoo ERP | Dhiren Narola',
+    metaTitle: 'AI + Odoo — Intelligent ERP & Business Automation | Dhiren Narola',
     metaDescription:
-      'AI-powered automation inside Odoo: WhatsApp self-service flows, document-to-record automation, LLM integrations and workflow agents — built where ROI is measurable.',
+      'AI-powered automation inside Odoo ERP: WhatsApp self-service flows, document intelligence & OCR, LLM integrations and workflow agents — built where ROI is measurable.',
     problems: [
       {
         title: 'Your team is the integration layer',
@@ -254,9 +254,9 @@ export const services: Service[] = [
     whatsappMsg: "Hi Dhiren, I'd like to discuss AI/automation for our business.",
   },
   {
-    slug: 'integrations-compliance',
-    nav: 'Integrations & ZATCA',
-    name: 'Integrations & Compliance',
+    slug: 'integrations-einvoicing',
+    nav: 'Integrations & e-Invoicing',
+    name: 'Integrations & e-Invoicing',
     headline: 'Systems that talk to each other — and invoices regulators accept.',
     lede: 'ZATCA Phase 2 e-invoicing running at 1,500+ invoices a month. WooCommerce syncing 1,000+ orders a month. WhatsApp, payment gateways, attendance devices, legacy bridges — integrated with retry logic, not hope.',
     metaTitle: 'Odoo Integrations & ZATCA e-Invoicing Compliance | Dhiren Narola',

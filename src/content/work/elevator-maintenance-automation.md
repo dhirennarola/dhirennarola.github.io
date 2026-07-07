@@ -15,6 +15,9 @@ heroKpis:
   - { value: '4,000+', label: 'customers on WhatsApp self-service', basis: 'production usage' }
   - { value: '50%', label: 'call-center load replaced', basis: 'after WhatsApp flow launch' }
   - { value: '35%', label: 'fewer missed service visits', basis: 'automated scheduling vs. manual' }
+story:
+  problem: 'Manual dispatching breached SLAs; every interaction needed a call.'
+  impact: '<strong>50% of call-center load replaced</strong> · 35% fewer missed visits.'
 modules: ['CRM', 'Subscriptions', 'Maintenance', 'Attendance', 'Contacts']
 integrations: ['WhatsApp Business API', 'Messagebird', 'LanaTime attendance devices', 'SMS gateway (fallback)']
 tags: ['Business Automation', 'Subscriptions', 'Field Service', 'WhatsApp']

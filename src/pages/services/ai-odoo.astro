@@ -1,0 +1,390 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Faq from '../../components/Faq.astro';
+import { services } from '../../data/services';
+import { contact, whatsappUrl } from '../../data/facts';
+import { breadcrumbs, faqSchema, serviceSchema } from '../../data/schema';
+
+const service = services.find((s) => s.slug === 'ai-odoo')!;
+const path = '/services/ai-odoo';
+
+const jsonLd = [
+  serviceSchema({ name: service.name, description: service.metaDescription, path }),
+  faqSchema(service.faqs),
+  breadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'AI + Odoo', path },
+  ]),
+];
+---
+
+<Base
+  title={service.metaTitle}
+  description={service.metaDescription}
+  path={path}
+  keywords={[
+    'Odoo AI integration',
+    'AI ERP automation',
+    'Odoo ChatGPT integration',
+    'Odoo LLM',
+    'WhatsApp Odoo integration',
+    'Odoo OCR invoice automation',
+    'intelligent ERP',
+    'AI agents for ERP',
+  ]}
+  jsonLd={jsonLd}
+>
+  <!-- ===== Hero (dark, AI stack visual) ===== -->
+  <section class="hero on-dark">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <span class="pill pill--grad rv-h" data-h="1">AI + Odoo · Flagship offering</span>
+          <h1 class="rv-h" data-h="2">Intelligent ERP.<br /><span class="hl">Not ERP + hype.</span></h1>
+          <p class="hero-lede rv-h" data-h="3">
+            Your ERP already knows your business. AI makes it act on that knowledge —
+            reading documents, answering customers, preparing decisions, automating approvals.
+            I build these systems inside Odoo, where the ROI is measurable.
+          </p>
+          <div class="hero-ctas rv-h" data-h="4">
+            <a href="/contact" class="btn btn--primary btn--lg">Map your AI opportunities <span class="arr" aria-hidden="true">→</span></a>
+            <a href="#capabilities" class="btn btn--outline btn--lg">See the capabilities</a>
+          </div>
+        </div>
+        <div class="hero-visual rv-h" data-h="3">
+          <div class="stack" aria-hidden="true">
+            <div class="stack-layer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a9bbd4" stroke-width="1.8"><path d="M8 12h8M12 8v8" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg>
+              <div>Channels<small>WhatsApp · Email · Portal · Voice</small></div>
+            </div>
+            <div class="stack-conn"></div>
+            <div class="stack-layer stack-layer--ai">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12b5c9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8L4.3 10.7l5.8 1.9L12 18.4l1.9-5.8 5.8-1.9-5.8-1.9Z"/></svg>
+              <div>AI layer<small>Agents · LLMs · OCR · Prediction · MCP</small></div>
+            </div>
+            <div class="stack-conn"></div>
+            <div class="stack-layer stack-layer--core">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b9bff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9" /></svg>
+              <div>Odoo core<small>Sales · Inventory · MRP · Accounting · HR</small></div>
+            </div>
+            <div class="stack-conn"></div>
+            <div class="stack-layer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a9bbd4" stroke-width="1.8" stroke-linecap="round"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+              <div>Your data, governed<small>Audit trails · human-in-the-loop · access control</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="proofbar rv-h" data-h="5">
+        <div><div class="stat-num" data-count="4000" data-suffix="+">0</div><div class="stat-lbl">Customers on AI-driven self-service</div></div>
+        <div><div class="stat-num" data-count="50" data-suffix="%">0</div><div class="stat-lbl">Call-center load replaced</div></div>
+        <div><div class="stat-num" data-count="100" data-suffix="%">0</div><div class="stat-lbl">Of one client's manual billing eliminated</div></div>
+        <div><div class="stat-num" data-count="30" data-suffix="%">0</div><div class="stat-lbl">Faster delivery via AI workflows</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Capabilities ===== -->
+  <section class="section section--l" id="capabilities">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Capabilities"
+        title={`What "AI inside your ERP" actually means`}
+        desc="Six patterns, each wired into Odoo's records and permissions — not chatbots bolted onto broken processes."
+      />
+      <div class="cards cards--3" data-stagger>
+        <div class="card card--hover">
+          <div class="ic ic--teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5 19 19M19 5l-2.5 2.5M7.5 16.5 5 19"/></svg></div>
+          <h3>AI agents &amp; assistants</h3>
+          <p class="clamp3 grow">Agents that read ERP context and prepare work for approval — triage, drafts, summaries, follow-ups. Built on modern standards (MCP), with audit trails.</p>
+        </div>
+        <div class="card card--hover">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
+          <h3>Document intelligence &amp; OCR</h3>
+          <p class="clamp3 grow">Vendor bills, POs, delivery notes, bank statements → validated Odoo records. Auto-posted above a confidence threshold; one-click review below it.</p>
+        </div>
+        <div class="card card--hover">
+          <div class="ic ic--teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3>Conversational service</h3>
+          <p class="clamp3 grow">Chatbots and WhatsApp flows where your customers already are — subscriptions, requests, payments, status. 4,000+ customers in production.</p>
+        </div>
+        <div class="card card--hover">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>Approval &amp; workflow automation</h3>
+          <p class="clamp3 grow">Multi-level approvals, exception routing, and hand-offs that run themselves — humans decide, the system does the chasing.</p>
+        </div>
+        <div class="card card--hover">
+          <div class="ic ic--teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+          <h3>Predictive operations</h3>
+          <p class="clamp3 grow">Reorder signals, demand patterns, maintenance windows — prediction added only after data discipline makes it trustworthy.</p>
+        </div>
+        <div class="card card--hover">
+          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h8M8 16h5"/></svg></div>
+          <h3>AI reporting &amp; insight</h3>
+          <p class="clamp3 grow">Ask questions in plain language, get answers from your live ERP data — plus scheduled narrative summaries leadership actually reads.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AI by function ===== -->
+  <section class="section section--subtle">
+    <div class="container">
+      <SectionHeader eyebrow="Where it lands" title="AI by business function" />
+      <div class="cards cards--3" data-stagger>
+        <div class="card">
+          <h3 class="fn-h"><span class="ic fn-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v13H3zM8 21h8M12 16v5"/></svg></span> Sales</h3>
+          <ul class="check-list mt-3">
+            <li>Quote drafts from emails &amp; RFQs</li>
+            <li>Lead triage and enrichment</li>
+            <li>Customer history briefs before every call</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="fn-h"><span class="ic ic--teal fn-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8V21H3V8M1 3h22v5H1zM10 12h4"/></svg></span> Inventory</h3>
+          <ul class="check-list mt-3">
+            <li>Delivery-note OCR → instant receipts</li>
+            <li>Reorder signals from real demand</li>
+            <li>Discrepancy detection before stocktakes</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="fn-h"><span class="ic fn-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></span> Manufacturing</h3>
+          <ul class="check-list mt-3">
+            <li>Work-order summaries &amp; shift handovers</li>
+            <li>Quality-check capture from the floor</li>
+            <li>Maintenance-window prediction</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Honest sequencing (dark) ===== -->
+  <section class="section section--l section--dark on-dark">
+    <div class="container">
+      <SectionHeader
+        eyebrow="The honest part"
+        title="Where AI pays — and where it's just expensive"
+        desc="AI multiplies whatever your ERP already is. Clean processes become leverage; chaos becomes faster chaos. I hold clients to the sequence."
+      />
+      <div class="cards" data-stagger>
+        <div class="card card--navy">
+          <h3 class="ok-h">Worth your money</h3>
+          <ul class="check-list mt-3">
+            <li>Documents your team retypes into the ERP</li>
+            <li>Questions customers ask on repeat</li>
+            <li>Approvals that wait on someone noticing</li>
+            <li>Reports that take a day to assemble</li>
+          </ul>
+        </div>
+        <div class="card card--navy">
+          <h3 class="warn-h">Not yet — fix the base first</h3>
+          <ul class="warn-list mt-3">
+            <li>Forecasting on top of unreliable inventory data</li>
+            <li>Chatbots bolted onto broken processes</li>
+            <li>"AI strategy" that can't name a workflow</li>
+            <li>Autonomy without audit trails</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section">
+    <div class="container container--sm">
+      <SectionHeader align="center" eyebrow="FAQ" title="Fair questions" />
+      <Faq items={service.faqs} />
+    </div>
+  </section>
+
+  <!-- ===== CTA (split panel) ===== -->
+  <section class="section section--l pt-0">
+    <div class="container">
+      <div class="cta-panel on-dark reveal">
+        <div class="cta-panel-grid">
+          <div>
+            <span class="eyebrow">Free · 30 minutes</span>
+            <h2 class="cta-h">Which workflow would pay for automation first?</h2>
+            <p class="cta-p">Bring your process list. You leave with an honest opportunity map — ranked by ROI, including the "not worth it" column.</p>
+            <div class="cta-btns">
+              <a href="/contact" class="btn btn--primary btn--lg">Book the AI discovery call <span class="arr" aria-hidden="true">→</span></a>
+              <a href={whatsappUrl(service.whatsappMsg)} target="_blank" rel="noopener" class="btn btn--outline btn--lg">WhatsApp me</a>
+            </div>
+            <div class="cta-note"><span class="dot dot--pulse" aria-hidden="true"></span> Reply within {contact.responseTime} · no pitch, prepared questions</div>
+          </div>
+          <div class="card card--navy map-card" aria-hidden="true">
+            <div class="map-title">Your opportunity map — sample</div>
+            <div class="map-rows">
+              <div class="map-row"><span>Vendor bill entry → OCR</span><b class="roi-hi">High ROI</b></div>
+              <div class="map-row"><span>Customer status queries → WhatsApp</span><b class="roi-hi">High ROI</b></div>
+              <div class="map-row"><span>Approval chasing → agent</span><b class="roi-med">Medium</b></div>
+              <div class="map-row dim"><span>Demand forecasting</span><b class="roi-not">Not yet — fix data first</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .mt-3 {
+    margin-top: var(--s-3);
+  }
+
+  .pt-0 {
+    padding-top: 0;
+  }
+
+  /* AI stack visual */
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(400px, 88vw);
+  }
+
+  .stack-layer {
+    border: 1px solid var(--navy-line);
+    border-radius: 12px;
+    padding: 0.85rem 1.1rem;
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: var(--text-sm);
+    color: var(--td);
+    font-weight: 600;
+  }
+
+  .stack-layer small {
+    display: block;
+    font-weight: 400;
+    color: var(--td-faint);
+    font-size: 0.72rem;
+  }
+
+  .stack-layer--ai {
+    border-color: rgba(18, 181, 201, 0.45);
+    background: rgba(18, 181, 201, 0.07);
+  }
+
+  .stack-layer--core {
+    border-color: rgba(47, 125, 246, 0.5);
+    background: rgba(47, 125, 246, 0.09);
+  }
+
+  .stack-conn {
+    align-self: center;
+    width: 1px;
+    height: 14px;
+    background: var(--navy-line);
+  }
+
+  /* function columns */
+  .fn-h {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .fn-ic {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+
+  .fn-ic svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .ok-h {
+    color: #6fd6a5;
+  }
+
+  .warn-h {
+    color: #f0a06c;
+  }
+
+  .warn-list {
+    padding-left: 1.1rem;
+    margin-bottom: 0;
+  }
+
+  .warn-list li {
+    font-size: var(--text-sm);
+  }
+
+  /* CTA panel */
+  .cta-h {
+    max-width: 18ch;
+  }
+
+  .cta-p {
+    max-width: 44ch;
+  }
+
+  .cta-btns {
+    display: flex;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+    margin-top: var(--s-5);
+  }
+
+  .map-card {
+    box-shadow: none;
+  }
+
+  .map-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--td-faint);
+    margin-bottom: var(--s-3);
+  }
+
+  .map-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .map-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid var(--navy-line);
+    border-radius: 10px;
+    padding: 0.6rem 0.9rem;
+    font-size: var(--text-xs);
+  }
+
+  .map-row span {
+    color: var(--td);
+  }
+
+  .map-row.dim {
+    opacity: 0.65;
+  }
+
+  .roi-hi {
+    color: #6fd6a5;
+    font-weight: 700;
+  }
+
+  .roi-med {
+    color: #8fc0ff;
+    font-weight: 700;
+  }
+
+  .roi-not {
+    color: #f0a06c;
+    font-weight: 700;
+  }
+</style>

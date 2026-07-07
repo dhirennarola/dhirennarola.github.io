@@ -15,6 +15,9 @@ heroKpis:
   - { value: 'Odoo 19', label: 'latest-version build', basis: 'delivered on current Odoo release' }
   - { value: 'Custom', label: 'product tag system', basis: 'jewellery-specific cataloguing' }
   - { value: 'Focused', label: 'scoped engagement', basis: 'targeted customization, not full ERP' }
+story:
+  problem: 'Catalogue structure flattened jewellery-specific attributes.'
+  impact: 'Attribute-true tagging · faster counter sales · upgrade-safe build.'
 modules: ['Sales', 'Inventory']
 integrations: []
 tags: ['Retail', 'Custom Module', 'Odoo 19']

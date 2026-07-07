@@ -21,6 +21,9 @@ export default defineConfig({
   ],
   // Old GitHub-Pages-era URLs → new structure (emitted as static redirect pages)
   redirects: {
+    // V2 service slug renames
+    '/services/ai-automation': '/services/ai-odoo',
+    '/services/integrations-compliance': '/services/integrations-einvoicing',
     '/erp-rescue.html': '/services/erp-rescue',
     '/meeting.html': '/contact',
     '/all-projects.html': '/work',

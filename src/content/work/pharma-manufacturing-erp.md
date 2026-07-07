@@ -15,6 +15,9 @@ heroKpis:
   - { value: '3 → 1', label: 'systems consolidated', basis: 'accounting, production & records unified' }
   - { value: '50%', label: 'fewer tracking errors', basis: 'production tracking, measured post go-live' }
   - { value: '5+', label: 'warehouse locations', basis: 'capacity-based storage management' }
+story:
+  problem: 'Production, accounting &amp; quality in three disagreeing systems.'
+  impact: '<strong>50% fewer tracking errors</strong> · 3→1 systems · per-process costing.'
 modules:
   [
     'Manufacturing (MRP)',

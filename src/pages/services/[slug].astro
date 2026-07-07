@@ -10,10 +10,13 @@ import { breadcrumbs, faqSchema, serviceSchema } from '../../data/schema';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  return services.map((service) => ({
-    params: { slug: service.slug },
-    props: { service },
-  }));
+  // ai-odoo has a dedicated flagship page (./ai-odoo.astro)
+  return services
+    .filter((service) => service.slug !== 'ai-odoo')
+    .map((service) => ({
+      params: { slug: service.slug },
+      props: { service },
+    }));
 }
 
 const { service } = Astro.props;
@@ -51,37 +54,33 @@ const pillClass =
   path={path}
   jsonLd={jsonLd}
 >
-  <!-- ===== Hero ===== -->
-  <header class="subhero">
+  <!-- ===== Hero (dark sub-hero + integrated proof) ===== -->
+  <header class="hero hero--sub on-dark">
     <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb">
+      <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span>
         <a href="/services">Services</a> <span aria-hidden="true">/</span>
         <span>{service.nav}</span>
       </nav>
-      {service.pill && <span class:list={['pill', pillClass, 'svc-pill']}>{service.pill.label}</span>}
-      <h1>{service.headline}</h1>
-      <p class="lede">{service.lede}</p>
-      <div class="svc-actions">
-        <a href="/contact" class="btn btn--accent btn--lg">
-          Book a discovery call <span class="arrow" aria-hidden="true">→</span>
+      {service.pill && <span class:list={['pill', pillClass, 'svc-pill', 'rv-h']} data-h="1">{service.pill.label}</span>}
+      <h1 class="rv-h svc-h1" data-h="2">{service.headline}</h1>
+      <p class="lede rv-h" data-h="3">{service.lede}</p>
+      <div class="svc-actions rv-h" data-h="4">
+        <a href="/contact" class="btn btn--primary btn--lg">
+          Book a discovery call <span class="arr" aria-hidden="true">→</span>
         </a>
-        <a href="/work" class="btn btn--secondary btn--lg">See delivered work</a>
+        <a href="/work" class="btn btn--outline btn--lg">See delivered work</a>
+      </div>
+      <div class="proofbar svc-proof rv-h" data-h="5" aria-label="Key results">
+        {service.proof.stats.map((stat) => (
+          <div class="stat">
+            <div class="stat-num">{stat.value}</div>
+            <div class="stat-lbl">{stat.label}</div>
+          </div>
+        ))}
       </div>
     </div>
   </header>
-
-  <!-- ===== Proof bar ===== -->
-  <section class="proofbar" aria-label="Key results">
-    <div class="container proofbar-grid">
-      {service.proof.stats.map((stat) => (
-        <div class="stat">
-          <div class="stat-num">{stat.value}</div>
-          <div class="stat-label">{stat.label}</div>
-        </div>
-      ))}
-    </div>
-  </section>
 
   <!-- ===== Problems ===== -->
   <section class="section">
@@ -156,8 +155,9 @@ const pillClass =
     margin-bottom: var(--s-4);
   }
 
-  .subhero h1 {
+  .svc-h1 {
     max-width: 21ch;
+    font-size: var(--text-3xl);
   }
 
   .svc-actions {
@@ -167,17 +167,16 @@ const pillClass =
     margin-top: var(--s-6);
   }
 
-  .proofbar {
-    border-block: 1px solid var(--line);
-    background: var(--bg-raised);
-    padding: var(--s-5) 0;
+  .svc-proof {
+    max-width: 680px;
+    margin-top: var(--s-6);
+    padding-top: var(--s-6);
   }
 
-  .proofbar-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--s-5);
-    max-width: 720px;
+  @media (min-width: 700px) {
+    .svc-proof {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   .prob-title {

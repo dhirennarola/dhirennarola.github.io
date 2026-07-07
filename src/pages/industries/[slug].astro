@@ -32,7 +32,7 @@ const jsonLd = [
   faqSchema(industry.faqs),
   breadcrumbs([
     { name: 'Home', path: '/' },
-    { name: 'Industries', path: '/industries/' + industry.slug },
+    { name: 'Industries', path: '/industries' },
     { name: industry.nav, path },
   ]),
 ];
@@ -44,34 +44,31 @@ const jsonLd = [
   path={path}
   jsonLd={jsonLd}
 >
-  <header class="subhero">
+  <header class="hero hero--sub on-dark">
     <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb">
+      <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span>
-        <span>Industries</span> <span aria-hidden="true">/</span>
+        <a href="/industries">Industries</a> <span aria-hidden="true">/</span>
         <span>{industry.nav}</span>
       </nav>
-      <span class="eyebrow">Industry expertise</span>
-      <h1>{industry.headline}</h1>
-      <p class="lede">{industry.lede}</p>
-      <div class="ind-actions">
-        <a href="/contact" class="btn btn--accent btn--lg">
-          Book a discovery call <span class="arrow" aria-hidden="true">→</span>
+      <span class="eyebrow rv-h" data-h="1">Industry expertise</span>
+      <h1 class="rv-h ind-h1" data-h="2">{industry.headline}</h1>
+      <p class="lede rv-h" data-h="3">{industry.lede}</p>
+      <div class="ind-actions rv-h" data-h="4">
+        <a href="/contact" class="btn btn--primary btn--lg">
+          Book a discovery call <span class="arr" aria-hidden="true">→</span>
         </a>
+      </div>
+      <div class="proofbar ind-proof rv-h" data-h="5" aria-label="Results in this industry">
+        {industry.proofStats.map((stat) => (
+          <div class="stat">
+            <div class="stat-num">{stat.value}</div>
+            <div class="stat-lbl">{stat.label}</div>
+          </div>
+        ))}
       </div>
     </div>
   </header>
-
-  <section class="proofbar" aria-label="Results in this industry">
-    <div class="container proofbar-grid">
-      {industry.proofStats.map((stat) => (
-        <div class="stat">
-          <div class="stat-num">{stat.value}</div>
-          <div class="stat-label">{stat.label}</div>
-        </div>
-      ))}
-    </div>
-  </section>
 
   <section class="section">
     <div class="container">
@@ -138,21 +135,25 @@ const jsonLd = [
 </Base>
 
 <style>
+  .ind-h1 {
+    font-size: var(--text-3xl);
+    max-width: 24ch;
+  }
+
   .ind-actions {
     margin-top: var(--s-6);
   }
 
-  .proofbar {
-    border-block: 1px solid var(--line);
-    background: var(--bg-raised);
-    padding: var(--s-5) 0;
+  .ind-proof {
+    max-width: 680px;
+    margin-top: var(--s-6);
+    padding-top: var(--s-6);
   }
 
-  .proofbar-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--s-5);
-    max-width: 720px;
+  @media (min-width: 700px) {
+    .ind-proof {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   .pain-title {

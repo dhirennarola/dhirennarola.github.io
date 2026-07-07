@@ -10,19 +10,19 @@ import { breadcrumbs } from '../data/schema';
   path="/contact"
   jsonLd={[breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }])]}
 >
-  <header class="subhero">
+  <header class="hero hero--sub on-dark">
     <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb">
+      <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Contact</span>
       </nav>
       {availability.active && (
-        <span class="pill pill--ok contact-avail">
+        <span class="pill pill--ok contact-avail rv-h" data-h="1">
           <span class="dot dot--pulse" aria-hidden="true"></span>
           {availability.label}
         </span>
       )}
-      <h1>Let's see if we're a fit.</h1>
-      <p class="lede">
+      <h1 class="rv-h contact-h1" data-h="2">Let's see if we're a fit.</h1>
+      <p class="lede rv-h" data-h="3">
         Book the call directly, or write first — whichever suits you. Either
         way: I reply within <strong>{contact.responseTime}</strong>, I come
         prepared with questions about your business, and you'll have a written
@@ -31,7 +31,7 @@ import { breadcrumbs } from '../data/schema';
     </div>
   </header>
 
-  <section class="section section--tight">
+  <section class="section">
     <div class="container contact-grid">
       <!-- ===== Form ===== -->
       <div class="form-col reveal">
@@ -117,8 +117,8 @@ import { breadcrumbs } from '../data/schema';
             ></textarea>
           </div>
 
-          <button type="submit" class="btn btn--accent btn--lg form-submit">
-            Send inquiry <span class="arrow" aria-hidden="true">→</span>
+          <button type="submit" class="btn btn--primary btn--lg form-submit">
+            Send inquiry <span class="arr" aria-hidden="true">→</span>
           </button>
           <p class="form-privacy">
             Your details are used only to respond to this inquiry. <a href="/privacy">Privacy</a>
@@ -150,7 +150,7 @@ import { breadcrumbs } from '../data/schema';
           </ul>
           <div
             class="calendly-inline-widget"
-            data-url={`${contact.calendly}?hide_gdpr_banner=1&primary_color=4263eb`}
+            data-url={`${contact.calendly}?hide_gdpr_banner=1&primary_color=2f7df6`}
             style="min-width:300px;height:640px;"
           >
           </div>
@@ -181,6 +181,10 @@ import { breadcrumbs } from '../data/schema';
 <style>
   .contact-avail {
     margin-bottom: var(--s-4);
+  }
+
+  .contact-h1 {
+    font-size: var(--text-3xl);
   }
 
   .contact-grid {

@@ -39,6 +39,7 @@ export const serviceSchema = (opts: {
   url: new URL(opts.path, site.url).href,
   provider: {
     '@type': 'Person',
+    '@id': `${site.url}/#person`,
     name: site.name,
     url: site.url,
   },
@@ -63,6 +64,7 @@ export const articleSchema = (opts: {
   image: new URL(opts.image ?? '/og/default.png', site.url).href,
   author: {
     '@type': 'Person',
+    '@id': `${site.url}/#person`,
     name: site.name,
     url: site.url,
   },
@@ -78,11 +80,14 @@ export const professionalServiceSchema = () => ({
   areaServed: ['Saudi Arabia', 'UAE', 'Qatar', 'Netherlands', 'Germany', 'New Zealand', 'Australia', 'India', 'United States'],
   serviceType: [
     'Odoo ERP Implementation',
+    'Odoo Development',
+    'Odoo Consulting',
     'ERP Rescue & Recovery',
     'AI & Business Automation',
     'Custom Odoo Development',
     'ZATCA e-Invoicing Compliance',
+    'Odoo Integration',
     'Dedicated Odoo Teams',
   ],
-  founder: { '@type': 'Person', name: site.name },
+  founder: { '@type': 'Person', '@id': `${site.url}/#person`, name: site.name },
 });

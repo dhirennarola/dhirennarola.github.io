@@ -12,13 +12,13 @@ import { breadcrumbs } from '../../data/schema';
   path="/services"
   jsonLd={[breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }])]}
 >
-  <header class="subhero">
+  <header class="hero hero--sub on-dark">
     <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb">
+      <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Services</span>
       </nav>
-      <h1>Everything an ERP needs.<br />One accountable owner.</h1>
-      <p class="lede">
+      <h1 class="rv-h hub-h1" data-h="2">Everything an ERP needs.<br />One accountable owner.</h1>
+      <p class="lede rv-h" data-h="3">
         From first architecture conversation to post-go-live support — including
         the two things most consultants won't touch: rescuing failed projects
         and telling you honestly where AI isn't worth your money.
@@ -26,11 +26,11 @@ import { breadcrumbs } from '../../data/schema';
     </div>
   </header>
 
-  <section class="section section--tight">
+  <section class="section">
     <div class="container">
-      <div class="svc-grid">
-        {services.map((service, i) => (
-          <a href={`/services/${service.slug}`} class:list={['card', 'card--hover', 'svc-card', 'reveal', i % 3 === 1 && 'reveal-d1', i % 3 === 2 && 'reveal-d2']}>
+      <div class="svc-grid" data-stagger>
+        {services.map((service) => (
+          <a href={`/services/${service.slug}`} class="card card--hover svc-card">
             {service.pill && (
               <span class:list={['pill', service.pill.kind === 'rescue' ? 'pill--rescue' : service.pill.kind === 'ok' ? 'pill--ok' : 'pill--accent']}>
                 {service.pill.label}
@@ -38,7 +38,7 @@ import { breadcrumbs } from '../../data/schema';
             )}
             <h2>{service.nav}</h2>
             <p>{service.lede}</p>
-            <span class="pillar-link">Explore {service.nav.toLowerCase()} →</span>
+            <span class="link-arr">Explore {service.nav.toLowerCase()} <span class="arr" aria-hidden="true">→</span></span>
           </a>
         ))}
       </div>
@@ -57,6 +57,10 @@ import { breadcrumbs } from '../../data/schema';
 </Base>
 
 <style>
+  .hub-h1 {
+    font-size: var(--text-3xl);
+  }
+
   .svc-grid {
     display: grid;
     gap: var(--s-5);

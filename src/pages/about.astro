@@ -3,9 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import Testimonial from '../components/Testimonial.astro';
-import CtaBand from '../components/CtaBand.astro';
 import portrait from '../assets/dhiren-narola.png';
-import certificate from '../assets/certificate.jpg';
 import {
   numbers,
   career,
@@ -20,63 +18,94 @@ import { breadcrumbs } from '../data/schema';
 
 <Base
   title="About Dhiren Narola — Odoo Architect & AI Automation Engineer"
-  description="Four years, one ecosystem: from junior engineer to leading 7 developers at an Odoo Silver Partner — now delivering 20+ implementations' worth of experience directly to clients worldwide."
+  description="Odoo 18 certified architect: from junior engineer to leading 7 developers at an Odoo Silver Partner, now delivering 22 ERP implementations' worth of experience directly to clients across 13 countries."
   path="/about"
   ogType="profile"
+  headerLight
+  keywords={[
+    'who is Dhiren Narola',
+    'Dhiren Narola Odoo',
+    'Odoo certified consultant',
+    'Odoo Silver Partner team lead',
+    'Chatter Panel Control',
+    'Chatter Access Control',
+    'POS Product Quick Favourites',
+  ]}
   jsonLd={[breadcrumbs([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])]}
 >
-  <!-- ===== Intro ===== -->
-  <section class="subhero">
-    <div class="container about-intro">
+  <!-- ===== Intro: single clear hero ===== -->
+  <section class="section section--l about-hero">
+    <div class="container about-grid">
       <div>
-        <nav class="crumbs" aria-label="Breadcrumb">
-          <a href="/">Home</a> <span aria-hidden="true">/</span> <span>About</span>
-        </nav>
-        <h1>Not just code.<br />Business outcomes.</h1>
-        <p class="lede">
+        <span class="eyebrow rv-h" data-h="1">About</span>
+        <h1 class="rv-h about-h1" data-h="2">Not just code.<br />Business outcomes.</h1>
+        <p class="lede rv-h" data-h="3">
           Most ERP projects don't fail on code — they fail in the gap between
           what the business needs and what gets built. I've spent my entire
           career closing that gap.
         </p>
-        <div class="intro-actions">
-          <a href="/contact" class="btn btn--accent">Work with me</a>
-          <a href="/profile" class="btn btn--secondary">View résumé</a>
+        <div class="intro-actions rv-h" data-h="4">
+          <a href="/contact" class="btn btn--primary">Work with me <span class="arr" aria-hidden="true">→</span></a>
+          <a href="/profile" class="btn btn--outline">View résumé (PDF)</a>
         </div>
       </div>
-      <div class="about-portrait">
+      <div class="about-visual rv-h" data-h="3">
         <Image
           src={portrait}
-          alt="Dhiren Narola"
-          width={420}
+          alt="Dhiren Narola — Odoo Architect and AI Automation Engineer"
+          width={640}
           densities={[1, 2]}
           loading="eager"
+          fetchpriority="high"
+          class="about-portrait"
         />
+        <div class="float-chip about-chip" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f7df6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></svg>
+          <div>Odoo 18 Certified<small>Odoo S.A. · verify on LinkedIn</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Dark stat band ===== -->
+  <section class="section--dark on-dark statband-sec" aria-label="Career numbers">
+    <div class="container">
+      <div class="statband" data-stagger>
+        <div><div class="stat-num" data-count="22">0</div><div class="stat-lbl">ERPs live</div></div>
+        <div><div class="stat-num" data-count="13">0</div><div class="stat-lbl">Countries</div></div>
+        <div><div class="stat-num">11–19</div><div class="stat-lbl">Odoo versions</div></div>
+        <div><div class="stat-num" data-count="7">0</div><div class="stat-lbl">Developers led</div></div>
+        <div><div class="stat-num" data-count="300" data-suffix="+">0</div><div class="stat-lbl">Users, largest ERP</div></div>
+        <div><div class="stat-num" data-count="0">0</div><div class="stat-lbl">Failed go-lives</div></div>
       </div>
     </div>
   </section>
 
   <!-- ===== Story ===== -->
-  <section class="section section--tight">
-    <div class="container story-grid">
-      <div class="prose story">
+  <section class="section">
+    <div class="container container--md">
+      <SectionHeader
+        eyebrow="The story"
+        title="Four years, one ecosystem, compounding depth"
+      />
+      <div class="story-copy reveal">
         <p>
           I started in Odoo in 2021 — while still completing my engineering
-          degree — and never left the ecosystem. That focus is deliberate.
-          ERP is a domain where depth compounds: every implementation teaches
-          you patterns the next one needs, and after
+          degree — and never left the ecosystem. That focus is deliberate: ERP
+          is a domain where depth compounds. Every implementation teaches you
+          patterns the next one needs, and after
           <strong>{numbers.implementationsExact}</strong> across
-          <strong>{numbers.countries} countries</strong>, you stop being
-          surprised.
+          <strong>13 countries</strong>, you stop being surprised.
         </p>
         <p>
-          Four years at <strong>Synodica Solutions</strong>, an Odoo Silver
-          Partner, took me from junior engineer to
-          <strong>Development Team Lead</strong> — running a team of
-          {numbers.developersLed} developers across four concurrent projects,
-          owning architecture decisions, hiring, and client strategy. I
+          Four years at <strong>{career.synodica.company}</strong>, an
+          <a href={career.synodica.partnerUrl} target="_blank" rel="noopener">Odoo Silver Partner</a>,
+          took me from junior engineer to <strong>Development Team Lead</strong>
+          — a team of {numbers.developersLed} developers, four concurrent
+          projects, architecture decisions, hiring, and client strategy. I
           introduced AI-driven development workflows that raised the team's
-          productivity by roughly 30% — the same delivery acceleration my
-          clients get today.
+          productivity by roughly 30% — the same acceleration my clients get
+          today.
         </p>
         <p>
           Since mid-2026 I work directly with clients as an independent
@@ -89,439 +118,278 @@ import { breadcrumbs } from '../data/schema';
           What I actually sell isn't Odoo modules or AI integrations — it's
           <strong>ownership</strong>. One person who understands your business
           case, architects the system, writes or directs the code, and answers
-          for the outcome. On projects from focused $2K customizations to
-          multi-entity ERP programs, that model is why my go-live record is
+          for the outcome. That model is why my go-live record is
           {numbers.failedGoLives} failures in {numbers.implementations}
           implementations.
         </p>
       </div>
-
-      <aside class="story-side">
-        <div class="card side-card">
-          <h3>At a glance</h3>
-          <ul class="side-list">
-            <li><strong>{numbers.implementations}</strong> ERPs delivered &amp; live</li>
-            <li><strong>{numbers.countries}</strong> countries served</li>
-            <li><strong>{numbers.odooVersions}</strong> — every major version</li>
-            <li><strong>{numbers.developersLed} developers</strong> led at a Silver Partner</li>
-            <li><strong>{numbers.largestDeployment}</strong></li>
-            <li><strong>{numbers.failedGoLives} failed go-lives</strong></li>
-          </ul>
-        </div>
-        <div class="card side-card">
-          <h3>Education</h3>
-          <p class="side-edu">
-            <strong>{education.degree}</strong><br />
-            {education.school} · {education.year}<br />
-            <span class="side-note">{education.detail}</span>
-          </p>
-        </div>
-      </aside>
     </div>
   </section>
 
-  <!-- ===== Career timeline ===== -->
+  <!-- ===== Timeline ===== -->
   <section class="section section--subtle">
-    <div class="container">
+    <div class="container container--md">
       <SectionHeader
         eyebrow="Career"
         title="Four promotions in four years"
         desc="One ecosystem, steadily increasing ownership — verifiable on LinkedIn."
       />
-      <div class="timeline">
-        <div class="tl-item tl-item--now reveal">
-          <div class="tl-marker" aria-hidden="true"></div>
-          <div class="tl-body card">
-            <div class="tl-head">
-              <h3>{career.independent.role}</h3>
-              <span class="pill pill--ok">Current</span>
-            </div>
-            <p class="tl-period">{career.independent.period} · Remote, global</p>
-            <p>{career.independent.note} {career.currentEngagement.summary}</p>
-          </div>
+      <div class="tl" data-stagger>
+        <div class="tl-item tl-item--now">
+          <h3>{career.independent.role}</h3>
+          <div class="tl-meta">{career.independent.period} · Remote, global · <span class="tl-current">Current</span></div>
+          <p>{career.independent.note} Currently architecting the ERP platform for {career.currentEngagement.client} ({career.currentEngagement.location} telecom group).</p>
         </div>
-
-        <div class="tl-company reveal">
-          <h4>{career.synodica.company} — {career.synodica.location}</h4>
-          <a href={career.synodica.partnerUrl} target="_blank" rel="noopener" class="pill pill--accent">
-            {career.synodica.badge} ↗
-          </a>
-          <span class="tl-period">{career.synodica.period}</span>
+        <div class="tl-item">
+          <h3>Development Team Lead — {career.synodica.company} <span class="pill pill--accent tl-pill">{career.synodica.badge}</span></h3>
+          <div class="tl-meta">Sep 2024 – Jul 2026 · {career.synodica.location}</div>
+          <p>Led {numbers.developersLed} developers across 4 concurrent ERP projects. ~30% productivity gain via AI-driven workflows; ~25% fewer delivery delays via structured deployment processes.</p>
         </div>
-
-        {career.synodica.roles.map((role) => (
-          <div class="tl-item reveal">
-            <div class="tl-marker tl-marker--past" aria-hidden="true"></div>
-            <div class="tl-body card">
-              <div class="tl-head">
-                <h3>{role.title}</h3>
-              </div>
-              <p class="tl-period">{role.period}</p>
-              <ul>
-                {role.highlights.map((h) => <li>{h}</li>)}
-              </ul>
-            </div>
-          </div>
-        ))}
+        <div class="tl-item">
+          <h3>Software Engineer → Senior Software Engineer</h3>
+          <div class="tl-meta">Sep 2021 – Aug 2024 · {career.synodica.company}</div>
+          <p>Full-cycle delivery across automotive, pharma, facilities, retail and IT services. Revamped a 10,000+ line legacy module for a ~30% performance gain. Joined while completing {education.degree} ({education.year}, 8.5 CGPA).</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Certifications ===== -->
+  <!-- ===== Credentials + products ===== -->
   <section class="section">
     <div class="container">
       <SectionHeader
-        eyebrow="Credentials"
-        title="Certified — and verifiable"
-        desc="Vendor certification from Odoo S.A. itself, separated honestly from professional development."
+        eyebrow="Credentials &amp; products"
+        title="Certified, published, verifiable"
       />
-      <div class="cert-grid">
-        <div class="card cert-main reveal">
-          <div class="cert-head">
-            <span class="pill pill--accent">Vendor certification</span>
-            <h3>Odoo 18 Functional Certification</h3>
-            <p>
-              Official certification issued by Odoo S.A., validating functional
-              expertise across the core business modules — Accounting, Sales,
-              Purchase, Inventory, HR, and Manufacturing.
-            </p>
-            <a
-              href="https://www.linkedin.com/in/dhirennarola/details/certifications/"
-              target="_blank"
-              rel="noopener"
-              class="verified"
-            >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                <polyline points="22 4 12 14.01 9 11.01" />
-              </svg>
-              Verify on LinkedIn
-            </a>
-          </div>
-          <a href="/assets/certificate.jpg" target="_blank" rel="noopener" class="cert-thumb" aria-label="Open certificate at full size">
-            <Image src={certificate} alt="Odoo 18 Functional Certification issued by Odoo S.A. to Dhiren Narola" width={560} />
-          </a>
+      <div class="cards cards--3" data-stagger>
+        <div class="card card--hover">
+          <span class="pill pill--accent self-start">Vendor certification</span>
+          <h3>Odoo 18 Functional Certification</h3>
+          <p class="clamp3 grow">
+            Official certification issued by Odoo S.A. — validated across
+            Accounting, Sales, Purchase, Inventory, HR, and Manufacturing.
+          </p>
+          <a
+            href="https://www.linkedin.com/in/dhirennarola/details/certifications/"
+            target="_blank"
+            rel="noopener"
+            class="link-arr"
+          >Verify on LinkedIn <span class="arr" aria-hidden="true">→</span></a>
         </div>
-        <div class="cert-side reveal reveal-d1">
-          <h4 class="cert-side-title">Professional development</h4>
-          {certifications
-            .filter((c) => c.tier === 'professional')
-            .map((c) => (
-              <div class="card cert-mini">
-                <strong>{c.name}</strong>
-                <span>{c.issuer} · {c.year}</span>
-              </div>
-            ))}
+        <div class="card card--hover">
+          <span class="pill self-start">Professional development</span>
+          <h3>AI for Business Decision-Making</h3>
+          <p class="clamp3 grow">
+            {certifications[1].issuer} ({certifications[1].year}) · plus
+            {certifications[2].name} ({certifications[2].issuer}, {certifications[2].year}).
+          </p>
+        </div>
+        <div class="card card--hover">
+          <span class="pill pill--grad self-start">Published products</span>
+          <h3>3 apps on the Odoo App Store</h3>
+          <p class="clamp3 grow">
+            {odooStoreApps.map((a) => a.name).join(' · ')} — built and
+            maintained for Odoo 19.
+          </p>
+          <a href={contact.odooApps} target="_blank" rel="noopener" class="link-arr">
+            View on the App Store <span class="arr" aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Odoo Apps ===== -->
-  <section class="section section--subtle">
+  <!-- ===== Testimonials ===== -->
+  <section class="section section--surface" id="testimonials">
     <div class="container">
       <SectionHeader
-        eyebrow="Published products"
-        title="Apps on the official Odoo Store"
-        desc="Small, sharply-scoped products — published, maintained, and bought by the Odoo community. Product quality you can inspect before hiring me."
+        eyebrow="Testimonials"
+        title="All four, in full view"
+        desc="Verified LinkedIn recommendations from clients, my director, and a CTO colleague — every one verifiable at the source."
       />
-      <div class="grid grid--3">
-        {odooStoreApps.map((app, i) => (
-          <div class:list={['card', 'app-card', 'reveal', i === 1 && 'reveal-d1', i === 2 && 'reveal-d2']}>
-            <span class="tag">{app.version}</span>
-            <h3>{app.name}</h3>
-            <p>{app.desc}</p>
-          </div>
+      <div class="cards" data-stagger>
+        {recommendations.map((rec, i) => (
+          <Testimonial {...rec} featured={i === 0} />
         ))}
       </div>
-      <div class="center-cta reveal">
-        <a href={contact.odooApps} target="_blank" rel="noopener" class="btn btn--secondary">
-          View on the Odoo App Store <span class="arrow" aria-hidden="true">→</span>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-band on-dark">
+    <div class="container">
+      <h2 class="reveal">The person you just read about answers your inquiry personally.</h2>
+      <div class="cta-actions reveal">
+        <a href="/contact" class="btn btn--primary btn--lg">
+          Book a discovery call <span class="arr" aria-hidden="true">→</span>
         </a>
       </div>
     </div>
   </section>
-
-  <!-- ===== All recommendations ===== -->
-  <section class="section" id="recommendations">
-    <div class="container">
-      <SectionHeader
-        eyebrow="Recommendations"
-        title="All four, in full view"
-        desc="Public LinkedIn recommendations from clients, my director, and a CTO colleague — every one verifiable at the source."
-      />
-      <div class="grid grid--2">
-        {recommendations.map((rec, i) => (
-          <Testimonial {...rec} featured={i === 0} class={`reveal ${i % 2 === 1 ? 'reveal-d1' : ''}`} />
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <CtaBand />
 </Base>
 
 <style>
-  .about-intro {
+  .self-start {
+    align-self: flex-start;
+  }
+
+  .about-hero {
+    padding-top: calc(var(--nav-h) + var(--sec-m));
+  }
+
+  .about-grid {
     display: grid;
     gap: var(--s-7);
     align-items: center;
   }
 
-  @media (min-width: 860px) {
-    .about-intro {
+  @media (min-width: 900px) {
+    .about-grid {
       grid-template-columns: 1.4fr 1fr;
     }
+  }
+
+  .about-h1 {
+    font-size: var(--text-3xl);
   }
 
   .intro-actions {
     display: flex;
     gap: var(--s-3);
     margin-top: var(--s-5);
+    flex-wrap: wrap;
+  }
+
+  .about-visual {
+    justify-self: center;
+    position: relative;
   }
 
   .about-portrait {
-    justify-self: center;
-  }
-
-  .about-portrait img {
-    width: min(300px, 70vw);
+    width: min(310px, 70vw);
+    height: auto;
     border-radius: var(--radius-lg);
     border: 1px solid var(--line);
     box-shadow: var(--shadow-lg);
   }
 
-  .story-grid {
-    display: grid;
-    gap: var(--s-7);
+  .about-chip {
+    bottom: -24px;
+    right: -24px;
+    background: var(--bg-raised);
+    border-color: var(--line);
+    color: var(--ink-strong);
+    box-shadow: var(--shadow-md);
   }
 
-  @media (min-width: 900px) {
-    .story-grid {
-      grid-template-columns: 1.6fr 1fr;
+  .about-chip small {
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 1023px) {
+    .about-chip {
+      display: flex;
+      right: 0;
     }
   }
 
-  .story p {
-    font-size: var(--text-base);
+  @media (max-width: 640px) {
+    .about-chip {
+      position: absolute;
+      bottom: -18px;
+    }
   }
 
-  .story-side {
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-4);
+  /* stat band */
+  .statband-sec {
+    padding-block: var(--sec-s);
   }
 
-  .side-card h3 {
-    font-size: var(--text-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--ink-faint);
-    font-weight: 650;
-    margin-bottom: var(--s-4);
+  .statband {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-5);
   }
 
-  .side-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  @media (min-width: 760px) {
+    .statband {
+      grid-template-columns: repeat(6, 1fr);
+    }
   }
 
-  .side-list li {
-    padding: 0.55rem 0;
-    border-bottom: 1px solid var(--line);
-    font-size: var(--text-sm);
+  /* story */
+  .story-copy {
+    max-width: 70ch;
     color: var(--ink-soft);
   }
 
-  .side-list li:last-child {
-    border-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .side-edu {
-    font-size: var(--text-sm);
-    color: var(--ink-soft);
-    margin: 0;
-    line-height: 1.7;
-  }
-
-  .side-note {
-    color: var(--ink-faint);
-    font-size: var(--text-xs);
-  }
-
-  /* Timeline */
-  .timeline {
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-4);
-    max-width: 780px;
+  /* timeline */
+  .tl {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+    max-width: 720px;
+  }
+
+  .tl::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(var(--accent), var(--line));
+    border-radius: 2px;
   }
 
   .tl-item {
-    display: grid;
-    grid-template-columns: 20px 1fr;
-    gap: var(--s-4);
+    position: relative;
+    padding-left: 2.2rem;
   }
 
-  .tl-marker {
-    width: 12px;
-    height: 12px;
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    background: var(--ok);
-    margin-top: 26px;
-    justify-self: center;
+    background: var(--bg-raised);
+    border: 3px solid var(--line);
+  }
+
+  .tl-item--now::before {
+    border-color: var(--ok);
     box-shadow: 0 0 0 4px var(--ok-tint);
   }
 
-  .tl-marker--past {
-    background: var(--line-strong);
-    box-shadow: 0 0 0 4px var(--bg-inset);
-  }
-
-  .tl-company {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--s-3);
-    padding: var(--s-4) 0 var(--s-2) calc(20px + var(--s-4));
-  }
-
-  .tl-company h4 {
-    margin: 0;
-    font-size: var(--text-base);
-  }
-
-  .tl-head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--s-3);
-    justify-content: space-between;
-  }
-
-  .tl-head h3 {
+  .tl-item h3 {
     font-size: var(--text-lg);
-    margin: 0;
+    margin-bottom: 2px;
   }
 
-  .tl-period {
+  .tl-pill {
+    margin-left: 6px;
+    vertical-align: 2px;
+  }
+
+  .tl-meta {
     font-size: var(--text-xs);
     color: var(--ink-faint);
-    margin: 0.25rem 0 var(--s-3);
+    margin-bottom: var(--s-2);
   }
 
-  .tl-body ul {
-    margin: 0;
-    padding-left: 1.1rem;
+  .tl-current {
+    color: var(--ok);
+    font-weight: 600;
   }
 
-  .tl-body li {
-    font-size: var(--text-sm);
-    color: var(--ink-soft);
-    margin-bottom: 0.35rem;
-  }
-
-  .tl-body p {
+  .tl-item p {
     font-size: var(--text-sm);
     color: var(--ink-soft);
     margin: 0;
-  }
-
-  /* Certs */
-  .cert-grid {
-    display: grid;
-    gap: var(--s-5);
-  }
-
-  @media (min-width: 900px) {
-    .cert-grid {
-      grid-template-columns: 1.7fr 1fr;
-    }
-  }
-
-  .cert-main {
-    display: grid;
-    gap: var(--s-5);
-  }
-
-  @media (min-width: 700px) {
-    .cert-main {
-      grid-template-columns: 1.1fr 1fr;
-      align-items: center;
-    }
-  }
-
-  .cert-head h3 {
-    margin: var(--s-3) 0;
-  }
-
-  .cert-head p {
-    font-size: var(--text-sm);
-    color: var(--ink-soft);
-  }
-
-  .cert-thumb img {
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--line);
-    transition: transform var(--t-med) var(--ease-out);
-  }
-
-  .cert-thumb:hover img {
-    transform: scale(1.015);
-  }
-
-  .cert-side-title {
-    font-size: var(--text-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--ink-faint);
-    margin-bottom: var(--s-4);
-  }
-
-  .cert-mini {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    padding: var(--s-4) var(--s-5);
-    margin-bottom: var(--s-3);
-  }
-
-  .cert-mini strong {
-    font-size: var(--text-sm);
-  }
-
-  .cert-mini span {
-    font-size: var(--text-xs);
-    color: var(--ink-faint);
-  }
-
-  /* Apps */
-  .app-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-3);
-  }
-
-  .app-card .tag {
-    align-self: flex-start;
-  }
-
-  .app-card h3 {
-    font-size: var(--text-base);
-    margin: 0;
-  }
-
-  .app-card p {
-    font-size: var(--text-sm);
-    color: var(--ink-soft);
-    margin: 0;
-  }
-
-  .center-cta {
-    text-align: center;
-    margin-top: var(--s-6);
+    max-width: 58ch;
   }
 </style>
