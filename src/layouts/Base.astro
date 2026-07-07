@@ -1,0 +1,148 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/fraunces';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { site, contact } from '../data/facts';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path beginning with / — used for canonical + OG url */
+  path: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article' | 'profile';
+  jsonLd?: object[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  path,
+  ogImage = '/og/default.png',
+  ogType = 'website',
+  jsonLd = [],
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(path.endsWith('/') || path.includes('.') ? path : path + '/', site.url).href;
+const ogImageAbs = new URL(ogImage, site.url).href;
+
+/** Person schema present on every page. */
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: site.title,
+  url: site.url,
+  image: `${site.url}/assets/dhiren-narola.jpg`,
+  email: `mailto:${contact.email}`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Surat',
+    addressRegion: 'Gujarat',
+    addressCountry: 'IN',
+  },
+  sameAs: [contact.linkedin, contact.github, contact.odooApps],
+  knowsAbout: [
+    'Odoo ERP',
+    'ERP Implementation',
+    'ERP Rescue',
+    'AI Automation',
+    'ZATCA e-invoicing',
+    'Business Process Automation',
+    'Odoo Manufacturing',
+    'Python',
+    'LLM Integration',
+  ],
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'certification',
+    name: 'Odoo 18 Functional Certification',
+    recognizedBy: { '@type': 'Organization', name: 'Odoo S.A.' },
+  },
+};
+
+const allSchemas = [personSchema, ...jsonLd];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="author" content={site.name} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={`${site.name} — ${site.title}`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageAbs} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <meta name="theme-color" content="#fbfaf9" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    {allSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+
+    {site.gaMeasurementId && (
+      <>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${site.gaMeasurementId}`}
+        />
+        <script
+          set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${site.gaMeasurementId}',{anonymize_ip:true});`}
+        />
+      </>
+    )}
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppFloat />
+
+    <script>
+      // Scroll reveal — IntersectionObserver only, no scroll listeners.
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const els = document.querySelectorAll('.reveal');
+      if (reduced) {
+        els.forEach((el) => el.classList.add('visible'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                io.unobserve(e.target);
+              }
+            }
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
+        els.forEach((el) => io.observe(el));
+      }
+    </script>
+  </body>
+</html>

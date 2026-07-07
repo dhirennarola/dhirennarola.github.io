@@ -1,0 +1,63 @@
+---
+import { recommendationsUrl } from '../data/facts';
+
+interface Props {
+  quote: string;
+  name: string;
+  role: string;
+  context?: string;
+  featured?: boolean;
+  class?: string;
+}
+
+const { quote, name, role, context, featured = false, class: cls } = Astro.props;
+const initials = name
+  .split(' ')
+  .map((p) => p[0])
+  .slice(0, 2)
+  .join('');
+---
+
+<figure class:list={['card', 'quote-card', { featured }, cls]}>
+  <blockquote>{quote}</blockquote>
+  <figcaption class="quote-attrib">
+    <div class="quote-avatar" aria-hidden="true">{initials}</div>
+    <div class="quote-meta">
+      <div class="quote-name">{name}</div>
+      <div class="quote-role">{role}{context && ` · ${context}`}</div>
+    </div>
+    <a
+      class="verified"
+      href={recommendationsUrl}
+      target="_blank"
+      rel="noopener"
+      aria-label={`View ${name}'s recommendation on LinkedIn`}
+    >
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
+      </svg>
+      LinkedIn
+    </a>
+  </figcaption>
+</figure>
+
+<style>
+  figure {
+    margin: 0;
+  }
+
+  .featured {
+    border-color: var(--accent-line);
+    background: linear-gradient(180deg, var(--bg-raised), var(--accent-tint) 400%);
+  }
+
+  .quote-meta {
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .verified {
+    flex-shrink: 0;
+  }
+</style>

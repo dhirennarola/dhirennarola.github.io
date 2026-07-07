@@ -1,0 +1,127 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { countriesServed, numbers } from '../../data/facts';
+import { breadcrumbs } from '../../data/schema';
+
+const work = (await getCollection('work')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<Base
+  title="Work — Odoo ERP Case Studies | Dhiren Narola"
+  description="Case studies from 20+ Odoo implementations: ZATCA-compliant ERP for a 300-employee automotive group, pharma manufacturing consolidation, subscription automation at scale, and more."
+  path="/work"
+  jsonLd={[breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Work', path: '/work' }])]}
+>
+  <header class="subhero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Work</span>
+      </nav>
+      <h1>Selected work, with the numbers left in.</h1>
+      <p class="lede">
+        {numbers.implementations} implementations across {numbers.countries}
+        countries. Client names stay under NDA; architecture decisions and
+        measured outcomes don't. These case studies are written for the people
+        who sign off on ERP budgets.
+      </p>
+    </div>
+  </header>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="work-grid">
+        {work.map((cs, i) => (
+          <a href={`/work/${cs.id}`} class:list={['card', 'card--hover', 'work-item', 'reveal', i % 2 === 1 && 'reveal-d1']}>
+            <div class="work-meta">
+              <span class="tag">{cs.data.industry}</span>
+              <span class="tag">{cs.data.country}</span>
+              <span class="tag">{cs.data.odooVersion}</span>
+            </div>
+            <h2>{cs.data.title}</h2>
+            <p>{cs.data.summary}</p>
+            <div class="work-kpis">
+              {cs.data.heroKpis.map((kpi) => (
+                <div class="stat">
+                  <div class="stat-num">{kpi.value}</div>
+                  <div class="stat-label">{kpi.label}</div>
+                </div>
+              ))}
+            </div>
+            <span class="pillar-link">Read the case study →</span>
+          </a>
+        ))}
+      </div>
+
+      <p class="more-note reveal">
+        …plus further projects delivered across the United States, Europe
+        (Netherlands, Germany), UAE, Qatar, Egypt, Australia, Mexico &amp; Laos —
+        including US and European enterprise engagements that remain fully
+        confidential under NDA. References available privately on request.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand title="Have a project like one of these?" />
+</Base>
+
+<style>
+  .work-grid {
+    display: grid;
+    gap: var(--s-5);
+  }
+
+  @media (min-width: 860px) {
+    .work-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .work-item:first-child {
+      grid-column: span 2;
+    }
+  }
+
+  .work-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .work-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .work-item h2 {
+    font-size: var(--text-xl);
+    font-family: var(--font-body);
+    font-weight: 650;
+    margin: 0;
+  }
+
+  .work-item > p {
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .work-kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-4);
+    border-top: 1px solid var(--line);
+    padding-top: var(--s-4);
+  }
+
+  .more-note {
+    margin-top: var(--s-6);
+    font-size: var(--text-sm);
+    color: var(--ink-faint);
+    max-width: 62ch;
+  }
+</style>

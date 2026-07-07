@@ -1,0 +1,675 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Testimonial from '../components/Testimonial.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
+import portrait from '../assets/dhiren-narola.png';
+import {
+  site,
+  numbers,
+  availability,
+  career,
+  recommendations,
+  countriesServed,
+  contact,
+} from '../data/facts';
+import { faqSchema, professionalServiceSchema } from '../data/schema';
+import { getCollection } from 'astro:content';
+
+const work = (await getCollection('work')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const featured = work.filter((w) => w.data.featured);
+const insights = (await getCollection('insights'))
+  .filter((i) => !i.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
+
+const faqs = [
+  {
+    q: 'Do you handle the full implementation yourself?',
+    a: 'Yes — one accountable lead from requirements to go-live. I architect the solution, build or direct the custom development, run data migration and UAT, and train your team. For larger scopes I bring in vetted developers under my direction, but ownership never fragments.',
+  },
+  {
+    q: 'We already have a failed or stalled Odoo project. Can it be saved?',
+    a: 'Usually, yes — and usually more of it is salvageable than the frustrated team expects. I start with a rapid independent assessment (days, not weeks): what works, what doesn’t, and a written recovery plan with a fixed quote before any remediation begins. See <a href="/services/erp-rescue">ERP Rescue</a>.',
+  },
+  {
+    q: 'What does an engagement cost?',
+    a: 'Typical engagements start at $2,000 USD. Full implementations are quoted per scope after a discovery call — always as a written, fixed proposal, never open-ended billing. You’ll know the number before we start.',
+  },
+  {
+    q: 'Where does AI fit into an Odoo project?',
+    a: 'Where it pays for itself: WhatsApp self-service flows, document-to-record automation, and workflow agents that prepare repetitive work for human approval. I also use AI-driven development workflows internally, which measurably raised my team’s delivery productivity by ~30%. I’ll tell you honestly where AI is not worth your money.',
+  },
+  {
+    q: 'You’re in India — how does remote delivery work across time zones?',
+    a: 'All 20+ implementations were delivered remotely across 12+ countries — North America, GCC, Europe, Africa, and Asia-Pacific. Structured sprints, proactive written updates, and overlap hours matched to your timezone. I reply within 8 business hours, usually much faster.',
+  },
+];
+
+const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
+---
+
+<Base
+  title="Odoo Architect & AI Automation Engineer | Dhiren Narola"
+  description="Odoo 18 certified architect with 20+ ERP implementations across 12+ countries. Full-ownership Odoo delivery, ERP rescue, ZATCA compliance, and AI-powered business automation."
+  path="/"
+  jsonLd={jsonLd}
+>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        {availability.active && (
+          <span class="pill pill--ok">
+            <span class="dot dot--pulse" aria-hidden="true"></span>
+            {availability.label}
+          </span>
+        )}
+        <h1>
+          Your ERP, architected right.<br />
+          <span class="hero-accent">Made intelligent with AI.</span>
+        </h1>
+        <p class="hero-sub">
+          I design, build, and rescue <strong>Odoo ERPs</strong> — and automate
+          the work your business shouldn't be doing by hand. Odoo 18 certified,
+          {numbers.implementations} implementations live across
+          {numbers.countries} countries, with full ownership from first
+          requirement to go-live.
+        </p>
+        <div class="hero-ctas">
+          <a href="/contact" class="btn btn--accent btn--lg">
+            Book a discovery call <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/work" class="btn btn--secondary btn--lg">See my work</a>
+        </div>
+        <dl class="hero-proof">
+          <div class="stat">
+            <dt class="stat-label">ERPs delivered &amp; live</dt>
+            <dd class="stat-num">{numbers.implementations}</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat-label">Countries served</dt>
+            <dd class="stat-num">{numbers.countries}</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat-label">Failed go-lives</dt>
+            <dd class="stat-num">{numbers.failedGoLives}</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat-label">Versions mastered</dt>
+            <dd class="stat-num">11–19</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero-visual">
+        <div class="portrait-frame">
+          <Image
+            src={portrait}
+            alt="Dhiren Narola — Odoo Architect and AI Automation Engineer"
+            width={480}
+            densities={[1, 2]}
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="cred-card">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="6" />
+            <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+          </svg>
+          <div>
+            <div class="cred-top">Odoo 18 Certified</div>
+            <div class="cred-sub">Issued by Odoo S.A.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <section class="trust-strip" aria-label="Countries served">
+    <div class="container">
+      <p class="trust-label">ERP &amp; automation delivered for businesses in</p>
+      <ul class="trust-countries">
+        {countriesServed.map((c) => <li>{c}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ THREE PILLARS ============ -->
+  <section class="section" id="pillars">
+    <div class="container">
+      <SectionHeader
+        eyebrow="What I do"
+        title="Three ways businesses engage me"
+        desc="Whether you're starting fresh, recovering from a bad build, or ready to automate — the model is the same: one accountable architect who owns the outcome."
+      />
+      <div class="grid grid--3">
+        <a href="/services/erp-implementation" class="card card--hover pillar reveal reveal-d1">
+          <span class="pill pill--accent">Core offer</span>
+          <h3>ERP Implementation</h3>
+          <p>
+            Full-cycle Odoo delivery — requirements, architecture, custom
+            development, migration, training, go-live. One lead, zero handoff
+            surprises.
+          </p>
+          <span class="pillar-link">Plan your implementation →</span>
+        </a>
+        <a href="/services/erp-rescue" class="card card--hover pillar reveal reveal-d2">
+          <span class="pill pill--rescue">Urgent</span>
+          <h3>ERP Rescue</h3>
+          <p>
+            Stalled, broken, or abandoned Odoo project? Rapid independent
+            assessment, honest verdict, and a fixed-quote recovery plan — often
+            where another partner walked away.
+          </p>
+          <span class="pillar-link">Get an assessment →</span>
+        </a>
+        <a href="/services/ai-automation" class="card card--hover pillar reveal reveal-d3">
+          <span class="pill pill--accent">Multiplier</span>
+          <h3>AI &amp; Automation</h3>
+          <p>
+            WhatsApp self-service serving thousands of customers, document-to-record
+            automation, and workflow agents — AI where it pays for itself, not
+            where it demos well.
+          </p>
+          <span class="pillar-link">Automate the busywork →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CURRENT ENGAGEMENT ============ -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="now-building card reveal">
+        <span class="now-pulse" aria-hidden="true"></span>
+        <div>
+          <p class="now-eyebrow">Currently building</p>
+          <p class="now-text">
+            {career.currentEngagement.summary}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED WORK ============ -->
+  <section class="section section--subtle" id="work">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Work"
+        title="Case studies with real numbers"
+        desc="Client names stay confidential under NDA — the architecture decisions and measured outcomes don't."
+      />
+      <div class="featured-grid">
+        {featured.map((cs, i) => (
+          <a href={`/work/${cs.id}`} class:list={['card', 'card--hover', 'work-card', 'reveal', i === 1 && 'reveal-d1']}>
+            <div class="work-meta">
+              <span class="tag">{cs.data.industry}</span>
+              <span class="tag">{cs.data.country}</span>
+              <span class="tag">{cs.data.odooVersion}</span>
+            </div>
+            <h3>{cs.data.title}</h3>
+            <p>{cs.data.summary}</p>
+            <div class="work-kpis">
+              {cs.data.heroKpis.map((k) => (
+                <div class="stat">
+                  <div class="stat-num">{k.value}</div>
+                  <div class="stat-label">{k.label}</div>
+                </div>
+              ))}
+            </div>
+            <span class="pillar-link">Read the case study →</span>
+          </a>
+        ))}
+      </div>
+      <div class="center-cta reveal">
+        <a href="/work" class="btn btn--secondary">
+          All case studies <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="section" id="proof">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Verified social proof"
+        title="What clients and colleagues say"
+        desc="Public LinkedIn recommendations — real names, real roles, verifiable in one click."
+      />
+      <div class="grid grid--2">
+        <Testimonial {...recommendations[0]} featured class="reveal" />
+        <Testimonial {...recommendations[1]} class="reveal reveal-d1" />
+      </div>
+      <div class="center-cta reveal">
+        <a href="/about#recommendations" class="btn btn--ghost">
+          All four recommendations <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="section section--subtle" id="process">
+    <div class="container">
+      <SectionHeader
+        eyebrow="How I work"
+        title="A process built on ownership"
+        desc="You always know what's happening, what's next, and who's responsible. (It's me.)"
+      />
+      <ol class="process">
+        <li class="reveal">
+          <span class="step-no">01</span>
+          <h3>Discovery &amp; architecture</h3>
+          <p>
+            Understanding your business before touching the system — requirements,
+            gap analysis, and a signed-off solution architecture, so we build the
+            right thing once.
+          </p>
+        </li>
+        <li class="reveal reveal-d1">
+          <span class="step-no">02</span>
+          <h3>Sprint-based delivery</h3>
+          <p>
+            Configuration, custom development, and integrations in structured
+            sprints with proactive written updates — accelerated by AI-assisted
+            workflows that cut iteration time.
+          </p>
+        </li>
+        <li class="reveal reveal-d2">
+          <span class="step-no">03</span>
+          <h3>Go-live &amp; handover</h3>
+          <p>
+            Data migration, UAT, and a calm go-live — with documentation and
+            training so your team owns the system. No black boxes, no dependency
+            on me by design.
+          </p>
+        </li>
+        <li class="reveal reveal-d3">
+          <span class="step-no">04</span>
+          <h3>Support that answers</h3>
+          <p>
+            SLA-based post-go-live support from the person who architected your
+            system — replies within {contact.responseTime}.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ INSIGHTS ============ -->
+  <section class="section" id="insights">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Insights"
+        title="Field notes, not content marketing"
+        desc="What I've learned running ERP and automation projects in production."
+      />
+      <div class="grid grid--3">
+        {insights.map((post, i) => (
+          <a href={`/insights/${post.id}`} class:list={['card', 'card--hover', 'insight-card', 'reveal', i === 1 && 'reveal-d1', i === 2 && 'reveal-d2']}>
+            <span class="tag">{post.data.topic}</span>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+            <span class="insight-meta">{post.data.readingTime} read</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section section--subtle" id="faq">
+    <div class="container">
+      <SectionHeader eyebrow="FAQ" title="Questions buyers actually ask" />
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  /* ---- Hero ---- */
+  .hero {
+    padding: calc(64px + var(--s-9)) 0 var(--s-8);
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(1200px 500px at 85% -10%, var(--accent-tint) 0%, transparent 60%),
+      var(--bg);
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: var(--s-7);
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1.35fr 1fr;
+    }
+  }
+
+  .hero-copy .pill {
+    margin-bottom: var(--s-5);
+  }
+
+  .hero h1 {
+    margin-bottom: var(--s-5);
+  }
+
+  .hero-accent {
+    color: var(--accent-strong);
+  }
+
+  .hero-sub {
+    font-size: var(--text-lg);
+    color: var(--ink-soft);
+    max-width: 34rem;
+    margin-bottom: var(--s-6);
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-bottom: var(--s-7);
+  }
+
+  .hero-proof {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s-5);
+    margin: 0;
+    padding-top: var(--s-5);
+    border-top: 1px solid var(--line);
+    max-width: 30rem;
+  }
+
+  @media (min-width: 560px) {
+    .hero-proof {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .hero-proof dt {
+    order: 2;
+  }
+
+  .hero-proof dd {
+    margin: 0;
+    order: 1;
+  }
+
+  .hero-proof .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---- Portrait ---- */
+  .hero-visual {
+    position: relative;
+    justify-self: center;
+  }
+
+  .portrait-frame {
+    width: min(340px, 78vw);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-lg);
+    background: var(--bg-inset);
+  }
+
+  .portrait-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .cred-card {
+    position: absolute;
+    left: -14px;
+    bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 0.65rem 0.9rem;
+    color: var(--accent-strong);
+  }
+
+  .cred-top {
+    font-size: var(--text-xs);
+    font-weight: 650;
+    color: var(--ink-strong);
+  }
+
+  .cred-sub {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+
+  /* ---- Trust strip ---- */
+  .trust-strip {
+    padding: var(--s-6) 0;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-raised);
+  }
+
+  .trust-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin-bottom: var(--s-3);
+  }
+
+  .trust-countries {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+
+  .trust-countries li {
+    font-size: var(--text-sm);
+    font-weight: 560;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---- Pillars ---- */
+  .pillar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .pillar .pill {
+    align-self: flex-start;
+  }
+
+  .pillar p {
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+    flex-grow: 1;
+    margin: 0;
+  }
+
+  .pillar-link {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--accent-strong);
+  }
+
+  /* ---- Now building ---- */
+  .now-building {
+    display: flex;
+    gap: var(--s-4);
+    align-items: flex-start;
+    border-left: 3px solid var(--ok);
+  }
+
+  .now-pulse {
+    width: 9px;
+    height: 9px;
+    margin-top: 7px;
+    border-radius: 50%;
+    background: var(--ok);
+    flex-shrink: 0;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  .now-eyebrow {
+    font-size: var(--text-xs);
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ok);
+    margin-bottom: 0.3rem;
+  }
+
+  .now-text {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  /* ---- Featured work ---- */
+  .featured-grid {
+    display: grid;
+    gap: var(--s-5);
+  }
+
+  @media (min-width: 860px) {
+    .featured-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .work-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .work-card h3 {
+    font-size: var(--text-xl);
+    margin: 0;
+  }
+
+  .work-card > p {
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .work-kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-4);
+    border-top: 1px solid var(--line);
+    padding-top: var(--s-4);
+  }
+
+  .center-cta {
+    text-align: center;
+    margin-top: var(--s-7);
+  }
+
+  /* ---- Process ---- */
+  .process {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--s-5);
+  }
+
+  @media (min-width: 860px) {
+    .process {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .process li {
+    margin: 0;
+    padding: var(--s-5);
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .step-no {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--accent);
+    font-weight: 560;
+    margin-bottom: var(--s-3);
+  }
+
+  .process h3 {
+    font-size: var(--text-base);
+    margin-bottom: var(--s-2);
+  }
+
+  .process p {
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---- Insights ---- */
+  .insight-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .insight-card .tag {
+    align-self: flex-start;
+  }
+
+  .insight-card h3 {
+    font-size: var(--text-base);
+    margin: 0;
+  }
+
+  .insight-card p {
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    flex-grow: 1;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .insight-meta {
+    font-size: var(--text-xs);
+    color: var(--ink-faint);
+  }
+</style>

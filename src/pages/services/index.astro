@@ -1,0 +1,114 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { services } from '../../data/services';
+import { engagement } from '../../data/facts';
+import { breadcrumbs } from '../../data/schema';
+---
+
+<Base
+  title="Services — Odoo Implementation, ERP Rescue, AI Automation | Dhiren Narola"
+  description="End-to-end Odoo expertise: implementation & architecture, ERP rescue, AI & business automation, integrations & ZATCA compliance, and dedicated development teams."
+  path="/services"
+  jsonLd={[breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }])]}
+>
+  <header class="subhero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Services</span>
+      </nav>
+      <h1>Everything an ERP needs.<br />One accountable owner.</h1>
+      <p class="lede">
+        From first architecture conversation to post-go-live support — including
+        the two things most consultants won't touch: rescuing failed projects
+        and telling you honestly where AI isn't worth your money.
+      </p>
+    </div>
+  </header>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="svc-grid">
+        {services.map((service, i) => (
+          <a href={`/services/${service.slug}`} class:list={['card', 'card--hover', 'svc-card', 'reveal', i % 3 === 1 && 'reveal-d1', i % 3 === 2 && 'reveal-d2']}>
+            {service.pill && (
+              <span class:list={['pill', service.pill.kind === 'rescue' ? 'pill--rescue' : service.pill.kind === 'ok' ? 'pill--ok' : 'pill--accent']}>
+                {service.pill.label}
+              </span>
+            )}
+            <h2>{service.nav}</h2>
+            <p>{service.lede}</p>
+            <span class="pillar-link">Explore {service.nav.toLowerCase()} →</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="card eng reveal">
+        <h3>How we can work together</h3>
+        <div class="tag-row eng-models">
+          {engagement.models.map((model) => <span class="tag">{model}</span>)}
+        </div>
+        <p>{engagement.note}</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .svc-grid {
+    display: grid;
+    gap: var(--s-5);
+    margin-bottom: var(--s-6);
+  }
+
+  @media (min-width: 820px) {
+    .svc-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .svc-card:first-child {
+      grid-column: span 2;
+    }
+  }
+
+  .svc-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .svc-card .pill {
+    align-self: flex-start;
+  }
+
+  .svc-card h2 {
+    font-size: var(--text-xl);
+    font-family: var(--font-body);
+    font-weight: 650;
+    margin: 0;
+  }
+
+  .svc-card p {
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .eng h3 {
+    margin-bottom: var(--s-3);
+  }
+
+  .eng-models {
+    margin-bottom: var(--s-4);
+  }
+
+  .eng p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+    max-width: 60ch;
+  }
+</style>

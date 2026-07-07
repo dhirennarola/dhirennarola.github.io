@@ -1,0 +1,154 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection, render } from 'astro:content';
+import { breadcrumbs, articleSchema } from '../../data/schema';
+import { site } from '../../data/facts';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('insights');
+  return posts
+    .filter((p) => !p.data.draft)
+    .map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const path = `/insights/${entry.id}`;
+
+const related = (await getCollection('insights'))
+  .filter((p) => p.id !== entry.id && !p.data.draft)
+  .slice(0, 2);
+
+const fmt = (date: Date) =>
+  date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const jsonLd = [
+  articleSchema({
+    headline: d.title,
+    description: d.description,
+    path,
+    datePublished: d.publishDate.toISOString(),
+    dateModified: d.updatedDate?.toISOString(),
+  }),
+  breadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Insights', path: '/insights' },
+    { name: d.title, path },
+  ]),
+];
+---
+
+<Base
+  title={`${d.title} | ${site.name}`}
+  description={d.description}
+  path={path}
+  ogType="article"
+  jsonLd={jsonLd}
+>
+  <header class="subhero">
+    <div class="container container--narrow">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span>
+        <a href="/insights">Insights</a> <span aria-hidden="true">/</span>
+        <span>{d.topic}</span>
+      </nav>
+      <div class="post-tags">
+        <span class="tag">{d.topic}</span>
+        <span class="post-meta">{fmt(d.publishDate)} · {d.readingTime} read</span>
+      </div>
+      <h1>{d.title}</h1>
+    </div>
+  </header>
+
+  <section class="section section--tight">
+    <div class="container container--narrow">
+      <article class="prose">
+        <Content />
+      </article>
+
+      <div class="author-box">
+        <p>
+          <strong>{site.name}</strong> — {site.title}. Odoo 18 certified, 20+
+          implementations across 12+ countries.
+          <a href="/about">More about me</a>
+        </p>
+      </div>
+
+      {related.length > 0 && (
+        <div class="related">
+          <h2>Keep reading</h2>
+          <div class="grid grid--2">
+            {related.map((r) => (
+              <a href={`/insights/${r.id}`} class="card card--hover rel-card">
+                <span class="tag">{r.data.topic}</span>
+                <h3>{r.data.title}</h3>
+                <span class="pillar-link">Read →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .post-tags {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    margin-bottom: var(--s-4);
+    flex-wrap: wrap;
+  }
+
+  .post-meta {
+    font-size: var(--text-xs);
+    color: var(--ink-faint);
+  }
+
+  .subhero h1 {
+    font-size: var(--text-3xl);
+  }
+
+  .author-box {
+    margin-top: var(--s-7);
+    padding: var(--s-4) var(--s-5);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-subtle);
+    font-size: var(--text-sm);
+  }
+
+  .author-box p {
+    margin: 0;
+  }
+
+  .related {
+    margin-top: var(--s-8);
+  }
+
+  .related h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--s-5);
+  }
+
+  .rel-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .rel-card .tag {
+    align-self: flex-start;
+  }
+
+  .rel-card h3 {
+    font-size: var(--text-sm);
+    margin: 0;
+    flex-grow: 1;
+  }
+</style>

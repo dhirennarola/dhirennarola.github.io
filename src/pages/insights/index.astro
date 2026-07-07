@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+import { breadcrumbs } from '../../data/schema';
+
+const posts = (await getCollection('insights'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+
+<Base
+  title="Insights — ERP, Odoo & AI Automation Field Notes | Dhiren Narola"
+  description="Practical writing from production ERP work: ZATCA e-invoicing guides, ERP rescue warning signs, and where AI actually pays for itself in business systems."
+  path="/insights"
+  jsonLd={[breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Insights', path: '/insights' }])]}
+>
+  <header class="subhero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Insights</span>
+      </nav>
+      <h1>Field notes, not content marketing.</h1>
+      <p class="lede">
+        What I've learned delivering ERP and automation projects in production —
+        written for the people who have to make these decisions with real budgets.
+      </p>
+    </div>
+  </header>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="posts">
+        {posts.map((post, i) => (
+          <a href={`/insights/${post.id}`} class:list={['card', 'card--hover', 'post-row', 'reveal', i % 2 === 1 && 'reveal-d1']}>
+            <div class="post-head">
+              <span class="tag">{post.data.topic}</span>
+              <span class="post-meta">
+                {fmt(post.data.publishDate)} · {post.data.readingTime} read
+              </span>
+            </div>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+            <span class="pillar-link">Read the article →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Prefer answers specific to your business?"
+    desc="Articles generalize; a discovery call doesn't. Thirty minutes, your process list on the table, honest answers."
+  />
+</Base>
+
+<style>
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+    max-width: 780px;
+  }
+
+  .post-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .post-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+  }
+
+  .post-meta {
+    font-size: var(--text-xs);
+    color: var(--ink-faint);
+  }
+
+  .post-row h2 {
+    font-size: var(--text-xl);
+    font-family: var(--font-body);
+    font-weight: 650;
+    margin: 0;
+  }
+
+  .post-row p {
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    margin: 0;
+  }
+</style>

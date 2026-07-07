@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import { contact, whatsappUrl } from '../data/facts';
+---
+
+<Base
+  title="Message received | Dhiren Narola"
+  description="Your inquiry has been received."
+  path="/thanks"
+  noindex
+>
+  <section class="subhero thanks">
+    <div class="container container--narrow">
+      <span class="pill pill--ok"><span class="dot" aria-hidden="true"></span> Inquiry received</span>
+      <h1>Thanks — it's in my inbox.</h1>
+      <p class="lede">
+        I personally reply to every inquiry within
+        <strong>{contact.responseTime}</strong>, usually faster. If it's urgent
+        — a down system, a compliance deadline —
+        <a href={whatsappUrl('Hi Dhiren, I just sent an inquiry — it’s urgent.')} target="_blank" rel="noopener">WhatsApp me now</a>
+        and it jumps the queue.
+      </p>
+      <div class="thanks-actions">
+        <a href="/work" class="btn btn--secondary">Read a case study meanwhile</a>
+        <a href="/" class="btn btn--ghost">Back to home</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .thanks {
+    min-height: 55vh;
+  }
+
+  .thanks .pill {
+    margin-bottom: var(--s-4);
+  }
+
+  .thanks-actions {
+    display: flex;
+    gap: var(--s-3);
+    margin-top: var(--s-6);
+    flex-wrap: wrap;
+  }
+</style>

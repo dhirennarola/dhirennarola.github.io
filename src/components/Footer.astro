@@ -1,0 +1,135 @@
+---
+import { site, contact, numbers, whatsappUrl } from '../data/facts';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">Dhiren Narola<span>.</span></a>
+        <p>
+          {site.title}. Odoo 18 certified · {numbers.implementations} implementations
+          · {numbers.countries} countries · full ownership from architecture to
+          go-live.
+        </p>
+      </div>
+
+      <nav class="footer-col" aria-label="Explore">
+        <h4>Explore</h4>
+        <a href="/about">About</a>
+        <a href="/work">Work</a>
+        <a href="/insights">Insights</a>
+        <a href="/contact">Contact</a>
+      </nav>
+
+      <nav class="footer-col" aria-label="Services">
+        <h4>Services</h4>
+        <a href="/services/erp-implementation">ERP Implementation</a>
+        <a href="/services/erp-rescue">ERP Rescue</a>
+        <a href="/services/ai-automation">AI &amp; Automation</a>
+        <a href="/services/integrations-compliance">Integrations &amp; ZATCA</a>
+        <a href="/services/dedicated-team">Dedicated Team</a>
+      </nav>
+
+      <nav class="footer-col" aria-label="Connect">
+        <h4>Connect</h4>
+        <a href={contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        <a href={contact.github} target="_blank" rel="noopener">GitHub</a>
+        <a href={contact.odooApps} target="_blank" rel="noopener">Odoo App Store</a>
+        <a href={whatsappUrl()} target="_blank" rel="noopener">WhatsApp</a>
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <p class="footer-meta">
+        <a href="/privacy">Privacy</a>
+        <span aria-hidden="true">·</span>
+        Built as a fast static site — no trackers beyond analytics, no bloat.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--band);
+    color: var(--band-soft);
+    padding: var(--s-8) 0 var(--s-6);
+    margin-top: var(--section-y);
+    font-size: var(--text-sm);
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: var(--s-6);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 760px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: var(--s-7);
+    }
+  }
+
+  .footer-logo {
+    display: inline-block;
+    font-weight: 680;
+    font-size: 1.05rem;
+    color: var(--band-ink);
+    margin-bottom: var(--s-3);
+  }
+
+  .footer-logo span {
+    color: var(--accent);
+  }
+
+  .footer-brand p {
+    max-width: 34ch;
+    line-height: 1.65;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .footer-col h4 {
+    color: var(--band-ink);
+    font-size: var(--text-xs);
+    font-weight: 620;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 var(--s-2);
+  }
+
+  .footer-col a,
+  .footer-meta a {
+    color: var(--band-soft);
+  }
+
+  .footer-col a:hover,
+  .footer-meta a:hover {
+    color: var(--band-ink);
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    justify-content: space-between;
+    border-top: 1px solid var(--band-line);
+    margin-top: var(--s-7);
+    padding-top: var(--s-5);
+    font-size: var(--text-xs);
+  }
+
+  .footer-bottom p {
+    margin: 0;
+  }
+</style>

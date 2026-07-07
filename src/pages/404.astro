@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Page not found | Dhiren Narola"
+  description="This page doesn't exist."
+  path="/404"
+  noindex
+>
+  <section class="subhero nf">
+    <div class="container container--narrow">
+      <span class="eyebrow">404</span>
+      <h1>This page doesn't exist.</h1>
+      <p class="lede">
+        Unlike a stalled ERP project, this one has a quick fix — here are the
+        useful places:
+      </p>
+      <div class="nf-actions">
+        <a href="/" class="btn btn--accent">Home</a>
+        <a href="/work" class="btn btn--secondary">Case studies</a>
+        <a href="/services" class="btn btn--secondary">Services</a>
+        <a href="/contact" class="btn btn--secondary">Contact</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    min-height: 55vh;
+  }
+
+  .nf-actions {
+    display: flex;
+    gap: var(--s-3);
+    margin-top: var(--s-6);
+    flex-wrap: wrap;
+  }
+</style>

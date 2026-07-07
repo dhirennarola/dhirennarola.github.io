@@ -1,0 +1,486 @@
+---
+import Base from '../layouts/Base.astro';
+import {
+  site,
+  contact,
+  numbers,
+  career,
+  certifications,
+  education,
+} from '../data/facts';
+
+const projects = [
+  {
+    name: 'Automotive Group ERP — Saudi Arabia',
+    result:
+      'HR, payroll, accounting & sales for 300+ employees; ZATCA Phase 2 at 1,500+ invoices/mo; WooCommerce & WhatsApp integrated. 60% less manual work.',
+  },
+  {
+    name: 'Pharma Manufacturing ERP — India',
+    result:
+      '3 systems consolidated into 1; full MRP with stage-gate QC across 5+ warehouses. 50% fewer production tracking errors.',
+  },
+  {
+    name: 'Maintenance & Subscription Platform — Rwanda',
+    result:
+      'Subscription-driven scheduling for 35+ technicians; WhatsApp self-service for 4,000+ customers replaced ~50% of call-center load.',
+  },
+  {
+    name: 'Hourly Billing Platform — IT Services, United States',
+    result:
+      'Self-allocating hour packages with customer portal; 100% of manual billing eliminated, 45% fewer client queries.',
+  },
+];
+
+const skills = [
+  {
+    label: 'Odoo',
+    items: 'Versions 11–19 · Accounting · Manufacturing/MRP · HR & Payroll · Sales · Inventory · Subscriptions · Quality · Helpdesk',
+  },
+  {
+    label: 'Engineering',
+    items: 'Python · PostgreSQL · OWL/JS · XML/QWeb · REST APIs & webhooks · Git · Linux/Nginx · Docker · AWS/GCP · Odoo.sh',
+  },
+  {
+    label: 'AI & Automation',
+    items: 'LLM integrations (OpenAI, Claude) · document-to-record automation · WhatsApp Business API flows · AI-assisted delivery workflows · MCP',
+  },
+  {
+    label: 'Compliance & Integrations',
+    items: 'ZATCA Phase 2 e-invoicing · WooCommerce · payment gateways · biometric/attendance devices · legacy bridges (Tally XML)',
+  },
+];
+---
+
+<Base
+  title="Résumé — Dhiren Narola, Odoo Architect & AI Automation Engineer"
+  description="One-page consultant profile: Odoo 18 certified architect, 20+ implementations across 12+ countries, ERP rescue and AI automation specialist."
+  path="/profile"
+>
+  <div class="profile-toolbar">
+    <div class="container toolbar-inner">
+      <span>Consultant profile — print-ready</span>
+      <div class="toolbar-actions">
+        <a href="/assets/Dhiren-Narola-Odoo-Architect.pdf" class="btn btn--accent" download>
+          Download PDF
+        </a>
+        <button class="btn btn--secondary" onclick="window.print()">Print</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="sheet-wrap">
+    <article class="sheet" id="resume">
+      <!-- Header -->
+      <header class="r-head">
+        <div>
+          <h1>{site.name}</h1>
+          <p class="r-title">{site.title}</p>
+        </div>
+        <div class="r-contact">
+          <span>dhirennarola.com</span>
+          <span>{contact.email}</span>
+          <span>{contact.phoneDisplay}</span>
+          <span>linkedin.com/in/dhirennarola</span>
+          <span>Surat, India · working globally</span>
+        </div>
+      </header>
+
+      <!-- Summary -->
+      <p class="r-summary">
+        Odoo 18 certified architect with <strong>{numbers.implementations} full-cycle ERP
+        implementations across {numbers.countries} countries</strong> and zero failed
+        go-lives. Former Development Team Lead at an Odoo Silver Partner (led
+        {numbers.developersLed} developers). I own delivery end-to-end — requirements,
+        architecture, custom development, integrations, go-live — and build AI-powered
+        automation where it measurably pays: WhatsApp self-service at 4,000+ customer
+        scale, document automation, ZATCA compliance at 1,500+ invoices/month.
+      </p>
+
+      <!-- Numbers strip -->
+      <div class="r-numbers">
+        <div><strong>{numbers.implementations}</strong> ERPs live</div>
+        <div><strong>{numbers.countries}</strong> countries</div>
+        <div><strong>{numbers.odooVersions}</strong></div>
+        <div><strong>{numbers.developersLed}</strong> devs led</div>
+        <div><strong>{numbers.failedGoLives}</strong> failed go-lives</div>
+      </div>
+
+      <div class="r-cols">
+        <div class="r-main">
+          <h2>Experience</h2>
+
+          <div class="r-role">
+            <div class="r-role-head">
+              <h3>{career.independent.role}</h3>
+              <span>{career.independent.period}</span>
+            </div>
+            <p class="r-role-sub">Remote · GCC, Europe, Asia-Pacific</p>
+            <ul>
+              <li>{career.currentEngagement.summary}</li>
+              <li>Direct-to-client implementations, ERP rescues, and automation builds.</li>
+            </ul>
+          </div>
+
+          <div class="r-role">
+            <div class="r-role-head">
+              <h3>Development Team Lead — {career.synodica.company}</h3>
+              <span>Sep 2024 – Jul 2026</span>
+            </div>
+            <p class="r-role-sub">{career.synodica.badge} · {career.synodica.location}</p>
+            <ul>
+              <li>Led 7 developers across 4 concurrent ERP projects — architecture, resourcing, delivery, and hiring.</li>
+              <li>Raised team productivity ~30% by introducing AI-driven development workflows; cut delivery delays ~25%.</li>
+              <li>Reduced post-deployment issues ~30% via code review standards and deployment automation.</li>
+            </ul>
+          </div>
+
+          <div class="r-role">
+            <div class="r-role-head">
+              <h3>Software Engineer → Senior Software Engineer</h3>
+              <span>Sep 2021 – Aug 2024</span>
+            </div>
+            <p class="r-role-sub">{career.synodica.company} — joined while completing engineering degree</p>
+            <ul>
+              <li>Delivered full-cycle Odoo projects across automotive, pharma, facilities, retail, and IT services.</li>
+              <li>Revamped a 10,000+ line legacy module — ~30% performance gain, major technical-debt reduction.</li>
+            </ul>
+          </div>
+
+          <h2>Selected projects</h2>
+          {projects.map((project) => (
+            <div class="r-project">
+              <h3>{project.name}</h3>
+              <p>{project.result}</p>
+            </div>
+          ))}
+        </div>
+
+        <aside class="r-side">
+          <h2>Certifications</h2>
+          <ul class="r-list">
+            {certifications.map((cert) => (
+              <li>
+                <strong>{cert.name}</strong>
+                <span>{cert.issuer} · {cert.year}</span>
+              </li>
+            ))}
+          </ul>
+
+          <h2>Expertise</h2>
+          <ul class="r-list">
+            {skills.map((skill) => (
+              <li>
+                <strong>{skill.label}</strong>
+                <span>{skill.items}</span>
+              </li>
+            ))}
+          </ul>
+
+          <h2>Education</h2>
+          <ul class="r-list">
+            <li>
+              <strong>{education.degree}</strong>
+              <span>{education.school} · {education.year}</span>
+              <span>{education.detail}</span>
+            </li>
+          </ul>
+
+          <h2>Products</h2>
+          <ul class="r-list">
+            <li>
+              <strong>3 apps on the Odoo App Store</strong>
+              <span>Chatter Panel Control · Chatter Access Control · POS Quick Favourites (Odoo 19)</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+
+      <footer class="r-foot">
+        References and private case-study walkthroughs available on request ·
+        dhirennarola.com/work
+      </footer>
+    </article>
+  </section>
+</Base>
+
+<style>
+  .profile-toolbar {
+    margin-top: 64px;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-raised);
+    padding: var(--s-3) 0;
+  }
+
+  .toolbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    flex-wrap: wrap;
+    font-size: var(--text-sm);
+    color: var(--ink-faint);
+  }
+
+  .toolbar-actions {
+    display: flex;
+    gap: var(--s-3);
+  }
+
+  .sheet-wrap {
+    padding: var(--s-7) var(--s-4);
+    display: flex;
+    justify-content: center;
+    background: var(--bg-inset);
+  }
+
+  .sheet {
+    background: #fff;
+    width: min(820px, 100%);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-lg);
+    border-radius: 4px;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* Header */
+  .r-head {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-5);
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--ink-strong);
+    padding-bottom: var(--s-4);
+    margin-bottom: var(--s-4);
+  }
+
+  .r-head h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.2rem;
+  }
+
+  .r-title {
+    color: var(--accent-strong);
+    font-weight: 620;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .r-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    gap: 0.1rem;
+    text-align: right;
+  }
+
+  .r-summary {
+    color: var(--ink-soft);
+    margin-bottom: var(--s-4);
+  }
+
+  .r-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.6rem;
+    border-block: 1px solid var(--line);
+    padding: 0.55rem 0;
+    margin-bottom: var(--s-5);
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+  }
+
+  .r-numbers strong {
+    font-size: 0.95rem;
+  }
+
+  .r-cols {
+    display: grid;
+    gap: var(--s-6);
+  }
+
+  @media (min-width: 640px) {
+    .r-cols {
+      grid-template-columns: 1.55fr 1fr;
+    }
+  }
+
+  .sheet h2 {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-strong);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.3rem;
+    margin: var(--s-5) 0 var(--s-3);
+  }
+
+  .sheet h2:first-child {
+    margin-top: 0;
+  }
+
+  .r-role {
+    margin-bottom: var(--s-4);
+  }
+
+  .r-role-head {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-3);
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+
+  .r-role h3,
+  .r-project h3 {
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  .r-role-head span {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  .r-role-sub {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    margin: 0.1rem 0 0.35rem;
+  }
+
+  .r-role ul {
+    margin: 0;
+    padding-left: 1rem;
+  }
+
+  .r-role li {
+    margin-bottom: 0.25rem;
+    color: var(--ink-soft);
+  }
+
+  .r-project {
+    margin-bottom: var(--s-3);
+  }
+
+  .r-project p {
+    margin: 0.15rem 0 0;
+    color: var(--ink-soft);
+  }
+
+  .r-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .r-list li {
+    margin-bottom: var(--s-3);
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .r-list strong {
+    font-size: 0.82rem;
+  }
+
+  .r-list span {
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+  }
+
+  .r-foot {
+    border-top: 1px solid var(--line);
+    margin-top: var(--s-5);
+    padding-top: var(--s-3);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    text-align: center;
+  }
+
+  /* ===== Print / PDF ===== */
+  @media print {
+    .profile-toolbar {
+      display: none;
+    }
+
+    .sheet-wrap {
+      padding: 0;
+      background: #fff;
+    }
+
+    .sheet {
+      width: 100%;
+      border: 0;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0;
+      font-size: 8.3pt;
+      line-height: 1.4;
+    }
+
+    .r-cols {
+      grid-template-columns: 1.55fr 1fr;
+      gap: var(--s-5);
+    }
+
+    .r-head {
+      padding-bottom: var(--s-3);
+      margin-bottom: var(--s-3);
+    }
+
+    .r-head h1 {
+      font-size: 1.6rem;
+    }
+
+    .r-summary {
+      margin-bottom: var(--s-3);
+    }
+
+    .r-numbers {
+      margin-bottom: var(--s-4);
+    }
+
+    .sheet h2 {
+      margin: var(--s-4) 0 var(--s-2);
+    }
+
+    .r-role {
+      margin-bottom: var(--s-3);
+    }
+
+    .r-role li,
+    .r-project p {
+      font-size: 8.2pt;
+    }
+
+    .r-list li {
+      margin-bottom: var(--s-2);
+    }
+
+    .r-foot {
+      display: none;
+    }
+
+    .r-numbers {
+      margin-bottom: var(--s-3);
+      padding: 0.4rem 0;
+    }
+
+    .r-project {
+      margin-bottom: var(--s-2);
+    }
+
+    @page {
+      size: A4;
+      margin: 10mm 12mm 9mm;
+    }
+  }
+</style>

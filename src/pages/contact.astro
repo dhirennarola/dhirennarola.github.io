@@ -1,0 +1,345 @@
+---
+import Base from '../layouts/Base.astro';
+import { contact, engagement, availability, whatsappUrl } from '../data/facts';
+import { breadcrumbs } from '../data/schema';
+---
+
+<Base
+  title="Contact — Book an Odoo Discovery Call | Dhiren Narola"
+  description="Book a free 30-minute discovery call or send a project inquiry. Response within 8 business hours — a focused conversation about your ERP or automation project, no sales pitch."
+  path="/contact"
+  jsonLd={[breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }])]}
+>
+  <header class="subhero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Contact</span>
+      </nav>
+      {availability.active && (
+        <span class="pill pill--ok contact-avail">
+          <span class="dot dot--pulse" aria-hidden="true"></span>
+          {availability.label}
+        </span>
+      )}
+      <h1>Let's see if we're a fit.</h1>
+      <p class="lede">
+        Book the call directly, or write first — whichever suits you. Either
+        way: I reply within <strong>{contact.responseTime}</strong>, I come
+        prepared with questions about your business, and you'll have a written
+        proposal within 3–5 business days if we proceed.
+      </p>
+    </div>
+  </header>
+
+  <section class="section section--tight">
+    <div class="container contact-grid">
+      <!-- ===== Form ===== -->
+      <div class="form-col reveal">
+        <h2 class="col-title">Send a project inquiry</h2>
+        <form
+          id="contactForm"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          class="card contact-form"
+        >
+          <input type="hidden" name="access_key" value={contact.web3formsKey} />
+          <input type="hidden" name="subject" value="New project inquiry — dhirennarola.com" />
+          <input type="hidden" name="from_name" value="dhirennarola.com contact form" />
+          <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <div class="form-row">
+            <div class="field">
+              <label for="f-name">Name *</label>
+              <input id="f-name" type="text" name="name" placeholder="Your name" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="f-email">Work email *</label>
+              <input id="f-email" type="email" name="email" placeholder="you@company.com" required autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="f-company">Company</label>
+              <input id="f-company" type="text" name="company" placeholder="Company name" autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label for="f-size">Company size</label>
+              <select id="f-size" name="company_size">
+                <option>1–10 people</option>
+                <option>11–50 people</option>
+                <option selected>51–200 people</option>
+                <option>201–500 people</option>
+                <option>500+ people</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-help">What do you need help with? *</label>
+            <select id="f-help" name="help_with" required>
+              <option>New Odoo implementation</option>
+              <option>ERP rescue / stalled project</option>
+              <option>AI &amp; business automation</option>
+              <option>Integration / compliance (ZATCA, e-commerce…)</option>
+              <option>Custom module development</option>
+              <option>Dedicated team / partner capacity</option>
+              <option>Training &amp; support</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="f-budget">Budget range (USD)</label>
+              <select id="f-budget" name="budget">
+                {engagement.budgetTiers.map((tier) => <option>{tier}</option>)}
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-timeline">Timeline</label>
+              <select id="f-timeline" name="timeline">
+                <option>Urgent — ASAP</option>
+                <option>Within 1–3 months</option>
+                <option>3–6 months</option>
+                <option>Exploring options</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-message">Tell me about your project *</label>
+            <textarea
+              id="f-message"
+              name="message"
+              required
+              placeholder="e.g. We're a 120-person distribution company on legacy software. Invoicing and inventory are the pain points. Evaluating Odoo, hoping to go live within 6 months."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--accent btn--lg form-submit">
+            Send inquiry <span class="arrow" aria-hidden="true">→</span>
+          </button>
+          <p class="form-privacy">
+            Your details are used only to respond to this inquiry. <a href="/privacy">Privacy</a>
+          </p>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+        </form>
+
+        <div class="alt-channels">
+          <a href={whatsappUrl()} target="_blank" rel="noopener" class="card card--hover alt-card">
+            <strong>Prefer WhatsApp?</strong>
+            <span>{contact.phoneDisplay} — fastest for quick questions</span>
+          </a>
+          <a href={`mailto:${contact.email}`} class="card card--hover alt-card">
+            <strong>Prefer email?</strong>
+            <span>{contact.email}</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ===== Booking ===== -->
+      <div class="book-col reveal reveal-d1">
+        <h2 class="col-title">Or book the call directly</h2>
+        <div class="card book-card">
+          <ul class="check-list book-expect">
+            <li>A clear picture of your situation and goals — in 30 minutes.</li>
+            <li>My honest take on whether Odoo (or AI automation) is the right fit.</li>
+            <li>Outline of scope, rough timeline, and next steps.</li>
+            <li>If it's a rescue: an initial read on what's salvageable.</li>
+          </ul>
+          <div
+            class="calendly-inline-widget"
+            data-url={`${contact.calendly}?hide_gdpr_banner=1&primary_color=4263eb`}
+            style="min-width:300px;height:640px;"
+          >
+          </div>
+          <script src="https://assets.calendly.com/assets/external/widget.js" async is:inline></script>
+          <noscript>
+            <a href={contact.calendly} target="_blank" rel="noopener">Open the booking calendar →</a>
+          </noscript>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--subtle section--tight">
+    <div class="container">
+      <div class="next-steps reveal">
+        <h2>What happens next</h2>
+        <ol>
+          <li><strong>Within {contact.responseTime}:</strong> a personal reply — not an autoresponder.</li>
+          <li><strong>Discovery call:</strong> 30 focused minutes; I come prepared with questions about your business.</li>
+          <li><strong>Within 3–5 business days:</strong> a clear written proposal with fixed scope and price.</li>
+        </ol>
+        <p class="eng-note">{engagement.note}</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact-avail {
+    margin-bottom: var(--s-4);
+  }
+
+  .contact-grid {
+    display: grid;
+    gap: var(--s-7);
+    align-items: start;
+  }
+
+  @media (min-width: 980px) {
+    .contact-grid {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+
+  .col-title {
+    font-size: var(--text-lg);
+    font-family: var(--font-body);
+    font-weight: 650;
+    margin-bottom: var(--s-4);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .form-row {
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  @media (min-width: 560px) {
+    .form-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .form-submit {
+    align-self: flex-start;
+  }
+
+  .form-privacy {
+    font-size: var(--text-xs);
+    color: var(--ink-faint);
+    margin: 0;
+  }
+
+  .form-status {
+    font-size: var(--text-sm);
+    font-weight: 560;
+  }
+
+  .form-status.success {
+    color: var(--ok);
+  }
+
+  .form-status.error {
+    color: var(--rescue);
+  }
+
+  .alt-channels {
+    display: grid;
+    gap: var(--s-4);
+    margin-top: var(--s-4);
+  }
+
+  @media (min-width: 560px) {
+    .alt-channels {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .alt-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: var(--s-4) var(--s-5);
+  }
+
+  .alt-card strong {
+    font-size: var(--text-sm);
+  }
+
+  .alt-card span {
+    font-size: var(--text-xs);
+    color: var(--ink-faint);
+  }
+
+  .book-card {
+    padding: var(--s-5);
+  }
+
+  .book-expect {
+    margin-bottom: var(--s-4);
+  }
+
+  .book-expect li {
+    font-size: var(--text-sm);
+  }
+
+  .next-steps {
+    max-width: 640px;
+  }
+
+  .next-steps h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--s-4);
+  }
+
+  .next-steps ol {
+    padding-left: 1.2rem;
+  }
+
+  .next-steps li {
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+    margin-bottom: var(--s-3);
+  }
+
+  .eng-note {
+    font-size: var(--text-xs);
+    color: var(--ink-faint);
+    border-top: 1px solid var(--line);
+    padding-top: var(--s-4);
+    margin-top: var(--s-5);
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement | null;
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = document.getElementById('formStatus')!;
+      const btn = form.querySelector('.form-submit') as HTMLButtonElement;
+      status.textContent = 'Sending…';
+      status.className = 'form-status';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        const data = await res.json();
+        if (data.success) {
+          window.location.href = '/thanks/';
+        } else {
+          status.textContent =
+            'Something went wrong — please email me directly instead.';
+          status.className = 'form-status error';
+        }
+      } catch {
+        status.textContent =
+          'Network error — please email or WhatsApp me directly.';
+        status.className = 'form-status error';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+</script>

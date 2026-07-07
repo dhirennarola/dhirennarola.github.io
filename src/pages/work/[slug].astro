@@ -1,0 +1,277 @@
+---
+import Base from '../../layouts/Base.astro';
+import Testimonial from '../../components/Testimonial.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection, render } from 'astro:content';
+import { recommendations } from '../../data/facts';
+import { breadcrumbs, articleSchema } from '../../data/schema';
+
+export async function getStaticPaths() {
+  const work = await getCollection('work');
+  return work.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const path = `/work/${entry.id}`;
+
+const related = (await getCollection('work'))
+  .filter((w) => w.id !== entry.id)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 2);
+
+const quote = d.testimonialName
+  ? recommendations.find((r) => r.name === d.testimonialName)
+  : undefined;
+
+const jsonLd = [
+  breadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Work', path: '/work' },
+    { name: d.title, path },
+  ]),
+  articleSchema({
+    headline: d.title,
+    description: d.summary,
+    path,
+    datePublished: '2026-07-01',
+  }),
+];
+---
+
+<Base
+  title={`${d.title} — Case Study | Dhiren Narola`}
+  description={d.summary}
+  path={path}
+  ogType="article"
+  jsonLd={jsonLd}
+>
+  <header class="subhero cs-hero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span>
+        <a href="/work">Work</a> <span aria-hidden="true">/</span>
+        <span>{d.industry}</span>
+      </nav>
+      <div class="work-meta">
+        <span class="tag">{d.industry}</span>
+        <span class="tag">{d.country}</span>
+        <span class="tag">{d.odooVersion}</span>
+        <span class="tag tag--live">{d.status}</span>
+      </div>
+      <h1>{d.title}</h1>
+      <p class="lede">{d.summary}</p>
+
+      <dl class="cs-kpis">
+        {d.heroKpis.map((kpi) => (
+          <div class="stat">
+            <dd class="stat-num">{kpi.value}</dd>
+            <dt class="stat-label">{kpi.label}{kpi.basis && <span class="kpi-basis"> — {kpi.basis}</span>}</dt>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </header>
+
+  <section class="section section--tight">
+    <div class="container cs-layout">
+      <article class="prose">
+        <Content />
+
+        <div class="cs-author">
+          <p>
+            <strong>Delivered by Dhiren Narola</strong> — Odoo Architect &amp; AI
+            Automation Engineer. <a href="/about">About me</a> ·
+            <a href="/contact">Discuss a similar project</a>
+          </p>
+        </div>
+      </article>
+
+      <aside class="cs-side">
+        <div class="card side-block">
+          <h3>Project facts</h3>
+          <dl class="facts-list">
+            <div><dt>Client</dt><dd>{d.clientLabel}</dd></div>
+            <div><dt>Country</dt><dd>{d.country}</dd></div>
+            {d.companySize && <div><dt>Scale</dt><dd>{d.companySize}</dd></div>}
+            <div><dt>Platform</dt><dd>{d.odooVersion}</dd></div>
+            <div><dt>My role</dt><dd>{d.role}</dd></div>
+            {d.timeline && <div><dt>Timeline</dt><dd>{d.timeline}</dd></div>}
+          </dl>
+        </div>
+
+        <div class="card side-block">
+          <h3>Modules</h3>
+          <div class="tag-row">
+            {d.modules.map((m) => <span class="tag">{m}</span>)}
+          </div>
+        </div>
+
+        {d.integrations.length > 0 && (
+          <div class="card side-block">
+            <h3>Integrations</h3>
+            <div class="tag-row">
+              {d.integrations.map((int) => <span class="tag">{int}</span>)}
+            </div>
+          </div>
+        )}
+
+        {quote && <Testimonial {...quote} />}
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--subtle section--tight">
+    <div class="container">
+      <h2 class="related-title">Related case studies</h2>
+      <div class="grid grid--2">
+        {related.map((r) => (
+          <a href={`/work/${r.id}`} class="card card--hover related-card">
+            <div class="work-meta">
+              <span class="tag">{r.data.industry}</span>
+              <span class="tag">{r.data.country}</span>
+            </div>
+            <h3>{r.data.title}</h3>
+            <span class="pillar-link">Read the case study →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Facing something similar?"
+    desc="Bring the messy version of your situation — the discovery call is where it gets untangled. Written proposal within 3–5 business days after."
+  />
+</Base>
+
+<style>
+  .cs-hero .work-meta {
+    margin-bottom: var(--s-4);
+  }
+
+  .cs-hero h1 {
+    max-width: 24ch;
+  }
+
+  .tag--live {
+    background: var(--ok-tint);
+    border-color: #c3ecc9;
+    color: #1e6b30;
+  }
+
+  .cs-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--s-5);
+    margin: var(--s-6) 0 0;
+    padding-top: var(--s-5);
+    border-top: 1px solid var(--line);
+    max-width: 720px;
+  }
+
+  .cs-kpis dd {
+    margin: 0;
+  }
+
+  .kpi-basis {
+    color: var(--ink-faint);
+  }
+
+  .cs-layout {
+    display: grid;
+    gap: var(--s-7);
+    align-items: start;
+  }
+
+  @media (min-width: 980px) {
+    .cs-layout {
+      grid-template-columns: minmax(0, 1fr) 320px;
+    }
+  }
+
+  .cs-side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+    position: sticky;
+    top: 88px;
+  }
+
+  .side-block h3 {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin-bottom: var(--s-4);
+  }
+
+  .facts-list {
+    margin: 0;
+  }
+
+  .facts-list div {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: var(--s-3);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .facts-list div:last-child {
+    border-bottom: 0;
+  }
+
+  .facts-list dt {
+    font-size: var(--text-xs);
+    color: var(--ink-faint);
+    font-weight: 560;
+  }
+
+  .facts-list dd {
+    margin: 0;
+    font-size: var(--text-xs);
+    color: var(--ink-soft);
+    font-weight: 530;
+  }
+
+  .cs-author {
+    margin-top: var(--s-7);
+    padding: var(--s-4) var(--s-5);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-subtle);
+  }
+
+  .cs-author p {
+    margin: 0;
+    font-size: var(--text-sm);
+  }
+
+  .related-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--s-5);
+  }
+
+  .related-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .related-card h3 {
+    font-size: var(--text-base);
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .work-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+</style>

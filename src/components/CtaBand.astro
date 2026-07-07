@@ -1,0 +1,93 @@
+---
+import { contact, whatsappUrl, availability } from '../data/facts';
+
+interface Props {
+  title?: string;
+  desc?: string;
+  whatsappMsg?: string;
+}
+
+const {
+  title = 'Let’s see if we’re a fit.',
+  desc = `Tell me about your project, or book a 30-minute discovery call. I reply within ${contact.responseTime} — and I come prepared with questions about your business, not a sales pitch.`,
+  whatsappMsg,
+} = Astro.props;
+---
+
+<section class="cta-band">
+  <div class="container cta-inner reveal">
+    {availability.active && (
+      <span class="pill pill--ok cta-avail">
+        <span class="dot dot--pulse" aria-hidden="true"></span>
+        {availability.label}
+      </span>
+    )}
+    <h2>{title}</h2>
+    <p>{desc}</p>
+    <div class="cta-actions">
+      <a href="/contact" class="btn btn--accent btn--lg">
+        Book a discovery call <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <a
+        href={whatsappUrl(whatsappMsg)}
+        target="_blank"
+        rel="noopener"
+        class="btn btn--band btn--lg"
+      >
+        WhatsApp me
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band {
+    background: var(--band);
+    color: var(--band-soft);
+    padding: var(--section-y) 0;
+    margin-top: var(--section-y);
+    text-align: center;
+  }
+
+  .cta-band + :global(footer.footer) {
+    margin-top: 0;
+  }
+
+  .cta-inner {
+    max-width: 620px;
+  }
+
+  .cta-avail {
+    background: rgba(47, 158, 68, 0.12);
+    border-color: rgba(47, 158, 68, 0.3);
+    color: #7edb96;
+    margin-bottom: var(--s-5);
+  }
+
+  .cta-band h2 {
+    color: var(--band-ink);
+    margin-bottom: var(--s-4);
+  }
+
+  .cta-band p {
+    margin-bottom: var(--s-6);
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    justify-content: center;
+  }
+
+  .btn--band {
+    background: transparent;
+    color: var(--band-ink);
+    border-color: var(--band-line);
+  }
+
+  .btn--band:hover {
+    border-color: var(--band-soft);
+    color: #fff;
+  }
+</style>

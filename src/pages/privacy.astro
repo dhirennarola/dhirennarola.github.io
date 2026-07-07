@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import { contact } from '../data/facts';
+---
+
+<Base
+  title="Privacy | Dhiren Narola"
+  description="How this site handles your data."
+  path="/privacy"
+  noindex
+>
+  <section class="subhero">
+    <div class="container container--narrow">
+      <h1>Privacy, briefly.</h1>
+      <div class="prose">
+        <p>This is a personal consulting website. Here's everything it does with data:</p>
+        <h3>Contact form</h3>
+        <p>
+          When you submit the contact form, your details (name, email, company,
+          and message) are delivered to my inbox via Web3Forms so I can respond
+          to your inquiry. They're used for nothing else — no lists, no
+          newsletters you didn't ask for, no sharing with third parties.
+        </p>
+        <h3>Booking</h3>
+        <p>
+          Call scheduling is handled by Calendly, which processes the details
+          you enter there under its own privacy policy.
+        </p>
+        <h3>Analytics</h3>
+        <p>
+          The site uses Google Analytics with IP anonymization to understand
+          aggregate traffic (which pages are read, roughly from where). No
+          personal profiles are built or sold.
+        </p>
+        <h3>Questions or deletion requests</h3>
+        <p>
+          Email <a href={`mailto:${contact.email}`}>{contact.email}</a> and I'll
+          handle it personally — the same way I answer everything else here.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

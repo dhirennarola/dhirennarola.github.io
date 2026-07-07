@@ -1,0 +1,263 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Testimonial from '../../components/Testimonial.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Faq from '../../components/Faq.astro';
+import { services } from '../../data/services';
+import { recommendations } from '../../data/facts';
+import { breadcrumbs, faqSchema, serviceSchema } from '../../data/schema';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const path = `/services/${service.slug}`;
+
+const quote = service.proof.quoteFrom
+  ? recommendations.find((r) => r.name === service.proof.quoteFrom)
+  : undefined;
+
+const caseStudy = service.proof.caseStudy
+  ? (await getCollection('work')).find((w) => w.id === service.proof.caseStudy!.slug)
+  : undefined;
+
+const jsonLd = [
+  serviceSchema({ name: service.name, description: service.metaDescription, path }),
+  faqSchema(service.faqs),
+  breadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: service.nav, path },
+  ]),
+];
+
+const pillClass =
+  service.pill?.kind === 'rescue'
+    ? 'pill--rescue'
+    : service.pill?.kind === 'ok'
+      ? 'pill--ok'
+      : 'pill--accent';
+---
+
+<Base
+  title={service.metaTitle}
+  description={service.metaDescription}
+  path={path}
+  jsonLd={jsonLd}
+>
+  <!-- ===== Hero ===== -->
+  <header class="subhero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span>
+        <a href="/services">Services</a> <span aria-hidden="true">/</span>
+        <span>{service.nav}</span>
+      </nav>
+      {service.pill && <span class:list={['pill', pillClass, 'svc-pill']}>{service.pill.label}</span>}
+      <h1>{service.headline}</h1>
+      <p class="lede">{service.lede}</p>
+      <div class="svc-actions">
+        <a href="/contact" class="btn btn--accent btn--lg">
+          Book a discovery call <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/work" class="btn btn--secondary btn--lg">See delivered work</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Proof bar ===== -->
+  <section class="proofbar" aria-label="Key results">
+    <div class="container proofbar-grid">
+      {service.proof.stats.map((stat) => (
+        <div class="stat">
+          <div class="stat-num">{stat.value}</div>
+          <div class="stat-label">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== Problems ===== -->
+  <section class="section">
+    <div class="container">
+      <SectionHeader eyebrow="The problem" title="What this actually solves" />
+      <div class="grid grid--3">
+        {service.problems.map((problem, i) => (
+          <div class:list={['card', 'reveal', i === 1 && 'reveal-d1', i === 2 && 'reveal-d2']}>
+            <h3 class="prob-title">{problem.title}</h3>
+            <p class="prob-body">{problem.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Approach ===== -->
+  <section class="section section--subtle">
+    <div class="container">
+      <SectionHeader eyebrow="The approach" title="How I run this work" />
+      <ol class="approach">
+        {service.approach.map((step, i) => (
+          <li class:list={['reveal', i % 2 === 1 && 'reveal-d1']}>
+            <span class="step-no">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== Deliverables + proof ===== -->
+  <section class="section">
+    <div class="container deliv-grid">
+      <div class="reveal">
+        <SectionHeader eyebrow="What you get" title="Deliverables" />
+        <ul class="check-list deliv-list">
+          {service.deliverables.map((d) => <li>{d}</li>)}
+        </ul>
+        {caseStudy && (
+          <a href={`/work/${caseStudy.id}`} class="card card--hover cs-link">
+            <span class="cs-link-eyebrow">Proof in production</span>
+            <strong>{service.proof.caseStudy!.label}</strong>
+            <span class="pillar-link">Read the case study →</span>
+          </a>
+        )}
+      </div>
+      {quote && (
+        <div class="reveal reveal-d1">
+          <Testimonial {...quote} featured />
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section section--subtle">
+    <div class="container">
+      <SectionHeader eyebrow="FAQ" title="Fair questions" />
+      <Faq items={service.faqs} />
+    </div>
+  </section>
+
+  <CtaBand title={service.ctaTitle} whatsappMsg={service.whatsappMsg} />
+</Base>
+
+<style>
+  .svc-pill {
+    margin-bottom: var(--s-4);
+  }
+
+  .subhero h1 {
+    max-width: 21ch;
+  }
+
+  .svc-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-top: var(--s-6);
+  }
+
+  .proofbar {
+    border-block: 1px solid var(--line);
+    background: var(--bg-raised);
+    padding: var(--s-5) 0;
+  }
+
+  .proofbar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-5);
+    max-width: 720px;
+  }
+
+  .prob-title {
+    font-size: var(--text-base);
+  }
+
+  .prob-body {
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .approach {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 780px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .approach li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--s-5);
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: var(--s-5) var(--s-6);
+    margin: 0;
+  }
+
+  .step-no {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--accent);
+    font-weight: 560;
+    line-height: 1;
+  }
+
+  .approach h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--s-2);
+  }
+
+  .approach p {
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .deliv-grid {
+    display: grid;
+    gap: var(--s-7);
+    align-items: start;
+  }
+
+  @media (min-width: 900px) {
+    .deliv-grid {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+
+  .deliv-list li {
+    margin-bottom: var(--s-3);
+  }
+
+  .cs-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    margin-top: var(--s-6);
+  }
+
+  .cs-link-eyebrow {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-strong);
+    font-weight: 650;
+  }
+</style>
