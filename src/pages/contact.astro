@@ -28,11 +28,6 @@ import { breadcrumbs } from '../data/schema';
         prepared with questions about your business, and you'll have a written
         proposal within 3–5 business days if we proceed.
       </p>
-      <p class="direct-lines rv-h" data-h="3">
-        <a href={`mailto:${contact.email}`}>{contact.email}</a>
-        <span aria-hidden="true">·</span>
-        <a href={`tel:${contact.phoneDisplay.replace(/[^+\d]/g, '')}`}>{contact.phoneDisplay}</a>
-      </p>
     </div>
   </header>
 
@@ -123,7 +118,7 @@ import { breadcrumbs } from '../data/schema';
           </div>
 
           <button type="submit" class="btn btn--primary btn--lg form-submit">
-            Send inquiry <span class="arr" aria-hidden="true">→</span>
+            Send inquiry <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
           </button>
           <p class="form-privacy">
             Your details are used only to respond to this inquiry. <a href="/privacy">Privacy</a>
@@ -165,7 +160,7 @@ import { breadcrumbs } from '../data/schema';
           </div>
           <script src="https://assets.calendly.com/assets/external/widget.js" async is:inline></script>
           <noscript>
-            <a href={contact.calendly} target="_blank" rel="noopener">Open the booking calendar →</a>
+            <a href={contact.calendly} target="_blank" rel="noopener">Open the booking calendar <svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
           </noscript>
         </div>
       </div>
@@ -255,48 +250,25 @@ import { breadcrumbs } from '../data/schema';
     color: var(--rescue);
   }
 
+  /* full-width rows: label left, value right — no cramped columns */
   .alt-channels {
     display: grid;
-    gap: var(--s-4);
+    gap: var(--s-3);
     margin-top: var(--s-4);
-  }
-
-  @media (min-width: 560px) {
-    .alt-channels {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .direct-lines {
-    margin-top: var(--s-4);
-    font-size: var(--text-sm);
-    font-weight: 560;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    color: var(--td-faint);
-  }
-
-  .direct-lines a {
-    color: var(--td);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: var(--accent-ondark);
-  }
-
-  .direct-lines a:hover {
-    color: var(--accent-ondark);
   }
 
   .alt-card {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.35rem var(--s-4);
     padding: var(--s-4) var(--s-5);
   }
 
   .alt-card strong {
     font-size: var(--text-sm);
+    white-space: nowrap;
   }
 
   .alt-card span {

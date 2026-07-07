@@ -222,9 +222,24 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
               }
             }
           },
-          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+          // Tiny threshold + generous margins: the entrance starts just
+          // before the element scrolls in (from either direction), so fast
+          // scrolling never shows blank gaps, and very tall blocks still
+          // trigger reliably.
+          { threshold: 0.03, rootMargin: '30% 0px 12% 0px' }
         );
-        revealEls.forEach((el) => io.observe(el));
+        revealEls.forEach((el) => {
+          // Anything already on screen at load (or above it after an anchor
+          // jump) shows immediately — no entrance for content you're
+          // already looking at.
+          const r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight * 0.85 && r.bottom > 0) {
+            el.classList.add('visible');
+            setTimeout(() => el.classList.add('settled'), 1150);
+          } else {
+            io.observe(el);
+          }
+        });
       }
 
       /* Animated counters */

@@ -416,6 +416,18 @@ hr {
   transition: transform var(--t-med) var(--ease-out);
 }
 
+/* inline SVG arrow icon — replaces the old "→" text glyphs */
+.i-arr {
+  flex-shrink: 0;
+  vertical-align: -0.125em;
+}
+
+.arr,
+.arrow {
+  display: inline-flex;
+  align-items: center;
+}
+
 .btn:hover .arrow,
 .btn:hover .arr {
   transform: translateX(4px);

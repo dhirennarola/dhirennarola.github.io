@@ -2,6 +2,7 @@
 /**
  * Accessible FAQ accordion. Pass `items` and (optionally) render FAQPage
  * schema on the page via faqSchema() from src/data/schema.ts.
+ * Open/close is height-animated in JS so the page never jumps.
  */
 interface Props {
   items: { q: string; a: string }[];
@@ -19,7 +20,9 @@ const { items } = Astro.props;
           <polyline points="6 9 12 15 18 9" />
         </svg>
       </summary>
-      <p set:html={item.a} />
+      <div class="faq-body">
+        <p set:html={item.a} />
+      </div>
     </details>
   ))}
 </div>
@@ -38,6 +41,7 @@ const { items } = Astro.props;
     border-radius: var(--radius);
     padding: 0;
     overflow: hidden;
+    transition: border-color var(--t-med) ease;
   }
 
   summary {
@@ -67,6 +71,10 @@ const { items } = Astro.props;
     transform: rotate(180deg);
   }
 
+  .faq-body {
+    overflow: hidden;
+  }
+
   details p {
     margin: 0;
     padding: 0 var(--s-5) var(--s-5);
@@ -78,24 +86,58 @@ const { items } = Astro.props;
     border-color: var(--accent-line);
   }
 
-  details[open] p {
-    animation: faq-reveal 320ms var(--ease-out);
-  }
-
-  @keyframes faq-reveal {
-    from {
-      opacity: 0;
-      transform: translateY(-6px);
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    details[open] p {
-      animation: none;
-    }
-
     .chev {
       transition: none;
     }
   }
 </style>
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLDetailsElement>('.faq-item').forEach((item) => {
+    const summary = item.querySelector('summary')!;
+    const body = item.querySelector<HTMLElement>('.faq-body')!;
+    let anim: Animation | null = null;
+
+    summary.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (reduced) {
+        item.open = !item.open;
+        return;
+      }
+      anim?.cancel();
+
+      if (item.open) {
+        // close: shrink from current height, then remove [open]
+        const h = body.offsetHeight;
+        anim = body.animate(
+          [
+            { height: `${h}px`, opacity: 1 },
+            { height: '0px', opacity: 0 },
+          ],
+          { duration: 240, easing: 'ease' }
+        );
+        anim.onfinish = () => {
+          item.open = false;
+          anim = null;
+        };
+      } else {
+        // open: set [open] so content has layout, then grow into place
+        item.open = true;
+        const h = body.offsetHeight;
+        anim = body.animate(
+          [
+            { height: '0px', opacity: 0 },
+            { height: `${h}px`, opacity: 1 },
+          ],
+          { duration: 280, easing: 'cubic-bezier(0.22, 0.7, 0.3, 1)' }
+        );
+        anim.onfinish = () => {
+          anim = null;
+        };
+      }
+    });
+  });
+</script>
