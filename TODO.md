@@ -4,6 +4,14 @@ All build/deploy problems are fixed; every remaining item is an account or DNS
 action only Dhiren can do. Detailed how-tos live in
 [docs/DEPLOY.md](docs/DEPLOY.md) and [docs/DOMAIN-SETUP.md](docs/DOMAIN-SETUP.md).
 
+## 0 · Make the site render NOW (2 minutes — do this first)
+The deploy pipeline is green, but the site currently lands at
+`dhirennarola.github.io/portfolio` — and it's built to be served from a
+domain **root** (all links/assets start with `/`), so at that sub-path it
+shows unstyled HTML. Either of these fixes it instantly:
+- [ ] **Rename the repo to `dhirennarola.github.io`** (GitHub → Settings → General → Repository name). Site immediately works at `https://dhirennarola.github.io/`, and keeps working unchanged when the custom domain is added later. ← recommended
+- [ ] …or skip straight to step 1 (custom domain) — the domain also serves from the root.
+
 ## 1 · Domain — dhirennarola.com (do first)
 - [ ] Buy `dhirennarola.com` at any registrar (~$10/yr).
 - [ ] Add DNS records (4 × A records + `www` CNAME) — table in docs/DOMAIN-SETUP.md §2.
