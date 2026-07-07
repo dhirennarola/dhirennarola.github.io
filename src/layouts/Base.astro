@@ -208,13 +208,16 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
       /* Reveal + stagger + section-head underline */
       const revealEls = document.querySelectorAll('.reveal, [data-stagger]');
       if (reduced) {
-        revealEls.forEach((el) => el.classList.add('visible'));
+        revealEls.forEach((el) => el.classList.add('visible', 'settled'));
       } else {
         const io = new IntersectionObserver(
           (entries) => {
             for (const e of entries) {
               if (e.isIntersecting) {
                 e.target.classList.add('visible');
+                // entrance (600ms) + max stagger delay (490ms) → then release
+                // the transition back to hover effects
+                setTimeout(() => e.target.classList.add('settled'), 1150);
                 io.unobserve(e.target);
               }
             }

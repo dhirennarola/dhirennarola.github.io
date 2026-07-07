@@ -37,7 +37,7 @@ npm run build      # production build → dist/
 Push to `main` → `.github/workflows/deploy.yml` builds and publishes to GitHub Pages.
 
 **One-time repo settings:** Settings → Pages → **Source: "GitHub Actions"** (not "Deploy from a branch").
-Custom domain setup: see `DOMAIN-SETUP.md`. Full runbook: `DEPLOY.md`.
+Custom domain setup: see `docs/DOMAIN-SETUP.md`. Full runbook: `docs/DEPLOY.md`.
 
 ## Editing cheatsheet
 
@@ -45,6 +45,6 @@ Custom domain setup: see `DOMAIN-SETUP.md`. Full runbook: `DEPLOY.md`.
 - New case study → copy a file in `src/content/work/`, edit frontmatter + body
 - New article → add `src/content/insights/my-post.md`
 - Colors/typography → `src/styles/tokens.css`
-- Résumé → edit `src/pages/profile.astro`, then regenerate the PDF (headless Chrome print of `/profile`, see DEPLOY.md)
+- Résumé → edit `src/pages/profile.astro`, then regenerate the PDF (headless Chrome print of `/profile`, see docs/DEPLOY.md)
 
 © Dhiren Narola. Content and case studies may not be reproduced without permission.

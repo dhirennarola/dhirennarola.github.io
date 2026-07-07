@@ -1,5 +1,6 @@
 ---
 import { site, contact, numbers, availability, whatsappUrl } from '../data/facts';
+import Brand from './Brand.astro';
 
 const year = new Date().getFullYear();
 ---
@@ -8,7 +9,7 @@ const year = new Date().getFullYear();
   <div class="container">
     <div class="ft-top">
       <div class="ft-brand">
-        <a href="/" class="ft-logo">dhiren narola<span>.</span></a>
+        <a href="/" class="ft-logo" aria-label="Dhiren Narola — home"><Brand /></a>
         <p>
           {site.title}. Odoo 18 certified · {numbers.implementations} implementations
           · {numbers.countries} countries · full ownership from architecture to
@@ -41,6 +42,7 @@ const year = new Date().getFullYear();
         <a href={contact.odooApps} target="_blank" rel="noopener">Odoo App Store</a>
         <a href={whatsappUrl()} target="_blank" rel="noopener">WhatsApp</a>
         <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        <a href={`tel:${contact.phoneDisplay.replace(/[^+\d]/g, '')}`}>{contact.phoneDisplay}</a>
       </nav>
     </div>
 
@@ -79,20 +81,10 @@ const year = new Date().getFullYear();
   }
 
   .ft-logo {
-    display: inline-block;
-    font-family: var(--font-brand);
-    font-weight: 800;
-    font-size: 1.15rem;
-    letter-spacing: -0.03em;
+    display: inline-flex;
     color: var(--td);
     margin-bottom: var(--s-3);
-  }
-
-  .ft-logo span {
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    transition: color var(--t-fast) ease;
   }
 
   .ft-logo:hover {

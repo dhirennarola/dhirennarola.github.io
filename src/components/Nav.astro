@@ -1,4 +1,6 @@
 ---
+import Brand from './Brand.astro';
+
 interface Props {
   /** Light pages start the header in its white-glass state */
   light?: boolean;
@@ -27,7 +29,7 @@ const isActive = (l: (typeof links)[number]) => {
 <header class:list={['hd', { 'hd--light': light }]} id="hd">
   <div class="hd-inner">
     <a href="/" class="brand" aria-label="Dhiren Narola — home">
-      dhiren narola<span class="brand-dot">.</span>
+      <Brand />
     </a>
 
     <nav class="hd-links" id="hdLinks" aria-label="Main navigation">
@@ -82,23 +84,13 @@ const isActive = (l: (typeof links)[number]) => {
     }
   }
 
-  /* Wordmark — lowercase, Manrope ExtraBold, gradient dot */
+  /* Wordmark — script "Dhiren." SVG; letters follow currentColor */
   .brand {
-    font-family: var(--font-brand);
-    font-weight: 800;
-    font-size: 1.18rem;
-    letter-spacing: -0.03em;
+    display: flex;
+    align-items: center;
     color: var(--td);
-    white-space: nowrap;
     line-height: 1;
     transition: color var(--t-med) ease;
-  }
-
-  .brand-dot {
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
   }
 
   .hd-links {
@@ -225,34 +217,70 @@ const isActive = (l: (typeof links)[number]) => {
       display: flex;
     }
 
+    /* keep brand + toggle above the full-screen panel */
+    .hd-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* full-screen overlay menu (covers the header gap in every
+       header state — tall, compact/scrolled, and light) */
     .hd-links {
       position: fixed;
-      inset: var(--nav-h) 0 0 0;
+      inset: 0;
+      z-index: 1;
       flex-direction: column;
+      justify-content: center;
       align-items: stretch;
       background: var(--navy-950);
-      padding: var(--s-6) var(--gutter);
+      padding: calc(var(--nav-h) + var(--s-4)) var(--gutter) var(--s-6);
       gap: 0;
-      transform: translateX(100%);
+      opacity: 0;
+      transform: translateY(-12px);
       transition:
-        transform 450ms var(--ease-out),
-        visibility 0s linear 450ms;
+        opacity 300ms ease,
+        transform 380ms var(--ease-out),
+        visibility 0s linear 380ms;
       overflow-y: auto;
       visibility: hidden;
     }
 
     .hd-links.open {
+      opacity: 1;
       transform: none;
       visibility: visible;
-      transition: transform 450ms var(--ease-out);
+      transition:
+        opacity 260ms ease,
+        transform 380ms var(--ease-out);
     }
 
     .hd-links a:not(.hd-cta) {
       color: var(--td) !important;
-      font-size: 1.15rem;
-      padding: 1rem 0;
+      font-size: 1.35rem;
+      font-weight: 600;
+      padding: 0.95rem 0;
       border-bottom: 1px solid var(--navy-line);
+      opacity: 0;
+      transform: translateY(10px);
+      transition:
+        opacity 300ms ease,
+        transform 340ms var(--ease-out),
+        color var(--t-fast) ease;
     }
+
+    .hd-links.open a:not(.hd-cta) {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* gentle stagger as the menu unfolds */
+    .hd-links.open a:nth-child(1) { transition-delay: 60ms; }
+    .hd-links.open a:nth-child(2) { transition-delay: 105ms; }
+    .hd-links.open a:nth-child(3) { transition-delay: 150ms; }
+    .hd-links.open a:nth-child(4) { transition-delay: 195ms; }
+    .hd-links.open a:nth-child(5) { transition-delay: 240ms; }
+    .hd-links.open a:nth-child(6) { transition-delay: 285ms; }
+    .hd-links.open a:nth-child(7) { transition-delay: 330ms; }
 
     .hd-links a.active::after {
       display: none;
@@ -265,6 +293,28 @@ const isActive = (l: (typeof links)[number]) => {
     .hd-cta {
       margin-top: var(--s-5);
       height: 52px;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .hd-links.open .hd-cta {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* menu open → header sits on the navy panel, so brand + X go white
+       regardless of scrolled/light state */
+    .hd.menu-open .brand,
+    .hd.menu-open .hd-toggle {
+      color: var(--td);
+    }
+
+    .hd.menu-open.scrolled,
+    .hd.menu-open.hd--light {
+      background: transparent;
+      box-shadow: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
     }
 
     .hd-toggle[aria-expanded='true'] span:nth-child(1) {
@@ -283,8 +333,10 @@ const isActive = (l: (typeof links)[number]) => {
   @media (prefers-reduced-motion: reduce) {
     .hd,
     .hd-links,
+    .hd-links a,
+    .hd-cta,
     .hd-toggle span {
-      transition: none;
+      transition: none !important;
     }
   }
 </style>
@@ -323,6 +375,7 @@ const isActive = (l: (typeof links)[number]) => {
 
   toggle.addEventListener('click', () => {
     const open = links.classList.toggle('open');
+    hd.classList.toggle('menu-open', open);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     document.body.classList.toggle('nav-open', open);
@@ -331,6 +384,7 @@ const isActive = (l: (typeof links)[number]) => {
   links.addEventListener('click', (e) => {
     if ((e.target as HTMLElement).closest('a')) {
       links.classList.remove('open');
+      hd.classList.remove('menu-open');
       toggle.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('nav-open');
     }

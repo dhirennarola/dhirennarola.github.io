@@ -28,6 +28,11 @@ import { breadcrumbs } from '../data/schema';
         prepared with questions about your business, and you'll have a written
         proposal within 3–5 business days if we proceed.
       </p>
+      <p class="direct-lines rv-h" data-h="3">
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        <span aria-hidden="true">·</span>
+        <a href={`tel:${contact.phoneDisplay.replace(/[^+\d]/g, '')}`}>{contact.phoneDisplay}</a>
+      </p>
     </div>
   </header>
 
@@ -134,6 +139,10 @@ import { breadcrumbs } from '../data/schema';
           <a href={`mailto:${contact.email}`} class="card card--hover alt-card">
             <strong>Prefer email?</strong>
             <span>{contact.email}</span>
+          </a>
+          <a href={`tel:${contact.phoneDisplay.replace(/[^+\d]/g, '')}`} class="card card--hover alt-card">
+            <strong>Prefer a call?</strong>
+            <span>{contact.phoneDisplay} — Mon–Sat, 10am–7pm IST</span>
           </a>
         </div>
       </div>
@@ -254,8 +263,29 @@ import { breadcrumbs } from '../data/schema';
 
   @media (min-width: 560px) {
     .alt-channels {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
     }
+  }
+
+  .direct-lines {
+    margin-top: var(--s-4);
+    font-size: var(--text-sm);
+    font-weight: 560;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    color: var(--td-faint);
+  }
+
+  .direct-lines a {
+    color: var(--td);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent-ondark);
+  }
+
+  .direct-lines a:hover {
+    color: var(--accent-ondark);
   }
 
   .alt-card {

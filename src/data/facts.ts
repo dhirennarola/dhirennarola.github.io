@@ -16,7 +16,7 @@ export const site = {
 } as const;
 
 export const contact = {
-  email: 'dhnarola12@gmail.com', // TODO: switch to hello@dhirennarola.com once domain mail is configured
+  email: 'hello@dhirennarola.com',
   phoneDisplay: '+91 97144 15771',
   whatsappNumber: '919714415771',
   whatsappMessage:

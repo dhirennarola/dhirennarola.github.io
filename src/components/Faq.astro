@@ -73,4 +73,29 @@ const { items } = Astro.props;
     font-size: var(--text-sm);
     color: var(--ink-soft);
   }
+
+  details[open] {
+    border-color: var(--accent-line);
+  }
+
+  details[open] p {
+    animation: faq-reveal 320ms var(--ease-out);
+  }
+
+  @keyframes faq-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    details[open] p {
+      animation: none;
+    }
+
+    .chev {
+      transition: none;
+    }
+  }
 </style>
