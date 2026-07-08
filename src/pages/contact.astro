@@ -127,13 +127,13 @@ import { breadcrumbs } from '../data/schema';
         </form>
 
         <div class="alt-channels">
-          <a href={whatsappUrl()} target="_blank" rel="noopener" class="card card--hover alt-card">
-            <strong>Prefer WhatsApp?</strong>
-            <span>{contact.phoneDisplay} — fastest for quick questions</span>
-          </a>
           <a href={`mailto:${contact.email}`} class="card card--hover alt-card">
             <strong>Prefer email?</strong>
             <span>{contact.email}</span>
+          </a>
+          <a href={whatsappUrl()} target="_blank" rel="noopener" class="card card--hover alt-card">
+            <strong>Prefer WhatsApp?</strong>
+            <span>{contact.phoneDisplay}</span>
           </a>
           <a href={`tel:${contact.phoneDisplay.replace(/[^+\d]/g, '')}`} class="card card--hover alt-card">
             <strong>Prefer a call?</strong>
