@@ -21,6 +21,20 @@ export default defineConfig({
   ],
   // Old GitHub-Pages-era URLs → new structure (emitted as static redirect pages)
   redirects: {
+    // Legacy GitHub-Pages project path (dhirennarola.github.io/portfolio/…)
+    // — github.io 301s preserve the /portfolio prefix, so catch it here
+    '/portfolio': '/',
+    '/portfolio/erp-rescue.html': '/services/erp-rescue',
+    '/portfolio/meeting.html': '/contact',
+    '/portfolio/all-projects.html': '/work',
+    '/portfolio/project.html': '/work',
+    '/portfolio/case-study-automotive-ksa.html': '/work/ksa-automotive-erp',
+    '/portfolio/case-study-pharma-manufacturing.html': '/work/pharma-manufacturing-erp',
+    '/portfolio/case-study-facility-elevator.html': '/work/elevator-maintenance-automation',
+    '/portfolio/case-study-it-billing.html': '/work/it-services-billing',
+    '/portfolio/odoo-for-automotive-ksa.html': '/industries/automotive-ksa',
+    '/portfolio/odoo-for-manufacturing.html': '/industries/manufacturing',
+    '/portfolio/odoo-for-facility-management.html': '/industries/facility-management',
     // V2 service slug renames
     '/services/ai-automation': '/services/ai-odoo',
     '/services/integrations-compliance': '/services/integrations-einvoicing',

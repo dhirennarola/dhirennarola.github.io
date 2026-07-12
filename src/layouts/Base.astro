@@ -40,6 +40,15 @@ const ogImageAbs = new URL(ogImage, site.url).href;
 
 const baseKeywords = [
   'Dhiren Narola',
+  'Dhiren',
+  'Narola',
+  'Dhiren Narola Odoo developer',
+  'Dhiren Narola Odoo architect',
+  'Dhiren Narola AI automation',
+  'Odoo developer India',
+  'remote Odoo developer',
+  'Odoo consultant for international clients',
+  'Odoo expert USA Europe Middle East',
   'Odoo Architect',
   'Odoo Developer',
   'Odoo Consultant',
@@ -60,7 +69,15 @@ const personSchema = {
   '@type': 'Person',
   '@id': `${site.url}/#person`,
   name: site.name,
-  alternateName: ['Dhiren', 'Dhiren Narola Odoo'],
+  givenName: 'Dhiren',
+  familyName: 'Narola',
+  alternateName: [
+    'Dhiren',
+    'Narola',
+    'Dhiren Narola Odoo',
+    'Dhiren Narola Odoo Developer',
+    'Dhiren Narola AI Automation',
+  ],
   jobTitle: 'Odoo Architect & AI Automation Engineer',
   description:
     'Odoo 18 certified ERP architect and AI automation engineer with 20+ Odoo implementations delivered across 12+ countries. Specialist in Odoo ERP implementation, ERP rescue, ZATCA e-invoicing compliance, and AI-powered business automation.',
@@ -147,6 +164,7 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
     <meta name="description" content={description} />
     <meta name="keywords" content={allKeywords} />
     <link rel="canonical" href={canonical} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="author" content={site.name} />
     <meta name="creator" content={site.name} />
     <meta name="publisher" content={site.name} />
