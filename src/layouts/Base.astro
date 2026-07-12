@@ -189,6 +189,40 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
         <script
           set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${site.gaMeasurementId}',{anonymize_ip:true});`}
         />
+        {/* Funnel & conversion tracking — captures the journey Enhanced
+            Measurement can't: booking intent, actual Calendly bookings
+            (postMessage from the embedded iframe), contact channels,
+            outbound clicks, PDF downloads, and scroll depth. */}
+        <script
+          is:inline
+          set:html={`(function(){
+  function track(n,p){ if(typeof window.gtag==='function'){ window.gtag('event', n, p||{}); } }
+  window.__track = track;
+  document.addEventListener('click', function(e){
+    var el = e.target && e.target.closest ? e.target.closest('a,button') : null;
+    if(!el) return;
+    var href = (el.getAttribute && el.getAttribute('href')) || '';
+    var txt = ((el.textContent||'').replace(/\\s+/g,' ').trim()).slice(0,60);
+    if(/^mailto:/i.test(href)){ track('contact_click',{method:'email',link_text:txt,page:location.pathname}); return; }
+    if(/^tel:/i.test(href)){ track('contact_click',{method:'phone',link_text:txt,page:location.pathname}); return; }
+    if(/wa\\.me|api\\.whatsapp/i.test(href)){ track('contact_click',{method:'whatsapp',link_text:txt,page:location.pathname}); return; }
+    if(/\\.pdf($|\\?)/i.test(href)){ track('file_download',{file_name:(href.split('/').pop()||'resume.pdf'),link_text:txt,page:location.pathname}); return; }
+    if(/calendly\\.com/i.test(href) || /\\/contact\\/?($|#|\\?)/.test(href) || (el.dataset&&el.dataset.cta==='book') || /book (a|the) (call|discovery|meeting)/i.test(txt)){ track('book_call_click',{link_text:txt,page:location.pathname}); return; }
+    if(/linkedin\\.com/i.test(href)){ track('outbound_click',{destination:'linkedin',page:location.pathname}); return; }
+    if(/github\\.com/i.test(href)){ track('outbound_click',{destination:'github',page:location.pathname}); return; }
+    if(/apps\\.odoo\\.com/i.test(href)){ track('outbound_click',{destination:'odoo_app_store',page:location.pathname}); return; }
+  }, true);
+  window.addEventListener('message', function(e){
+    var d = e && e.data;
+    if(d && typeof d.event==='string' && d.event.indexOf('calendly.')===0){
+      if(d.event==='calendly.event_scheduled'){ track('meeting_booked',{method:'calendly',page:location.pathname}); }
+    }
+  });
+  var marks=[25,50,75,100], hit={}, pending=false;
+  function measure(){ pending=false; var sh=document.documentElement.scrollHeight-window.innerHeight; if(sh<=0) return; var pct=(window.scrollY/sh)*100; for(var i=0;i<marks.length;i++){ var m=marks[i]; if(!hit[m]&&pct>=m){ hit[m]=1; track('scroll_depth',{percent:m,page:location.pathname}); } } }
+  window.addEventListener('scroll', function(){ if(!pending){ pending=true; setTimeout(measure,400); } }, {passive:true});
+})();`}
+        />
       </>
     )}
   </head>

@@ -11,8 +11,7 @@ export const site = {
     'I design, build, and rescue Odoo ERPs — and make them intelligent with AI-powered automation.',
   locale: 'en',
   location: 'Surat, Gujarat, India · Working globally (GCC, Europe, ANZ)',
-  // TODO: replace with GA4 Measurement ID once Dhiren creates the property (see DEPLOY.md §4)
-  gaMeasurementId: '',
+  gaMeasurementId: 'G-WFFWGQVPX0',
 } as const;
 
 export const contact = {

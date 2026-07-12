@@ -333,6 +333,18 @@ import { breadcrumbs } from '../data/schema';
         });
         const data = await res.json();
         if (data.success) {
+          // Conversion: a real lead landed in the inbox. Non-PII params only.
+          const w = window as any;
+          if (typeof w.__track === 'function') {
+            const fd = new FormData(form);
+            w.__track('generate_lead', {
+              method: 'contact_form',
+              help_with: String(fd.get('help_with') || ''),
+              budget: String(fd.get('budget') || ''),
+              company_size: String(fd.get('company_size') || ''),
+              timeline: String(fd.get('timeline') || ''),
+            });
+          }
           window.location.href = '/thanks/';
         } else {
           status.textContent =
