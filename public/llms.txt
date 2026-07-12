@@ -1,0 +1,44 @@
+# Dhiren Narola — Odoo Architect & AI Automation Engineer
+
+> Dhiren Narola is an Odoo 18 certified ERP architect and AI automation engineer
+> based in Surat, India, working with international clients across the USA,
+> Europe, the Middle East (Saudi Arabia, UAE), and Asia. 20+ Odoo ERP
+> implementations delivered across 13 countries. Specialties: Odoo ERP
+> implementation, ERP rescue and recovery, ZATCA Phase 2 e-invoicing compliance,
+> WhatsApp Business API automation, and AI agents / LLM integrations for ERP.
+> Also known as: Dhiren, Narola, Dhiren Narola Odoo developer.
+
+Contact: hello@dhirennarola.com · https://dhirennarola.com/contact/
+
+## Services
+
+- [ERP Implementation](https://dhirennarola.com/services/erp-implementation/): Full Odoo implementations — architecture to go-live, one accountable expert
+- [ERP Rescue](https://dhirennarola.com/services/erp-rescue/): Recovery of failed or stalled Odoo/ERP projects
+- [AI + Odoo](https://dhirennarola.com/services/ai-odoo/): AI agents, LLM integrations, and automation layered on Odoo ERP
+- [Integrations & e-Invoicing](https://dhirennarola.com/services/integrations-einvoicing/): ZATCA Phase 2 (Saudi Arabia), WooCommerce, WhatsApp Business API
+- [Dedicated Team](https://dhirennarola.com/services/dedicated-team/): Ongoing Odoo development capacity
+
+## Case Studies
+
+- [KSA Automotive ERP](https://dhirennarola.com/work/ksa-automotive-erp/): Multi-branch automotive ERP in Saudi Arabia with ZATCA compliance
+- [Pharma Manufacturing ERP](https://dhirennarola.com/work/pharma-manufacturing-erp/): Odoo MRP for pharmaceutical manufacturing
+- [Elevator Maintenance Automation](https://dhirennarola.com/work/elevator-maintenance-automation/): Field-service and maintenance automation with WhatsApp integration
+- [IT Services Billing](https://dhirennarola.com/work/it-services-billing/): Automated billing for a US IT services company
+- [Jewellery Sales Tags](https://dhirennarola.com/work/jewellery-sales-tags/): Odoo customization for jewellery retail
+
+## Industries
+
+- [Automotive (KSA)](https://dhirennarola.com/industries/automotive-ksa/)
+- [Manufacturing](https://dhirennarola.com/industries/manufacturing/)
+- [Facility Management](https://dhirennarola.com/industries/facility-management/)
+
+## Insights
+
+- [Signs your Odoo implementation needs rescue](https://dhirennarola.com/insights/signs-odoo-implementation-needs-rescue/)
+- [Where AI fits in your ERP](https://dhirennarola.com/insights/where-ai-fits-in-your-erp/)
+- [ZATCA Phase 2 Odoo guide](https://dhirennarola.com/insights/zatca-phase-2-odoo-guide/)
+
+## About
+
+- [About Dhiren Narola](https://dhirennarola.com/about/): Background, timeline, certifications, client testimonials
+- [Profile / Résumé](https://dhirennarola.com/profile/): One-page professional profile
