@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       # Ensures the repo's Pages source is "GitHub Actions" (not the legacy
       # Jekyll branch build, which chokes on .astro files). configure-pages
       # only *creates* the Pages site; the PUT below also flips an existing
@@ -36,9 +36,9 @@ jobs:
             "${{ github.api_url }}/repos/${{ github.repository }}/pages" \
             -d '{"build_type":"workflow"}' \
           || echo "::warning::Could not switch Pages build type via API — set Settings → Pages → Source = GitHub Actions manually"
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
       - run: npm ci
       - run: npm run build
