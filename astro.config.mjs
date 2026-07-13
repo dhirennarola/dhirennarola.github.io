@@ -1,24 +1,30 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from "@astrojs/cloudflare";
+
 // Canonical host. Until DNS for dhirennarola.com is active, GitHub Pages
 // serves the same build at dhirennarola.github.io/portfolio and 301s over
 // once the custom domain is configured (see DOMAIN-SETUP.md).
 export default defineConfig({
   site: 'https://dhirennarola.com',
+
   // Dev-only: expose on LAN + allow ngrok tunnels for mobile-device testing
   server: { host: true },
+
   vite: {
     server: {
       allowedHosts: ['.ngrok-free.app', '.ngrok.app', '.ngrok.io'],
     },
   },
+
   integrations: [
     sitemap({
       filter: (page) =>
         !page.includes('/thanks') && !page.includes('/privacy'),
     }),
   ],
+
   // Old GitHub-Pages-era URLs → new structure (emitted as static redirect pages)
   redirects: {
     // Legacy GitHub-Pages project path (dhirennarola.github.io/portfolio/…)
@@ -50,4 +56,6 @@ export default defineConfig({
     '/odoo-for-manufacturing.html': '/industries/manufacturing',
     '/odoo-for-facility-management.html': '/industries/facility-management',
   },
+
+  adapter: cloudflare()
 });
