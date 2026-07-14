@@ -17,6 +17,12 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !page.includes('/thanks') && !page.includes('/privacy'),
+      // Stamp entries with the build date so crawlers and SEO tools
+      // that expect <lastmod> see when the site last shipped.
+      serialize(item) {
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
     }),
   ],
   // Old GitHub-Pages-era URLs → new structure (emitted as static redirect pages)
