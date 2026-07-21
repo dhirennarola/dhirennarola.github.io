@@ -32,7 +32,7 @@ export const services: Service[] = [
     lede: 'I architect and deliver complete Odoo implementations: requirements, solution design, custom development, integrations, data migration, training, and a calm go-live. You get one accountable expert, not a rotating cast.',
     metaTitle: 'Odoo ERP Implementation Services | Dhiren Narola',
     metaDescription:
-      'Full-cycle Odoo ERP implementation by an Odoo 18 certified architect — 20+ implementations across 12+ countries. Requirements to go-live, one accountable owner.',
+      'Full-cycle Odoo ERP implementation by an Odoo 18 certified architect — 22 implementations across 13 countries. Requirements to go-live, one accountable owner.',
     problems: [
       {
         title: 'Most ERP projects fail before the first line of code',
@@ -62,7 +62,7 @@ export const services: Service[] = [
       },
       {
         title: 'Go-live like it’s routine — because it is',
-        body: 'Parallel runs for critical flows (payroll gets two full cycles), staged data migration, UAT with your real users, and training so your team owns the system. 20+ go-lives, zero failures.',
+        body: 'Parallel runs for critical flows (payroll gets two full cycles), staged data migration, UAT with your real users, and training so your team owns the system. 22 go-lives, zero failures.',
       },
     ],
     deliverables: [
@@ -75,8 +75,8 @@ export const services: Service[] = [
     ],
     proof: {
       stats: [
-        { value: '20+', label: 'implementations live' },
-        { value: '12+', label: 'countries' },
+        { value: '22', label: 'implementations live' },
+        { value: '13', label: 'countries' },
         { value: '0', label: 'failed go-lives' },
       ],
       caseStudy: { slug: 'ksa-automotive-erp', label: '300+ employee automotive group, KSA' },

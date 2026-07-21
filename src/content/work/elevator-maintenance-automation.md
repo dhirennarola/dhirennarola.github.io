@@ -2,7 +2,7 @@
 title: 'Subscription-Driven Maintenance for 4,000+ Customers — Half the Call Center Load'
 clientLabel: 'Elevator maintenance & subscription company'
 industry: 'Facility Management'
-country: 'Rwanda'
+country: 'Saudi Arabia'
 companySize: '70 internal users · 35+ field technicians'
 odooVersion: 'Odoo'
 role: 'Solution Architect & Lead Developer'
