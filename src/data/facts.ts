@@ -53,9 +53,9 @@ export const engagement = {
 
 /** Career numbers — resume-consistent, approved 2026-07-07. */
 export const numbers = {
-  implementations: '20+',
+  implementations: '22',
   implementationsExact: '22 delivered and live',
-  countries: '12+',
+  countries: '13',
   yearsOdoo: '4+',
   odooVersions: 'Odoo 11 – 19',
   developersLed: '7',
