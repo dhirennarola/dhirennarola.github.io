@@ -101,8 +101,7 @@ import { breadcrumbs } from '../data/schema';
         <p>
           Since mid-2026 I work directly with clients as an independent
           architect. Right now that includes
-          <strong>{career.currentEngagement.client}</strong>, a
-          {career.currentEngagement.location} telecommunications group, where
+          <strong>{career.currentEngagement.descriptor}</strong>, where
           I'm architecting and building their ERP platform end-to-end.
         </p>
         <p>
@@ -129,7 +128,7 @@ import { breadcrumbs } from '../data/schema';
         <div class="tl-item tl-item--now">
           <h3>{career.independent.role}</h3>
           <div class="tl-meta">{career.independent.period} · Remote, global · <span class="tl-current">Current</span></div>
-          <p>{career.independent.note} Currently architecting the ERP platform for {career.currentEngagement.client} ({career.currentEngagement.location} telecom group).</p>
+          <p>{career.independent.note} Currently architecting the ERP platform for {career.currentEngagement.descriptor}.</p>
         </div>
         <div class="tl-item">
           <h3>Development Team Lead — {career.synodica.company} <span class="pill pill--accent tl-pill">{career.synodica.badge}</span></h3>

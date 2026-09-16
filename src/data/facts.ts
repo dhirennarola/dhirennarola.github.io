@@ -70,10 +70,14 @@ export const career = {
     note: 'Direct engagements across the GCC, Europe, and Asia-Pacific.',
   },
   currentEngagement: {
-    client: 'Total Telco Solutions',
+    /**
+     * Client name is deliberately withheld from all public materials.
+     * Refer to them by `descriptor` only — do not reintroduce the name.
+     */
+    descriptor: 'a New Zealand-based telecommunications group',
     location: 'New Zealand',
     summary:
-      'Currently architecting and building an end-to-end Odoo ERP platform for Total Telco Solutions, a New Zealand telecommunications group — under a long-term build contract.',
+      'Currently architecting and building an end-to-end Odoo ERP platform for a New Zealand-based telecommunications group — under a long-term build contract.',
   },
   synodica: {
     company: 'Synodica Solutions Pvt. Ltd.',
