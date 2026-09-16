@@ -266,7 +266,10 @@ const projects = [
         <h2>Certifications</h2>
         <ul class="r-certs">
           {certifications.map((cert) => (
-            <li><strong>{cert.name}</strong> <span class="r-issuer">— {cert.issuer}</span></li>
+            <li>
+              <strong>{cert.name}</strong>
+              <span class="r-issuer">— {cert.issuer}{cert.year && ` · ${cert.year}`}</span>
+            </li>
           ))}
         </ul>
       </section>
@@ -276,6 +279,7 @@ const projects = [
         <h2>Education</h2>
         <p class="r-edu-main">{education.degree}</p>
         <p class="r-edu-detail">{education.school} · {education.year} · {education.detail}</p>
+        <p class="r-cat"><strong>{education.cat.exam}:</strong> {education.cat.score} — {education.cat.note}</p>
       </section>
     </article>
   </section>
@@ -540,6 +544,12 @@ const projects = [
     color: var(--ink-faint);
   }
 
+  .r-cat {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin: 0.15rem 0 0;
+  }
+
   .r-edu-main {
     font-size: 0.83rem;
     font-weight: 600;
@@ -573,8 +583,8 @@ const projects = [
       box-shadow: none;
       border-radius: 0;
       padding: 0;
-      font-size: 8.9pt;
-      line-height: 1.32;
+      font-size: 9.3pt;
+      line-height: 1.34;
       color: #1a1a1a;
     }
 
@@ -606,15 +616,15 @@ const projects = [
       margin-bottom: 0.4rem;
     }
 
+    /* the availability window dates the document — keep it on the live page
+       as a CTA, but leave it out of the printed/downloaded resume */
     .r-badge {
-      border: 1px solid var(--ok);
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
+      display: none;
     }
 
     @page {
       size: A4;
-      margin: 9mm 12mm;
+      margin: 12mm 14mm;
     }
   }
 </style>
