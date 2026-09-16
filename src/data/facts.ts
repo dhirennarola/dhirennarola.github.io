@@ -139,6 +139,12 @@ export const certifications = [
     year: '2024',
     tier: 'professional',
   },
+  {
+    name: 'Leadership in Tech',
+    issuer: 'LinkedIn Learning',
+    year: '', // not recorded on any resume — fill in to have it rendered
+    tier: 'professional',
+  },
 ] as const;
 
 export const education = {
@@ -146,6 +152,11 @@ export const education = {
   school: 'Sarvajanik College of Engineering & Technology',
   year: '2023',
   detail: '8.5 CGPA — completed while working full-time at Synodica',
+  cat: {
+    exam: 'CAT 2024',
+    score: '96.61 Percentile (Top ~3%)',
+    note: 'reflecting high analytical and quantitative ability',
+  },
 } as const;
 
 /** Published Odoo App Store apps (verified 2026-07-07). */
