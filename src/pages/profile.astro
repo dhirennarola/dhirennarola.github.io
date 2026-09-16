@@ -622,6 +622,16 @@ const projects = [
       display: none;
     }
 
+    /* The printed resume is a document, not a brand page: run the whole
+       sheet in Inter so it reads as a matched set with the standalone
+       resume instead of two different formats. The live page keeps the
+       site's display face. */
+    .r-head h1,
+    .sheet h2,
+    .r-comp-label {
+      font-family: var(--font-body);
+    }
+
     @page {
       size: A4;
       margin: 12mm 14mm;
