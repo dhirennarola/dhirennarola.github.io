@@ -188,7 +188,7 @@ const projects = [
         <h2>Profile</h2>
         <p>
           <strong>Independent Odoo Architect</strong> &amp; <strong>AI Automation Engineer</strong> |
-          <strong>Odoo 18 Certified Functional Consultant</strong> with <strong>4+ years</strong> of
+          <strong>Odoo 18 Certified Functional Consultant</strong> with <strong>5+ years</strong> of
           experience delivering <strong>{numbers.implementations} end-to-end ERP implementations</strong> across
           <strong>{numbers.countries} countries</strong> and zero failed go-lives — from requirement analysis and
           solution architecture to development, deployment, and post-go-live support.
@@ -482,6 +482,9 @@ const projects = [
     color: var(--ink-faint);
     font-style: italic;
     white-space: nowrap;
+    /* italic glyphs lean right; pull the box in so the ink stays inside the
+       sheet edge instead of overhanging the margin when printed */
+    padding-right: 2.5pt;
   }
 
   .r-role ul,
