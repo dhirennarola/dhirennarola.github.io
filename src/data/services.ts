@@ -69,6 +69,7 @@ export const services: Service[] = [
       'Signed-off solution architecture document',
       'Configured & customized Odoo (Community or Enterprise)',
       'Data migration with reconciliation reports',
+      'Odoo version upgrades (done so far: 14 → 18, 15 → 18, 15 → 19 and 18 → 19)',
       'Integrations (e-commerce, payments, compliance, devices)',
       'User training + admin documentation',
       'Hypercare period + SLA support option',

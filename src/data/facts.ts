@@ -3,6 +3,8 @@
  * Approved by Dhiren on 2026-07-07 (QUESTIONS.md answers). Edit here, never inline.
  */
 
+import { getAvailability } from './availability';
+
 export const site = {
   url: 'https://dhirennarola.com',
   name: 'Dhiren Narola',
@@ -31,11 +33,10 @@ export const contact = {
 export const whatsappUrl = (msg: string = contact.whatsappMessage) =>
   `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(msg)}`;
 
-/** Availability — reviewed quarterly. */
+/** Availability — label and short text come from the date. Rules: ./availability.ts */
 export const availability = {
   active: true,
-  label: 'Accepting 1–2 new engagements · Q3–Q4 2026',
-  short: 'Available for new projects',
+  ...getAvailability(),
 } as const;
 
 /** Engagement / pricing signal (approved: replaces the old "$200" line). */
@@ -56,8 +57,8 @@ export const numbers = {
   implementations: '22',
   implementationsExact: '22 delivered and live',
   countries: '13',
-  yearsOdoo: '4+',
-  odooVersions: 'Odoo 11 – 19',
+  yearsOdoo: '5',
+  odooVersions: 'Odoo 11 – 20',
   developersLed: '7',
   failedGoLives: '0',
   largestDeployment: '300+ employees on one ERP',
@@ -167,17 +168,17 @@ export const education = {
 export const odooStoreApps = [
   {
     name: 'Chatter Panel Control',
-    version: 'Odoo 19',
+    version: 'Odoo 19 & 20',
     desc: 'Reposition, relocate, or hide the chatter panel — per user, without code.',
   },
   {
     name: 'Chatter Access Control',
-    version: 'Odoo 19',
+    version: 'Odoo 19 & 20',
     desc: 'Per-user, per-model control over chatter visibility and access.',
   },
   {
     name: 'POS Product Quick Favourites',
-    version: 'Odoo 19',
+    version: 'Odoo 19 & 20',
     desc: 'Star products directly on the POS screen for faster checkout.',
   },
 ] as const;

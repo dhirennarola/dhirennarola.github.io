@@ -1,10 +1,10 @@
 ---
-title: 'Product Tagging & Sales Workflow for a Jewellery Retailer on Odoo 19'
+title: 'Product Tagging & Sales Workflow for Caratiro Jewels on Odoo 19'
 metaTitle: 'Jewellery Retail Tagging on Odoo 19 — Case Study'
-clientLabel: 'Jewellery retail business'
+clientLabel: 'Caratiro Jewels · jewellery retail'
 industry: 'Retail'
 country: 'India'
-# TODO(Dhiren): confirm country + whether client (Caratiro Jewels) may be named — the GitHub repo is public
+# TODO(Dhiren): confirm country
 companySize: 'Retail operation'
 odooVersion: 'Odoo 19'
 role: 'Odoo Consultant & Developer'
@@ -26,7 +26,7 @@ tags: ['Retail', 'Custom Module', 'Odoo 19']
 
 ## Executive summary
 
-Not every engagement is a 300-employee ERP program — and a portfolio that pretends otherwise isn't honest. This was a focused, well-scoped customization for a jewellery retailer on **Odoo 19**: a product tagging system matched to how jewellery is actually catalogued (metal, purity, stone, collection), and sales workflow refinements for retail operations. Delivered quickly, on the newest Odoo release.
+Not every engagement is a 300-employee ERP program — and a portfolio that pretends otherwise isn't honest. This was a focused, well-scoped customization for **Caratiro Jewels**, a jewellery retailer, on **Odoo 19**: a product tagging system matched to how jewellery is actually catalogued (metal, purity, stone, collection), and sales workflow refinements for retail operations. Delivered quickly, on the newest Odoo release.
 
 ## Why it's here
 
