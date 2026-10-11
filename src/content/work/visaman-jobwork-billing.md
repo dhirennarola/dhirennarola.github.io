@@ -1,16 +1,16 @@
 ---
 title: 'Jewellery Jobwork Billing: From a Fixed-Column Sheet to Odoo'
 metaTitle: 'Jewellery Jobwork Billing in Odoo — Case Study'
-metaDescription: 'Odoo design for a B2B jewellery jobwork house in Surat: any number of named charges per item, clear metal and stone ownership, same printed bill.'
+metaDescription: 'Live Odoo system for a B2B jewellery jobwork house in Surat: any number of named charges per item, clear metal and stone ownership, same printed bill.'
 clientLabel: 'Visaman Jewels · B2B jewellery manufacturing & jobwork'
 industry: 'Manufacturing'
 country: 'India'
 companySize: 'B2B manufacturing & jobwork'
 odooVersion: 'Odoo'
 role: 'Solution Architect'
-status: 'Solution design'
-# TODO(Dhiren): confirm Odoo version, year and status (live or design)
-summary: 'An Odoo design for Visaman Jewels, a B2B jewellery manufacturer and jobwork house in Surat: packing-list bills with any number of named charges per item, clear ownership of metal, diamond and stone, and a printed bill in the format its customers already read.'
+status: 'Live in production'
+# TODO(Dhiren): confirm Odoo version and year
+summary: 'A live Odoo system for Visaman Jewels, a B2B jewellery manufacturer and jobwork house in Surat: packing-list bills with any number of named charges per item, clear ownership of metal, diamond and stone, and a printed bill in the format its customers already read.'
 featured: false
 order: 6
 heroKpis:
@@ -27,7 +27,7 @@ tags: ['Jewellery', 'B2B', 'Jobwork Billing', 'Custom Module']
 
 ## Executive summary
 
-**Visaman Jewels** in Surat makes jewellery for other businesses. Many of its customers are jewellers who send their own gold and pay Visaman for the work. Billing these jobs ran on a spreadsheet "packing list / jobwork bill", and the sheet had reached its limits. I designed an Odoo replacement built around three simple records: the bill, the item, and the charges on that item. It allows any number of named charges per piece, records who supplied each metal and stone, and still prints the bill in the layout Visaman's customers already know.
+**Visaman Jewels** in Surat makes jewellery for other businesses. Many of its customers are jewellers who send their own gold and pay Visaman for the work. Billing these jobs ran on a spreadsheet "packing list / jobwork bill", and the sheet had reached its limits. I designed and built an Odoo replacement, now live, based on three simple records: the bill, the item, and the charges on that item. It allows any number of named charges per piece, records who supplied each metal and stone, and still prints the bill in the layout Visaman's customers already know.
 
 ## The problem
 
