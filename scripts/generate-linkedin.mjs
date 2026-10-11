@@ -26,7 +26,7 @@ import {
 } from './lib/brand.mjs';
 
 /** Outside the repo on purpose — these are personal-brand assets, not site files. */
-const OUT = '../../../LinkedIn-Banners';
+const OUT = '../../../Branding/LinkedIn';
 await mkdir(OUT, { recursive: true });
 
 const W = 1584;
