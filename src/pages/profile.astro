@@ -181,7 +181,7 @@ const projects = [
           <a href={contact.linkedin}>linkedin.com/in/dhirennarola</a> ·
           <a href={contact.github}>github.com/dhirennarola</a>
         </p>
-        <span class="r-badge">✦ {availability.label}</span>
+        <span class="r-badge"><svg class="r-badge-ic" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg> {availability.label}</span>
       </header>
 
       <!-- ===== Profile ===== -->
@@ -383,6 +383,10 @@ const projects = [
     padding: 0.15rem 0.85rem;
     border-radius: var(--radius-pill);
     letter-spacing: 0.02em;
+  }
+  .r-badge-ic {
+    display: inline-block;
+    vertical-align: -1px;
   }
 
   /* ===== Section blocks ===== */

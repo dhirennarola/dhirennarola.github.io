@@ -8,6 +8,7 @@ companySize: '300+ employees · multi-company, multi-branch'
 odooVersion: 'Odoo 16'
 role: 'Solution Architect & Implementation Lead'
 # TODO(Dhiren): confirm implementation year/duration, e.g. "2023 · ~9 months to go-live"
+# TODO(Dhiren): add 2–4 anonymised screenshots when cleared by client
 status: 'Live in production'
 metaDescription: 'One Odoo ERP for a 300-employee Saudi automotive group: ZATCA Phase 2 e-invoicing, payroll, and multi-branch ops. 60% less manual work.'
 summary: 'End-to-end HR, payroll, accounting, and sales ecosystem for a Saudi automotive group — ZATCA Phase 2 e-invoicing at 1,500+ invoices a month, WooCommerce sync at 1,000+ orders a month, and a WhatsApp helpdesk that cut ticket response times by ~40%.'
@@ -122,4 +123,3 @@ The platform runs as one Odoo database with company-level separation for each le
 - **Parallel payroll runs are non-negotiable.** They cost two extra weeks and saved the project's credibility.
 
 > Client identity withheld under NDA. Reference available privately on request.
-> <!-- TODO(Dhiren): add 2–4 anonymised screenshots when cleared by client -->

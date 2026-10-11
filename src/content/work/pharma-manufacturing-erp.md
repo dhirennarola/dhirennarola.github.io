@@ -8,6 +8,7 @@ companySize: '225 employees · 5+ warehouse locations'
 odooVersion: 'Odoo'
 role: 'Solution Architect & Implementation Lead'
 # TODO(Dhiren): confirm Odoo version + implementation year for this project
+# TODO(Dhiren): add anonymised screenshots (shop floor view, QC checkpoint, dashboard) when cleared
 status: 'Live in production'
 metaDescription: 'Odoo MRP for a pharma manufacturer: raw materials to finished goods with QC at every stage, 3 systems consolidated into 1 ERP.'
 summary: 'Full raw-material-to-finished-goods manufacturing workflow with stage-by-stage quality control for a regulated pharma producer — consolidating three separate systems into one ERP and cutting production tracking errors by 50%.'
@@ -112,4 +113,3 @@ Pharma manufacturing is unforgiving: batches must be traceable, quality checks d
 - **Cost analytics are the executive hook.** The dashboards weren't in the original scope conversation — they became the feature leadership talks about most.
 
 > Client identity withheld under NDA. Reference available privately on request.
-> <!-- TODO(Dhiren): add anonymised screenshots (shop floor view, QC checkpoint, dashboard) when cleared -->
