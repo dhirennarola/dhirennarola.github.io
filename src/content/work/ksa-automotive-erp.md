@@ -5,7 +5,7 @@ clientLabel: 'Premium car servicing & spare-parts retail group'
 industry: 'Automotive'
 country: 'Saudi Arabia'
 companySize: '300+ employees · multi-company, multi-branch'
-odooVersion: 'Odoo 16'
+odooVersion: 'Odoo 18 (upgraded from 15)'
 role: 'Solution Architect & Implementation Lead'
 # TODO(Dhiren): confirm implementation year/duration, e.g. "2023 · ~9 months to go-live"
 # TODO(Dhiren): add 2–4 anonymised screenshots when cleared by client
@@ -44,7 +44,7 @@ testimonialName: 'Raed Alsuraybi'
 
 ## Executive summary
 
-A premium car-servicing and spare-parts retail group in Saudi Arabia — 300+ employees across multiple branches and legal entities — was running its business on disconnected spreadsheets, a legacy accounting tool, and manual processes for everything from payroll to job cards. I architected and led the delivery of a single Odoo 16 platform covering HR, payroll, accounting, sales, inventory, and customer service, integrated with ZATCA Phase 2 e-invoicing, WooCommerce, and WhatsApp. The result: roughly **60% less manual work**, **1,500+ compliant e-invoices a month**, and a customer-service operation that responds **~40% faster**.
+A premium car-servicing and spare-parts retail group in Saudi Arabia — 300+ employees across multiple branches and legal entities — was running its business on disconnected spreadsheets, a legacy accounting tool, and manual processes for everything from payroll to job cards. I architected and led the delivery of a single Odoo platform, first built on Odoo 15 and later upgraded by me to Odoo 18, covering HR, payroll, accounting, sales, inventory, and customer service, integrated with ZATCA Phase 2 e-invoicing, WooCommerce, and WhatsApp. The result: roughly **60% less manual work**, **1,500+ compliant e-invoices a month**, and a customer-service operation that responds **~40% faster**.
 
 ## Business context
 
@@ -78,7 +78,7 @@ Must-haves: ZATCA Phase 2 compliance before the mandate window; multi-company, m
     <div class="arch-node">Helpdesk bot & notifications</div>
   </div>
   <div class="arch-tier">
-    <span class="arch-label">Odoo 16 core — multi-company, multi-branch</span>
+    <span class="arch-label">Odoo 18 core — multi-company, multi-branch</span>
     <div class="arch-node arch-node--core">Accounting</div>
     <div class="arch-node arch-node--core">Sales & CRM</div>
     <div class="arch-node arch-node--core">Inventory & Purchase</div>
@@ -105,6 +105,10 @@ The platform runs as one Odoo database with company-level separation for each le
 **Payroll cutover risk.** Running 300+ employees' pay through a new system for the first time is the moment ERP projects lose trust. We ran two full parallel payroll cycles — old process and Odoo side by side — reconciling to the riyal before switching over.
 
 **Multi-company structure.** The group's entities share suppliers and sometimes stock. Getting inter-company flows right (and keeping ZATCA reporting per-entity clean) drove the decision to model branches as analytic dimensions inside companies rather than as separate companies — less structural complexity, same reporting depth.
+
+## Upgrade from Odoo 15 to Odoo 18
+
+The group first went live on Odoo 15. When it was time to move to a supported version, I ran the upgrade to Odoo 18 myself: I listed every custom module, ported each one to Odoo 18, migrated the data, and checked accounting, payroll and ZATCA e-invoicing against the old system before switching over. The business kept the same processes and integrations, now on a current, supported Odoo version.
 
 ## Business impact
 
