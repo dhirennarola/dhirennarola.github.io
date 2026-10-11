@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main, master]
+  # Rebuild every day at 00:30 UTC so date-based text (the availability
+  # label) stays current on this static site.
+  schedule:
+    - cron: '30 0 * * *'
   workflow_dispatch:
 
 permissions:
@@ -62,6 +66,9 @@ jobs:
       # participate in IndexNow; it picks the sitemap up via Search Console.
       # Never fails the deploy: indexing is best-effort, shipping is not.
       - name: Ping IndexNow
+        # Skip on the daily scheduled rebuild: the pages rarely change, and
+        # pinging every day for the same URLs looks like spam.
+        if: github.event_name != 'schedule'
         continue-on-error: true
         env:
           KEY: 378058de20b41390bb8917d379894ee8

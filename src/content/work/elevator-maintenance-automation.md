@@ -27,7 +27,7 @@ tags: ['Business Automation', 'Subscriptions', 'Field Service', 'WhatsApp']
 
 ## Executive summary
 
-An elevator maintenance company serving 4,000+ customers ran its service operation on phone calls: customers called to schedule, called to check status, called to pay. Meanwhile, missed maintenance visits — the exact thing customers pay a subscription to avoid — kept happening because scheduling was manual. I built an Odoo platform where maintenance visits generate themselves from subscription plans, technicians are tracked in real time, and customers handle subscriptions, visit reports, maintenance requests, and payments entirely over WhatsApp. Missed visits fell **35%**; the WhatsApp flow **replaced ~50% of call-center workload**.
+An elevator maintenance company in Saudi Arabia serving 4,000+ customers ran its service operation on phone calls: customers called to schedule, called to check status, called to pay. Meanwhile, missed maintenance visits — the exact thing customers pay a subscription to avoid — kept happening because scheduling was manual. I built an Odoo platform where maintenance visits generate themselves from subscription plans, technicians are tracked in real time, and customers handle subscriptions, visit reports, maintenance requests, and payments entirely over WhatsApp. Missed visits fell **35%**; the WhatsApp flow **replaced ~50% of call-center workload**.
 
 ## Business context
 
