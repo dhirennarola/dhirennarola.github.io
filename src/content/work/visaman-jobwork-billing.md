@@ -6,10 +6,10 @@ clientLabel: 'Visaman Jewels · B2B jewellery manufacturing & jobwork'
 industry: 'Manufacturing'
 country: 'India'
 companySize: 'B2B manufacturing & jobwork'
-odooVersion: 'Odoo'
+odooVersion: 'Odoo 19'
 role: 'Solution Architect'
 status: 'Live in production'
-# TODO(Dhiren): confirm Odoo version and year
+# TODO(Dhiren): confirm go-live year
 summary: 'A live Odoo system for Visaman Jewels, a B2B jewellery manufacturer and jobwork house in Surat: packing-list bills with any number of named charges per item, clear ownership of metal, diamond and stone, and a printed bill in the format its customers already read.'
 featured: false
 order: 6
