@@ -52,7 +52,7 @@ const jsonLd = [
     <div class="container container--narrow">
       <nav class="crumbs" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span>
-        <a href="/insights">Insights</a> <span aria-hidden="true">/</span>
+        <a href="/insights/">Insights</a> <span aria-hidden="true">/</span>
         <span>{d.topic}</span>
       </nav>
       <div class="post-tags">
@@ -73,7 +73,7 @@ const jsonLd = [
         <p>
           <strong>{site.name}</strong> — {site.title}. Odoo 18 certified, 22
           implementations across 13 countries.
-          <a href="/about">More about me</a>
+          <a href="/about/">More about me</a>
         </p>
       </div>
 
@@ -82,7 +82,7 @@ const jsonLd = [
           <h2>Keep reading</h2>
           <div class="grid grid--2">
             {related.map((r) => (
-              <a href={`/insights/${r.id}`} class="card card--hover rel-card">
+              <a href={`/insights/${r.id}/`} class="card card--hover rel-card">
                 <span class="tag">{r.data.topic}</span>
                 <h3>{r.data.title}</h3>
                 <span class="pillar-link">Read<svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>

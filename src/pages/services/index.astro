@@ -30,7 +30,7 @@ import { breadcrumbs } from '../../data/schema';
     <div class="container">
       <div class="svc-grid" data-stagger>
         {services.map((service) => (
-          <a href={`/services/${service.slug}`} class="card card--hover svc-card">
+          <a href={`/services/${service.slug}/`} class="card card--hover svc-card">
             {service.pill && (
               <span class:list={['pill', service.pill.kind === 'rescue' ? 'pill--rescue' : service.pill.kind === 'ok' ? 'pill--ok' : 'pill--accent']}>
                 {service.pill.label}

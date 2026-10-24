@@ -43,4 +43,4 @@ That's also why rescues succeed: the diagnosis is usually simpler than the mess 
 
 ---
 
-*If this article felt uncomfortably specific, an honest assessment costs a conversation: [book a rescue assessment call](/contact) or read about [how I run ERP rescues](/services/erp-rescue).*
+*If this article felt uncomfortably specific, an honest assessment costs a conversation: [book a rescue assessment call](/contact/) or read about [how I run ERP rescues](/services/erp-rescue/).*

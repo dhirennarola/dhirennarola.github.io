@@ -7,6 +7,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import { site, contact, numbers, odooStoreApps } from '../data/facts';
+import { pageUrl } from '../data/schema';
 
 interface Props {
   title: string;
@@ -32,7 +33,7 @@ const {
   headerLight = false,
 } = Astro.props;
 
-const canonical = new URL(path.endsWith('/') || path.includes('.') ? path : path + '/', site.url).href;
+const canonical = pageUrl(path);
 const ogImageAbs = new URL(ogImage, site.url).href;
 
 /* No <meta name="keywords">. Google announced in 2009 that it disregards the

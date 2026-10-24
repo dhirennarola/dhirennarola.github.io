@@ -9,20 +9,20 @@ interface Props {
 const { light = false } = Astro.props;
 
 const links = [
-  { href: '/services', label: 'Services' },
-  { href: '/services/ai-odoo', label: 'AI + Odoo', match: '/services/ai-odoo' },
-  { href: '/industries', label: 'Industries' },
-  { href: '/work', label: 'Work' },
-  { href: '/insights', label: 'Insights' },
-  { href: '/about', label: 'About' },
+  { href: '/services/', label: 'Services' },
+  { href: '/services/ai-odoo/', label: 'AI + Odoo', match: '/services/ai-odoo' },
+  { href: '/industries/', label: 'Industries' },
+  { href: '/work/', label: 'Work' },
+  { href: '/insights/', label: 'Insights' },
+  { href: '/about/', label: 'About' },
 ];
 
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (l: (typeof links)[number]) => {
   if (l.match) return current.startsWith(l.match);
   // "Services" must not light up while on the AI + Odoo flagship page
-  if (l.href === '/services') return current.startsWith('/services') && !current.startsWith('/services/ai-odoo');
-  return current.startsWith(l.href);
+  if (l.href === '/services/') return current.startsWith('/services') && !current.startsWith('/services/ai-odoo');
+  return current.startsWith(l.href.replace(/\/$/, ''));
 };
 ---
 
@@ -36,7 +36,7 @@ const isActive = (l: (typeof links)[number]) => {
       {links.map((l) => (
         <a href={l.href} class:list={[{ active: isActive(l) }]}>{l.label}</a>
       ))}
-      <a href="/contact" class="btn btn--primary hd-cta">
+      <a href="/contact/" class="btn btn--primary hd-cta">
         Book a call <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
       </a>
     </nav>
