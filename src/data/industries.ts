@@ -25,7 +25,7 @@ export const industries: Industry[] = [
     lede: 'Multi-branch servicing and parts retail, Saudi payroll with GOSI and end-of-service, ZATCA Phase 2 e-invoicing in production at 1,500+ invoices a month — delivered for a 300+ employee automotive group.',
     metaTitle: 'Odoo for Automotive & ZATCA in Saudi Arabia | Dhiren Narola',
     metaDescription:
-      'Odoo ERP for automotive and multi-branch businesses in KSA: ZATCA Phase 2 e-invoicing, Saudi labor-law payroll (GOSI, EOS), WhatsApp service desks, and WooCommerce sync.',
+      'Odoo ERP for automotive and multi-branch businesses in KSA: ZATCA Phase 2 e-invoicing, Saudi payroll (GOSI, EOS), WhatsApp service desks.',
     pains: [
       {
         title: 'ZATCA deadlines with real penalties',
@@ -74,7 +74,7 @@ export const industries: Industry[] = [
     lede: 'From raw materials to finished goods: MRP, custom shop-floor workflows, quality control at every stage, and capacity-based multi-warehouse inventory — proven in regulated pharma production.',
     metaTitle: 'Odoo for Manufacturing — MRP, Quality, Shop Floor | Dhiren Narola',
     metaDescription:
-      'Odoo manufacturing implementations: MRP, custom shop-floor flows, stage-gate quality control, batch traceability, and capacity-based inventory across multiple warehouses.',
+      'Odoo manufacturing: MRP, custom shop-floor flows, stage-gate quality control, batch traceability and capacity-based inventory across warehouses.',
     pains: [
       {
         title: 'Production tracking by memory and paper',
@@ -123,7 +123,7 @@ export const industries: Industry[] = [
     lede: 'Maintenance visits that schedule themselves from subscription plans, technicians tracked in real time, and WhatsApp self-service your customers adopt overnight — running in production for 4,000+ customers.',
     metaTitle: 'Odoo for Facility Management & Field Service | Dhiren Narola',
     metaDescription:
-      'Odoo for facility management: subscription-driven maintenance scheduling, field technician tracking, WhatsApp customer self-service, and SLA-proof notification delivery.',
+      'Odoo for facility management: subscription maintenance scheduling, field technician tracking, WhatsApp self-service and SLA-proof alerts.',
     pains: [
       {
         title: 'Missed visits are broken promises',

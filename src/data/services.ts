@@ -188,7 +188,7 @@ export const services: Service[] = [
     lede: 'WhatsApp self-service that replaced half a call center. Billing that runs itself. Documents that become records without retyping. I build automation into Odoo where the ROI is measurable — and I’ll tell you where AI is just expensive.',
     metaTitle: 'AI + Odoo — Intelligent ERP Automation | Dhiren Narola',
     metaDescription:
-      'AI-powered automation inside Odoo ERP: WhatsApp self-service flows, document intelligence & OCR, LLM integrations and workflow agents — built where ROI is measurable.',
+      'AI automation inside Odoo ERP: WhatsApp self-service, document OCR, LLM integrations and workflow agents, built only where the ROI is measurable.',
     problems: [
       {
         title: 'Your team is the integration layer',

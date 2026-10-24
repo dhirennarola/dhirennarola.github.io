@@ -186,12 +186,16 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
 
     {site.gaMeasurementId && (
       <>
+        {/* gtag() queues into dataLayer straight away, but the Google script
+            itself loads only after the page has finished loading, so it never
+            competes with the first paint. Queued events are sent once it arrives. */}
         <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${site.gaMeasurementId}`}
-        />
-        <script
-          set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${site.gaMeasurementId}',{anonymize_ip:true});`}
+          set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${site.gaMeasurementId}',{anonymize_ip:true});
+(function(){
+  function load(){ var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=${site.gaMeasurementId}'; document.head.appendChild(s); }
+  function later(){ ('requestIdleCallback' in window) ? requestIdleCallback(load,{timeout:3000}) : setTimeout(load,1500); }
+  if(document.readyState==='complete'){ later(); } else { window.addEventListener('load', later, {once:true}); }
+})();`}
         />
         {/* Funnel & conversion tracking — captures the journey Enhanced
             Measurement can't: booking intent, actual Calendly bookings
@@ -266,12 +270,17 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
           // trigger reliably.
           { threshold: 0.03, rootMargin: '30% 0px 12% 0px' }
         );
-        revealEls.forEach((el) => {
-          // Anything already on screen at load (or above it after an anchor
-          // jump) shows immediately — no entrance for content you're
-          // already looking at.
+        // Anything already on screen at load (or above it after an anchor
+        // jump) shows immediately — no entrance for content you're already
+        // looking at. Read every position first, then change classes: mixing
+        // reads and writes in one loop forces a full page layout per element.
+        const vh = window.innerHeight;
+        const onScreen = [...revealEls].map((el) => {
           const r = el.getBoundingClientRect();
-          if (r.top < window.innerHeight * 0.85 && r.bottom > 0) {
+          return r.top < vh * 0.85 && r.bottom > 0;
+        });
+        revealEls.forEach((el, i) => {
+          if (onScreen[i]) {
             el.classList.add('visible');
             setTimeout(() => el.classList.add('settled'), 1150);
           } else {
