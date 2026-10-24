@@ -86,7 +86,7 @@ const pillClass =
   <section class="section">
     <div class="container">
       <SectionHeader eyebrow="The problem" title="What this actually solves" />
-      <div class="grid grid--3">
+      <div class="cards cards--3">
         {service.problems.map((problem, i) => (
           <div class:list={['card', 'reveal', i === 1 && 'reveal-d1', i === 2 && 'reveal-d2']}>
             <h3 class="prob-title">{problem.title}</h3>
@@ -119,7 +119,7 @@ const pillClass =
   <section class="section">
     <div class="container deliv-grid">
       <div class="reveal">
-        <SectionHeader eyebrow="What you get" title="Deliverables" />
+        <SectionHeader eyebrow="What you get" title="Deliverables" stacked />
         <ul class="check-list deliv-list">
           {service.deliverables.map((d) => <li>{d}</li>)}
         </ul>

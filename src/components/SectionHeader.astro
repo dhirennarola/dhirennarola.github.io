@@ -10,12 +10,14 @@ interface Props {
   desc?: string;
   /** Kept for older pages; centred headers now render left-aligned too. */
   align?: 'left' | 'center';
+  /** Label above the title instead of beside it, for half-width columns */
+  stacked?: boolean;
 }
 
-const { eyebrow, title, desc } = Astro.props;
+const { eyebrow, title, desc, stacked = false } = Astro.props;
 ---
 
-<div class="section-header">
+<div class:list={['section-header', { stacked }]}>
   <span class="kicker sh-label">{eyebrow}</span>
   <div class="sh-body">
     <h2 set:html={title} />
@@ -33,7 +35,7 @@ const { eyebrow, title, desc } = Astro.props;
   }
 
   @media (min-width: 900px) {
-    .section-header {
+    .section-header:not(.stacked) {
       grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
       gap: var(--s-5);
     }

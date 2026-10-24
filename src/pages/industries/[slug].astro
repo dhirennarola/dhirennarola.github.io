@@ -73,7 +73,7 @@ const jsonLd = [
   <section class="section">
     <div class="container">
       <SectionHeader eyebrow="The reality" title="What usually hurts" />
-      <div class="grid grid--3">
+      <div class="cards cards--3">
         {industry.pains.map((pain, i) => (
           <div class:list={['card', 'reveal', i === 1 && 'reveal-d1', i === 2 && 'reveal-d2']}>
             <h3 class="pain-title">{pain.title}</h3>
@@ -89,6 +89,7 @@ const jsonLd = [
       <div class="reveal">
         <SectionHeader
           eyebrow="What I deliver"
+          stacked
           title={`Odoo, shaped for ${industry.name.toLowerCase()}`}
         />
         <ul class="check-list">
