@@ -13,7 +13,7 @@
   --ink: #17273d;
   --ink-strong: #0e1b2e;
   --ink-soft: #46586f;
-  --ink-faint: #5d7290;
+  --ink-faint: #53698a; /* 4.6:1+ on every light tint, not just white */
   --line: #dce5f0;
   --line-strong: #c6d4e6;
 
@@ -29,7 +29,8 @@
 
   /* ---- Accents ---- */
   --accent: #2f7df6;
-  --accent-strong: #1e63d6;
+  --accent-strong: #1e63d6; /* also the fill behind white text: 5.5:1 contrast */
+  --accent-deep: #1852b8; /* hover/pressed state of that fill */
   --accent-ink: #14448f;
   --accent-tint: #e8f0fe;
   --accent-line: #cfdffc;
@@ -39,9 +40,11 @@
 
   /* ---- Semantic ---- */
   --ok: #1fa36b;
+  --ok-ink: #14794e; /* --ok as small text on white: 5.4:1 */
   --ok-tint: #e5f6ee;
   --rescue: #e8590c;
   --rescue-tint: #fdeee2;
+  --rescue-ink: #b04506; /* rescue text on --rescue-tint: 5:1 */
   --rescue-line: #f8d3b8;
 
   /* ---- Legacy dark-band aliases (footer/CTA scoped styles) ---- */

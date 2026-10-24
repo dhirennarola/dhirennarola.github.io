@@ -376,15 +376,16 @@ hr {
   font-size: 1rem;
 }
 
+/* White text needs the darker blue: --accent (#2f7df6) is only 3.9:1 */
 .btn--accent,
 .btn--primary {
-  background: var(--accent);
+  background: var(--accent-strong);
   color: #fff;
 }
 
 .btn--accent:hover,
 .btn--primary:hover {
-  background: var(--accent-strong);
+  background: var(--accent-deep);
   color: #fff;
   transform: translateY(-1px);
   box-shadow: 0 10px 24px -8px rgba(47, 125, 246, 0.55);
@@ -581,7 +582,7 @@ a.card:hover {
 .pill--amber {
   background: var(--rescue-tint);
   border-color: var(--rescue-line);
-  color: #c04a08;
+  color: var(--rescue-ink);
 }
 
 .pill--grad {
@@ -1053,11 +1054,26 @@ a.card:hover {
   transition-delay: 0ms;
 }
 
+/* Plain links inside running text need more than colour to stand out
+   (buttons, cards and nav links all carry a class and are left alone) */
+:where(p, li) > a:not([class]) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* hero entrance */
 .rv-h {
   opacity: 0;
   transform: translateY(22px);
   animation: rise var(--t-reveal) var(--ease-out) forwards;
+}
+
+/* Headline, intro text and portrait slide in without fading: an element that
+   starts at opacity 0 is skipped by Chrome's Largest Contentful Paint, which
+   then reports LCP late (or not at all) to Google's Core Web Vitals. */
+.rv-h[data-h='2'],
+.rv-h[data-h='3'] {
+  opacity: 1;
 }
 
 [data-h='1'] { animation-delay: 60ms; }
@@ -1234,8 +1250,8 @@ a.card:hover {
 }
 
 .tab[aria-selected='true'] {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
   color: #fff;
   box-shadow: 0 6px 16px -6px rgba(47, 125, 246, 0.5);
 }
@@ -1772,7 +1788,7 @@ a.card:hover {
   gap: 0.35rem;
   font-size: var(--text-xs);
   font-weight: 600;
-  color: var(--ok);
+  color: var(--ok-ink);
 }
 
 /* ============================================================
