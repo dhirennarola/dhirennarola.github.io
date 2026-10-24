@@ -44,4 +44,4 @@ Businesses that follow that order get compounding returns. Businesses that start
 
 ---
 
-*Wondering which of your workflows are actually AI-ready? That's a 30-minute conversation with your process list on the table — [book a call](/contact) or see [AI & Automation services](/services/ai-automation).*
+*Wondering which of your workflows are actually AI-ready? That's a 30-minute conversation with your process list on the table — [book a call](/contact/) or see [AI & Automation services](/services/ai-odoo/).*

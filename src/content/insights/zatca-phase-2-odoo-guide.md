@@ -55,4 +55,4 @@ Recent Odoo versions ship Saudi e-invoicing support that handles the format and 
 
 ---
 
-*Facing a ZATCA deadline, or already seeing rejected invoices? I've been through this in production — [book a discovery call](/contact) and bring your ugliest invoice example.*
+*Facing a ZATCA deadline, or already seeing rejected invoices? I've been through this in production — [book a discovery call](/contact/) and bring your ugliest invoice example.*

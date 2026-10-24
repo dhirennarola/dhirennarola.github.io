@@ -33,7 +33,7 @@ const work = (await getCollection('work')).sort(
     <div class="container">
       <div class="cards" data-stagger>
         {work.map((cs, i) => (
-          <a href={`/work/${cs.id}`} class="card card--hover">
+          <a href={`/work/${cs.id}/`} class="card card--hover">
             <div class="tag-row">
               <span class="tag">{cs.data.industry}</span>
               <span class="tag">{cs.data.country}</span>

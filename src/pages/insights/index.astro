@@ -35,7 +35,7 @@ const fmt = (d: Date) =>
     <div class="container">
       <div class="posts">
         {posts.map((post, i) => (
-          <a href={`/insights/${post.id}`} class:list={['card', 'card--hover', 'post-row', 'reveal', i % 2 === 1 && 'reveal-d1']}>
+          <a href={`/insights/${post.id}/`} class:list={['card', 'card--hover', 'post-row', 'reveal', i % 2 === 1 && 'reveal-d1']}>
             <div class="post-head">
               <span class="tag">{post.data.topic}</span>
               <span class="post-meta">

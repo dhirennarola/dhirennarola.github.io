@@ -1,6 +1,10 @@
 /** JSON-LD builders shared across pages. */
 import { site } from './facts';
 
+/** Full page URL with the trailing slash the site is served on (files like .png keep none). */
+export const pageUrl = (path: string) =>
+  new URL(path.endsWith('/') || path.includes('.') ? path : path + '/', site.url).href;
+
 export const breadcrumbs = (
   items: { name: string; path: string }[]
 ) => ({
@@ -10,7 +14,7 @@ export const breadcrumbs = (
     '@type': 'ListItem',
     position: i + 1,
     name: item.name,
-    item: new URL(item.path, site.url).href,
+    item: pageUrl(item.path),
   })),
 });
 
@@ -36,7 +40,7 @@ export const serviceSchema = (opts: {
   '@type': 'Service',
   name: opts.name,
   description: opts.description,
-  url: new URL(opts.path, site.url).href,
+  url: pageUrl(opts.path),
   provider: {
     '@type': 'Person',
     '@id': `${site.url}/#person`,
@@ -58,7 +62,7 @@ export const articleSchema = (opts: {
   '@type': 'Article',
   headline: opts.headline,
   description: opts.description,
-  url: new URL(opts.path, site.url).href,
+  url: pageUrl(opts.path),
   datePublished: opts.datePublished,
   dateModified: opts.dateModified ?? opts.datePublished,
   image: new URL(opts.image ?? '/og/default.png', site.url).href,

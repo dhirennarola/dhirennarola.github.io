@@ -55,7 +55,7 @@ const jsonLd = [
     <div class="container">
       <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span>
-        <a href="/work">Work</a> <span aria-hidden="true">/</span>
+        <a href="/work/">Work</a> <span aria-hidden="true">/</span>
         <span>{d.industry}</span>
       </nav>
       <div class="work-meta rv-h" data-h="1">
@@ -86,8 +86,8 @@ const jsonLd = [
         <div class="cs-author">
           <p>
             <strong>Delivered by Dhiren Narola</strong> — Odoo Architect &amp; AI
-            Automation Engineer. <a href="/about">About me</a> ·
-            <a href="/contact">Discuss a similar project</a>
+            Automation Engineer. <a href="/about/">About me</a> ·
+            <a href="/contact/">Discuss a similar project</a>
           </p>
         </div>
       </article>
@@ -131,7 +131,7 @@ const jsonLd = [
       <h2 class="related-title">Related case studies</h2>
       <div class="grid grid--2">
         {related.map((r) => (
-          <a href={`/work/${r.id}`} class="card card--hover related-card">
+          <a href={`/work/${r.id}/`} class="card card--hover related-card">
             <div class="work-meta">
               <span class="tag">{r.data.industry}</span>
               <span class="tag">{r.data.country}</span>
