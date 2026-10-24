@@ -40,7 +40,7 @@ tags: ['Jewellery', 'B2B', 'Jobwork Billing', 'Custom Module']
 ## Solution architecture
 
 <div class="arch">
-  <div class="arch-title">Data design — jobwork billing</div>
+  <div class="arch-title">Data design: jobwork billing</div>
   <div class="arch-tier">
     <span class="arch-label">Bill</span>
     <div class="arch-node arch-node--core">Packing list<small>one per bill, with carried balances</small></div>

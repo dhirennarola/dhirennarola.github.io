@@ -11,7 +11,7 @@ role: 'Solution Architect & Implementation Lead'
 # TODO(Dhiren): add anonymised screenshots (shop floor view, QC checkpoint, dashboard) when cleared
 status: 'Live in production'
 metaDescription: 'Odoo MRP for a pharma manufacturer: raw materials to finished goods with QC at every stage, 3 systems consolidated into 1 ERP.'
-summary: 'Full raw-material-to-finished-goods manufacturing workflow with stage-by-stage quality control for a regulated pharma producer — consolidating three separate systems into one ERP and cutting production tracking errors by 50%.'
+summary: 'Full raw-material-to-finished-goods manufacturing workflow with stage-by-stage quality control for a regulated pharma producer. It consolidated three separate systems into one ERP and cut production tracking errors by 50%.'
 featured: true
 order: 2
 heroKpis:
@@ -44,29 +44,29 @@ tags: ['Manufacturing', 'MRP', 'Quality Control', 'ERP Consolidation']
 
 ## Executive summary
 
-A pharmaceutical and medical-equipment manufacturer with 225 employees was running production on one system, accounting on Tally, and quality records on paper — three sources of truth that never agreed. I led the consolidation into a single Odoo ERP covering the full manufacturing lifecycle, from raw material procurement to finished goods, with quality checkpoints at every production stage. Production tracking errors dropped by **50%**, and management got cost analytics — per employee, per process, per department — that simply hadn't existed before.
+A pharmaceutical and medical-equipment manufacturer with 225 employees was running production on one system, accounting on Tally, and quality records on paper. These three sources of truth never agreed. I led the consolidation into a single Odoo ERP covering the full manufacturing lifecycle, from raw material procurement to finished goods, with quality checkpoints at every production stage. Production tracking errors dropped by **50%**, and management got cost analytics (per employee, per process, per department) that simply hadn't existed before.
 
 ## Business context
 
-Pharma manufacturing is unforgiving: batches must be traceable, quality checks documented, and regulatory audits survivable. As the company grew past 200 employees and five warehouse locations, the gaps between its systems became the biggest operational risk — inventory counts disagreed, production status lived in supervisors' heads, and month-end reconciliation between the production system and Tally consumed days.
+Pharma manufacturing is unforgiving: batches must be traceable, quality checks documented, and regulatory audits survivable. As the company grew past 200 employees and five warehouse locations, the gaps between its systems became the biggest operational risk. Inventory counts disagreed, production status lived in supervisors' heads, and month-end reconciliation between the production system and Tally consumed days.
 
 ## The problem
 
 - Three disconnected systems (production, accounting, quality records) with no shared master data.
 - Production tracking errors cascading into wrong stock, wrong costing, and audit anxiety.
-- No visibility into what production actually cost — by batch, process, or department.
+- No visibility into what production actually cost by batch, process or department.
 - Storage capacity at five-plus warehouses managed by experience, not by system.
 
 ## Solution architecture
 
 <div class="arch">
-  <div class="arch-title">System architecture — pharma manufacturing ERP</div>
+  <div class="arch-title">System architecture: pharma manufacturing ERP</div>
   <div class="arch-tier">
     <span class="arch-label">External</span>
     <div class="arch-node arch-node--ext">Tally<small>XML invoicing bridge (transition period)</small></div>
   </div>
   <div class="arch-tier">
-    <span class="arch-label">Odoo core — single database, full traceability</span>
+    <span class="arch-label">Odoo core: single database, full traceability</span>
     <div class="arch-node arch-node--core">Manufacturing / MRP</div>
     <div class="arch-node arch-node--core">Quality</div>
     <div class="arch-node arch-node--core">Inventory<small>capacity-based, 5+ locations</small></div>
@@ -84,18 +84,18 @@ Pharma manufacturing is unforgiving: batches must be traceable, quality checks d
 
 ## Key custom work
 
-- **Shop Floor, rebuilt around their reality** — custom production flows, batch generation, split work orders, unbuild-manufacturing-order logic, and a dedicated samples workflow for QC and R&D runs.
-- **Quality control at every stage** — the QC process was redesigned so checks happen where defects actually occur, with results recorded against the batch, not in a binder.
-- **Structured sales workflow** — Quotation → Proforma → Sale Order → Tax Invoice, matching how regulated buyers actually purchase.
-- **Capacity-based inventory** — storage locations carry real capacity constraints, so putaway respects physical reality across 5+ warehouses.
-- **Tally XML bridge** — during the accounting transition, invoices flowed to Tally via a custom XML integration; full accounting was then migrated into Odoo, retiring the third system for good.
-- **Management dashboards** — cost-per-employee, per-process, and per-department analytics, giving leadership numbers they'd never been able to see.
+- **Shop Floor, rebuilt around their reality:** custom production flows, batch generation, split work orders, unbuild-manufacturing-order logic, and a dedicated samples workflow for QC and R&D runs.
+- **Quality control at every stage:** the QC process was redesigned so checks happen where defects actually occur, with results recorded against the batch instead of in a binder.
+- **Structured sales workflow:** Quotation → Proforma → Sale Order → Tax Invoice, matching how regulated buyers actually purchase.
+- **Capacity-based inventory:** storage locations carry real capacity constraints, so putaway respects physical reality across 5+ warehouses.
+- **Tally XML bridge:** during the accounting transition, invoices flowed to Tally via a custom XML integration; full accounting was then migrated into Odoo, retiring the third system for good.
+- **Management dashboards:** cost-per-employee, per-process, and per-department analytics, giving leadership numbers they'd never been able to see.
 
 ## Challenges & decisions
 
-**Migrate accounting on day one, or bridge?** Ripping out Tally immediately would have put the finance team's trust at risk during the most fragile phase. I built the XML bridge so finance kept familiar ground while production stabilized — then migrated accounting fully once the shop floor was proven. Slower on paper; far safer in practice. Three systems became one, in the right order.
+**Migrate accounting on day one, or bridge?** Ripping out Tally immediately would have put the finance team's trust at risk during the most fragile phase. I built the XML bridge so finance kept familiar ground while production stabilized, then migrated accounting fully once the shop floor was proven. It was slower on paper and far safer in practice. Three systems became one, in the right order.
 
-**Standard MRP vs. their process.** Pharma workflows (samples, split orders, unbuilds) don't map cleanly to vanilla manufacturing flows. The line I held: configure standard Odoo wherever the business could adapt, customize only where regulation or physics said otherwise. That kept the customization surface small enough to upgrade later.
+**Standard MRP vs. their process.** Pharma workflows (samples, split orders, unbuilds) don't map cleanly to vanilla manufacturing flows. My rule was to configure standard Odoo wherever the business could adapt, and customize only where regulation or physics said otherwise. That kept the customization surface small enough to upgrade later.
 
 ## Business impact
 
@@ -111,6 +111,6 @@ Pharma manufacturing is unforgiving: batches must be traceable, quality checks d
 
 - **Sequence the migration around trust, not architecture.** The Tally bridge looked like extra work; it was actually the reason finance championed the system instead of fighting it.
 - **In regulated manufacturing, QC placement matters more than QC features.** Moving checks to where defects occur did more than any configuration option.
-- **Cost analytics are the executive hook.** The dashboards weren't in the original scope conversation — they became the feature leadership talks about most.
+- **Cost analytics are the executive hook.** The dashboards weren't in the original scope conversation, but they became the feature leadership talks about most.
 
 > Client identity withheld under NDA. Reference available privately on request.

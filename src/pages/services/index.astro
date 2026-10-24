@@ -14,41 +14,50 @@ import { breadcrumbs } from '../../data/schema';
 >
   <header class="hero hero--sub">
     <div class="container">
-      <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
+      <nav class="crumbs" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Services</span>
       </nav>
-      <h1 class="rv-h hub-h1" data-h="2">Everything an ERP needs.<br />One accountable owner.</h1>
-      <p class="lede rv-h" data-h="3">
-        From first architecture conversation to post-go-live support — including
-        the two things most consultants won't touch: rescuing failed projects
-        and telling you honestly where AI isn't worth your money.
+      <h1 class="hub-h1">Five ways to work with me, one owner for all of them</h1>
+      <p class="lede">
+        From the first architecture conversation to support after go-live. That
+        includes two things many consultants avoid: rescuing failed projects, and
+        saying plainly where AI is not worth the money.
       </p>
     </div>
   </header>
 
   <section class="section">
     <div class="container">
-      <div class="svc-grid" data-stagger>
+      <ul class="svc-list">
         {services.map((service) => (
-          <a href={`/services/${service.slug}/`} class="card card--hover svc-card">
-            {service.pill && (
-              <span class:list={['pill', service.pill.kind === 'rescue' ? 'pill--rescue' : service.pill.kind === 'ok' ? 'pill--ok' : 'pill--accent']}>
-                {service.pill.label}
+          <li>
+            <a href={`/services/${service.slug}/`} class="svc-row">
+              <span class="svc-name">
+                <span class="svc-h">{service.nav.replace('e-', 'e‑')}</span>
+                {service.pill && (
+                  <span class:list={['pill', service.pill.kind === 'rescue' ? 'pill--rescue' : service.pill.kind === 'ok' ? 'pill--ok' : 'pill--accent']}>
+                    {service.pill.label}
+                  </span>
+                )}
               </span>
-            )}
-            <h2>{service.nav}</h2>
-            <p>{service.lede}</p>
-            <span class="link-arr">Explore {service.nav.toLowerCase()} <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
-          </a>
+              <span class="svc-body">
+                <span class="svc-headline">{service.headline}</span>
+                <span class="svc-lede">{service.lede}</span>
+              </span>
+              <span class="svc-go" aria-hidden="true"><svg class="i-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
 
-      <div class="card eng reveal">
-        <h3>How we can work together</h3>
-        <div class="tag-row eng-models">
-          {engagement.models.map((model) => <span class="tag">{model}</span>)}
+      <div class="eng">
+        <span class="kicker">Engagement models</span>
+        <div>
+          <div class="tag-row eng-models">
+            {engagement.models.map((model) => <span class="tag">{model}</span>)}
+          </div>
+          <p>{engagement.note}</p>
         </div>
-        <p>{engagement.note}</p>
       </div>
     </div>
   </section>
@@ -58,51 +67,104 @@ import { breadcrumbs } from '../../data/schema';
 
 <style>
   .hub-h1 {
-    font-size: var(--text-3xl);
+    max-width: 22ch;
   }
 
-  .svc-grid {
+  .svc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule-ink);
+  }
+
+  .svc-list li {
+    margin: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .svc-row {
     display: grid;
-    gap: var(--s-5);
-    margin-bottom: var(--s-6);
+    gap: var(--s-3);
+    padding: var(--s-6) 0;
+    color: var(--ink-soft);
   }
 
-  @media (min-width: 820px) {
-    .svc-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .svc-card:first-child {
-      grid-column: span 2;
+  @media (min-width: 900px) {
+    .svc-row {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 8.4fr) 2rem;
+      gap: var(--s-5);
     }
   }
 
-  .svc-card {
+  .svc-name {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: var(--s-3);
   }
 
-  .svc-card .pill {
-    align-self: flex-start;
+  .svc-h {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    line-height: 1.2;
+    color: var(--ink-strong);
+    transition: color var(--t-fast) ease;
   }
 
-  .svc-card h2 {
-    font-size: var(--text-xl);
-    font-family: var(--font-body);
-    font-weight: 650;
-    margin: 0;
+  .svc-body {
+    display: grid;
+    gap: var(--s-2);
+    max-width: 68ch;
   }
 
-  .svc-card p {
-    color: var(--ink-soft);
+  .svc-headline {
+    font-weight: 600;
+    color: var(--ink-strong);
+  }
+
+  .svc-lede {
     font-size: var(--text-sm);
-    margin: 0;
-    flex-grow: 1;
   }
 
-  .eng h3 {
-    margin-bottom: var(--s-3);
+  .svc-go {
+    display: none;
+    color: var(--ink-faint);
+    padding-top: 0.6rem;
+    transition: transform var(--t-med) var(--ease-out), color var(--t-fast) ease;
+  }
+
+  @media (min-width: 900px) {
+    .svc-go {
+      display: block;
+    }
+  }
+
+  .svc-row:hover .svc-h,
+  .svc-row:hover .svc-go {
+    color: var(--accent-strong);
+  }
+
+  .svc-row:hover .svc-go {
+    transform: translateX(3px);
+  }
+
+  .eng {
+    display: grid;
+    gap: var(--s-3);
+    margin-top: var(--s-7);
+  }
+
+  @media (min-width: 900px) {
+    .eng {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+      gap: var(--s-5);
+    }
+  }
+
+  .eng .kicker {
+    margin: 0;
   }
 
   .eng-models {
@@ -112,7 +174,6 @@ import { breadcrumbs } from '../../data/schema';
   .eng p {
     margin: 0;
     color: var(--ink-soft);
-    font-size: var(--text-sm);
     max-width: 60ch;
   }
 </style>

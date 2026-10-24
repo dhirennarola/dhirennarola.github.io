@@ -37,6 +37,9 @@ const {
 } = Astro.props;
 
 const canonical = pageUrl(path);
+/** Staging builds (npm run build:stage) are never indexed and never tracked. */
+const isStage = import.meta.env.PUBLIC_STAGE === '1';
+const robotsOff = noindex || isStage;
 const ogImageAbs = new URL(ogImage, site.url).href;
 
 /* No <meta name="keywords">. Google announced in 2009 that it disregards the
@@ -149,7 +152,7 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
     <meta name="author" content={site.name} />
     <meta name="creator" content={site.name} />
     <meta name="publisher" content={site.name} />
-    {noindex ? (
+    {robotsOff ? (
       <meta name="robots" content="noindex, nofollow" />
     ) : (
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -187,7 +190,7 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}
 
-    {site.gaMeasurementId && (
+    {site.gaMeasurementId && !isStage && (
       <>
         {/* gtag() queues into dataLayer straight away, but the Google script
             itself loads only after the page has finished loading, so it never

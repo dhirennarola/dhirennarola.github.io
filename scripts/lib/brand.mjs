@@ -91,8 +91,11 @@ export const defs = (glow = true) => `
     }
   </defs>`;
 
-/** Navy field + grid motif + corner glow. */
-export const shell = (w, h, { grid = 80, opacity = 0.55 } = {}) => `
+/** Navy field + grid motif + corner glow. `flat: true` gives the plain navy
+ *  field the V3 site uses (Open Graph cards); banners keep the grid. */
+export const shell = (w, h, { grid = 80, opacity = 0.55, flat = false } = {}) => flat ? `
+  ${defs(false)}
+  <rect width="${w}" height="${h}" fill="#0e1b2e"/>` : `
   ${defs()}
   <rect width="${w}" height="${h}" fill="${C.navy900}"/>
   <g stroke="${C.navyLine}" stroke-width="1" opacity="${opacity}">

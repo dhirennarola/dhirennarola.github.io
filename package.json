@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "og": "node scripts/generate-og.mjs",
     "banners": "node scripts/generate-linkedin.mjs",
-    "map": "node scripts/generate-map.mjs"
+    "map": "node scripts/generate-map.mjs",
+    "build:stage": "node scripts/build-stage.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",

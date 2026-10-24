@@ -22,10 +22,10 @@ const jsonLd = [
       <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Industries</span>
       </nav>
-      <h1 class="rv-h hub-h1" data-h="2">Industry expertise, proven in production.</h1>
+      <h1 class="hub-h1">Industries I know from live projects</h1>
       <p class="lede rv-h" data-h="3">
         Every industry has its own compliance rules, workflows, and failure modes.
-        These are the ones I've learned by shipping — not in theory.
+        These are the ones I have learned by taking real systems live.
       </p>
     </div>
   </header>
@@ -71,7 +71,7 @@ const jsonLd = [
         </a>
         <div class="card other-card">
           <h3 class="other-h">Your industry not listed?</h3>
-          <p>The discovery process is industry-agnostic — the first call maps your workflows regardless of sector.</p>
+          <p>The first call maps your workflows, whatever your sector.</p>
           <a href="/contact/" class="link-arr">Book a discovery call <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></a>
         </div>
       </div>
@@ -80,13 +80,13 @@ const jsonLd = [
 
   <CtaBand
     title="Deep expertise beats generic delivery."
-    desc="Tell me your industry and your three biggest operational headaches — I'll tell you exactly what Odoo can and can't fix."
+    desc="Tell me your industry and your three biggest operational headaches. I will tell you plainly what Odoo can and cannot fix."
   />
 </Base>
 
 <style>
   .hub-h1 {
-    font-size: var(--text-3xl);
+    max-width: 20ch;
   }
 
   .proof-note {
@@ -95,8 +95,7 @@ const jsonLd = [
   }
 
   .other-card {
-    justify-content: center;
-    background: var(--bg-subtle);
+    justify-content: flex-start;
   }
 
   .other-h {
