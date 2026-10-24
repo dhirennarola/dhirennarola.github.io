@@ -20,6 +20,7 @@ heroKpis:
 story:
   problem: 'Catalogue structure flattened jewellery-specific attributes.'
   impact: 'Attribute-true tagging · faster counter sales · upgrade-safe build.'
+before: ['A standard product catalogue', 'Metal, purity and stones buried in product names']
 modules: ['Sales', 'Inventory']
 integrations: []
 tags: ['Retail', 'B2C', 'Custom Module', 'Odoo 19']
@@ -36,6 +37,29 @@ Two reasons. First, it shows recent-version fluency: this build runs on Odoo 19,
 ## The problem
 
 Jewellery inventory doesn't behave like normal retail inventory. Every piece carries attributes (metal, purity, weight, stones, collection, design) that standard product structures flatten or bury. Because the retailer sells to consumers at the counter, staff needed products taggable and searchable the way they and their customers actually think about jewellery, without rebuilding their whole catalogue.
+
+## Solution architecture
+
+<div class="arch">
+  <div class="arch-title">System architecture: jewellery retail on Odoo 19</div>
+  <div class="arch-tier">
+    <span class="arch-label">At the counter</span>
+    <div class="arch-node arch-node--ext">Sales staff<small>find pieces by attribute</small></div>
+    <div class="arch-node arch-node--ext">Retail customers<small>quotations and orders</small></div>
+  </div>
+  <div class="arch-tier">
+    <span class="arch-label">Custom layer: jewellery tagging</span>
+    <div class="arch-node">Metal</div>
+    <div class="arch-node">Purity</div>
+    <div class="arch-node">Stone</div>
+    <div class="arch-node">Collection</div>
+  </div>
+  <div class="arch-tier">
+    <span class="arch-label">Odoo 19 core</span>
+    <div class="arch-node arch-node--core">Sales</div>
+    <div class="arch-node arch-node--core">Inventory</div>
+  </div>
+</div>
 
 ## Key custom work
 

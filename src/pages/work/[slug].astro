@@ -26,6 +26,9 @@ const related = (await getCollection('work'))
   .slice(0, 2);
 
 // "Odoo 18 (upgraded from 15)" -> "Odoo 18" for the diagram label
+// The big number row only appears when the results are real numbers.
+const numericKpis = d.heroKpis.filter((k) => /^[~+<>]?\d/.test(k.value));
+const showKpis = numericKpis.length >= 2;
 const platform = d.odooVersion.match(/Odoo\s*\d+/)?.[0] ?? 'Odoo';
 
 const quote = d.testimonialName
@@ -69,14 +72,14 @@ const jsonLd = [
       <h1 class="rv-h cs-h1" data-h="2">{d.title}</h1>
       <p class="lede rv-h" data-h="3">{d.summary}</p>
 
-      <dl class="ledger cs-kpis" style={`--cols: ${d.heroKpis.length}`}>
+      {showKpis && <dl class="ledger cs-kpis" style={`--cols: ${d.heroKpis.length}`}>
         {d.heroKpis.map((kpi) => (
           <div class="stat">
             <dt class="stat-lbl">{kpi.label}{kpi.basis && <span class="kpi-basis"> — {kpi.basis}</span>}</dt>
             <dd class="stat-num">{kpi.value}</dd>
           </div>
         ))}
-      </dl>
+      </dl>}
     </div>
   </header>
 
