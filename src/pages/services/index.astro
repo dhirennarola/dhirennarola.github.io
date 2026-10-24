@@ -35,7 +35,7 @@ import { breadcrumbs } from '../../data/schema';
               <span class="svc-name">
                 <span class="svc-h">{service.nav.replace('e-', 'e‑')}</span>
                 {service.pill && (
-                  <span class:list={['pill', service.pill.kind === 'rescue' ? 'pill--rescue' : service.pill.kind === 'ok' ? 'pill--ok' : 'pill--accent']}>
+                  <span class="pill">
                     {service.pill.label}
                   </span>
                 )}

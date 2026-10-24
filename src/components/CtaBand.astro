@@ -64,7 +64,7 @@ const {
     .cta-grid {
       grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
       gap: var(--s-8);
-      align-items: end;
+      align-items: start;
     }
   }
 
@@ -78,8 +78,18 @@ const {
     margin: 0;
   }
 
+  .cta-side {
+    padding-top: 1.9rem;
+  }
+
   .cta-side .cta-actions {
     margin-top: 0;
+  }
+
+  @media (max-width: 899px) {
+    .cta-side {
+      padding-top: 0;
+    }
   }
 
   .cta-facts {

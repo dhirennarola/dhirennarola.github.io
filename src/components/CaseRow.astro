@@ -23,7 +23,7 @@ const version = /\d/.test(d.odooVersion) ? d.odooVersion : null;
 const live = /live/i.test(d.status);
 // Qualitative "KPIs" (e.g. "Custom", "Same") read as filler next to real
 // numbers, so the number row only appears when the values are numbers.
-const numeric = d.heroKpis.filter((k) => /^[~+<>]?\d/.test(k.value));
+const numeric = d.heroKpis.filter((k) => /^[~+<>]?\d[\d,.]*\s*(%|\+|x)?(\s*→\s*\d+)?$/.test(k.value.trim()));
 const kpis = numeric.length >= 2 ? numeric : [];
 ---
 

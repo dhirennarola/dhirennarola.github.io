@@ -1176,6 +1176,12 @@ a.card:hover h3 {
   color: var(--ink-strong);
 }
 
+/* "spreadsheet-driven" should not split at the hyphen inside a narrow cell */
+.prose td {
+  hyphens: manual;
+  overflow-wrap: normal;
+}
+
 /* ============================================================
    ARCHITECTURE DIAGRAM (case studies)
    Tiers stack top to bottom with a blue connector between them.

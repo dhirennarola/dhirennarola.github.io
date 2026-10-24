@@ -22,17 +22,11 @@ const {
   class: cls,
   verifiable = true,
 } = Astro.props;
-const initials = name
-  .split(' ')
-  .map((p) => p[0])
-  .slice(0, 2)
-  .join('');
 ---
 
 <figure class:list={['quote-card', { featured }, cls]}>
   <blockquote>{quote}</blockquote>
   <figcaption class="quote-attrib">
-    <div class="quote-avatar" aria-hidden="true">{initials}</div>
     <div class="quote-meta">
       <div class="quote-name">{name}</div>
       <div class="quote-role">{role}{context && ` · ${context}`}</div>
