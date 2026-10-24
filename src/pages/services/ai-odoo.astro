@@ -31,13 +31,9 @@ const jsonLd = [
     <div class="container">
       <div class="hero-grid">
         <div>
-          <span class="pill pill--grad rv-h" data-h="1">AI + Odoo · Flagship offering</span>
-          <h1 class="rv-h" data-h="2">Intelligent ERP.<br /><span class="hl">Not ERP + hype.</span></h1>
-          <p class="hero-lede rv-h" data-h="3">
-            Your ERP already knows your business. AI makes it act on that knowledge —
-            reading documents, answering customers, preparing decisions, automating approvals.
-            I build these systems inside Odoo, where the ROI is measurable.
-          </p>
+          <span class="kicker">AI + Odoo · checked against the Odoo 19 and 20 release notes</span>
+          <h1 class="ai-h1">Use the AI already in Odoo. Build only what is missing.</h1>
+          <p class="hero-lede">{service.lede}</p>
           <div class="hero-ctas rv-h" data-h="4">
             <a href="/contact/" class="btn btn--primary btn--lg">Map your AI opportunities <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></a>
             <a href="#capabilities" class="btn btn--outline btn--lg">See the capabilities</a>
@@ -47,12 +43,12 @@ const jsonLd = [
           <div class="stack" aria-hidden="true">
             <div class="stack-layer">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a9bbd4" stroke-width="1.8"><path d="M8 12h8M12 8v8" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg>
-              <div>Channels<small>WhatsApp · Email · Portal · Voice</small></div>
+              <div>Channels<small>WhatsApp · website chat · email · portal</small></div>
             </div>
             <div class="stack-conn"></div>
             <div class="stack-layer stack-layer--ai">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12b5c9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8L4.3 10.7l5.8 1.9L12 18.4l1.9-5.8 5.8-1.9-5.8-1.9Z"/></svg>
-              <div>AI layer<small>Agents · LLMs · OCR · Prediction · MCP</small></div>
+              <div>AI layer<small>Odoo AI agents and skills · MCP · custom tools</small></div>
             </div>
             <div class="stack-conn"></div>
             <div class="stack-layer stack-layer--core">
@@ -62,65 +58,130 @@ const jsonLd = [
             <div class="stack-conn"></div>
             <div class="stack-layer">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a9bbd4" stroke-width="1.8" stroke-linecap="round"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
-              <div>Your data, governed<small>Audit trails · human-in-the-loop · access control</small></div>
+              <div>Rules and limits<small>Access rights · approvals · logs · credit budget</small></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="proofbar rv-h" data-h="5">
+      <div class="proofbar" style="--cols: 3">
         <div><div class="stat-num">4,000+</div><div class="stat-lbl">Customers on AI-driven self-service</div></div>
         <div><div class="stat-num">50%</div><div class="stat-lbl">Call-center load replaced</div></div>
         <div><div class="stat-num">100%</div><div class="stat-lbl">Of one client's manual billing eliminated</div></div>
-        <div><div class="stat-num">30%</div><div class="stat-lbl">Faster delivery via AI workflows</div></div>
       </div>
     </div>
   </section>
 
   <!-- ===== Capabilities ===== -->
-  <section class="section section--l" id="capabilities">
+  <section class="section section--l" id="native">
     <div class="container">
       <SectionHeader
-        eyebrow="Capabilities"
-        title={`What "AI inside your ERP" actually means`}
-        desc="Six patterns, each wired into Odoo's records and permissions — not chatbots bolted onto broken processes."
+        eyebrow="Built into Odoo"
+        title="What Odoo 19 and 20 already do, and what I add"
+        desc="Before paying for custom AI, use what your licence already includes. This table follows Odoo’s own release notes."
       />
-      <div class="cards cards--3" data-stagger>
-        <div class="card card--hover">
-          <div class="ic ic--teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5 19 19M19 5l-2.5 2.5M7.5 16.5 5 19"/></svg></div>
-          <h3>AI agents &amp; assistants</h3>
-          <p class="clamp3 grow">Agents that read ERP context and prepare work for approval — triage, drafts, summaries, follow-ups. Built on modern standards (MCP), with audit trails.</p>
+      <div class="native-wrap">
+        <table class="native">
+          <thead>
+            <tr>
+              <th scope="col" class="label">Feature</th>
+              <th scope="col" class="label">Odoo 19</th>
+              <th scope="col" class="label">Odoo 20</th>
+              <th scope="col" class="label">What I add</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">AI agents</th>
+            <td>Chat agents with instructions, sources and topics. Without topics they can answer but not change data.</td>
+            <td>Agents can create and update records, ask permission with buttons and run inside automated actions. Topics are now called skills.</td>
+            <td>I write the skills as code that enforces your business rules, and set who may use which agent.</td>
+          </tr>
+          <tr>
+            <th scope="row">Ask AI and search</th>
+            <td>Ask questions, open views, summarise chatter and search in plain language.</td>
+            <td>Same, plus voice dictation to agents.</td>
+            <td>Default prompts per app, and training so your team actually uses it.</td>
+          </tr>
+          <tr>
+            <th scope="row">AI fields</th>
+            <td>AI fills text, number, date, tag and other fields from a prompt.</td>
+            <td>Available as before.</td>
+            <td>Pick the few fields worth paying for, and keep prompts short and testable.</td>
+          </tr>
+          <tr>
+            <th scope="row">Bill scanning (OCR)</th>
+            <td>Reads vendor bills, refunds and bank statements. Can auto-post after three clean bills from a vendor.</td>
+            <td>Adds bill line prediction.</td>
+            <td>Approval limits, and country rules such as ZATCA that scanning alone does not cover.</td>
+          </tr>
+          <tr>
+            <th scope="row">Website live chat</th>
+            <td>An AI agent answers on your website and creates a lead when it cannot help.</td>
+            <td>Adds record preview cards in chat.</td>
+            <td>WhatsApp is not covered by native AI. I build WhatsApp conversations that read and write Odoo.</td>
+          </tr>
+          <tr>
+            <th scope="row">MCP server</th>
+            <td>Not included.</td>
+            <td>Connects Claude, ChatGPT and other assistants to Odoo. The admin chooses which tools are exposed.</td>
+            <td>Which tools to expose, sign-in and client approval rules, and access rights under the new Odoo 20 model.</td>
+          </tr>
+          <tr>
+            <th scope="row">Cost</th>
+            <td>Your own OpenAI or Gemini key on Odoo.sh and on-premise.</td>
+            <td>Every AI feature uses Odoo credits.</td>
+            <td>A budget per use case, monitoring, and switching off what does not pay back.</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="native-src">
+        Sources: <a href="https://www.odoo.com/odoo-19-release-notes" target="_blank" rel="noopener">Odoo 19 release notes</a>,
+        <a href="https://www.odoo.com/odoo-20-release-notes" target="_blank" rel="noopener">Odoo 20 release notes</a> and the
+        <a href="https://www.odoo.com/documentation/20.0/applications/productivity/ai.html" target="_blank" rel="noopener">Odoo AI documentation</a>.
+        Checked October 2026. Most AI features need Odoo Enterprise.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--subtle" id="capabilities">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Custom work"
+        title="Where custom AI still pays"
+        desc="These are the gaps I see on real projects once the native features are set up."
+      />
+      <div class="cards cards--3">
+        <div class="card">
+          <h3>WhatsApp conversations</h3>
+          <p class="grow">Guided flows for requests, status, subscriptions and payments, written straight into Odoo. In production for 4,000+ customers, replacing about half a call center.</p>
         </div>
-        <div class="card card--hover">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
-          <h3>Document intelligence &amp; OCR</h3>
-          <p class="clamp3 grow">Vendor bills, POs, delivery notes, bank statements → validated Odoo records. Auto-posted above a confidence threshold; one-click review below it.</p>
+        <div class="card">
+          <h3>Flows across other systems</h3>
+          <p class="grow">Agents and automations that also reach your bank, telecom, logistics or government portals, which native Odoo AI cannot see.</p>
         </div>
-        <div class="card card--hover">
-          <div class="ic ic--teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-          <h3>Conversational service</h3>
-          <p class="clamp3 grow">Chatbots and WhatsApp flows where your customers already are — subscriptions, requests, payments, status. 4,000+ customers in production.</p>
+        <div class="card">
+          <h3>Documents Odoo cannot read yet</h3>
+          <p class="grow">Delivery notes, job cards, certificates and country-specific forms, extracted with checks against your own data before anything is posted.</p>
         </div>
-        <div class="card card--hover">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-          <h3>Approval &amp; workflow automation</h3>
-          <p class="clamp3 grow">Multi-level approvals, exception routing, and hand-offs that run themselves — humans decide, the system does the chasing.</p>
+        <div class="card">
+          <h3>Approvals with clear limits</h3>
+          <p class="grow">AI prepares the work, a person approves it. Amount limits, roles and logs decide what the AI may do on its own.</p>
         </div>
-        <div class="card card--hover">
-          <div class="ic ic--teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
-          <h3>Predictive operations</h3>
-          <p class="clamp3 grow">Reorder signals, demand patterns, maintenance windows — prediction added only after data discipline makes it trustworthy.</p>
+        <div class="card">
+          <h3>Country rules</h3>
+          <p class="grow">ZATCA Phase 2 and other e-invoicing rules stay deterministic and tested. AI helps around them, never inside the legal step.</p>
         </div>
-        <div class="card card--hover">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h8M8 16h5"/></svg></div>
-          <h3>AI reporting &amp; insight</h3>
-          <p class="clamp3 grow">Ask questions in plain language, get answers from your live ERP data — plus scheduled narrative summaries leadership actually reads.</p>
+        <div class="card">
+          <h3>Upgrade-safe custom AI</h3>
+          <p class="grow">Custom skills and tools kept small and documented, so the next Odoo version does not break them.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== AI by function ===== -->
-  <section class="section section--subtle">
+  <section class="section">
     <div class="container">
       <SectionHeader eyebrow="Where it lands" title="AI by business function" />
       <div class="cards cards--3" data-stagger>
@@ -222,6 +283,68 @@ const jsonLd = [
 </Base>
 
 <style>
+  .ai-h1 {
+    max-width: 16ch;
+  }
+
+  /* Native vs custom table: scrolls inside its own box on phones */
+  .native-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .native {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .native th,
+  .native td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--s-4) var(--s-4) var(--s-4) 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+
+  .native thead th {
+    padding-block: var(--s-3);
+  }
+
+  .native thead .label {
+    display: table-cell;
+    margin: 0;
+  }
+
+  .native tbody th {
+    width: 16%;
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--ink-strong);
+  }
+
+  .native td:last-child {
+    color: var(--ink-strong);
+    font-weight: 500;
+    padding-right: 0;
+  }
+
+  .native-src {
+    margin: var(--s-4) 0 0;
+    font-size: var(--text-xs);
+    color: var(--ink-faint);
+  }
+
+  .native-src a {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-line);
+    text-underline-offset: 3px;
+  }
+
   .mt-3 {
     margin-top: var(--s-3);
   }

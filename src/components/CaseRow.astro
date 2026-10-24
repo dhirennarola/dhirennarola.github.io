@@ -51,6 +51,7 @@ const live = /live/i.test(d.status);
 <style>
   .case {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--s-4);
     margin: 0;
     padding: var(--s-7) 0;
@@ -115,7 +116,7 @@ const live = /live/i.test(d.status);
 
   .case-kpis {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(130px, 100%), 1fr));
     gap: var(--s-4) var(--s-5);
     margin: 0 0 var(--s-5);
     max-width: 720px;

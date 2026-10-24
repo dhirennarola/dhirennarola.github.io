@@ -184,11 +184,11 @@ export const services: Service[] = [
     nav: 'AI + Odoo',
     name: 'AI + Odoo — Intelligent ERP',
     pill: { label: 'Flagship offering', kind: 'accent' },
-    headline: 'AI where it pays for itself — inside the system that runs your business.',
-    lede: 'WhatsApp self-service that replaced half a call center. Billing that runs itself. Documents that become records without retyping. I build automation into Odoo where the ROI is measurable — and I’ll tell you where AI is just expensive.',
-    metaTitle: 'AI + Odoo — Intelligent ERP Automation | Dhiren Narola',
+    headline: 'Use the AI already in Odoo 19 and 20. Build only what is missing.',
+    lede: 'Odoo now ships AI agents, Ask AI, AI fields, bill scanning and, in Odoo 20, an MCP server. I set these up safely, add the rules and cost limits they need, and build custom AI only where Odoo stops: WhatsApp conversations, flows across your other systems and country rules.',
+    metaTitle: 'Odoo 19 & 20 AI: Agents, MCP & Automation | Dhiren Narola',
     metaDescription:
-      'AI automation inside Odoo ERP: WhatsApp self-service, document OCR, LLM integrations and workflow agents, built only where the ROI is measurable.',
+      'Set up Odoo 19 and 20 AI agents, AI fields, bill OCR and the Odoo 20 MCP server safely, then add custom AI only where native stops, such as WhatsApp.',
     problems: [
       {
         title: 'Your team is the integration layer',
@@ -238,6 +238,10 @@ export const services: Service[] = [
       quoteFrom: 'Abdulla Musthafa',
     },
     faqs: [
+      {
+        q: 'Odoo 19 and 20 already have AI. Why would we need you?',
+        a: 'Odoo gives you the parts: agents, Ask AI, AI fields, bill scanning and, in Odoo 20, agents that can change records and an MCP server. Someone still has to decide which tasks they handle, write the tools with your business rules, set access and approval limits, and watch the cost now that every AI call in Odoo 20 uses credits. Where Odoo stops, for example AI conversations on WhatsApp or flows that touch your other systems, I build the missing piece.',
+      },
       {
         q: 'Do we need AI, or “just” automation?',
         a: 'Often the honest answer is deterministic automation first — rules, integrations, and workflows with no model involved. AI earns its place where judgment is repetitive: documents, conversations, triage. The opportunity map tells you which is which.',
