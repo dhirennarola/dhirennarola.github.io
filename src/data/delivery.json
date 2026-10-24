@@ -1,0 +1,18 @@
+{
+  "_note": "Countries where Dhiren has delivered Odoo work. Read by the homepage and by scripts/generate-map.mjs (run `npm run map` after editing). `id` is the ISO 3166-1 numeric code used by world-atlas.",
+  "countries": [
+    { "id": "682", "name": "Saudi Arabia", "region": "Middle East & Africa", "note": "ZATCA ERP for a 300+ staff automotive group; field-service platform" },
+    { "id": "784", "name": "UAE", "region": "Middle East & Africa", "note": "Gulf implementations" },
+    { "id": "634", "name": "Qatar", "region": "Middle East & Africa", "note": "Gulf implementations" },
+    { "id": "818", "name": "Egypt", "region": "Middle East & Africa" },
+    { "id": "646", "name": "Rwanda", "region": "Middle East & Africa", "note": "Africa delivery" },
+    { "id": "528", "name": "Netherlands", "region": "Europe", "note": "Finance customisation" },
+    { "id": "276", "name": "Germany", "region": "Europe", "note": "EU delivery" },
+    { "id": "840", "name": "United States", "region": "Americas", "note": "Subscription billing platform" },
+    { "id": "484", "name": "Mexico", "region": "Americas" },
+    { "id": "554", "name": "New Zealand", "region": "Asia-Pacific", "note": "Telecom ERP, in progress" },
+    { "id": "036", "name": "Australia", "region": "Asia-Pacific" },
+    { "id": "418", "name": "Laos", "region": "Asia-Pacific" },
+    { "id": "356", "name": "India", "region": "Asia-Pacific", "note": "Home base: manufacturing, pharma and jewellery ERPs", "home": true }
+  ]
+}

@@ -52,7 +52,7 @@ const year = new Date().getFullYear();
       <span>© {year} {site.name}. All rights reserved.</span>
       {availability.active && (
         <span class="ft-avail">
-          <span class="dot dot--pulse" aria-hidden="true"></span>
+          <span class="dot" aria-hidden="true"></span>
           {availability.short}
         </span>
       )}
@@ -63,7 +63,7 @@ const year = new Date().getFullYear();
 
 <style>
   .ft {
-    background: var(--navy-950);
+    background: var(--navy-900);
     color: var(--td-faint);
     font-size: var(--text-sm);
   }
@@ -82,14 +82,14 @@ const year = new Date().getFullYear();
     }
   }
 
-  .ft-logo {
+  .ft .ft-logo {
     display: inline-flex;
     color: var(--td);
     margin-bottom: var(--s-3);
     transition: color var(--t-fast) ease;
   }
 
-  .ft-logo:hover {
+  .ft .ft-logo:hover {
     color: #fff;
   }
 
@@ -107,20 +107,20 @@ const year = new Date().getFullYear();
 
   .ft-col h2 {
     color: var(--td);
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.04em;
     margin: 0 0 var(--s-3);
   }
 
-  .ft-col a {
-    color: var(--td-faint);
+  .ft .ft-col a {
+    color: var(--td-soft);
   }
 
-  .ft-col a:hover {
-    color: var(--td);
+  .ft .ft-col a:hover {
+    color: #fff;
   }
 
   .ft-bottom {

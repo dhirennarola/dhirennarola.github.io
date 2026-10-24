@@ -1,32 +1,129 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import Testimonial from '../components/Testimonial.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
+import CaseRow from '../components/CaseRow.astro';
 import portrait from '../assets/dhiren-narola.png';
 import {
-  availability,
   career,
   recommendations,
   contact,
+  numbers,
   continentCount,
-  continentWord,
+  odooStoreApps,
 } from '../data/facts';
+import delivery from '../data/delivery.json';
 import { faqSchema, professionalServiceSchema } from '../data/schema';
 import { getCollection } from 'astro:content';
+
+const arrow = `<svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>`;
 
 const insights = (await getCollection('insights'))
   .filter((i) => !i.data.draft)
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 3);
 
-const topicPill: Record<string, string> = {
-  Compliance: 'pill--accent',
-  'ERP Rescue': 'pill--rescue',
-  'AI & Automation': 'pill--grad',
-};
+const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const featuredWork = work.slice(0, 3);
+
+/* One row per buying situation. The visitor finds their own problem in the
+   first column, so nobody has to read the whole page to find the right service. */
+const paths = [
+  {
+    situation: 'You are starting on Odoo, or replacing a patchwork of tools.',
+    service: 'ERP implementation',
+    what: 'Requirements, architecture, custom modules, data migration, training and go-live, all led by one person.',
+    first: 'A discovery call, then a fixed written proposal.',
+    href: '/services/erp-implementation/',
+  },
+  {
+    situation: 'Your Odoo project is stuck, slow or failing.',
+    service: 'ERP rescue',
+    what: 'An independent look at what works, what does not and what it will take to fix it.',
+    first: 'A written assessment within days, with a fixed quote.',
+    href: '/services/erp-rescue/',
+  },
+  {
+    situation: 'You must pass ZATCA, or connect Odoo to other systems.',
+    service: 'Integrations & e-invoicing',
+    what: 'ZATCA Phase 2, WooCommerce, WhatsApp, payment gateways and legacy bridges, built with retries and logs.',
+    first: 'A map of every system and where data can break.',
+    href: '/services/integrations-einvoicing/',
+  },
+  {
+    situation: 'Your team still retypes documents and answers the same questions.',
+    service: 'AI + Odoo',
+    what: 'Document-to-record automation, WhatsApp self-service and agents that prepare work for a person to approve.',
+    first: 'Find the two or three tasks worth automating.',
+    href: '/services/ai-odoo/',
+  },
+  {
+    situation: 'You are an Odoo partner and need senior delivery capacity.',
+    service: 'Dedicated team',
+    what: 'Architecture and development under your brand, from overflow work to a long-term team.',
+    first: 'A short call about scope and how your team works.',
+    href: '/services/dedicated-team/',
+  },
+];
+
+/* What usually goes wrong in each industry, and the project that proves it. */
+const industryRows = [
+  {
+    name: 'Automotive & Gulf compliance',
+    href: '/industries/automotive-ksa/',
+    hurts: ['ZATCA Phase 2 deadlines with real penalties', 'Saudi payroll (GOSI, end of service) done by hand', 'Branches that never reconcile at head office'],
+    proof: { label: '300+ employee automotive group, Saudi Arabia', href: '/work/ksa-automotive-erp/' },
+  },
+  {
+    name: 'Manufacturing & pharma',
+    href: '/industries/manufacturing/',
+    hurts: ['Batch traceability kept in binders and memory', 'Production, accounting and quality in separate systems', 'No clear view of what production really costs'],
+    proof: { label: '225-employee pharma producer, India', href: '/work/pharma-manufacturing-erp/' },
+  },
+  {
+    name: 'Facility & field service',
+    href: '/industries/facility-management/',
+    hurts: ['Missed visits that breach subscription SLAs', 'Every customer request needs a phone call', 'No live view of technicians in the field'],
+    proof: { label: 'Elevator maintenance platform, Saudi Arabia', href: '/work/elevator-maintenance-automation/' },
+  },
+  {
+    name: 'IT services, SaaS & telecom',
+    hurts: ['Hour packages tracked in spreadsheets', 'Clients emailing for every status update', 'Billing that eats into billable time'],
+    proof: { label: 'IT services billing platform, United States', href: '/work/it-services-billing/' },
+  },
+  {
+    name: 'Retail & jewellery',
+    hurts: ['Catalogues that flatten product attributes', 'POS and back office disagreeing on stock', 'Jobwork charges counted by hand'],
+    proof: { label: 'Caratiro Jewels on Odoo 19, India', href: '/work/jewellery-sales-tags/' },
+  },
+];
+
+const regions = ['Middle East & Africa', 'Europe', 'Americas', 'Asia-Pacific'].map((name) => ({
+  name,
+  countries: delivery.countries.filter((c) => c.region === name),
+}));
+
+const steps = [
+  {
+    title: 'Discovery & architecture',
+    body: 'Your processes first, the software second. Requirements, gap analysis and a signed-off design, so it is built right once.',
+  },
+  {
+    title: 'Build in short sprints',
+    body: 'Working demos every sprint and written updates you never have to chase.',
+  },
+  {
+    title: 'Migration & go-live',
+    body: 'Data migration, user testing, training and documentation. A planned cutover, not a leap.',
+  },
+  {
+    title: 'Support',
+    body: `Support from the person who designed your system, with replies within ${contact.responseTime}.`,
+  },
+];
 
 const faqs = [
   {
@@ -51,6 +148,11 @@ const faqs = [
   },
 ];
 
+const featured = recommendations[0];
+const moreQuotes = recommendations.slice(1, 3);
+
+const dateFmt = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
 const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
 ---
 
@@ -60,381 +162,276 @@ const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
   path="/"
   jsonLd={jsonLd}
 >
-  <!-- ============ HERO (100svh, dark) ============ -->
-  <section class="hero hero--vh on-dark">
+  <!-- ============ HERO (logo navy, like the visiting card) ============ -->
+  <section class="hero hero--brand on-dark home-hero">
     <div class="container">
       <div class="hero-grid">
-        <div>
-          {availability.active && (
-            <span class="pill pill--ok rv-h" data-h="1">
-              <span class="dot dot--pulse" aria-hidden="true"></span>
-              {availability.label}
-            </span>
-          )}
-          <h1 class="rv-h" data-h="2">
-            Enterprise ERP,<br />architected right.<br />
-            <span class="rotator" aria-label="Made intelligent with AI">
-              <span>Made intelligent with AI.</span>
-              <span>Rescued when it fails.</span>
-              <span>Integrated end-to-end.</span>
-              <span>Delivered on {continentCount} continents.</span>
-            </span>
-          </h1>
-          <p class="hero-lede rv-h" data-h="3">
-            I design, build, and rescue <strong>Odoo ERPs</strong> — and automate
-            the work your business shouldn't be doing by hand. Odoo 18 certified,
-            22 implementations live across 13 countries, full ownership from
-            first requirement to go-live.
+        <div class="hero-copy">
+          <h1>I lead Odoo projects myself, from the first workshop to go-live<span class="brand-dot">.</span></h1>
+          <p class="hero-lede">
+            I’m Dhiren Narola, an independent Odoo architect. Companies in the
+            Gulf, Europe, the US and Australia bring me in to implement Odoo,
+            rescue projects that have stalled, and add AI where it saves real
+            hours. You deal with me throughout, not with a junior team.
           </p>
-          <div class="hero-ctas rv-h" data-h="4">
+          <div class="hero-ctas">
             <a href="/contact/" class="btn btn--primary btn--lg">
-              Book a discovery call <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+              Book a discovery call <span class="arr" aria-hidden="true" set:html={arrow} />
             </a>
-            <a href="/work/" class="btn btn--outline btn--lg">See my work</a>
+            <a href="/work/" class="btn btn--outline btn--lg">See case studies</a>
           </div>
+          <ul class="hero-facts">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m9 14.5-1.5 7.5L12 19.5l4.5 2.5-1.5-7.5"/><path d="m9.5 9 1.8 1.8 3.2-3.3"/></svg>
+              <span><strong>Odoo 18 certified</strong> · functional certification by Odoo S.A.</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M17.5 14v7M14 17.5h7"/></svg>
+              <span><strong>{odooStoreApps.length} apps</strong> published on the <a href={contact.odooApps} target="_blank" rel="noopener">Odoo App Store</a></span>
+            </li>
+            <li>
+              <span class="dot" aria-hidden="true"></span>
+              <span><strong>Now building</strong> an end-to-end Odoo ERP for {career.currentEngagement.descriptor}</span>
+            </li>
+          </ul>
         </div>
 
-        <div class="hero-visual rv-h" data-h="3">
-          <div class="portrait">
-            <Image
-              src={portrait}
-              alt="Dhiren Narola — Odoo Architect and AI Automation Engineer, Odoo 18 certified"
-              width={640}
-              widths={[320, 480, 640, 960]}
-              sizes="(max-width: 640px) min(230px, 62vw), 320px"
-              loading="eager"
-              fetchpriority="high"
-            />
-          </div>
-          <div class="float-chip float-chip--tl" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5b9bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/></svg>
-            <div>Odoo 18 Certified<small>Issued by Odoo S.A.</small></div>
-          </div>
-          <div class="float-chip float-chip--br" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#12b5c9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8L4.3 10.7l5.8 1.9L12 18.4l1.9-5.8 5.8-1.9-5.8-1.9Z"/></svg>
-            <div>AI-Accelerated Delivery<small>~30% faster team output</small></div>
-          </div>
-        </div>
+        <figure class="hero-portrait">
+          <Picture
+            src={portrait}
+            formats={['avif', 'webp']}
+            alt="Dhiren Narola, Odoo architect"
+            width={640}
+            widths={[320, 480, 640]}
+            sizes="(max-width: 959px) min(300px, 70vw), 340px"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </figure>
       </div>
 
-      <div class="proofbar rv-h" data-h="5">
-        <div><div class="stat-num" data-count="22">22</div><div class="stat-lbl">ERPs delivered &amp; live</div></div>
-        <div><div class="stat-num" data-count="13">13</div><div class="stat-lbl">Countries · {continentCount} continents</div></div>
-        <div><div class="stat-num" data-count="0">0</div><div class="stat-lbl">Failed go-lives</div></div>
-        <div><div class="stat-num">11–20</div><div class="stat-lbl">Odoo versions mastered</div></div>
-      </div>
+      <dl class="ledger">
+        <div><dt class="stat-lbl">Implementations live</dt><dd class="stat-num">{numbers.implementations}</dd></div>
+        <div><dt class="stat-lbl">Countries, {continentCount} continents</dt><dd class="stat-num">{numbers.countries}</dd></div>
+        <div><dt class="stat-lbl">Failed go-lives</dt><dd class="stat-num">{numbers.failedGoLives}</dd></div>
+        <div><dt class="stat-lbl">Odoo versions worked on</dt><dd class="stat-num">11 to 20</dd></div>
+      </dl>
     </div>
   </section>
 
-  <!-- ============ PILLARS ============ -->
-  <section class="section section--l" id="pillars">
+  <!-- ============ STARTING POINTS ============ -->
+  <section class="section section--l" id="services">
     <div class="container">
       <SectionHeader
-        eyebrow="What I do"
-        title="Three ways businesses engage me"
-        desc="Starting fresh, recovering from a bad build, or ready to automate — the model is identical: one accountable architect who owns the outcome."
+        eyebrow="Services"
+        title="Where are you starting from?"
+        desc="Each situation needs a different first step. Find yours and see what happens next."
       />
-      <div class="cards cards--3" data-stagger>
-        <a href="/services/erp-implementation/" class="card card--hover">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
-          <span class="pill pill--accent self-start">Core offer</span>
-          <h3>ERP Implementation</h3>
-          <p class="clamp3 grow">Full-cycle Odoo delivery — requirements, architecture, custom development, migration, training, go-live. One lead, zero handoff surprises.</p>
-          <span class="link-arr">Plan your implementation <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
-        </a>
-        <a href="/services/erp-rescue/" class="card card--hover">
-          <div class="ic ic--amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-          <span class="pill pill--rescue self-start">Urgent</span>
-          <h3>ERP Rescue</h3>
-          <p class="clamp3 grow">Stalled, broken, or abandoned Odoo project? Rapid independent assessment, honest verdict, and a fixed-quote recovery plan.</p>
-          <span class="link-arr">Get an assessment <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
-        </a>
-        <a href="/services/ai-odoo/" class="card card--hover">
-          <div class="ic ic--teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8L4.3 10.7l5.8 1.9L12 18.4l1.9-5.8 5.8-1.9-5.8-1.9Z"/><path d="M5 3v4M3 5h4M19 17v4M17 19h4"/></svg></div>
-          <span class="pill pill--grad self-start">Multiplier</span>
-          <h3>AI + Odoo</h3>
-          <p class="clamp3 grow">WhatsApp self-service at 4,000-customer scale, document intelligence, and workflow agents — AI where it pays for itself, not where it demos well.</p>
-          <span class="link-arr">Explore Intelligent ERP <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
-        </a>
-      </div>
-
-      <!-- currently-building strip -->
-      <div class="card now-building reveal">
-        <span class="dot dot--pulse now-dot" aria-hidden="true"></span>
-        <div>
-          <div class="now-eyebrow">Currently building</div>
-          <p class="now-text">
-            End-to-end Odoo ERP platform for
-            <strong>{career.currentEngagement.descriptor}</strong> — under
-            a long-term build contract.
-          </p>
+      <div class="paths">
+        <div class="paths-head" aria-hidden="true">
+          <span class="label">Your situation</span>
+          <span class="label">What I do</span>
+          <span class="label">First step</span>
         </div>
+        <ul class="paths-list">
+          {paths.map((p) => (
+            <li>
+              <a href={p.href} class="path">
+                <span class="path-situation">{p.situation}</span>
+                <span class="path-what">
+                  <span class="path-service">{p.service}</span>
+                  {p.what}
+                </span>
+                <span class="path-first"><span class="path-first-label">First step: </span>{p.first}</span>
+                <span class="path-go" aria-hidden="true" set:html={arrow} />
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- ============ FEATURED WORK (storytelling cards) ============ -->
+  <!-- ============ CASE STUDIES ============ -->
   <section class="section section--subtle" id="work">
     <div class="container">
       <SectionHeader
-        eyebrow="Selected work"
-        title="Case studies with the numbers left in"
-        desc="Client names stay under NDA — the architecture decisions and measured outcomes don't."
+        eyebrow="Case studies"
+        title="Selected projects, from the problem to the measured result"
+        desc="Client names stay private. The problem, the decisions and the numbers don’t."
       />
-      <div class="cards" data-stagger>
-        <a href="/work/ksa-automotive-erp/" class="card card--hover">
-          <div class="tag-row"><span class="tag">Automotive</span><span class="tag">Saudi Arabia</span><span class="tag">Odoo 18</span></div>
-          <h3>One ERP for a 300-employee automotive group — ZATCA compliant</h3>
-          <div class="story grow">
-            <div class="story-row"><b>Problem</b><span>Disconnected spreadsheets, manual Saudi payroll, and a hard ZATCA Phase 2 deadline.</span></div>
-            <div class="story-row"><b>Solution</b><span>Single multi-company Odoo platform — payroll engine, WooCommerce + WhatsApp integration, queued e-invoice clearance.</span></div>
-            <div class="story-row"><b>Impact</b><span><strong>60% less manual work</strong> · 1,500+ cleared invoices/mo · ~40% faster ticket response.</span></div>
-          </div>
-          <span class="link-arr">Read the case study <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
-        </a>
-        <a href="/work/pharma-manufacturing-erp/" class="card card--hover">
-          <div class="tag-row"><span class="tag">Manufacturing</span><span class="tag">India</span><span class="tag">Pharma</span></div>
-          <h3>Three systems into one for a 225-employee pharma producer</h3>
-          <div class="story grow">
-            <div class="story-row"><b>Problem</b><span>Production, accounting, and quality living in three systems that never agreed.</span></div>
-            <div class="story-row"><b>Solution</b><span>Unified ERP with stage-gate QC, custom shop floor, and a Tally bridge for a safe finance migration.</span></div>
-            <div class="story-row"><b>Impact</b><span><strong>50% fewer tracking errors</strong> · 3→1 systems · cost analytics per process &amp; department.</span></div>
-          </div>
-          <span class="link-arr">Read the case study <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
-        </a>
-      </div>
-      <div class="center-cta reveal">
-        <a href="/work/" class="btn btn--outline">All case studies <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></a>
-      </div>
+      <ol class="cases">
+        {featuredWork.map((w, i) => <CaseRow entry={w} index={i} />)}
+      </ol>
+      <p class="more after-label"><a href="/work/" class="link-arr">All {work.length} case studies <span class="arr" aria-hidden="true" set:html={arrow} /></a></p>
     </div>
   </section>
 
-  <!-- ============ GLOBAL PRESENCE (dark) ============ -->
-  <section class="section section--l section--dark on-dark globe-bg">
+  <!-- ============ GLOBAL DELIVERY (navy band with the map) ============ -->
+  <section class="section section--l section--dark on-dark global" id="global">
     <div class="container">
-      <div class="globe-grid">
+      <div class="global-head">
         <div>
-          <SectionHeader
-            eyebrow="Global delivery"
-            title={`${continentWord} continents.<br />One accountable architect.`}
-            desc="Every implementation delivered remotely — with overlap hours matched to your timezone and written updates you never have to chase."
-          />
-          <div class="globe-stats" data-stagger>
-            <div><div class="stat-num" data-count="13">13</div><div class="stat-lbl">Countries served</div></div>
-            <div><div class="stat-num" data-count={continentCount}>{continentCount}</div><div class="stat-lbl">Continents</div></div>
-            <div><div class="stat-num">GMT±12</div><div class="stat-lbl">Timezone coverage</div></div>
+          <span class="kicker">Global delivery</span>
+          <h2>Delivered remotely in {delivery.countries.length} countries</h2>
+        </div>
+        <p>
+          From India I share a full working day with the Gulf, the morning in
+          Europe, the afternoon in Australia and New Zealand, and the early
+          morning in the US. Written updates arrive before you need to ask.
+        </p>
+      </div>
+      <div class="global-body">
+      <figure class="map">
+        <img
+          src="/assets/world-delivery.svg"
+          alt={`World map with the ${delivery.countries.length} delivery countries filled in: ${delivery.countries.map((c) => c.name).join(', ')}`}
+          width="1000"
+          height="470"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+      <div class="regions">
+        {regions.map((r) => (
+          <div class="region">
+            <h3 class="label">{r.name}</h3>
+            <ul>
+              {r.countries.map((c) => (
+                <li>
+                  <span class="c-name">{c.name}</span>
+                  {c.note && <span class="c-note">{c.note}</span>}
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-        <div class="country-grid" data-stagger>
-          <div class="country"><b>United States</b><span>SaaS billing automation</span></div>
-          <div class="country"><b>Saudi Arabia</b><span>ZATCA ERP · 300+ staff</span></div>
-          <div class="country"><b><span class="pin" aria-hidden="true"></span>New Zealand</b><span>Telecom ERP (current)</span></div>
-          <div class="country"><b>Netherlands</b><span>Finance customization</span></div>
-          <div class="country"><b>Germany</b><span>EU delivery</span></div>
-          <div class="country"><b>Rwanda</b><span>Africa delivery</span></div>
-          <div class="country"><b>UAE</b><span>Gulf implementations</span></div>
-          <div class="country"><b>Qatar</b><span>Gulf implementations</span></div>
-          <div class="country country--hub"><b>India · HQ</b><span>+ Egypt, Australia, Mexico, Laos</span></div>
-        </div>
+        ))}
+      </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ INDUSTRY EXPERTISE (tabs) ============ -->
+  <!-- ============ INDUSTRIES ============ -->
   <section class="section section--l" id="industries">
     <div class="container">
       <SectionHeader
-        eyebrow="Industry expertise"
-        title="Industries I've shipped ERPs for"
-        desc="Each with its own compliance rules, workflows, and failure modes — learned in production, not in theory."
+        eyebrow="Industries"
+        title="What usually goes wrong, by industry"
+        desc="Each industry has its own rules and its own ways to fail. These are the ones I have taken live."
       />
-
-      <div class="tabs" role="tablist" aria-label="Industries">
-        <button class="tab" role="tab" aria-selected="true" aria-controls="ind-auto">Automotive &amp; Gulf</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="ind-mfg">Manufacturing &amp; Pharma</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="ind-fm">Facility &amp; Field Service</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="ind-it">IT · SaaS · Telecom</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="ind-retail">Retail &amp; Trading</button>
-      </div>
-
-      <div class="tabpanel active" id="ind-auto" role="tabpanel">
-        <div class="cards">
-          <div class="card">
-            <h3>What usually hurts</h3>
-            <ul class="check-list mt-3">
-              <li>ZATCA Phase 2 deadlines with real penalties</li>
-              <li>Saudi labor-law payroll (GOSI, EOS) done by hand</li>
-              <li>Branches that never reconcile at head office</li>
-            </ul>
-          </div>
-          <a href="/work/ksa-automotive-erp/" class="card card--hover">
-            <span class="eyebrow mb-3">Delivered proof</span>
-            <h3>300+ employee automotive group, KSA</h3>
-            <p class="clamp3 grow">Multi-company ERP with ZATCA Phase 2 at 1,500+ invoices/month, Saudi payroll engine, WhatsApp service desk, and WooCommerce sync.</p>
-            <span class="link-arr">Case study <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
-          </a>
-        </div>
-      </div>
-      <div class="tabpanel" id="ind-mfg" role="tabpanel">
-        <div class="cards">
-          <div class="card">
-            <h3>What usually hurts</h3>
-            <ul class="check-list mt-3">
-              <li>Batch traceability living in binders and memory</li>
-              <li>Production, accounting &amp; QC in disconnected systems</li>
-              <li>No idea what production actually costs</li>
-            </ul>
-          </div>
-          <a href="/work/pharma-manufacturing-erp/" class="card card--hover">
-            <span class="eyebrow mb-3">Delivered proof</span>
-            <h3>225-employee pharma manufacturer, India</h3>
-            <p class="clamp3 grow">Full MRP with stage-gate quality control across 5+ warehouses — 50% fewer tracking errors, three systems consolidated into one.</p>
-            <span class="link-arr">Case study <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
-          </a>
-        </div>
-      </div>
-      <div class="tabpanel" id="ind-fm" role="tabpanel">
-        <div class="cards">
-          <div class="card">
-            <h3>What usually hurts</h3>
-            <ul class="check-list mt-3">
-              <li>Missed maintenance visits breaching subscription SLAs</li>
-              <li>Every customer interaction needing a phone call</li>
-              <li>Zero real-time view of the field workforce</li>
-            </ul>
-          </div>
-          <a href="/work/elevator-maintenance-automation/" class="card card--hover">
-            <span class="eyebrow mb-3">Delivered proof</span>
-            <h3>Elevator maintenance platform, Saudi Arabia</h3>
-            <p class="clamp3 grow">Subscription-driven scheduling for 35+ technicians and WhatsApp self-service for 4,000+ customers — half the call-center load replaced.</p>
-            <span class="link-arr">Case study <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
-          </a>
-        </div>
-      </div>
-      <div class="tabpanel" id="ind-it" role="tabpanel">
-        <div class="cards">
-          <div class="card">
-            <h3>What usually hurts</h3>
-            <ul class="check-list mt-3">
-              <li>Hour packages tracked in spreadsheets, disputed monthly</li>
-              <li>Clients emailing for every status update</li>
-              <li>Billing that consumes billable time</li>
-            </ul>
-          </div>
-          <a href="/work/it-services-billing/" class="card card--hover">
-            <span class="eyebrow mb-3">Delivered proof</span>
-            <h3>US IT services billing platform + NZ telecom ERP</h3>
-            <p class="clamp3 grow">Self-allocating hour subscriptions with a customer portal (100% of manual billing eliminated) — and a full telecom ERP build now in progress.</p>
-            <span class="link-arr">Case study <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
-          </a>
-        </div>
-      </div>
-      <div class="tabpanel" id="ind-retail" role="tabpanel">
-        <div class="cards">
-          <div class="card">
-            <h3>What usually hurts</h3>
-            <ul class="check-list mt-3">
-              <li>Catalogues that flatten industry-specific attributes</li>
-              <li>POS and back office disagreeing on stock</li>
-              <li>E-commerce orders re-keyed by hand</li>
-            </ul>
-          </div>
-          <a href="/work/jewellery-sales-tags/" class="card card--hover">
-            <span class="eyebrow mb-3">Delivered proof</span>
-            <h3>Jewellery retail on Odoo 19 + trading &amp; distribution work</h3>
-            <p class="clamp3 grow">Attribute-true product tagging and streamlined retail sales on Odoo 19 — plus distribution implementations across the Gulf.</p>
-            <span class="link-arr">Case study <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
-          </a>
-        </div>
-      </div>
-
-      <div class="center-cta reveal">
-        <a href="/industries/" class="btn btn--outline">Explore all industries <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ TESTIMONIALS ============ -->
-  <section class="section section--surface" id="proof">
-    <div class="container">
-      <SectionHeader
-        align="center"
-        eyebrow="Testimonials"
-        title="What clients say — with names attached"
-        desc="Verified LinkedIn recommendations — real names, real roles, verifiable in one click."
-      />
-      <div class="cards" data-stagger>
-        <Testimonial {...recommendations[0]} featured />
-        <Testimonial {...recommendations[1]} />
-      </div>
-      <div class="center-cta reveal">
-        <a href="/about/#testimonials" class="link-arr">All four testimonials <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></a>
-      </div>
+      <table class="ind-table">
+        <thead>
+          <tr>
+            <th scope="col" class="label">Industry</th>
+            <th scope="col" class="label">What usually hurts</th>
+            <th scope="col" class="label">Delivered proof</th>
+          </tr>
+        </thead>
+        <tbody>
+          {industryRows.map((r) => (
+            <tr>
+              <th scope="row" class="ind-name">
+                {r.href ? <a href={r.href}>{r.name}</a> : r.name}
+              </th>
+              <td>
+                <ul class="ind-hurts">
+                  {r.hurts.map((h) => <li>{h}</li>)}
+                </ul>
+              </td>
+              <td>
+                <a href={r.proof.href} class="link-arr ind-proof">{r.proof.label} <span class="arr" aria-hidden="true" set:html={arrow} /></a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   </section>
 
   <!-- ============ PROCESS ============ -->
-  <section class="section section--l" id="process">
+  <section class="section section--subtle" id="process">
     <div class="container">
       <SectionHeader
-        eyebrow="How I work"
-        title="A process built on ownership"
-        desc="You always know what's happening, what's next, and who's responsible. (It's me.)"
+        eyebrow="Process"
+        title="How a project runs"
+        desc="You always know what is happening, what comes next and who is responsible."
       />
-      <ol class="steps" data-stagger>
-        <li>
-          <span class="no" aria-hidden="true">01</span>
-          <h3>Discovery &amp; architecture</h3>
-          <p>Your business first, the system second — requirements, gap analysis, and a signed-off architecture so we build the right thing once.</p>
-        </li>
-        <li>
-          <span class="no" aria-hidden="true">02</span>
-          <h3>Sprint-based delivery</h3>
-          <p>Structured sprints with written updates and working demos — accelerated by AI-assisted workflows that cut iteration time.</p>
-        </li>
-        <li>
-          <span class="no" aria-hidden="true">03</span>
-          <h3>Go-live &amp; handover</h3>
-          <p>Migration, UAT, and a calm go-live with documentation and training. No black boxes, no dependency on me by design.</p>
-        </li>
-        <li>
-          <span class="no" aria-hidden="true">04</span>
-          <h3>Support that answers</h3>
-          <p>SLA-based support from the person who architected your system — replies within {contact.responseTime}.</p>
-        </li>
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li>
+            <span class="no" aria-hidden="true">{i + 1}</span>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))}
       </ol>
+    </div>
+  </section>
+
+  <!-- ============ REFERENCES ============ -->
+  <section class="section section--l" id="proof">
+    <div class="container">
+      <SectionHeader
+        eyebrow="References"
+        title="What clients say about working with me"
+        desc="LinkedIn recommendations, quoted word for word."
+      />
+      <div class="after-label refs">
+        <Testimonial {...featured} featured />
+        <div class="refs-more">
+          {moreQuotes.map((q) => <Testimonial {...q} />)}
+        </div>
+        <p class="refs-all"><a href="/about/#testimonials" class="link-arr">Read all four recommendations <span class="arr" aria-hidden="true" set:html={arrow} /></a></p>
+      </div>
+
+      <div class="apps">
+        <div class="apps-head">
+          <span class="kicker">Published apps</span>
+          <h3>My apps on the Odoo App Store</h3>
+          <a href={contact.odooApps} target="_blank" rel="noopener" class="link-arr">See them on apps.odoo.com <span class="arr" aria-hidden="true" set:html={arrow} /></a>
+        </div>
+        <ul class="apps-list">
+          {odooStoreApps.map((a) => (
+            <li>
+              <span class="app-name">{a.name}</span>
+              <span class="app-desc">{a.desc}</span>
+              <span class="label app-ver">{a.version}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 
   <!-- ============ INSIGHTS ============ -->
   <section class="section section--subtle" id="insights">
     <div class="container">
-      <SectionHeader
-        eyebrow="Insights"
-        title="Field notes, not content marketing"
-        desc="What I've learned running ERP and automation projects in production — written for people with real budgets."
-      />
-      <div class="cards cards--3" data-stagger>
+      <SectionHeader eyebrow="Insights" title="Notes from recent projects" />
+      <ul class="notes">
         {insights.map((post) => (
-          <a href={`/insights/${post.id}/`} class="card card--hover">
-            <span class:list={['pill', topicPill[post.data.topic] ?? 'pill--accent', 'self-start']}>{post.data.topic}</span>
-            <h3 class="insight-title">{post.data.title}</h3>
-            <p class="clamp3 grow">{post.data.description}</p>
-            <span class="insight-meta">{post.data.readingTime} read</span>
-          </a>
+          <li>
+            <a href={`/insights/${post.id}/`} class="note-link">
+              <span class="label note-meta">
+                <time datetime={post.data.publishDate.toISOString()}>{dateFmt.format(post.data.publishDate)}</time>
+                · {post.data.readingTime} read
+              </span>
+              <span class="note-title">{post.data.title}</span>
+              <span class="note-desc">{post.data.description}</span>
+            </a>
+          </li>
         ))}
-      </div>
-      <div class="center-cta reveal">
-        <a href="/insights/" class="btn btn--outline">All insights <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></a>
-      </div>
+      </ul>
+      <p class="more"><a href="/insights/" class="link-arr">All insights <span class="arr" aria-hidden="true" set:html={arrow} /></a></p>
     </div>
   </section>
 
   <!-- ============ FAQ ============ -->
-  <section class="section" id="faq">
-    <div class="container container--sm">
-      <SectionHeader align="center" eyebrow="FAQ" title="Questions buyers actually ask" />
-      <Faq items={faqs} />
+  <section class="section section--l" id="faq">
+    <div class="container">
+      <SectionHeader eyebrow="FAQ" title="Common questions" />
+      <div class="after-label">
+        <Faq items={faqs} />
+      </div>
     </div>
   </section>
 
@@ -442,77 +439,512 @@ const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
 </Base>
 
 <style>
-  .self-start {
-    align-self: flex-start;
+  /* ---- Hero ---- */
+  .home-hero {
+    padding-top: calc(var(--nav-h) + clamp(3rem, 7vw, 5.5rem));
+    padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
   }
 
-  .mt-3 {
-    margin-top: var(--s-3);
+  .home-hero h1 {
+    font-size: clamp(2.3rem, 1.5rem + 3vw, 3.75rem);
+    max-width: 19ch;
+    margin-bottom: var(--s-5);
   }
 
-  .mb-3 {
-    margin-bottom: var(--s-3);
-  }
-
-  .center-cta {
-    text-align: center;
-    margin-top: var(--s-6);
-  }
-
-  /* currently-building strip */
-  .now-building {
-    margin-top: var(--s-6);
-    display: flex;
-    gap: var(--s-4);
-    align-items: flex-start;
-    border-left: 3px solid var(--ok);
-  }
-
-  .now-dot {
-    margin-top: 9px;
-  }
-
-  .now-eyebrow {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ok);
-    margin-bottom: 4px;
-  }
-
-  .now-text {
-    margin: 0;
-    font-size: var(--text-sm);
-  }
-
-  /* global presence */
-  .globe-grid {
-    display: grid;
-    gap: var(--s-7);
+  .hero-grid {
     align-items: center;
   }
 
-  @media (min-width: 960px) {
-    .globe-grid {
-      grid-template-columns: repeat(2, 1fr);
+  .hero-facts {
+    list-style: none;
+    margin: var(--s-7) 0 0;
+    padding: var(--s-4) 0 0;
+    border-top: 1px solid var(--navy-line);
+    display: grid;
+    gap: var(--s-3);
+    font-size: var(--text-sm);
+    max-width: 40rem;
+  }
+
+  .hero-facts li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    margin: 0;
+    color: var(--td-soft);
+  }
+
+  .hero-facts a {
+    color: var(--td);
+    text-decoration: underline;
+    text-decoration-color: var(--navy-line);
+    text-underline-offset: 3px;
+  }
+
+  .hero-facts a:hover {
+    color: #fff;
+  }
+
+  .hero-facts svg {
+    flex: none;
+    margin-top: 2px;
+    color: var(--accent-ondark);
+  }
+
+  .hero-facts .dot {
+    margin: 0.5em 5.5px 0;
+  }
+
+  .hero-portrait {
+    margin: 0;
+    width: 100%;
+    max-width: 340px;
+    justify-self: end;
+  }
+
+  @media (max-width: 959px) {
+    .hero-portrait {
+      justify-self: start;
+      max-width: 300px;
     }
   }
 
-  .globe-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--s-5);
+  .hero-portrait :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 20%;
+    border-radius: var(--radius);
+    background: var(--navy-850);
   }
 
-  /* insights */
-  .insight-title {
+  .home-hero .ledger {
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  /* ---- Starting points ---- */
+  .paths-head {
+    display: none;
+  }
+
+  .paths-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .paths-list li {
+    margin: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .path {
+    display: grid;
+    gap: var(--s-2);
+    padding: var(--s-5) 0;
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+  }
+
+  .path-first-label {
+    font-weight: 600;
+    color: var(--ink-strong);
+  }
+
+  @media (min-width: 900px) {
+    .paths-head,
+    .path {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 4.6fr) minmax(0, 3.4fr) 2rem;
+      gap: var(--s-5);
+      align-items: start;
+    }
+    .paths-head {
+      padding-bottom: var(--s-3);
+    }
+    .paths-head .label {
+      margin: 0;
+    }
+    .path-first-label {
+      display: none;
+    }
+  }
+
+  .path-situation {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    line-height: 1.25;
+    color: var(--ink-strong);
+    text-wrap: balance;
+    transition: color var(--t-fast) ease;
+  }
+
+  .path-service {
+    display: block;
+    font-weight: 620;
+    color: var(--ink-strong);
+    margin-bottom: 0.2rem;
+  }
+
+  .path-what,
+  .path-first {
+    display: block;
+  }
+
+  .path-go {
+    display: none;
+    color: var(--ink-faint);
+    padding-top: 0.45rem;
+    justify-self: end;
+    transition: transform var(--t-med) var(--ease-out), color var(--t-fast) ease;
+  }
+
+  @media (min-width: 900px) {
+    .path-go {
+      display: block;
+    }
+  }
+
+  .path:hover .path-situation,
+  .path:hover .path-go {
+    color: var(--accent-strong);
+  }
+
+  .path:hover .path-go {
+    transform: translateX(3px);
+  }
+
+  /* ---- Case studies ---- */
+  .cases {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .more {
+    margin: var(--s-6) 0 0;
+  }
+
+  /* ---- Global delivery ---- */
+  .global-head {
+    display: grid;
+    gap: var(--s-4) var(--s-8);
+    align-items: end;
+    margin-bottom: var(--s-7);
+  }
+
+  @media (min-width: 900px) {
+    .global-head {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+  }
+
+  .global-head h2 {
+    margin: 0;
+    max-width: 16ch;
+  }
+
+  .global-head p {
+    margin: 0;
+    max-width: 46ch;
     font-size: var(--text-lg);
+  }
+
+  .map {
     margin: 0;
   }
 
-  .insight-meta {
+  .map img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1000 / 470;
+  }
+
+  .global-body {
+    display: grid;
+    gap: var(--s-7);
+    align-items: start;
+  }
+
+  @media (min-width: 1024px) {
+    .global-body {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: var(--s-7);
+    }
+  }
+
+  .regions {
+    display: grid;
+    gap: var(--s-6) var(--s-5);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid var(--navy-line);
+    padding-top: var(--s-4);
+  }
+
+  .region h3 {
+    margin: 0 0 var(--s-3);
+  }
+
+  .region ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--s-3);
+  }
+
+  .region li {
+    margin: 0;
+    display: grid;
+    gap: 0.1rem;
+    font-size: var(--text-sm);
+  }
+
+  .c-name {
+    color: var(--td);
+    font-weight: 560;
+  }
+
+  .c-note {
+    color: var(--td-faint);
     font-size: var(--text-xs);
+    line-height: 1.45;
+  }
+
+  /* ---- Industries table ---- */
+  .ind-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid var(--line);
+  }
+
+  .ind-table thead {
+    display: none;
+  }
+
+  .ind-table tr {
+    display: grid;
+    gap: var(--s-3);
+    padding: var(--s-5) 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .ind-table th,
+  .ind-table td {
+    padding: 0;
+    text-align: left;
+    vertical-align: top;
+    font-weight: inherit;
+  }
+
+  @media (min-width: 900px) {
+    .ind-table thead {
+      display: table-header-group;
+    }
+    .ind-table tr {
+      display: table-row;
+      padding: 0;
+      border: 0;
+    }
+    .ind-table th,
+    .ind-table td {
+      padding: var(--s-5) var(--s-5) var(--s-5) 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .ind-table thead th {
+      padding-block: 0 var(--s-3);
+    }
+    .ind-table th:first-child {
+      width: 25%;
+    }
+    .ind-table td:last-child {
+      width: 30%;
+      padding-right: 0;
+    }
+  }
+
+  .ind-table thead .label {
+    margin: 0;
+    display: table-cell;
+  }
+
+  .ind-table .ind-name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    color: var(--ink-strong);
+  }
+
+  .ind-name a {
+    color: var(--ink-strong);
+  }
+
+  .ind-name a:hover {
+    color: var(--accent-strong);
+  }
+
+  .ind-hurts {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+  }
+
+  .ind-hurts li {
+    margin-bottom: 0.3rem;
+  }
+
+  .ind-hurts li::marker {
     color: var(--ink-faint);
+  }
+
+  .ind-proof {
+    align-items: baseline;
+  }
+
+  /* ---- Process: a real sequence, numbered in the display face ---- */
+  #process .steps .no {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--accent-strong);
+    margin-bottom: var(--s-4);
+  }
+
+  /* ---- References ---- */
+  .refs {
+    display: grid;
+    gap: var(--s-7);
+  }
+
+  .refs-more {
+    display: grid;
+    gap: var(--s-6);
+  }
+
+  @media (min-width: 760px) {
+    .refs-more {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s-6);
+    }
+  }
+
+  .refs-all {
+    margin: 0;
+  }
+
+  .apps {
+    display: grid;
+    gap: var(--s-5);
+    margin-top: var(--sec-m);
+    padding: var(--s-6);
+    background: var(--bg-subtle);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  @media (min-width: 900px) {
+    .apps {
+      grid-template-columns: minmax(0, 3.2fr) minmax(0, 8.8fr);
+      gap: var(--s-6);
+    }
+  }
+
+  .apps-head h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--s-3);
+  }
+
+  .apps-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--s-5);
+  }
+
+  @media (min-width: 760px) {
+    .apps-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .apps-list li {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-top: var(--s-3);
+    border-top: 1px solid var(--line-strong);
+    font-size: var(--text-sm);
+  }
+
+  .app-name {
+    font-weight: 620;
+    color: var(--ink-strong);
+  }
+
+  .app-desc {
+    color: var(--ink-soft);
+    flex-grow: 1;
+  }
+
+  .app-ver {
+    margin: 0;
+  }
+
+  /* ---- Insights ---- */
+  .notes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+  }
+
+  @media (min-width: 900px) {
+    .notes {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s-5);
+    }
+  }
+
+  .notes li {
+    margin: 0;
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .note-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    height: 100%;
+    padding: var(--s-4) 0 var(--s-5);
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+  }
+
+  .note-meta {
+    margin: 0;
+  }
+
+  .note-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    line-height: 1.25;
+    color: var(--ink-strong);
+    text-wrap: balance;
+  }
+
+  .note-link:hover .note-title {
+    color: var(--accent-strong);
   }
 </style>

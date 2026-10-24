@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import CaseRow from '../../components/CaseRow.astro';
 import { getCollection } from 'astro:content';
 import { breadcrumbs } from '../../data/schema';
 
@@ -15,7 +16,7 @@ const work = (await getCollection('work')).sort(
   path="/work"
   jsonLd={[breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Work', path: '/work' }])]}
 >
-  <header class="hero hero--sub on-dark">
+  <header class="hero hero--sub">
     <div class="container">
       <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Work</span>
@@ -31,29 +32,14 @@ const work = (await getCollection('work')).sort(
 
   <section class="section">
     <div class="container">
-      <div class="cards" data-stagger>
-        {work.map((cs, i) => (
-          <a href={`/work/${cs.id}/`} class="card card--hover">
-            <div class="tag-row">
-              <span class="tag">{cs.data.industry}</span>
-              <span class="tag">{cs.data.country}</span>
-              <span class="tag">{cs.data.odooVersion}</span>
-              {i === 0 && <span class="pill pill--accent flag-pill">Flagship</span>}
-            </div>
-            <h2 class="work-h">{cs.data.title}</h2>
-            {cs.data.story ? (
-              <div class="story grow">
-                <div class="story-row"><b>Problem</b><span set:html={cs.data.story.problem} /></div>
-                <div class="story-row"><b>Impact</b><span set:html={cs.data.story.impact} /></div>
-              </div>
-            ) : (
-              <p class="work-sum grow">{cs.data.summary}</p>
-            )}
-            <span class="link-arr">Read the case study <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
-          </a>
-        ))}
-        <div class="card nda-card">
-          <h3 class="nda-h">+ 17 more under NDA</h3>
+      <ol class="cases">
+        {work.map((cs, i) => <CaseRow entry={cs} index={i} headingLevel="h2" />)}
+      </ol>
+
+      <div class="nda">
+        <span class="label">Not published</span>
+        <div>
+          <h2 class="nda-h">17 more projects under NDA</h2>
           <p>
             US and European enterprise engagements, Gulf implementations, and the
             ongoing New Zealand telecom ERP. References available privately on
@@ -69,37 +55,44 @@ const work = (await getCollection('work')).sort(
 
 <style>
   .hub-h1 {
-    font-size: var(--text-3xl);
-    max-width: 22ch;
+    font-size: var(--text-4xl);
+    max-width: 18ch;
   }
 
-  .flag-pill {
-    padding-block: 0.15rem;
-  }
-
-  .work-h {
-    font-size: var(--text-xl);
+  .cases {
+    list-style: none;
     margin: 0;
+    padding: 0;
   }
 
-  .work-sum {
-    font-size: var(--text-sm);
-    color: var(--ink-faint);
+  .nda {
+    display: grid;
+    gap: var(--s-3);
+    margin-top: var(--s-6);
+    padding-top: var(--s-5);
+    border-top: 1px solid var(--rule-ink);
+  }
+
+  @media (min-width: 900px) {
+    .nda {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+      gap: var(--s-5);
+    }
+  }
+
+  .nda .label {
     margin: 0;
-  }
-
-  .nda-card {
-    justify-content: center;
-    background: var(--bg-subtle);
+    padding-top: 0.3rem;
   }
 
   .nda-h {
-    font-size: var(--text-lg);
+    font-size: var(--text-2xl);
+    margin-bottom: var(--s-3);
   }
 
-  .nda-card p {
-    font-size: var(--text-sm);
-    color: var(--ink-faint);
+  .nda p {
     margin: 0;
+    color: var(--ink-soft);
+    max-width: 58ch;
   }
 </style>

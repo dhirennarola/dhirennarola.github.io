@@ -1,5 +1,5 @@
 ---
-title: 'One ERP for a 300-Employee Automotive Group — with ZATCA Phase 2 Compliance'
+title: 'One ERP for a 300-employee automotive group, with ZATCA Phase 2 compliance'
 metaTitle: 'ZATCA-Compliant Automotive ERP — Odoo Case Study'
 clientLabel: 'Premium car servicing & spare-parts retail group'
 industry: 'Automotive'
@@ -21,6 +21,7 @@ heroKpis:
 story:
   problem: 'Spreadsheets everywhere, manual Saudi payroll, hard ZATCA deadline.'
   impact: '<strong>60% less manual work</strong> · 1,500+ e-invoices/mo · ~40% faster service.'
+before: ['Disconnected spreadsheets', 'A legacy accounting tool', 'Manual Saudi payroll', 'Paper job cards']
 modules:
   [
     'Accounting',

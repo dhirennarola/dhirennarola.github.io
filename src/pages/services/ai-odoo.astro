@@ -27,7 +27,7 @@ const jsonLd = [
   jsonLd={jsonLd}
 >
   <!-- ===== Hero (dark, AI stack visual) ===== -->
-  <section class="hero on-dark">
+  <section class="hero">
     <div class="container">
       <div class="hero-grid">
         <div>
@@ -68,10 +68,10 @@ const jsonLd = [
         </div>
       </div>
       <div class="proofbar rv-h" data-h="5">
-        <div><div class="stat-num" data-count="4000" data-suffix="+">4,000+</div><div class="stat-lbl">Customers on AI-driven self-service</div></div>
-        <div><div class="stat-num" data-count="50" data-suffix="%">50%</div><div class="stat-lbl">Call-center load replaced</div></div>
-        <div><div class="stat-num" data-count="100" data-suffix="%">100%</div><div class="stat-lbl">Of one client's manual billing eliminated</div></div>
-        <div><div class="stat-num" data-count="30" data-suffix="%">30%</div><div class="stat-lbl">Faster delivery via AI workflows</div></div>
+        <div><div class="stat-num">4,000+</div><div class="stat-lbl">Customers on AI-driven self-service</div></div>
+        <div><div class="stat-num">50%</div><div class="stat-lbl">Call-center load replaced</div></div>
+        <div><div class="stat-num">100%</div><div class="stat-lbl">Of one client's manual billing eliminated</div></div>
+        <div><div class="stat-num">30%</div><div class="stat-lbl">Faster delivery via AI workflows</div></div>
       </div>
     </div>
   </section>
@@ -194,7 +194,7 @@ const jsonLd = [
   <!-- ===== CTA (split panel) ===== -->
   <section class="section section--l pt-0">
     <div class="container">
-      <div class="cta-panel on-dark reveal">
+      <div class="cta-panel">
         <div class="cta-panel-grid">
           <div>
             <span class="eyebrow">Free · 30 minutes</span>
@@ -204,7 +204,7 @@ const jsonLd = [
               <a href="/contact/" class="btn btn--primary btn--lg">Book the AI discovery call <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></a>
               <a href={whatsappUrl(service.whatsappMsg)} target="_blank" rel="noopener" class="btn btn--outline btn--lg">WhatsApp me</a>
             </div>
-            <div class="cta-note"><span class="dot dot--pulse" aria-hidden="true"></span> Reply within {contact.responseTime} · no pitch, prepared questions</div>
+            <div class="cta-note"><span class="dot" aria-hidden="true"></span> Reply within {contact.responseTime} · no pitch, prepared questions</div>
           </div>
           <div class="card card--navy map-card" aria-hidden="true">
             <div class="map-title">Your opportunity map — sample</div>
@@ -239,40 +239,51 @@ const jsonLd = [
   }
 
   .stack-layer {
-    border: 1px solid var(--navy-line);
-    border-radius: 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
     padding: 0.85rem 1.1rem;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-raised);
     display: flex;
     align-items: center;
     gap: 0.8rem;
     font-size: var(--text-sm);
-    color: var(--td);
+    color: var(--ink-strong);
     font-weight: 600;
   }
 
   .stack-layer small {
     display: block;
     font-weight: 400;
-    color: var(--td-faint);
-    font-size: 0.72rem;
+    color: var(--ink-faint);
+    font-size: var(--text-xs);
   }
 
+  .stack-layer svg {
+    flex: none;
+    stroke: var(--ink-faint);
+  }
+
+  /* AI sits on Odoo as an assistive layer: dashed, the way the site draws AI */
   .stack-layer--ai {
-    border-color: rgba(18, 181, 201, 0.45);
-    background: rgba(18, 181, 201, 0.07);
+    border-style: dashed;
+    border-color: var(--accent);
+  }
+
+  .stack-layer--ai svg,
+  .stack-layer--core svg {
+    stroke: var(--accent-strong);
   }
 
   .stack-layer--core {
-    border-color: rgba(47, 125, 246, 0.5);
-    background: rgba(47, 125, 246, 0.09);
+    border-color: var(--accent-line);
+    background: var(--accent-tint);
   }
 
   .stack-conn {
     align-self: center;
     width: 1px;
     height: 14px;
-    background: var(--navy-line);
+    background: var(--accent);
   }
 
   /* function columns */
@@ -331,11 +342,12 @@ const jsonLd = [
   }
 
   .map-title {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    font-weight: 500;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--td-faint);
+    color: var(--ink-faint);
     margin-bottom: var(--s-3);
   }
 
@@ -349,14 +361,13 @@ const jsonLd = [
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    border: 1px solid var(--navy-line);
-    border-radius: 10px;
-    padding: 0.6rem 0.9rem;
-    font-size: var(--text-xs);
+    border-bottom: 1px solid var(--line);
+    padding: 0.6rem 0;
+    font-size: var(--text-sm);
   }
 
   .map-row span {
-    color: var(--td);
+    color: var(--ink);
   }
 
   .map-row.dim {
@@ -364,17 +375,17 @@ const jsonLd = [
   }
 
   .roi-hi {
-    color: #6fd6a5;
+    color: var(--ok-ink);
     font-weight: 700;
   }
 
   .roi-med {
-    color: #8fc0ff;
+    color: var(--accent-ink);
     font-weight: 700;
   }
 
   .roi-not {
-    color: #f0a06c;
+    color: var(--rescue-ink);
     font-weight: 700;
   }
 </style>

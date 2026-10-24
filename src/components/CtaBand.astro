@@ -8,58 +8,104 @@ interface Props {
 }
 
 const {
-  title = 'Let’s see if we’re a fit.',
-  desc = `Tell me about your project, or book a 30-minute discovery call. I reply within ${contact.responseTime} — and I come prepared with questions about your business, not a sales pitch.`,
+  title = 'Tell me what’s going on with your ERP.',
+  desc = `Book a 30-minute call or send a message. I reply within ${contact.responseTime}, and I come with questions about your business, not a sales pitch.`,
   whatsappMsg,
 } = Astro.props;
 ---
 
 <section class="cta-band">
-  <div class="container cta-inner reveal">
-    {availability.active && (
-      <span class="pill pill--ok cta-avail">
-        <span class="dot dot--pulse" aria-hidden="true"></span>
-        {availability.label}
-      </span>
-    )}
-    <h2>{title}</h2>
-    <p>{desc}</p>
-    <div class="cta-actions">
-      <a href="/contact/" class="btn btn--accent btn--lg">
-        Book a discovery call <span class="arrow" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
-      </a>
-      <a
-        href={whatsappUrl(whatsappMsg)}
-        target="_blank"
-        rel="noopener"
-        class="btn btn--band btn--lg"
-      >
-        WhatsApp me
-      </a>
+  <div class="container">
+  <div class="cta-grid">
+    <div>
+      <span class="kicker">Next step</span>
+      <h2>{title}</h2>
+      <p class="cta-desc">{desc}</p>
     </div>
+    <div class="cta-side">
+      <div class="cta-actions">
+        <a href="/contact/" class="btn btn--primary btn--lg">
+          Book a discovery call <span class="arrow" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+        </a>
+        <a href={whatsappUrl(whatsappMsg)} target="_blank" rel="noopener" class="btn btn--outline btn--lg">
+          WhatsApp
+        </a>
+      </div>
+      <dl class="cta-facts">
+        <div>
+          <dt class="label">Email</dt>
+          <!--email_off--><dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd><!--/email_off-->
+        </div>
+        <div>
+          <dt class="label">Reply time</dt>
+          <dd>Within {contact.responseTime}, usually much faster</dd>
+        </div>
+        {availability.active && (
+          <div>
+            <dt class="label">Availability</dt>
+            <dd>{availability.label}</dd>
+          </div>
+        )}
+      </dl>
+    </div>
+  </div>
   </div>
 </section>
 
 <style>
-  .cta-inner {
-    max-width: 640px;
+  .cta-grid {
+    display: grid;
+    gap: var(--s-6);
+    border-top: 1px solid var(--rule-ink);
+    padding-top: var(--s-4);
   }
 
-  .cta-avail {
-    background: rgba(31, 163, 107, 0.14);
-    border-color: rgba(31, 163, 107, 0.35);
-    color: #6fd6a5;
-    margin-bottom: var(--s-5);
+  @media (min-width: 900px) {
+    .cta-grid {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: var(--s-8);
+      align-items: end;
+    }
   }
 
-  .btn--band {
-    background: transparent;
-    color: var(--td);
-    border-color: var(--navy-line);
+  .cta-grid h2 {
+    max-width: 18ch;
+    margin-bottom: var(--s-4);
   }
 
-  .btn--band:hover {
-    border-color: var(--accent-ondark);
-    color: #fff;
+  .cta-desc {
+    max-width: 52ch;
+    margin: 0;
+  }
+
+  .cta-side .cta-actions {
+    margin-top: 0;
+  }
+
+  .cta-facts {
+    margin: var(--s-6) 0 0;
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  .cta-facts div {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .cta-facts .label {
+    margin: 0;
+  }
+
+  .cta-facts dd {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--ink);
+  }
+
+  .cta-facts dd a {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-line);
+    text-underline-offset: 3px;
   }
 </style>

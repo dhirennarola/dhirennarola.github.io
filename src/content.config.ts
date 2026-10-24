@@ -40,6 +40,10 @@ const work = defineCollection({
         impact: z.string(),
       })
       .optional(),
+    /** The tools and habits the client ran on before, in a few words each.
+     *  Drawn as the "Before" side of the before/after diagram. Only list
+     *  what the case study text itself describes. */
+    before: z.array(z.string()).optional(),
     modules: z.array(z.string()),
     integrations: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),

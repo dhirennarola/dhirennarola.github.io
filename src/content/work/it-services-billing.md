@@ -1,5 +1,5 @@
 ---
-title: 'Hourly Billing on Autopilot: Subscription Platform for an IT Services Company'
+title: 'Hourly billing on autopilot: a subscription platform for an IT services company'
 metaTitle: 'Automated Hourly Billing for IT Services — Case Study'
 clientLabel: 'IT services & cloud company'
 industry: 'IT & SaaS'
@@ -20,6 +20,7 @@ heroKpis:
 story:
   problem: 'Hour packages in spreadsheets; billing disputes every month-end.'
   impact: '<strong>100% of manual billing eliminated</strong> · 45% fewer client queries.'
+before: ['Hour packages in spreadsheets', 'Manual month-end billing', 'A support email for every status question']
 modules: ['Subscriptions', 'Project', 'Timesheets', 'Sales', 'Purchase', 'Website']
 integrations: ['Backblaze B2 (documents + automated backups)', 'Odoo.sh deployment']
 tags: ['Billing Automation', 'Customer Portal', 'Subscriptions', 'SaaS']

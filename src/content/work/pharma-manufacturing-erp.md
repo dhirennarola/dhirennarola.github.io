@@ -1,5 +1,5 @@
 ---
-title: 'Three Systems into One: Manufacturing ERP for a 225-Employee Pharma Producer'
+title: 'Three systems into one: manufacturing ERP for a 225-employee pharma producer'
 metaTitle: 'Pharma Manufacturing ERP on Odoo MRP — Case Study'
 clientLabel: 'Pharmaceutical & medical equipment manufacturer'
 industry: 'Manufacturing'
@@ -21,6 +21,7 @@ heroKpis:
 story:
   problem: 'Production, accounting &amp; quality in three disagreeing systems.'
   impact: '<strong>50% fewer tracking errors</strong> · 3→1 systems · per-process costing.'
+before: ['A separate production system', 'Tally for accounting', 'Quality records on paper']
 modules:
   [
     'Manufacturing (MRP)',

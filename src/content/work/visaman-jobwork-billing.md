@@ -1,5 +1,5 @@
 ---
-title: 'Jewellery Jobwork Billing: From a Fixed-Column Sheet to Odoo'
+title: 'Jewellery jobwork billing: from a fixed-column sheet to Odoo'
 metaTitle: 'Jewellery Jobwork Billing in Odoo — Case Study'
 metaDescription: 'Live Odoo system for a B2B jewellery jobwork house in Surat: any number of named charges per item, clear metal and stone ownership, same printed bill.'
 clientLabel: 'Visaman Jewels · B2B jewellery manufacturing & jobwork'
@@ -20,6 +20,7 @@ heroKpis:
 story:
   problem: 'Jobwork bills on a fixed-column sheet: three charges per item, totals counted by hand.'
   impact: '<strong>Any number of named charges per item</strong> · IGI totals as a report · clear metal &amp; stone ownership.'
+before: ['A fixed-column billing sheet', 'Totals counted by hand', 'Metal balances typed in by hand']
 modules: ['Custom Module']
 integrations: []
 tags: ['Jewellery', 'B2B', 'Jobwork Billing', 'Custom Module']

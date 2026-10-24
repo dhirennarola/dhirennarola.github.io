@@ -1,39 +1,64 @@
 ---
+/**
+ * Section opener: a heavy rule, a small mono label on the left and the
+ * title + intro on the right (stacked on phones). Every section on the
+ * site opens this way, so pages read like one document.
+ */
 interface Props {
   eyebrow?: string;
   title: string;
   desc?: string;
+  /** Kept for older pages; centred headers now render left-aligned too. */
   align?: 'left' | 'center';
 }
 
-const { eyebrow, title, desc, align = 'left' } = Astro.props;
+const { eyebrow, title, desc } = Astro.props;
 ---
 
-<div class:list={['section-header', 'reveal', { center: align === 'center' }]}>
-  {eyebrow && <span class="eyebrow">{eyebrow}</span>}
-  <h2 class="ul-anim" set:html={title} />
-  {desc && <p class="section-desc">{desc}</p>}
+<div class="section-header">
+  <span class="kicker sh-label">{eyebrow}</span>
+  <div class="sh-body">
+    <h2 set:html={title} />
+    {desc && <p class="section-desc">{desc}</p>}
+  </div>
 </div>
 
 <style>
   .section-header {
-    max-width: 640px;
-    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+    display: grid;
+    gap: var(--s-3);
+    border-top: 1px solid var(--rule-ink);
+    padding-top: var(--s-4);
+    margin-bottom: clamp(2rem, 4.5vw, 3.25rem);
   }
 
-  .section-header.center {
-    margin-inline: auto;
-    text-align: center;
+  @media (min-width: 900px) {
+    .section-header {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+      gap: var(--s-5);
+    }
   }
 
-  .section-header.center .eyebrow {
-    justify-content: center;
+  .sh-label {
+    margin: 0;
+    padding-top: 0.5rem;
+    align-self: start;
+  }
+
+  .sh-body h2 {
+    margin-bottom: 0;
+    max-width: 24ch;
   }
 
   .section-desc {
-    font-size: 1.15rem;
-    color: var(--ink-faint);
-    margin: 0;
+    margin: var(--s-4) 0 0;
+    font-size: var(--text-lg);
+    color: var(--ink-soft);
+    max-width: 58ch;
+  }
+
+  :global(.on-dark) .section-header {
+    border-top-color: var(--td-faint);
   }
 
   :global(.on-dark) .section-desc {

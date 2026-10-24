@@ -1,5 +1,5 @@
 ---
-title: 'Subscription-Driven Maintenance for 4,000+ Customers — Half the Call Center Load'
+title: 'Subscription-driven maintenance for 4,000+ customers, with half the call-center load gone'
 metaTitle: 'Maintenance Automation at 4,000-Customer Scale — Case Study'
 clientLabel: 'Elevator maintenance & subscription company'
 industry: 'Facility Management'
@@ -20,6 +20,7 @@ heroKpis:
 story:
   problem: 'Manual dispatching breached SLAs; every interaction needed a call.'
   impact: '<strong>50% of call-center load replaced</strong> · 35% fewer missed visits.'
+before: ['Manual visit scheduling', 'A phone call for every request', 'Attendance in a separate silo']
 modules: ['CRM', 'Subscriptions', 'Maintenance', 'Attendance', 'Contacts']
 integrations: ['WhatsApp Business API', 'Messagebird', 'LanaTime attendance devices', 'SMS gateway (fallback)']
 tags: ['Business Automation', 'Subscriptions', 'Field Service', 'WhatsApp']

@@ -18,25 +18,27 @@ import { whatsappUrl } from '../data/facts';
 </a>
 
 <style>
+  /* Quiet round button: white with the WhatsApp green icon */
   .wa-float {
     position: fixed;
     right: clamp(1rem, 3vw, 1.75rem);
     bottom: clamp(1rem, 3vw, 1.75rem);
     z-index: 90;
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     display: grid;
     place-items: center;
-    background: #1faa53;
-    color: #fff;
-    box-shadow: var(--shadow-lg);
-    transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast) ease;
+    background: var(--bg-raised);
+    border: 1px solid var(--line-strong);
+    color: #1c9d4c;
+    box-shadow: var(--shadow-md);
+    transition: border-color var(--t-fast) ease, color var(--t-fast) ease;
   }
 
   .wa-float:hover {
-    transform: translateY(-2px) scale(1.04);
-    color: #fff;
+    border-color: #1c9d4c;
+    color: #15833e;
   }
 
   @media print {

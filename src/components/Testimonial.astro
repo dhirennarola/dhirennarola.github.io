@@ -6,6 +6,7 @@ interface Props {
   name: string;
   role: string;
   context?: string;
+  /** Larger type for the lead quote on a page */
   featured?: boolean;
   class?: string;
   /** False when the recommender's LinkedIn profile is deactivated — see facts.ts */
@@ -28,7 +29,7 @@ const initials = name
   .join('');
 ---
 
-<figure class:list={['card', 'quote-card', { featured }, cls]}>
+<figure class:list={['quote-card', { featured }, cls]}>
   <blockquote>{quote}</blockquote>
   <figcaption class="quote-attrib">
     <div class="quote-avatar" aria-hidden="true">{initials}</div>
@@ -44,11 +45,11 @@ const initials = name
         rel="noopener"
         aria-label={`View ${name}'s recommendation on LinkedIn`}
       >
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-          <polyline points="22 4 12 14.01 9 11.01" />
+        On LinkedIn
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17 17 7" />
+          <path d="M8 7h9v9" />
         </svg>
-        LinkedIn
       </a>
     )}
   </figcaption>
@@ -57,11 +58,21 @@ const initials = name
 <style>
   figure {
     margin: 0;
+    border-top: 1px solid var(--line-strong);
+    padding-top: var(--s-5);
   }
 
-  .featured {
-    border-color: var(--accent-line);
-    background: linear-gradient(180deg, var(--bg-raised), var(--accent-tint) 400%);
+  .featured blockquote {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem);
+    line-height: 1.45;
+    letter-spacing: -0.012em;
+    color: var(--ink-strong);
+  }
+
+  .quote-attrib {
+    border-top: 0;
+    padding-top: 0;
   }
 
   .quote-meta {

@@ -28,33 +28,36 @@ const { items } = Astro.props;
 </div>
 
 <style>
+  /* Ruled list: one hairline between questions, no boxes */
   .faq {
     display: flex;
     flex-direction: column;
-    gap: var(--s-3);
-    max-width: var(--container-narrow);
+    max-width: var(--c-sm);
+    border-top: 1px solid var(--line);
   }
 
   .faq-item {
-    background: var(--bg-raised);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 0;
-    overflow: hidden;
-    transition: border-color var(--t-med) ease;
+    border-bottom: 1px solid var(--line);
   }
 
   summary {
     list-style: none;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
-    gap: var(--s-4);
+    gap: var(--s-5);
     cursor: pointer;
-    padding: var(--s-4) var(--s-5);
+    padding: var(--s-4) 0;
+    font-family: var(--font-display);
     font-weight: 600;
-    font-size: var(--text-sm);
+    font-size: var(--text-lg);
+    letter-spacing: -0.012em;
+    line-height: 1.35;
     color: var(--ink-strong);
+  }
+
+  summary:hover {
+    color: var(--accent-strong);
   }
 
   summary::-webkit-details-marker {
@@ -64,11 +67,12 @@ const { items } = Astro.props;
   .chev {
     flex-shrink: 0;
     color: var(--ink-faint);
+    transform: translateY(3px);
     transition: transform var(--t-med) var(--ease-out);
   }
 
   details[open] .chev {
-    transform: rotate(180deg);
+    transform: translateY(3px) rotate(180deg);
   }
 
   .faq-body {
@@ -77,13 +81,10 @@ const { items } = Astro.props;
 
   details p {
     margin: 0;
-    padding: 0 var(--s-5) var(--s-5);
-    font-size: var(--text-sm);
+    padding: 0 var(--s-7) var(--s-5) 0;
+    font-size: var(--text-base);
     color: var(--ink-soft);
-  }
-
-  details[open] {
-    border-color: var(--accent-line);
+    max-width: 62ch;
   }
 
   @media (prefers-reduced-motion: reduce) {

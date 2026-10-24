@@ -1,5 +1,5 @@
 ---
-title: 'Product Tagging & Sales Workflow for Caratiro Jewels on Odoo 19'
+title: 'Product tagging and sales workflow for Caratiro Jewels on Odoo 19'
 metaTitle: 'Jewellery Retail Tagging on Odoo 19 — Case Study'
 metaDescription: 'Odoo 19 customization for a B2C jewellery retailer: a product tagging system built for how jewellery is catalogued and sold, plus faster counter sales.'
 clientLabel: 'Caratiro Jewels · B2C jewellery retail'

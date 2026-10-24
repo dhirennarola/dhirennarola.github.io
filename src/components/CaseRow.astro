@@ -1,0 +1,136 @@
+---
+/**
+ * One case study as a ruled row: facts on the left; title, the problem
+ * and the measured results on the right. Used on the homepage and on
+ * /work/, so both read the same way.
+ */
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  /** Position in the list, shown as "Case 01" */
+  index: number;
+  /** h2 where the row is a main item, h3 under a section heading */
+  headingLevel?: 'h2' | 'h3';
+}
+
+const { entry, index, headingLevel = 'h3' } = Astro.props;
+const d = entry.data;
+const href = `/work/${entry.id}/`;
+const Heading = headingLevel;
+// "Odoo" alone says nothing; show the version line only when it is specific.
+const version = /\d/.test(d.odooVersion) ? d.odooVersion : null;
+const live = /live/i.test(d.status);
+---
+
+<li class="case">
+  <div class="case-meta">
+    <span class="label case-ref">Case {String(index + 1).padStart(2, '0')}</span>
+    <span class="case-where">{d.industry} · {d.country}</span>
+    {version && <span>{version}</span>}
+    <span class:list={['status', { 'status--progress': !live }]}><span class="dot" aria-hidden="true"></span>{d.status}</span>
+  </div>
+  <div class="case-body">
+    <Heading class="case-title"><a href={href}>{d.title}</a></Heading>
+    {d.story && <p class="case-problem" set:html={d.story.problem} />}
+    <dl class="case-kpis">
+      {d.heroKpis.map((k) => (
+        <div>
+          <dt class="stat-lbl">{k.label}</dt>
+          <dd class="stat-num">{k.value}</dd>
+        </div>
+      ))}
+    </dl>
+    <a href={href} class="link-arr" aria-label={`Read the case study: ${d.title}`}>
+      Read the case study
+      <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+    </a>
+  </div>
+</li>
+
+<style>
+  .case {
+    display: grid;
+    gap: var(--s-4);
+    margin: 0;
+    padding: var(--s-7) 0;
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .case:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  @media (min-width: 900px) {
+    .case {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+      gap: var(--s-5);
+    }
+  }
+
+  .case-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+  }
+
+  .case-ref {
+    margin-bottom: var(--s-2);
+  }
+
+  .case-where {
+    color: var(--ink-strong);
+    font-weight: 560;
+  }
+
+  .case-meta .status {
+    margin-top: var(--s-2);
+  }
+
+  .case-title {
+    font-size: var(--text-2xl);
+    letter-spacing: -0.024em;
+    line-height: 1.2;
+    max-width: 32ch;
+    margin-bottom: var(--s-3);
+  }
+
+  .case-title a {
+    color: var(--ink-strong);
+  }
+
+  .case-title a:hover {
+    color: var(--accent-strong);
+  }
+
+  .case-problem {
+    max-width: 60ch;
+    color: var(--ink-soft);
+    margin-bottom: var(--s-5);
+  }
+
+  .case-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--s-4) var(--s-5);
+    margin: 0 0 var(--s-5);
+    max-width: 720px;
+  }
+
+  .case-kpis div {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    border-left: 2px solid var(--accent);
+    padding-left: var(--s-4);
+  }
+
+  .case-kpis dd {
+    margin: 0;
+    font-size: clamp(1.9rem, 1.5rem + 1.6vw, 2.75rem);
+  }
+</style>
