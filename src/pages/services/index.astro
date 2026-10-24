@@ -41,6 +41,12 @@ import { breadcrumbs } from '../../data/schema';
             <span class="link-arr">Explore {service.nav.toLowerCase()} <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
           </a>
         ))}
+        <a href="/services/upgrade-readiness/" class="card card--hover svc-card svc-card--wide">
+          <span class="pill pill--rescue">Odoo 16 &amp; 17</span>
+          <h2>Upgrade Readiness Check</h2>
+          <p>The Odoo Upgrade Readiness Check tells you exactly what you are facing, in 5 working days, before you commit to anything.</p>
+          <span class="link-arr">Explore upgrade readiness check <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
+        </a>
       </div>
 
       <div class="card eng reveal">
@@ -72,7 +78,8 @@ import { breadcrumbs } from '../../data/schema';
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .svc-card:first-child {
+    .svc-card:first-child,
+    .svc-card--wide {
       grid-column: span 2;
     }
   }

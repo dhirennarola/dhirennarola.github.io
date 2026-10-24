@@ -1,0 +1,229 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { whatsappUrl } from '../../data/facts';
+import { breadcrumbs, serviceSchema } from '../../data/schema';
+
+const path = '/services/upgrade-readiness';
+const name = 'Odoo Upgrade Readiness Check';
+const description =
+  'Still on Odoo 16 or 17? A fixed-scope check of your custom modules in 5 working days: what breaks, effort per module and a fixed migration quote.';
+
+const deliverables = [
+  'Every custom module checked and marked green, amber or red',
+  'What breaks on the new version, down to the file and line',
+  'The effort for each module, in days',
+  'Custom code you can drop, because standard Odoo now does it',
+  'The risks to your accounting and stock data',
+  'A step-by-step upgrade plan and a fixed quote for the migration',
+];
+
+const steps = [
+  'You share read-only access to your custom modules (a Git link or a zip).',
+  'I scan every module against the target version and test the risky ones.',
+  'In 5 working days you get the report and a 30-minute walkthrough.',
+];
+
+const jsonLd = [
+  serviceSchema({ name, description, path }),
+  breadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'Upgrade Readiness Check', path },
+  ]),
+];
+---
+
+<Base title={`${name} | Dhiren Narola`} description={description} path={path} jsonLd={jsonLd}>
+  <!-- ===== Hero ===== -->
+  <header class="hero hero--sub on-dark">
+    <div class="container">
+      <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span>
+        <a href="/services/">Services</a> <span aria-hidden="true">/</span>
+        <span>Upgrade Readiness Check</span>
+      </nav>
+      <h1 class="rv-h ur-h1" data-h="2">Still on Odoo 16 or 17? Know what breaks before you upgrade.</h1>
+      <p class="lede rv-h" data-h="3">
+        Odoo 20 is out. Odoo now supports only versions 18, 19 and 20, so Odoo 16 and 17 no
+        longer get fixes or security updates. Odoo's upgrade service moves your standard data,
+        but it does not fix your custom modules. That part is on you, and it is where upgrades
+        stall, run over budget or break accounting.
+      </p>
+      <p class="lede rv-h" data-h="3">
+        The <strong>Odoo Upgrade Readiness Check</strong> tells you exactly what you are facing,
+        in 5 working days, before you commit to anything.
+      </p>
+      <div class="ur-actions rv-h" data-h="4">
+        <a href="/contact/" class="btn btn--primary btn--lg" data-cta="book">
+          Book the readiness check <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== What you get ===== -->
+  <section class="section">
+    <div class="container ur-narrow">
+      <SectionHeader eyebrow="The report" title="What you get" />
+      <ul class="check-list ur-list reveal">
+        {deliverables.map((d) => <li>{d}</li>)}
+      </ul>
+      <p class="ur-note reveal">The report is yours to keep, whoever does the upgrade.</p>
+    </div>
+  </section>
+
+  <!-- ===== How it works ===== -->
+  <section class="section section--subtle">
+    <div class="container">
+      <SectionHeader eyebrow="Three steps" title="How it works" />
+      <ol class="ur-steps">
+        {steps.map((step, i) => (
+          <li class:list={['reveal', i === 1 && 'reveal-d1', i === 2 && 'reveal-d2']}>
+            <span class="ur-step-no">{String(i + 1).padStart(2, '0')}</span>
+            <p>{step}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== Who + partners ===== -->
+  <section class="section">
+    <div class="container grid grid--2">
+      <div class="card reveal">
+        <h2 class="ur-card-title">Who is behind it</h2>
+        <p>
+          I'm Dhiren Narola, an Odoo architect working on Odoo since 2021, from version 11 to 20.
+          I'm Odoo 18 certified and have taken 22 projects live in 13 countries, with no failed
+          go-live. Upgrades and rescues of stuck projects are a large part of that work.
+        </p>
+      </div>
+      <div class="card reveal reveal-d1">
+        <h2 class="ur-card-title">For Odoo partners</h2>
+        <p>
+          Need this for a client? I run the check white-label, under your name, and can take on
+          the migration as your extra capacity.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Price + booking ===== -->
+  <section class="section section--subtle">
+    <div class="container ur-narrow">
+      <div class="card ur-price reveal">
+        <p class="ur-price-line">
+          <strong>Price:</strong> fixed, agreed before we start, and credited against the
+          migration if you go ahead within 60 days.
+        </p>
+        <div class="ur-actions">
+          <a href="/contact/" class="btn btn--primary btn--lg" data-cta="book">
+            Book the readiness check <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          </a>
+          <a
+            href={whatsappUrl("Hi Dhiren, I'd like to book an Odoo Upgrade Readiness Check.")}
+            target="_blank"
+            rel="noopener"
+            class="btn btn--outline btn--lg"
+          >
+            WhatsApp me
+          </a>
+        </div>
+        <p class="ur-small">
+          Your code is used only for this check, is never shared, and is deleted after the report
+          unless you ask me to keep it. I sign your NDA on request.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ur-h1 {
+    max-width: 22ch;
+    font-size: var(--text-3xl);
+  }
+
+  .ur-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-top: var(--s-6);
+  }
+
+  .ur-narrow {
+    max-width: 820px;
+  }
+
+  .ur-list li {
+    margin-bottom: var(--s-3);
+  }
+
+  .ur-note {
+    margin: var(--s-5) 0 0;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .ur-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  @media (min-width: 900px) {
+    .ur-steps {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .ur-steps li {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: var(--s-5) var(--s-6);
+    margin: 0;
+  }
+
+  .ur-step-no {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--accent-strong);
+    font-weight: 560;
+    line-height: 1;
+    margin-bottom: var(--s-3);
+  }
+
+  .ur-steps p {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  .ur-card-title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--s-3);
+  }
+
+  .card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ur-price-line {
+    font-size: var(--text-lg);
+    margin: 0;
+  }
+
+  .ur-price .ur-actions {
+    margin-top: var(--s-5);
+  }
+
+  .ur-small {
+    margin: var(--s-5) 0 0;
+    font-size: var(--text-sm);
+    color: var(--ink-faint);
+  }
+</style>
