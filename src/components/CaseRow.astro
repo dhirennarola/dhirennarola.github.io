@@ -21,6 +21,10 @@ const Heading = headingLevel;
 // "Odoo" alone says nothing; show the version line only when it is specific.
 const version = /\d/.test(d.odooVersion) ? d.odooVersion : null;
 const live = /live/i.test(d.status);
+// Qualitative "KPIs" (e.g. "Custom", "Same") read as filler next to real
+// numbers, so the number row only appears when the values are numbers.
+const numeric = d.heroKpis.filter((k) => /^[~+<>]?\d/.test(k.value));
+const kpis = numeric.length >= 2 ? numeric : [];
 ---
 
 <li class="case">
@@ -33,14 +37,15 @@ const live = /live/i.test(d.status);
   <div class="case-body">
     <Heading class="case-title"><a href={href}>{d.title}</a></Heading>
     {d.story && <p class="case-problem" set:html={d.story.problem} />}
-    <dl class="case-kpis">
-      {d.heroKpis.map((k) => (
+    {kpis.length === 0 && d.story && <p class="case-problem case-impact" set:html={d.story.impact} />}
+    {kpis.length > 0 && <dl class="case-kpis">
+      {kpis.map((k) => (
         <div>
           <dt class="stat-lbl">{k.label}</dt>
           <dd class="stat-num">{k.value}</dd>
         </div>
       ))}
-    </dl>
+    </dl>}
     <a href={href} class="link-arr" aria-label={`Read the case study: ${d.title}`}>
       Read the case study
       <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
@@ -112,6 +117,10 @@ const live = /live/i.test(d.status);
     max-width: 60ch;
     color: var(--ink-soft);
     margin-bottom: var(--s-5);
+  }
+
+  .case-impact {
+    color: var(--ink);
   }
 
   .case-kpis {

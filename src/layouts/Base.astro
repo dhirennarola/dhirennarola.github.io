@@ -18,8 +18,10 @@ interface Props {
   ogType?: 'website' | 'article' | 'profile';
   jsonLd?: object[];
   noindex?: boolean;
-  /** Utility pages with light backgrounds start the header in its white-glass state */
+  /** Kept so older pages still compile: every header is light by default */
   headerLight?: boolean;
+  /** Navy header bar, for pages that open with the navy brand band (the homepage) */
+  navDark?: boolean;
 }
 
 const {
@@ -31,6 +33,7 @@ const {
   jsonLd = [],
   noindex = false,
   headerLight = false,
+  navDark = false,
 } = Astro.props;
 
 const canonical = pageUrl(path);
@@ -236,7 +239,7 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
-    <Nav light={headerLight} />
+    <Nav dark={navDark} />
     <main id="main">
       <slot />
     </main>

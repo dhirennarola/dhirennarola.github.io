@@ -1,5 +1,5 @@
 ---
-title: 'Where AI Actually Fits in Your ERP (and Where It’s Just Expensive)'
+title: 'Where AI actually fits in your ERP, and where it is just expensive'
 metaTitle: "Where AI Actually Fits in Your ERP — and Where It Doesn't"
 description: 'Where AI pays for itself inside an ERP, where it is just expensive, and how to tell the difference before you spend the budget.'
 publishDate: 2026-06-10

@@ -161,6 +161,7 @@ const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
   description="Odoo 18 certified architect with 22 ERP implementations across 13 countries: Odoo implementation, ERP rescue, ZATCA e-invoicing and AI automation."
   path="/"
   jsonLd={jsonLd}
+  navDark
 >
   <!-- ============ HERO (logo navy, like the visiting card) ============ -->
   <section class="hero hero--brand on-dark home-hero">
@@ -373,8 +374,8 @@ const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
     <div class="container">
       <SectionHeader
         eyebrow="References"
-        title="What clients say about working with me"
-        desc="LinkedIn recommendations, quoted word for word."
+        title="What clients and colleagues say"
+        desc="LinkedIn recommendations, quoted word for word. Each one links to the original."
       />
       <div class="after-label refs">
         <Testimonial {...featured} featured />
@@ -406,7 +407,7 @@ const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
   <!-- ============ INSIGHTS ============ -->
   <section class="section section--subtle" id="insights">
     <div class="container">
-      <SectionHeader eyebrow="Insights" title="Notes from recent projects" />
+      <SectionHeader eyebrow="Insights" title="Notes from real Odoo projects" />
       <ul class="notes">
         {insights.map((post) => (
           <li>
@@ -669,11 +670,9 @@ const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
     align-items: start;
   }
 
-  @media (min-width: 1024px) {
-    .global-body {
-      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-      gap: var(--s-7);
-    }
+  .map {
+    max-width: 1000px;
+    margin-inline: auto;
   }
 
   .regions {
@@ -682,6 +681,12 @@ const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
     grid-template-columns: repeat(2, minmax(0, 1fr));
     border-top: 1px solid var(--navy-line);
     padding-top: var(--s-4);
+  }
+
+  @media (min-width: 1024px) {
+    .regions {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
 
   .region h3 {

@@ -63,11 +63,6 @@ const jsonLd = [
           </div>
         </div>
       </div>
-      <div class="proofbar" style="--cols: 3">
-        <div><div class="stat-num">4,000+</div><div class="stat-lbl">Customers on AI-driven self-service</div></div>
-        <div><div class="stat-num">50%</div><div class="stat-lbl">Call-center load replaced</div></div>
-        <div><div class="stat-num">100%</div><div class="stat-lbl">Of one client's manual billing eliminated</div></div>
-      </div>
     </div>
   </section>
 
@@ -186,7 +181,7 @@ const jsonLd = [
       <SectionHeader eyebrow="Where it lands" title="AI by business function" />
       <div class="cards cards--3" data-stagger>
         <div class="card">
-          <h3 class="fn-h"><span class="ic fn-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v13H3zM8 21h8M12 16v5"/></svg></span> Sales</h3>
+          <h3 class="fn-h">Sales</h3>
           <ul class="check-list mt-3">
             <li>Quote drafts from emails &amp; RFQs</li>
             <li>Lead triage and enrichment</li>
@@ -194,7 +189,7 @@ const jsonLd = [
           </ul>
         </div>
         <div class="card">
-          <h3 class="fn-h"><span class="ic ic--teal fn-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8V21H3V8M1 3h22v5H1zM10 12h4"/></svg></span> Inventory</h3>
+          <h3 class="fn-h">Inventory</h3>
           <ul class="check-list mt-3">
             <li>Delivery-note OCR → instant receipts</li>
             <li>Reorder signals from real demand</li>
@@ -202,7 +197,7 @@ const jsonLd = [
           </ul>
         </div>
         <div class="card">
-          <h3 class="fn-h"><span class="ic fn-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></span> Manufacturing</h3>
+          <h3 class="fn-h">Manufacturing</h3>
           <ul class="check-list mt-3">
             <li>Work-order summaries &amp; shift handovers</li>
             <li>Quality-check capture from the floor</li>
@@ -246,9 +241,11 @@ const jsonLd = [
 
   <!-- ===== FAQ ===== -->
   <section class="section">
-    <div class="container container--sm">
-      <SectionHeader align="center" eyebrow="FAQ" title="Fair questions" />
-      <Faq items={service.faqs} />
+    <div class="container">
+      <SectionHeader eyebrow="FAQ" title="Fair questions" />
+      <div class="after-label">
+        <Faq items={service.faqs} />
+      </div>
     </div>
   </section>
 
@@ -428,11 +425,11 @@ const jsonLd = [
   }
 
   .ok-h {
-    color: #6fd6a5;
+    color: #7fd7aa;
   }
 
   .warn-h {
-    color: #f0a06c;
+    color: #f6c177;
   }
 
   .warn-list {
@@ -508,7 +505,7 @@ const jsonLd = [
   }
 
   .roi-not {
-    color: var(--rescue-ink);
+    color: var(--ink-soft);
     font-weight: 700;
   }
 </style>

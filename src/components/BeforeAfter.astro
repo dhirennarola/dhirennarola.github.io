@@ -51,7 +51,7 @@ const more = modules.length - shown.length;
     margin: 0;
     display: grid;
     gap: var(--s-5);
-    align-items: center;
+    align-items: start;
   }
 
   @media (min-width: 860px) {
@@ -87,14 +87,17 @@ const more = modules.length - shown.length;
     line-height: 1.4;
   }
 
-  .ba-before li:nth-child(even) {
-    transform: translateY(6px);
-  }
-
   .ba-arrow {
     display: grid;
     place-items: center;
     color: var(--accent);
+    padding-top: 2.6rem;
+  }
+
+  @media (max-width: 859px) {
+    .ba-arrow {
+      padding-top: 0;
+    }
   }
 
   @media (max-width: 859px) {

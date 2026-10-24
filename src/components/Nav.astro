@@ -2,9 +2,11 @@
 import Brand from './Brand.astro';
 
 interface Props {
-  /** Kept so older pages still compile: the header is always light now. */
-  light?: boolean;
+  /** Navy bar for pages whose first band is navy (the homepage) */
+  dark?: boolean;
 }
+
+const { dark = false } = Astro.props;
 
 const links = [
   { href: '/services/', label: 'Services' },
@@ -24,7 +26,7 @@ const isActive = (l: (typeof links)[number]) => {
 };
 ---
 
-<header class="hd" id="hd">
+<header class:list={['hd', { 'hd--dark': dark }]} id="hd">
   <div class="hd-inner">
     <a href="/" class="brand" aria-label="Dhiren Narola — home">
       <Brand />
@@ -132,6 +134,26 @@ const isActive = (l: (typeof links)[number]) => {
     padding-inline: 1rem;
   }
 
+  /* navy variant: same layout, brand colours reversed */
+  .hd--dark {
+    background: var(--navy-900);
+    border-bottom-color: var(--navy-line);
+  }
+
+  .hd--dark .brand,
+  .hd--dark .hd-toggle {
+    color: #fff;
+  }
+
+  .hd--dark .hd-links a:not(.hd-cta) {
+    color: var(--td-soft);
+  }
+
+  .hd--dark .hd-links a:not(.hd-cta):hover,
+  .hd--dark .hd-links a.active {
+    color: #fff;
+  }
+
   /* mobile toggle */
   .hd-toggle {
     display: none;
@@ -217,6 +239,21 @@ const isActive = (l: (typeof links)[number]) => {
 
     .hd.menu-open {
       background: var(--bg);
+      border-bottom-color: var(--line);
+    }
+
+    .hd--dark.menu-open .brand,
+    .hd--dark.menu-open .hd-toggle {
+      color: var(--ink-strong);
+    }
+
+    .hd--dark .hd-links a:not(.hd-cta),
+    .hd--dark .hd-links a:not(.hd-cta):hover {
+      color: var(--ink-strong);
+    }
+
+    .hd--dark .hd-links a.active:not(.hd-cta) {
+      color: var(--accent-strong);
     }
 
     .hd-toggle[aria-expanded='true'] span:nth-child(1) {

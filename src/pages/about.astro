@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import Testimonial from '../components/Testimonial.astro';
+import CtaBand from '../components/CtaBand.astro';
 import portrait from '../assets/dhiren-narola.png';
 import {
   numbers,
@@ -28,12 +29,13 @@ import { breadcrumbs } from '../data/schema';
   <section class="section section--l about-hero">
     <div class="container about-grid">
       <div>
-        <span class="eyebrow rv-h" data-h="1">About</span>
-        <h1 class="rv-h about-h1" data-h="2">Not just code.<br />Business outcomes.</h1>
-        <p class="lede rv-h" data-h="3">
-          Most ERP projects don't fail on code — they fail in the gap between
-          what the business needs and what gets built. I've spent my entire
-          career closing that gap.
+        <span class="kicker">About</span>
+        <h1 class="about-h1">I design and deliver Odoo ERPs, and I stay accountable for them.</h1>
+        <p class="lede">
+          Most ERP projects fail in the gap between what the business needs and
+          what gets built. I have spent five years working in that gap, first as
+          an engineer and team lead at an Odoo partner, now as an independent
+          architect.
         </p>
         <div class="intro-actions rv-h" data-h="4">
           <a href="/contact/" class="btn btn--primary">Work with me <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></a>
@@ -59,59 +61,41 @@ import { breadcrumbs } from '../data/schema';
     </div>
   </section>
 
-  <!-- ===== Dark stat band ===== -->
-  <section class="section--dark on-dark statband-sec" aria-label="Career numbers">
-    <div class="container">
-      <div class="statband" data-stagger>
-        <div><div class="stat-num" >22</div><div class="stat-lbl">ERPs live</div></div>
-        <div><div class="stat-num" >13</div><div class="stat-lbl">Countries</div></div>
-        <div><div class="stat-num">11–20</div><div class="stat-lbl">Odoo versions</div></div>
-        <div><div class="stat-num" >7</div><div class="stat-lbl">Developers led</div></div>
-        <div><div class="stat-num" >300+</div><div class="stat-lbl">Users, largest ERP</div></div>
-        <div><div class="stat-num" >0</div><div class="stat-lbl">Failed go-lives</div></div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== Story ===== -->
   <section class="section">
-    <div class="container container--md">
+    <div class="container">
       <SectionHeader
         eyebrow="The story"
-        title="Five years, one ecosystem, compounding depth"
+        title="Five years in the Odoo ecosystem"
       />
-      <div class="story-copy reveal">
+      <div class="story-copy after-label">
         <p>
-          I started in Odoo in 2021 — while still completing my engineering
-          degree — and never left the ecosystem. That focus is deliberate: ERP
-          is a domain where depth compounds. Every implementation teaches you
-          patterns the next one needs, and after
+          I started working with Odoo in 2021, while still finishing my
+          engineering degree, and I have stayed with it since. ERP rewards depth:
+          every implementation teaches patterns the next one needs. After
           <strong>{numbers.implementationsExact}</strong> across
-          <strong>13 countries</strong>, you stop being surprised.
+          <strong>13 countries</strong>, very little surprises me.
         </p>
         <p>
-          Nearly five years at <strong>{career.synodica.company}</strong>, an
-          <a href={career.synodica.partnerUrl} target="_blank" rel="noopener">Odoo Silver Partner</a>,
-          took me from junior engineer to <strong>Development Team Lead</strong>
-          — a team of {numbers.developersLed} developers, four concurrent
-          projects, architecture decisions, hiring, and client strategy. I
-          introduced AI-driven development workflows that raised the team's
-          productivity by roughly 30% — the same acceleration my clients get
-          today.
+          I spent nearly five years at <strong>{career.synodica.company}</strong>, an
+          <a href={career.synodica.partnerUrl} target="_blank" rel="noopener">Odoo Silver Partner</a>.
+          I went from junior engineer to <strong>Development Team Lead</strong>,
+          running a team of {numbers.developersLed} developers across four
+          projects at once, with architecture decisions, hiring and client
+          strategy. I also brought AI-assisted development into the team, which
+          raised its productivity by about 30%.
         </p>
         <p>
           Since mid-2026 I work directly with clients as an independent
           architect. Right now that includes
-          <strong>{career.currentEngagement.descriptor}</strong>, where
-          I'm architecting and building their ERP platform end-to-end.
+          <strong>{career.currentEngagement.descriptor}</strong>, where I am
+          designing and building their ERP from start to finish.
         </p>
         <p>
-          What I actually sell isn't Odoo modules or AI integrations — it's
-          <strong>ownership</strong>. One person who understands your business
-          case, architects the system, writes or directs the code, and answers
-          for the outcome. That model is why my go-live record is
-          {numbers.failedGoLives} failures in {numbers.implementations}
-          implementations.
+          What I really offer is <strong>ownership</strong>: one person who
+          understands your business case, designs the system, writes or directs
+          the code, and answers for the result. That is why none of my
+          {numbers.implementations} implementations has failed at go-live.
         </p>
       </div>
     </div>
@@ -119,20 +103,20 @@ import { breadcrumbs } from '../data/schema';
 
   <!-- ===== Timeline ===== -->
   <section class="section section--subtle">
-    <div class="container container--md">
+    <div class="container">
       <SectionHeader
         eyebrow="Career"
         title="Four roles in five years"
-        desc="One ecosystem, steadily increasing ownership — verifiable on LinkedIn."
+        desc="One ecosystem, with more ownership at each step. Every role is listed on LinkedIn."
       />
-      <div class="tl" data-stagger>
+      <div class="tl after-label">
         <div class="tl-item tl-item--now">
           <h3>{career.independent.role}</h3>
           <div class="tl-meta">{career.independent.period} · Remote, global · <span class="tl-current">Current</span></div>
           <p>{career.independent.note} Currently architecting the ERP platform for {career.currentEngagement.descriptor}.</p>
         </div>
         <div class="tl-item">
-          <h3>Development Team Lead — {career.synodica.company} <span class="pill pill--accent tl-pill">{career.synodica.badge}</span></h3>
+          <h3>Development Team Lead, {career.synodica.company} <span class="pill pill--accent tl-pill">{career.synodica.badge}</span></h3>
           <div class="tl-meta">Sep 2024 – Jul 2026 · {career.synodica.location}</div>
           <p>Led {numbers.developersLed} developers across 4 concurrent ERP projects. ~30% productivity gain via AI-driven workflows; ~25% fewer delivery delays via structured deployment processes.</p>
         </div>
@@ -149,16 +133,16 @@ import { breadcrumbs } from '../data/schema';
   <section class="section">
     <div class="container">
       <SectionHeader
-        eyebrow="Credentials &amp; products"
-        title="Certified, published, verifiable"
+        eyebrow="Credentials"
+        title="Certification and published work"
       />
       <div class="cards cards--3" data-stagger>
         <div class="card card--hover">
           <span class="pill pill--accent self-start">Vendor certification</span>
           <h3>Odoo 18 Functional Certification</h3>
           <p class="clamp3 grow">
-            Official certification issued by Odoo S.A. — validated across
-            Accounting, Sales, Purchase, Inventory, HR, and Manufacturing.
+            Official certification issued by Odoo S.A., covering Accounting,
+            Sales, Purchase, Inventory, HR and Manufacturing.
           </p>
           <a
             href="https://www.linkedin.com/in/dhirennarola/details/certifications/"
@@ -176,11 +160,11 @@ import { breadcrumbs } from '../data/schema';
           </p>
         </div>
         <div class="card card--hover">
-          <span class="pill pill--grad self-start">Published products</span>
+          <span class="pill pill--accent self-start">Published products</span>
           <h3>3 apps on the Odoo App Store</h3>
           <p class="clamp3 grow">
-            {odooStoreApps.map((a) => a.name).join(' · ')} — built and
-            maintained for Odoo 19 &amp; 20.
+            {odooStoreApps.map((a) => a.name).join(' · ')}. Built and
+            maintained for Odoo 19 and 20.
           </p>
           <a href={contact.odooApps} target="_blank" rel="noopener" class="link-arr">
             View on the App Store <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
@@ -195,10 +179,10 @@ import { breadcrumbs } from '../data/schema';
     <div class="container">
       <SectionHeader
         eyebrow="Testimonials"
-        title="All four, in full view"
-        desc="Verified LinkedIn recommendations from clients, my director, and a CTO colleague — every one verifiable at the source."
+        title="What clients and colleagues say"
+        desc="Four LinkedIn recommendations: two clients, my former director and a colleague. Each one links to the original."
       />
-      <div class="cards" data-stagger>
+      <div class="cards refs-grid">
         {recommendations.map((rec, i) => (
           <Testimonial {...rec} featured={i === 0} />
         ))}
@@ -206,20 +190,20 @@ import { breadcrumbs } from '../data/schema';
     </div>
   </section>
 
-  <!-- ===== CTA ===== -->
-  <section class="cta-band on-dark">
-    <div class="container">
-      <h2 class="reveal">The person you just read about answers your inquiry personally.</h2>
-      <div class="cta-actions reveal">
-        <a href="/contact/" class="btn btn--primary btn--lg">
-          Book a discovery call <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
-        </a>
-      </div>
-    </div>
-  </section>
+  <CtaBand
+    title="The person you just read about answers your message personally."
+  />
 </Base>
 
 <style>
+  .story-copy {
+    max-width: 68ch;
+  }
+
+  .tl {
+    max-width: 68ch;
+  }
+
   .self-start {
     align-self: flex-start;
   }
@@ -241,7 +225,7 @@ import { breadcrumbs } from '../data/schema';
   }
 
   .about-h1 {
-    font-size: var(--text-3xl);
+    max-width: 20ch;
   }
 
   .intro-actions {
@@ -280,22 +264,6 @@ import { breadcrumbs } from '../data/schema';
     color: var(--accent-strong);
   }
 
-  /* stat band */
-  .statband-sec {
-    padding-block: var(--sec-s);
-  }
-
-  .statband {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--s-5);
-  }
-
-  @media (min-width: 760px) {
-    .statband {
-      grid-template-columns: repeat(6, 1fr);
-    }
-  }
 
   /* story */
   .story-copy {

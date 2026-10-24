@@ -107,9 +107,9 @@ export const services: Service[] = [
     pill: { label: 'Urgent work, handled calmly', kind: 'rescue' },
     headline: 'Your Odoo project went wrong. That’s recoverable — and you’re not alone.',
     lede: 'Roughly 40% of ERP projects underdeliver. I specialize in the ones that already have: stalled builds, broken go-lives, vanished partners. Rapid independent assessment, honest verdict, fixed-quote recovery.',
-    metaTitle: 'Odoo ERP Rescue & Recovery | Dhiren Narola',
+    metaTitle: 'ERP Rescue Services for Failed Odoo Projects | Dhiren Narola',
     metaDescription:
-      'Failed or stalled Odoo implementation? Independent rescue assessment in days, not weeks — honest verdict on what’s salvageable and a fixed-quote recovery plan.',
+      'ERP rescue for failed or stalled Odoo implementations: an independent assessment in days, a clear verdict on what to keep, and a fixed-quote recovery plan.',
     problems: [
       {
         title: 'The signs are usually unmistakable',

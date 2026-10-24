@@ -1,5 +1,5 @@
 ---
-title: 'ZATCA Phase 2 e-Invoicing in Odoo: A Practical Implementation Guide'
+title: 'ZATCA Phase 2 e-invoicing in Odoo: a practical implementation guide'
 metaTitle: "ZATCA Phase 2 e-Invoicing in Odoo: Practical Guide"
 description: 'What actually matters when connecting Odoo to ZATCA Fatoora: clearance flows, failure handling, and the mistakes that cost the most time.'
 publishDate: 2026-07-01
