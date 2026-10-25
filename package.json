@@ -10,7 +10,8 @@
     "og": "node scripts/generate-og.mjs",
     "banners": "node scripts/generate-linkedin.mjs",
     "map": "node scripts/generate-map.mjs",
-    "build:stage": "node scripts/build-stage.mjs"
+    "build:stage": "node scripts/build-stage.mjs",
+    "deploy:stage": "npm run build:stage && npx wrangler@4 deploy --config wrangler.stage.jsonc"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",
