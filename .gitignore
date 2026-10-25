@@ -6,3 +6,6 @@ npm-debug.log*
 
 # Local editor/agent dev-server config — machine specific
 .claude/
+
+# Cloudflare wrangler local cache
+.wrangler/
