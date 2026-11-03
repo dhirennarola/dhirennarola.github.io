@@ -19,7 +19,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) =>
-        !page.includes('/thanks') && !page.includes('/privacy'),
+        !page.includes('/thanks') && !page.includes('/privacy') && !page.includes('/book/'),
       // No lastmod. It used to be stamped with the build time, which told
       // crawlers all 24 pages changed on every deploy — even a CSS tweak.
       // Google explicitly distrusts (and then ignores) lastmod that behaves

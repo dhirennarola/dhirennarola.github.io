@@ -13,9 +13,9 @@
 | Where they came from | Reports → Acquisition → **Traffic acquisition** | Google, LinkedIn, WhatsApp, direct, referral, UTM campaigns |
 | How far they scrolled | Reports → Engagement → Events → **`scroll_depth`** | Fires at 25 / 50 / 75 / 100 % per page |
 | Which links they clicked out | Event **`outbound_click`** (LinkedIn/GitHub/Odoo store) + `click` (Enhanced Measurement) | |
-| Did they reach the meeting page | Pages report → `/contact` page_views | |
+| Did they reach the meeting page | Pages report → `/contact` and `/book` page_views | `/book/` is the direct booking page used in outreach links (noindex, not in the menu) |
 | Did they *intend* to book | Event **`book_call_click`** | Any "Book a call" button / Calendly / contact link |
-| **Did they actually book a meeting** | Event **`meeting_booked`** | Fired when Calendly confirms the booking inside the embed |
+| **Did they actually book a meeting** | Event **`meeting_booked`** | Fired when Calendly confirms the booking inside the embed; `page` = `/contact/` or `/book/` |
 | Did they send an inquiry | Event **`generate_lead`** | Contact form success — carries budget/timeline/company-size (no PII) |
 | Did they contact you another way | Event **`contact_click`** | `method` = email / phone / whatsapp |
 | Did they download the résumé | Event **`file_download`** | |
