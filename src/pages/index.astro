@@ -204,7 +204,7 @@ const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
             alt="Dhiren Narola, Odoo architect"
             width={640}
             widths={[320, 480, 640]}
-            sizes="(max-width: 959px) min(300px, 70vw), 340px"
+            sizes="(max-width: 959px) 220px, 340px"
             loading="eager"
             fetchpriority="high"
           />
@@ -442,7 +442,7 @@ const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
 <style>
   /* ---- Hero ---- */
   .home-hero {
-    padding-top: calc(var(--nav-h) + clamp(3rem, 7vw, 5.5rem));
+    padding-top: calc(var(--nav-h) + clamp(2rem, 3.5vw, 3rem));
     padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
   }
 
@@ -458,7 +458,7 @@ const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
 
   .hero-facts {
     list-style: none;
-    margin: var(--s-7) 0 0;
+    margin: var(--s-6) 0 0;
     padding: var(--s-4) 0 0;
     border-top: 1px solid var(--navy-line);
     display: grid;
@@ -520,7 +520,29 @@ const jsonLd = [professionalServiceSchema(), faqSchema(faqs)];
   }
 
   .home-hero .ledger {
-    margin-top: clamp(3rem, 6vw, 4.5rem);
+    margin-top: clamp(2rem, 3vw, 2.5rem);
+  }
+
+  /* Phones: the proof numbers come right after the text, then a smaller photo */
+  @media (max-width: 959px) {
+    .home-hero .container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-grid {
+      display: contents;
+    }
+
+    .home-hero .ledger {
+      order: 1;
+    }
+
+    .hero-portrait {
+      order: 2;
+      max-width: 220px;
+      margin-top: var(--s-7);
+    }
   }
 
   /* ---- Starting points ---- */

@@ -41,6 +41,9 @@ const isActive = (l: (typeof links)[number]) => {
       </a>
     </nav>
 
+    <!-- Phones: keep booking one tap away, outside the menu -->
+    <a href="/contact/" class="btn btn--primary hd-cta-m">Book a call</a>
+
     <button
       class="hd-toggle"
       id="hdToggle"
@@ -179,12 +182,39 @@ const isActive = (l: (typeof links)[number]) => {
       opacity var(--t-med) ease;
   }
 
+  .hd-cta-m {
+    display: none;
+  }
+
   @media (max-width: 900px) {
     .hd-toggle {
       display: flex;
     }
 
+    .hd-cta-m {
+      display: inline-flex;
+      height: 36px;
+      padding-inline: 0.85rem;
+      margin-left: auto;
+      font-size: var(--text-xs);
+    }
+
+    .hd.menu-open .hd-cta-m {
+      visibility: hidden;
+    }
+
     .hd-inner {
+      gap: var(--s-3);
+    }
+
+    .hd-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* logo and close button stay on top of the open menu */
+    .brand,
+    .hd-toggle {
       position: relative;
       z-index: 2;
     }
@@ -237,9 +267,12 @@ const isActive = (l: (typeof links)[number]) => {
       height: 52px;
     }
 
+    /* No blur while open: backdrop-filter would trap the fixed menu inside the 64px bar */
     .hd.menu-open {
       background: var(--bg);
       border-bottom-color: var(--line);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
     }
 
     .hd--dark.menu-open .brand,
