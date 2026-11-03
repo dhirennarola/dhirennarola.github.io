@@ -25,7 +25,7 @@ npm run deploy:stage
 
 This runs the staging build and uploads `dist/` with
 `wrangler deploy --config wrangler.stage.jsonc`. The first time on a new computer,
-run `npx wrangler login` and approve it in the browser.
+run `npx --yes wrangler@4 login` and approve it in the browser.
 
 ## Add or remove a reviewer
 
