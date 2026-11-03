@@ -1,0 +1,139 @@
+---
+import Base from '../layouts/Base.astro';
+import { contact } from '../data/facts';
+import { callHours, otherCityHours } from '../data/callHours';
+
+/* Direct booking page for outreach links only: not in the menu, footer,
+   sitemap or llms.txt, and noindex. The calendar comes first, no form. */
+const calendlyUrl = `${contact.calendly}?hide_gdpr_banner=1&primary_color=2f7df6`;
+---
+
+<Base
+  title="Book a 30-minute call | Dhiren Narola"
+  description="Pick a time for a 30-minute call about your Odoo project."
+  path="/book/"
+  noindex
+>
+  <section class="hero book-hero on-dark">
+    <div class="container book-wrap">
+      <h1 class="book-h1">Book a 30-minute call</h1>
+      <ul class="book-note">
+        <li>We talk about your Odoo setup, what is not working and what a good next step looks like.</li>
+        <li>
+          Call hours: {callHours.days}, {callHours.start} to {callHours.end} IST
+          (<span id="cityHours">{otherCityHours()}</span>).
+        </li>
+        <li>The calendar shows times in your own time zone.</li>
+      </ul>
+
+      <div class="card book-cal">
+        <div id="calendly" class="book-cal-frame" data-url={calendlyUrl}></div>
+        <noscript>
+          <a href={contact.calendly} target="_blank" rel="noopener">Open the booking calendar</a>
+        </noscript>
+      </div>
+
+      <p class="book-alt">
+        No time that suits you? <!--email_off--><a href={`mailto:${contact.email}`}>Email me</a><!--/email_off-->
+        and we will find one.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .book-hero {
+    padding: calc(var(--nav-h) + var(--s-6)) 0 var(--s-7);
+  }
+
+  .book-wrap {
+    max-width: 880px;
+  }
+
+  .book-h1 {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--s-4);
+  }
+
+  .book-note {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--s-5);
+    display: grid;
+    gap: var(--s-2);
+    font-size: var(--text-sm);
+    color: var(--td-soft);
+  }
+
+  .book-note li {
+    position: relative;
+    padding-left: 1.1rem;
+  }
+
+  .book-note li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+
+  .book-cal {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .book-cal-frame {
+    min-width: 300px;
+    height: 880px; /* phones: Calendly stacks the event details above the month */
+  }
+
+  @media (min-width: 700px) {
+    .book-cal-frame {
+      height: 700px;
+    }
+  }
+
+  .book-alt {
+    margin: var(--s-4) 0 0;
+    font-size: var(--text-xs);
+    color: var(--td-faint);
+  }
+</style>
+
+<script>
+  import { otherCityHours } from '../data/callHours';
+
+  // Today's times (the page may have been built before a summer-time change).
+  const cityHours = document.getElementById('cityHours');
+  if (cityHours) cityHours.textContent = otherCityHours();
+
+  // Calendly embed with the UTM values from this page's link, so each booking
+  // shows which message or post it came from.
+  const frame = document.getElementById('calendly');
+  if (frame) {
+    const q = new URLSearchParams(location.search);
+    // Only the ones in the link: Calendly writes a missing value as "undefined".
+    const utm: Record<string, string> = {};
+    for (const key of ['source', 'medium', 'campaign', 'content', 'term']) {
+      const value = q.get(`utm_${key}`);
+      if (value) utm[`utm${key[0].toUpperCase()}${key.slice(1)}`] = value;
+    }
+    const s = document.createElement('script');
+    s.src = 'https://assets.calendly.com/assets/external/widget.js';
+    s.async = true;
+    s.onload = () => {
+      (window as any).Calendly?.initInlineWidget({
+        url: frame.dataset.url,
+        parentElement: frame,
+        utm,
+      });
+    };
+    document.head.appendChild(s);
+  }
+  // A finished booking sends GA4 `meeting_booked` with page "/book/"
+  // through the Calendly listener in Base.astro.
+</script>
