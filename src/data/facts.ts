@@ -26,6 +26,7 @@ export const contact = {
   linkedin: 'https://www.linkedin.com/in/dhirennarola/',
   github: 'https://github.com/dhirennarola',
   odooApps: 'https://apps.odoo.com/apps/browse?repo_maintainer_id=896503',
+  clutch: 'https://clutch.co/profile/dhiren-narola',
   web3formsKey: '552410a0-db58-44da-91d0-cd5782abf7ae',
   responseTime: '8 business hours',
 } as const;

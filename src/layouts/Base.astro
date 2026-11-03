@@ -77,7 +77,7 @@ const personSchema = {
     addressCountry: 'IN',
   },
   nationality: { '@type': 'Country', name: 'India' },
-  sameAs: [contact.linkedin, contact.github, contact.odooApps],
+  sameAs: [contact.linkedin, contact.github, contact.odooApps, contact.clutch],
   knowsLanguage: ['en', 'hi', 'gu'],
   knowsAbout: [
     'Odoo ERP',
@@ -224,6 +224,7 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
     if(/calendly\\.com/i.test(href) || /\\/contact\\/?($|#|\\?)/.test(href) || (el.dataset&&el.dataset.cta==='book') || /book (a|the) (call|discovery|meeting)/i.test(txt)){ track('book_call_click',{link_text:txt,page:location.pathname}); return; }
     if(/linkedin\\.com/i.test(href)){ track('outbound_click',{destination:'linkedin',page:location.pathname}); return; }
     if(/github\\.com/i.test(href)){ track('outbound_click',{destination:'github',page:location.pathname}); return; }
+    if(/clutch\\.co/i.test(href)){ track('outbound_click',{destination:'clutch',page:location.pathname}); return; }
     if(/apps\\.odoo\\.com/i.test(href)){ track('outbound_click',{destination:'odoo_app_store',page:location.pathname}); return; }
   }, true);
   window.addEventListener('message', function(e){
