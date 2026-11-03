@@ -11,9 +11,9 @@ const year = new Date().getFullYear();
       <div class="ft-brand">
         <a href="/" class="ft-logo" aria-label="Dhiren Narola — home"><Brand /></a>
         <p>
-          {site.title}. Odoo 18 certified · {numbers.implementations} implementations
-          · {numbers.countries} countries · full ownership from architecture to
-          go-live.
+          Independent Odoo architect. Odoo&nbsp;18 certified,
+          {numbers.implementations}&nbsp;implementations live in
+          {numbers.countries}&nbsp;countries.
         </p>
       </div>
 
@@ -31,7 +31,7 @@ const year = new Date().getFullYear();
         <a href="/services/erp-implementation/">ERP Implementation</a>
         <a href="/services/erp-rescue/">ERP Rescue</a>
         <a href="/services/ai-odoo/">AI + Odoo</a>
-        <a href="/services/integrations-einvoicing/">Integrations &amp; e-Invoicing</a>
+        <a href="/services/integrations-einvoicing/">Integrations &amp; e&#8209;Invoicing</a>
         <a href="/services/dedicated-team/">Dedicated Team</a>
       </nav>
 
@@ -40,6 +40,7 @@ const year = new Date().getFullYear();
         <a href={contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
         <a href={contact.github} target="_blank" rel="noopener">GitHub</a>
         <a href={contact.odooApps} target="_blank" rel="noopener">Odoo App Store</a>
+        <a href={contact.clutch} target="_blank" rel="noopener">Clutch</a>
         <a href={whatsappUrl()} target="_blank" rel="noopener">WhatsApp</a>
         {/* email_off: Cloudflare Scrape Shield otherwise rewrites this mailto to
             /cdn-cgi/l/email-protection, which leaves no-JS visitors and AI
@@ -52,7 +53,7 @@ const year = new Date().getFullYear();
       <span>© {year} {site.name}. All rights reserved.</span>
       {availability.active && (
         <span class="ft-avail">
-          <span class="dot dot--pulse" aria-hidden="true"></span>
+          <span class="dot" aria-hidden="true"></span>
           {availability.short}
         </span>
       )}
@@ -63,7 +64,7 @@ const year = new Date().getFullYear();
 
 <style>
   .ft {
-    background: var(--navy-950);
+    background: var(--navy-900);
     color: var(--td-faint);
     font-size: var(--text-sm);
   }
@@ -82,14 +83,14 @@ const year = new Date().getFullYear();
     }
   }
 
-  .ft-logo {
+  .ft .ft-logo {
     display: inline-flex;
     color: var(--td);
     margin-bottom: var(--s-3);
     transition: color var(--t-fast) ease;
   }
 
-  .ft-logo:hover {
+  .ft .ft-logo:hover {
     color: #fff;
   }
 
@@ -107,20 +108,20 @@ const year = new Date().getFullYear();
 
   .ft-col h2 {
     color: var(--td);
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.04em;
     margin: 0 0 var(--s-3);
   }
 
-  .ft-col a {
-    color: var(--td-faint);
+  .ft .ft-col a {
+    color: var(--td-soft);
   }
 
-  .ft-col a:hover {
-    color: var(--td);
+  .ft .ft-col a:hover {
+    color: #fff;
   }
 
   .ft-bottom {

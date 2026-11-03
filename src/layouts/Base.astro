@@ -1,7 +1,7 @@
 ---
 import '@fontsource-variable/inter';
 import '@fontsource-variable/space-grotesk';
-import '@fontsource-variable/manrope';
+import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
@@ -18,8 +18,10 @@ interface Props {
   ogType?: 'website' | 'article' | 'profile';
   jsonLd?: object[];
   noindex?: boolean;
-  /** Utility pages with light backgrounds start the header in its white-glass state */
+  /** Kept so older pages still compile: every header is light by default */
   headerLight?: boolean;
+  /** Navy header bar, for pages that open with the navy brand band (the homepage) */
+  navDark?: boolean;
 }
 
 const {
@@ -31,9 +33,13 @@ const {
   jsonLd = [],
   noindex = false,
   headerLight = false,
+  navDark = false,
 } = Astro.props;
 
 const canonical = pageUrl(path);
+/** Staging builds (npm run build:stage) are never indexed and never tracked. */
+const isStage = import.meta.env.PUBLIC_STAGE === '1';
+const robotsOff = noindex || isStage;
 const ogImageAbs = new URL(ogImage, site.url).href;
 
 /* No <meta name="keywords">. Google announced in 2009 that it disregards the
@@ -71,7 +77,7 @@ const personSchema = {
     addressCountry: 'IN',
   },
   nationality: { '@type': 'Country', name: 'India' },
-  sameAs: [contact.linkedin, contact.github, contact.odooApps],
+  sameAs: [contact.linkedin, contact.github, contact.odooApps, contact.clutch],
   knowsLanguage: ['en', 'hi', 'gu'],
   knowsAbout: [
     'Odoo ERP',
@@ -146,7 +152,7 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
     <meta name="author" content={site.name} />
     <meta name="creator" content={site.name} />
     <meta name="publisher" content={site.name} />
-    {noindex ? (
+    {robotsOff ? (
       <meta name="robots" content="noindex, nofollow" />
     ) : (
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -177,14 +183,14 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
-    <meta name="theme-color" content="#0a1a33" />
+    <meta name="theme-color" content="#fafbfc" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     {allSchemas.map((schema) => (
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}
 
-    {site.gaMeasurementId && (
+    {site.gaMeasurementId && !isStage && (
       <>
         {/* gtag() queues into dataLayer straight away, but the Google script
             itself loads only after the page has finished loading, so it never
@@ -218,6 +224,7 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
     if(/calendly\\.com/i.test(href) || /\\/contact\\/?($|#|\\?)/.test(href) || (el.dataset&&el.dataset.cta==='book') || /book (a|the) (call|discovery|meeting)/i.test(txt)){ track('book_call_click',{link_text:txt,page:location.pathname}); return; }
     if(/linkedin\\.com/i.test(href)){ track('outbound_click',{destination:'linkedin',page:location.pathname}); return; }
     if(/github\\.com/i.test(href)){ track('outbound_click',{destination:'github',page:location.pathname}); return; }
+    if(/clutch\\.co/i.test(href)){ track('outbound_click',{destination:'clutch',page:location.pathname}); return; }
     if(/apps\\.odoo\\.com/i.test(href)){ track('outbound_click',{destination:'odoo_app_store',page:location.pathname}); return; }
   }, true);
   window.addEventListener('message', function(e){
@@ -236,7 +243,7 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
-    <Nav light={headerLight} />
+    <Nav dark={navDark} />
     <main id="main">
       <slot />
     </main>
@@ -244,105 +251,8 @@ const allSchemas = [personSchema, websiteSchema, ...jsonLd];
     <WhatsAppFloat />
 
     <script>
-      // All motion: IntersectionObserver + transform/opacity only. No scroll jank.
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      /* Reveal + stagger + section-head underline */
-      const revealEls = document.querySelectorAll('.reveal, [data-stagger]');
-      if (reduced) {
-        revealEls.forEach((el) => el.classList.add('visible', 'settled'));
-      } else {
-        const io = new IntersectionObserver(
-          (entries) => {
-            for (const e of entries) {
-              if (e.isIntersecting) {
-                e.target.classList.add('visible');
-                // entrance (600ms) + max stagger delay (490ms) → then release
-                // the transition back to hover effects
-                setTimeout(() => e.target.classList.add('settled'), 1150);
-                io.unobserve(e.target);
-              }
-            }
-          },
-          // Tiny threshold + generous margins: the entrance starts just
-          // before the element scrolls in (from either direction), so fast
-          // scrolling never shows blank gaps, and very tall blocks still
-          // trigger reliably.
-          { threshold: 0.03, rootMargin: '30% 0px 12% 0px' }
-        );
-        // Anything already on screen at load (or above it after an anchor
-        // jump) shows immediately — no entrance for content you're already
-        // looking at. Read every position first, then change classes: mixing
-        // reads and writes in one loop forces a full page layout per element.
-        const vh = window.innerHeight;
-        const onScreen = [...revealEls].map((el) => {
-          const r = el.getBoundingClientRect();
-          return r.top < vh * 0.85 && r.bottom > 0;
-        });
-        revealEls.forEach((el, i) => {
-          if (onScreen[i]) {
-            el.classList.add('visible');
-            setTimeout(() => el.classList.add('settled'), 1150);
-          } else {
-            io.observe(el);
-          }
-        });
-      }
-
-      /* Animated counters.
-         The real value is already rendered as text in the HTML, so crawlers,
-         AI fetchers, and no-JS visitors always read the true number — JS only
-         replays it as a count-up. Counters already on screen at load keep their
-         printed value untouched: re-animating them would flash 22 → 0 → 22. */
-      const animateCount = (el: HTMLElement) => {
-        const target = parseFloat(el.dataset.count || '0');
-        const suffix = el.dataset.suffix || '';
-        const t0 = performance.now();
-        const dur = 900;
-        const step = (t: number) => {
-          const p = Math.min((t - t0) / dur, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.round(target * eased).toLocaleString('en-US') + suffix;
-          if (p < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-      };
-      if (!reduced) {
-        const cio = new IntersectionObserver(
-          (entries) =>
-            entries.forEach((e) => {
-              if (e.isIntersecting) {
-                animateCount(e.target as HTMLElement);
-                cio.unobserve(e.target);
-              }
-            }),
-          { threshold: 0.6 }
-        );
-        document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
-          const r = el.getBoundingClientRect();
-          if (r.top < window.innerHeight && r.bottom > 0) return;
-          cio.observe(el);
-        });
-      }
-
-      /* Rotating skill line (fixed height — zero layout shift) */
-      document.querySelectorAll('.rotator').forEach((rot) => {
-        const items = [...rot.querySelectorAll('span')];
-        if (items.length < 2) return;
-        let i = 0;
-        items[0].classList.add('on');
-        if (reduced) return;
-        setInterval(() => {
-          items[i].classList.remove('on');
-          items[i].classList.add('off');
-          const prev = i;
-          i = (i + 1) % items.length;
-          items[i].classList.remove('off');
-          items[i].classList.add('on');
-          setTimeout(() => items[prev].classList.remove('off'), 500);
-        }, 3200);
-      });
-
+      // The only page script left: Odoo-style tabs. Content is visible at
+      // rest, so there is no scroll-triggered motion to set up.
       /* Tabs (industry expertise) */
       document.querySelectorAll('[role="tablist"]').forEach((list) => {
         const tabs = [...list.querySelectorAll<HTMLButtonElement>('.tab')];

@@ -10,7 +10,7 @@ import { breadcrumbs } from '../data/schema';
   path="/contact"
   jsonLd={[breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }])]}
 >
-  <header class="hero hero--sub on-dark">
+  <header class="hero hero--sub">
     <div class="container">
       <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Contact</span>
@@ -23,8 +23,8 @@ import { breadcrumbs } from '../data/schema';
       )}
       <h1 class="rv-h contact-h1" data-h="2">Let's see if we're a fit.</h1>
       <p class="lede rv-h" data-h="3">
-        Book the call directly, or write first — whichever suits you. Either
-        way: I reply within <strong>{contact.responseTime}</strong>, I come
+        Book the call directly, or write first, whichever suits you. Either
+        way, I reply within <strong>{contact.responseTime}</strong>, I come
         prepared with questions about your business, and you'll have a written
         proposal within 3–5 business days if we proceed.
       </p>

@@ -1,44 +1,56 @@
-# Dhiren Narola — Odoo Architect & AI Automation Engineer
+# Dhiren Narola — Independent Odoo Architect
 
-> Dhiren Narola is an Odoo 18 certified ERP architect and AI automation engineer
-> based in Surat, India, working with international clients across the USA,
-> Europe, the Middle East (Saudi Arabia, UAE), and Asia. 22 Odoo ERP
-> implementations delivered across 13 countries. Specialties: Odoo ERP
-> implementation, ERP rescue and recovery, ZATCA Phase 2 e-invoicing compliance,
-> WhatsApp Business API automation, and AI agents / LLM integrations for ERP.
-> Also known as: Dhiren, Narola, Dhiren Narola Odoo developer.
+> Dhiren Narola is an independent Odoo ERP architect based in Surat, India, working
+> remotely for companies in Saudi Arabia and the GCC, Europe, the United States,
+> Australia and New Zealand. Odoo 18 certified (functional certification by Odoo S.A.).
+> 22 Odoo implementations live across 13 countries, with no failed go-live. He leads
+> each project himself, from the first workshop to go-live, instead of handing it to
+> a junior team. Work: Odoo implementation, rescue of failed or stalled Odoo projects,
+> ZATCA Phase 2 e-invoicing and integrations, AI on Odoo 19 and 20, and senior
+> white-label delivery for Odoo partners.
 
 Contact: hello@dhirennarola.com · https://dhirennarola.com/contact/
+Discovery call: https://calendly.com/dhnarola12/30min
+
+## Key facts
+
+- Odoo versions worked on: 11 to 20. Upgrades delivered include 14 to 18, 15 to 18, 15 to 19 and 18 to 19.
+- Countries delivered: Saudi Arabia, UAE, Qatar, Egypt, Rwanda, Netherlands, Germany, United States, Mexico, New Zealand, Australia, Laos, India.
+- Main Odoo areas: Accounting, Sales, Purchase, Inventory, Manufacturing (MRP), HR and Payroll, Helpdesk, Subscriptions.
+- Published Odoo App Store apps (Odoo 19 and 20): Chatter Panel Control, Chatter Access Control, POS Product Quick Favourites.
+- Previously Development Team Lead at Synodica Solutions (Odoo Silver Partner), leading 7 developers.
+- Engagements start at $2,000 USD; full implementations are quoted as a fixed written proposal.
 
 ## Services
 
-- [ERP Implementation](https://dhirennarola.com/services/erp-implementation/): Full Odoo implementations — architecture to go-live, one accountable expert
-- [ERP Rescue](https://dhirennarola.com/services/erp-rescue/): Recovery of failed or stalled Odoo/ERP projects
-- [AI + Odoo](https://dhirennarola.com/services/ai-odoo/): AI agents, LLM integrations, and automation layered on Odoo ERP
-- [Integrations & e-Invoicing](https://dhirennarola.com/services/integrations-einvoicing/): ZATCA Phase 2 (Saudi Arabia), WooCommerce, WhatsApp Business API
-- [Dedicated Team](https://dhirennarola.com/services/dedicated-team/): Ongoing Odoo development capacity
+- [ERP Implementation](https://dhirennarola.com/services/erp-implementation/): Full Odoo implementations, from requirements and architecture to data migration, training and go-live, led by one person
+- [ERP Rescue](https://dhirennarola.com/services/erp-rescue/): Recovery of failed or stalled Odoo projects, starting with a written assessment within days and a fixed quote
+- [AI + Odoo](https://dhirennarola.com/services/ai-odoo/): Setting up the AI built into Odoo 19 and 20 (AI agents and skills, Ask AI, AI fields, bill scanning, the Odoo 20 MCP server) with business rules, access control and cost limits, plus custom AI where Odoo stops, such as WhatsApp conversations
+- [Integrations & e-Invoicing](https://dhirennarola.com/services/integrations-einvoicing/): ZATCA Phase 2 (Saudi Arabia), WooCommerce, WhatsApp Business API, payment gateways and legacy bridges
+- [Dedicated Team](https://dhirennarola.com/services/dedicated-team/): Senior-led Odoo delivery capacity for partners, agencies and product companies, under the partner's brand
 
 ## Case Studies
 
-- [KSA Automotive ERP](https://dhirennarola.com/work/ksa-automotive-erp/): Multi-branch automotive ERP in Saudi Arabia with ZATCA compliance
-- [Pharma Manufacturing ERP](https://dhirennarola.com/work/pharma-manufacturing-erp/): Odoo MRP for pharmaceutical manufacturing
-- [Elevator Maintenance Automation](https://dhirennarola.com/work/elevator-maintenance-automation/): Field-service and maintenance automation with WhatsApp integration
-- [IT Services Billing](https://dhirennarola.com/work/it-services-billing/): Automated billing for a US IT services company
-- [Jewellery Sales Tags](https://dhirennarola.com/work/jewellery-sales-tags/): Odoo customization for jewellery retail
+- [Automotive group ERP, Saudi Arabia](https://dhirennarola.com/work/ksa-automotive-erp/): One Odoo 18 ERP for a 300+ employee automotive group, ZATCA Phase 2 at 1,500+ invoices a month, 60% less manual work
+- [Pharma manufacturing ERP, India](https://dhirennarola.com/work/pharma-manufacturing-erp/): Three systems merged into one Odoo ERP for a 225-employee producer, 50% fewer tracking errors
+- [Elevator maintenance platform, Saudi Arabia](https://dhirennarola.com/work/elevator-maintenance-automation/): Subscriptions and WhatsApp self-service for 4,000+ customers, half the call-center load replaced
+- [IT services billing, United States](https://dhirennarola.com/work/it-services-billing/): Self-allocating hour subscriptions with a customer portal, manual billing removed
+- [Jewellery retail on Odoo 19, India](https://dhirennarola.com/work/jewellery-sales-tags/): Product tagging and counter sales workflow for Caratiro Jewels
+- [Jewellery jobwork billing, India](https://dhirennarola.com/work/visaman-jobwork-billing/): Packing-list bills with any number of named charges per item, on Odoo 19
 
 ## Industries
 
-- [Automotive (KSA)](https://dhirennarola.com/industries/automotive-ksa/)
+- [Automotive & Gulf compliance](https://dhirennarola.com/industries/automotive-ksa/)
 - [Manufacturing](https://dhirennarola.com/industries/manufacturing/)
-- [Facility Management](https://dhirennarola.com/industries/facility-management/)
+- [Facility Management & Field Service](https://dhirennarola.com/industries/facility-management/)
 
 ## Insights
 
+- [ZATCA Phase 2 e-invoicing in Odoo: a practical implementation guide](https://dhirennarola.com/insights/zatca-phase-2-odoo-guide/)
 - [Signs your Odoo implementation needs rescue](https://dhirennarola.com/insights/signs-odoo-implementation-needs-rescue/)
 - [Where AI fits in your ERP](https://dhirennarola.com/insights/where-ai-fits-in-your-erp/)
-- [ZATCA Phase 2 Odoo guide](https://dhirennarola.com/insights/zatca-phase-2-odoo-guide/)
 
 ## About
 
-- [About Dhiren Narola](https://dhirennarola.com/about/): Background, timeline, certifications, client testimonials
+- [About Dhiren Narola](https://dhirennarola.com/about/): Background, career timeline, certifications and LinkedIn recommendations
 - [Profile / Résumé](https://dhirennarola.com/profile/): One-page professional profile

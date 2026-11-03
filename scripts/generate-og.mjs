@@ -60,9 +60,9 @@ const H = 630;
 
 const defaultCard = `
 <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
-  ${shell(W, H)}
+  ${shell(W, H, { flat: true })}
   ${logoTile(80, 66, 72)}
-  <rect x="80" y="180" width="56" height="8" rx="4" fill="url(#grad)"/>
+  <rect x="80" y="180" width="56" height="8" rx="4" fill="#2f7df6"/>
   <text x="78" y="298" font-family="${BRAND}" font-size="80" fill="${C.td}">Dhiren Narola<tspan fill="url(#grad)">.</tspan></text>
   <text x="80" y="366" font-family="${DISPLAY}" font-weight="700" font-size="34" fill="${C.accentOnDark}">Odoo Architect &amp; AI Automation Engineer</text>
   <text x="80" y="444" font-family="${BODY}" font-size="26" fill="${C.tdSoft}">Odoo 18 Certified  ·  22 ERP implementations  ·  13 countries</text>
@@ -113,7 +113,7 @@ for (const file of workFiles) {
 
   const card = `
 <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
-  ${shell(W, H)}
+  ${shell(W, H, { flat: true })}
   ${logoTile(80, 58, 54)}
   <text x="150" y="97" font-family="${BRAND}" font-size="32" fill="${C.td}">Dhiren Narola</text>
   <text x="80" y="180" font-family="${BODY}" font-weight="600" font-size="21" fill="${C.teal}" letter-spacing="1.4">CASE STUDY${eyebrow ? `  ·  ${esc(eyebrow.toUpperCase())}` : ''}</text>
@@ -123,7 +123,7 @@ for (const file of workFiles) {
         `<text x="80" y="${titleTop + i * lineH}" font-family="${DISPLAY}" font-weight="700" font-size="44" fill="${C.white}">${esc(l)}</text>`
     )
     .join('\n  ')}
-  <rect x="80" y="${ruleY}" width="56" height="6" rx="3" fill="url(#grad)"/>
+  <rect x="80" y="${ruleY}" width="56" height="6" rx="3" fill="#2f7df6"/>
   ${kpis
     .map((k, i) => {
       const x = 80 + i * 352;

@@ -1,0 +1,17 @@
+// Private staging site at stage.dhirennarola.com (see docs/STAGING.md).
+// Serves the static output of `npm run build:stage` from dist/.
+// There is no *.workers.dev address and no preview URLs, so the only way in
+// is the custom domain, which sits behind Cloudflare Access ("Website staging").
+{
+  "name": "dhirennarola-stage",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "stage.dhirennarola.com", "custom_domain": true }
+  ]
+}

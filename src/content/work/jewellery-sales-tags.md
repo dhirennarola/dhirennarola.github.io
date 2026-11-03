@@ -1,5 +1,5 @@
 ---
-title: 'Product Tagging & Sales Workflow for Caratiro Jewels on Odoo 19'
+title: 'Product tagging and sales workflow for Caratiro Jewels on Odoo 19'
 metaTitle: 'Jewellery Retail Tagging on Odoo 19 — Case Study'
 metaDescription: 'Odoo 19 customization for a B2C jewellery retailer: a product tagging system built for how jewellery is catalogued and sold, plus faster counter sales.'
 clientLabel: 'Caratiro Jewels · B2C jewellery retail'
@@ -20,6 +20,7 @@ heroKpis:
 story:
   problem: 'Catalogue structure flattened jewellery-specific attributes.'
   impact: 'Attribute-true tagging · faster counter sales · upgrade-safe build.'
+before: ['A standard product catalogue', 'Metal, purity and stones buried in product names']
 modules: ['Sales', 'Inventory']
 integrations: []
 tags: ['Retail', 'B2C', 'Custom Module', 'Odoo 19']
@@ -27,7 +28,7 @@ tags: ['Retail', 'B2C', 'Custom Module', 'Odoo 19']
 
 ## Executive summary
 
-Not every engagement is a 300-employee ERP program — and a portfolio that pretends otherwise isn't honest. This was a focused, well-scoped customization for **Caratiro Jewels**, a B2C jewellery retailer that sells finished pieces to consumers, on **Odoo 19**: a product tagging system matched to how jewellery is actually catalogued (metal, purity, stone, collection), and sales workflow refinements for the retail counter. Delivered quickly, on a recent Odoo release.
+Not every engagement is a 300-employee ERP program, and a portfolio that pretends otherwise isn't honest. This was a focused, well-scoped customization for **Caratiro Jewels**, a B2C jewellery retailer that sells finished pieces to consumers, on **Odoo 19**: a product tagging system matched to how jewellery is actually catalogued (metal, purity, stone, collection), and sales workflow refinements for the retail counter. Delivered quickly, on a recent Odoo release.
 
 ## Why it's here
 
@@ -35,16 +36,39 @@ Two reasons. First, it shows recent-version fluency: this build runs on Odoo 19,
 
 ## The problem
 
-Jewellery inventory doesn't behave like normal retail inventory. Every piece carries attributes — metal, purity, weight, stones, collection, design — that standard product structures flatten or bury. Because the retailer sells to consumers at the counter, staff needed products taggable and searchable the way they and their customers actually think about jewellery, without rebuilding their whole catalogue.
+Jewellery inventory doesn't behave like normal retail inventory. Every piece carries attributes (metal, purity, weight, stones, collection, design) that standard product structures flatten or bury. Because the retailer sells to consumers at the counter, staff needed products taggable and searchable the way they and their customers actually think about jewellery, without rebuilding their whole catalogue.
+
+## Solution architecture
+
+<div class="arch">
+  <div class="arch-title">System architecture: jewellery retail on Odoo 19</div>
+  <div class="arch-tier">
+    <span class="arch-label">At the counter</span>
+    <div class="arch-node arch-node--ext">Sales staff<small>find pieces by attribute</small></div>
+    <div class="arch-node arch-node--ext">Retail customers<small>quotations and orders</small></div>
+  </div>
+  <div class="arch-tier">
+    <span class="arch-label">Custom layer: jewellery tagging</span>
+    <div class="arch-node">Metal</div>
+    <div class="arch-node">Purity</div>
+    <div class="arch-node">Stone</div>
+    <div class="arch-node">Collection</div>
+  </div>
+  <div class="arch-tier">
+    <span class="arch-label">Odoo 19 core</span>
+    <div class="arch-node arch-node--core">Sales</div>
+    <div class="arch-node arch-node--core">Inventory</div>
+  </div>
+</div>
 
 ## Key custom work
 
-- **Jewellery-specific product tagging** — a tagging layer over the product catalogue so items can be classified and found by the attributes that matter at the counter.
-- **Sales workflow refinements** — quotation and order handling streamlined for fast-moving sales to retail customers.
-- **Odoo 19 delivery** — built and shipped on Odoo 19; the codebase is public on [GitHub](https://github.com/dhirennarola).
+- **Jewellery-specific product tagging:** a tagging layer over the product catalogue so items can be classified and found by the attributes that matter at the counter.
+- **Sales workflow refinements:** quotation and order handling streamlined for fast-moving sales to retail customers.
+- **Odoo 19 delivery:** built and shipped on Odoo 19; the codebase is public on [GitHub](https://github.com/dhirennarola).
 
 ## Lessons learned
 
-- **Small scopes deserve architecture too.** A tagging model designed around upgrade-safety takes the same care at 40 hours as at 400 — and the client keeps benefiting at every version bump.
+- **Small scopes deserve architecture too.** A tagging model designed around upgrade-safety takes the same care at 40 hours as at 400, and the client keeps benefiting at every version bump.
 
 > A deliberately small engagement, shown deliberately. If your need is a scoped customization rather than a full implementation, this is what working with me on one looks like.
