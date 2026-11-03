@@ -36,7 +36,7 @@ const jsonLd = [
 
 <Base title={`${name} | Dhiren Narola`} description={description} path={path} jsonLd={jsonLd}>
   <!-- ===== Hero ===== -->
-  <header class="hero hero--sub on-dark">
+  <header class="hero hero--sub">
     <div class="container">
       <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span>
@@ -55,7 +55,7 @@ const jsonLd = [
         in 5 working days, before you commit to anything.
       </p>
       <div class="ur-actions rv-h" data-h="4">
-        <a href="/contact/" class="btn btn--primary btn--lg" data-cta="book">
+        <a href="/book/?utm_source=site&utm_medium=upgrade-readiness" class="btn btn--primary btn--lg" data-cta="book">
           Book the readiness check <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
         </a>
       </div>
@@ -64,12 +64,12 @@ const jsonLd = [
 
   <!-- ===== What you get ===== -->
   <section class="section">
-    <div class="container ur-narrow">
+    <div class="container">
       <SectionHeader eyebrow="The report" title="What you get" />
-      <ul class="check-list ur-list reveal">
+      <ul class="check-list ur-list after-label reveal">
         {deliverables.map((d) => <li>{d}</li>)}
       </ul>
-      <p class="ur-note reveal">The report is yours to keep, whoever does the upgrade.</p>
+      <p class="ur-note after-label reveal">The report is yours to keep, whoever does the upgrade.</p>
     </div>
   </section>
 
@@ -77,7 +77,7 @@ const jsonLd = [
   <section class="section section--subtle">
     <div class="container">
       <SectionHeader eyebrow="Three steps" title="How it works" />
-      <ol class="ur-steps">
+      <ol class="ur-steps after-label">
         {steps.map((step, i) => (
           <li class:list={['reveal', i === 1 && 'reveal-d1', i === 2 && 'reveal-d2']}>
             <span class="ur-step-no">{String(i + 1).padStart(2, '0')}</span>
@@ -90,7 +90,7 @@ const jsonLd = [
 
   <!-- ===== Who + partners ===== -->
   <section class="section">
-    <div class="container grid grid--2">
+    <div class="container cards">
       <div class="card reveal">
         <h2 class="ur-card-title">Who is behind it</h2>
         <p>
@@ -118,7 +118,7 @@ const jsonLd = [
           migration if you go ahead within 60 days.
         </p>
         <div class="ur-actions">
-          <a href="/contact/" class="btn btn--primary btn--lg" data-cta="book">
+          <a href="/book/?utm_source=site&utm_medium=upgrade-readiness" class="btn btn--primary btn--lg" data-cta="book">
             Book the readiness check <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
           </a>
           <a
