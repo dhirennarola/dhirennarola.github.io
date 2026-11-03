@@ -33,9 +33,33 @@ import { breadcrumbs } from '../data/schema';
 
   <section class="section">
     <div class="container contact-grid">
+      <!-- ===== Booking (first: every "Book a call" button lands here) ===== -->
+      <div class="book-col reveal">
+        <h2 class="col-title">Book the call directly</h2>
+        <div class="card book-card">
+          <!-- The list says what the call covers, so Calendly's own event text is hidden
+               and the dates show straight away -->
+          <ul class="check-list book-expect">
+            <li>A clear picture of your situation and goals — in 30 minutes.</li>
+            <li>My honest take on whether Odoo (or AI automation) is the right fit.</li>
+            <li>Outline of scope, rough timeline, and next steps.</li>
+            <li>If it's a rescue: an initial read on what's salvageable.</li>
+          </ul>
+          <div
+            class="calendly-inline-widget book-frame"
+            data-url={`${contact.calendly}?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=2f7df6`}
+          >
+          </div>
+          <script src="https://assets.calendly.com/assets/external/widget.js" async is:inline></script>
+          <noscript>
+            <a href={contact.calendly} target="_blank" rel="noopener">Open the booking calendar <svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+          </noscript>
+        </div>
+      </div>
+
       <!-- ===== Form ===== -->
       <div class="form-col reveal">
-        <h2 class="col-title">Send a project inquiry</h2>
+        <h2 class="col-title">Prefer to write first?</h2>
         <form
           id="contactForm"
           action="https://api.web3forms.com/submit"
@@ -64,9 +88,10 @@ import { breadcrumbs } from '../data/schema';
             <div class="field">
               <label for="f-size">Company size</label>
               <select id="f-size" name="company_size">
+                <option value="" selected>Choose one</option>
                 <option>1–10 people</option>
                 <option>11–50 people</option>
-                <option selected>51–200 people</option>
+                <option>51–200 people</option>
                 <option>201–500 people</option>
                 <option>500+ people</option>
               </select>
@@ -76,6 +101,7 @@ import { breadcrumbs } from '../data/schema';
           <div class="field">
             <label for="f-help">What do you need help with? *</label>
             <select id="f-help" name="help_with" required>
+                <option value="" selected>Choose one</option>
               <option>New Odoo implementation</option>
               <option>ERP rescue / stalled project</option>
               <option>AI &amp; business automation</option>
@@ -91,12 +117,14 @@ import { breadcrumbs } from '../data/schema';
             <div class="field">
               <label for="f-budget">Budget range (USD)</label>
               <select id="f-budget" name="budget">
+                <option value="" selected>Choose one</option>
                 {engagement.budgetTiers.map((tier) => <option>{tier}</option>)}
               </select>
             </div>
             <div class="field">
               <label for="f-timeline">Timeline</label>
               <select id="f-timeline" name="timeline">
+                <option value="" selected>Choose one</option>
                 <option>Urgent — ASAP</option>
                 <option>Within 1–3 months</option>
                 <option>3–6 months</option>
@@ -123,7 +151,11 @@ import { breadcrumbs } from '../data/schema';
           </p>
           <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
         </form>
+      </div>
 
+      <!-- ===== Other ways ===== -->
+      <div class="alt-col reveal reveal-d1">
+        <h2 class="col-title">Other ways to reach me</h2>
         <div class="alt-channels">
           <!--email_off--><a href={`mailto:${contact.email}`} class="card card--hover alt-card">
             <strong>Prefer email?</strong>
@@ -137,29 +169,6 @@ import { breadcrumbs } from '../data/schema';
             <strong>Prefer a call?</strong>
             <span>{contact.phoneDisplay} — Mon–Sat, 10am–7pm IST</span>
           </a>
-        </div>
-      </div>
-
-      <!-- ===== Booking ===== -->
-      <div class="book-col reveal reveal-d1">
-        <h2 class="col-title">Or book the call directly</h2>
-        <div class="card book-card">
-          <ul class="check-list book-expect">
-            <li>A clear picture of your situation and goals — in 30 minutes.</li>
-            <li>My honest take on whether Odoo (or AI automation) is the right fit.</li>
-            <li>Outline of scope, rough timeline, and next steps.</li>
-            <li>If it's a rescue: an initial read on what's salvageable.</li>
-          </ul>
-          <div
-            class="calendly-inline-widget"
-            data-url={`${contact.calendly}?hide_gdpr_banner=1&primary_color=2f7df6`}
-            style="min-width:300px;height:640px;"
-          >
-          </div>
-          <script src="https://assets.calendly.com/assets/external/widget.js" async is:inline></script>
-          <noscript>
-            <a href={contact.calendly} target="_blank" rel="noopener">Open the booking calendar <svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
-          </noscript>
         </div>
       </div>
     </div>
@@ -189,15 +198,21 @@ import { breadcrumbs } from '../data/schema';
     font-size: var(--text-3xl);
   }
 
+  /* minmax(0, …) lets columns shrink to the screen; the calendar spans the full row */
   .contact-grid {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--s-7);
     align-items: start;
   }
 
   @media (min-width: 980px) {
     .contact-grid {
-      grid-template-columns: 1.1fr 1fr;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    }
+
+    .book-col {
+      grid-column: 1 / -1;
     }
   }
 
@@ -252,7 +267,6 @@ import { breadcrumbs } from '../data/schema';
   .alt-channels {
     display: grid;
     gap: var(--s-3);
-    margin-top: var(--s-4);
   }
 
   .alt-card {
@@ -274,16 +288,38 @@ import { breadcrumbs } from '../data/schema';
     color: var(--ink-faint);
   }
 
+  /* The calendar runs edge to edge in the card, so it has room on phones too */
   .book-card {
-    padding: var(--s-5);
+    padding: 0;
+    overflow: hidden;
   }
 
   .book-expect {
-    margin-bottom: var(--s-4);
+    margin: 0;
+    padding: var(--s-5);
+    border-bottom: 1px solid var(--line);
+  }
+
+  @media (min-width: 760px) {
+    .book-expect {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--s-6);
+    }
   }
 
   .book-expect li {
     font-size: var(--text-sm);
+  }
+
+  .book-frame {
+    height: 880px; /* phones: Calendly stacks the event details above the month */
+  }
+
+  @media (min-width: 700px) {
+    .book-frame {
+      height: 700px;
+    }
   }
 
   .next-steps {

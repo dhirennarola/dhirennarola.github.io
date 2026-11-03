@@ -21,7 +21,9 @@ import { contact, whatsappUrl } from '../data/facts';
         <a href={whatsappUrl('Hi Dhiren, I just sent an inquiry and it’s urgent.')} target="_blank" rel="noopener">WhatsApp me now</a>
         and it jumps the queue.
       </p>
+      <p class="thanks-skip">Want to skip the wait? Pick a time for a 30-minute call now.</p>
       <div class="thanks-actions">
+        <a href="/book/?utm_source=site&utm_medium=thanks" class="btn btn--primary">Pick a time now</a>
         <a href="/work/" class="btn btn--secondary">Read a case study meanwhile</a>
         <a href="/" class="btn btn--ghost">Back to home</a>
       </div>
@@ -38,10 +40,16 @@ import { contact, whatsappUrl } from '../data/facts';
     margin-bottom: var(--s-4);
   }
 
+  .thanks-skip {
+    margin-top: var(--s-6);
+    color: var(--ink-strong);
+    font-weight: 560;
+  }
+
   .thanks-actions {
     display: flex;
     gap: var(--s-3);
-    margin-top: var(--s-6);
+    margin-top: var(--s-4);
     flex-wrap: wrap;
   }
 </style>
