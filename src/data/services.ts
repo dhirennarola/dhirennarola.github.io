@@ -377,8 +377,8 @@ export const services: Service[] = [
         a: 'No. You get me, one senior person, working remotely. If the work needs more people, I will tell you early, so you can plan for it.',
       },
       {
-        q: 'Can I work under my own brand?',
-        a: 'If you are an Odoo partner, I can work as part of your team and talk to your client the way you prefer. I sign an NDA on request.',
+        q: 'I am an Odoo partner. Can I use this for a busy period?',
+        a: 'Yes. I join your project, follow your process and your code standards, and sign an NDA on request. You deal with me directly.',
       },
       {
         q: 'How long is the contract?',
