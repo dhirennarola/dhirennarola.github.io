@@ -1,27 +1,66 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
-import { whatsappUrl } from '../../data/facts';
+import { contact, whatsappUrl } from '../../data/facts';
 import { breadcrumbs, serviceSchema } from '../../data/schema';
 
 const path = '/services/upgrade-readiness';
-const name = 'Odoo Upgrade Readiness Check';
+const name = 'Odoo Upgrade Check';
 const description =
-  'Still on Odoo 16 or 17? A fixed-scope check of your custom modules in 5 working days: what breaks, effort per module and a fixed migration quote.';
+  'On Odoo 17 or older? Get a one-page upgrade check by email in two working days: custom modules that will break, data checks, a rough effort range and the order of work. No call needed.';
 
-const deliverables = [
-  'Every custom module checked and marked green, amber or red',
-  'What breaks on the new version, down to the file and line',
-  'The effort for each module, in days',
-  'Custom code you can drop, because standard Odoo now does it',
-  'The risks to your accounting and stock data',
-  'A step-by-step upgrade plan and a fixed quote for the migration',
+const supportUrl = 'https://www.odoo.com/documentation/20.0/administration/standard_extended_support.html';
+const upgradeUrl = 'https://www.odoo.com/documentation/20.0/administration/upgrade.html';
+
+const facts = [
+  {
+    title: 'Odoo 17 standard support ended in September 2026',
+    body: 'Odoo 18, 19 and 20 are the versions in standard support now. On Odoo.sh and on-premise, Odoo 17 can still get extended support for an extra fee, but extended support has no security updates. On Odoo Online, version 17 is no longer supported.',
+  },
+  {
+    title: 'Odoo 20 was released in September 2026',
+    body: 'It is the newest major version, and the one most upgrades now aim for.',
+  },
+  {
+    title: 'Odoo upgrades your standard data, not your custom modules',
+    body: 'Odoo can upgrade a database from any version to a major version that is in standard support. But a database with custom modules cannot be upgraded until those modules exist for the new version. That work is yours, and it is where upgrades stall.',
+  },
+];
+
+const contents = [
+  {
+    title: 'Custom modules that will break',
+    body: 'Each custom module marked green, amber or red, with the reason.',
+  },
+  {
+    title: 'Data checks',
+    body: 'The accounting and stock data that needs care before and after the move.',
+  },
+  {
+    title: 'A rough effort range',
+    body: 'A range in working days for the module work, so you can plan.',
+  },
+  {
+    title: 'The order of work',
+    body: 'What to do first, what can wait, and what standard Odoo now does so you can drop the custom code.',
+  },
 ];
 
 const steps = [
-  'You share read-only access to your custom modules (a Git link or a zip).',
-  'I scan every module against the target version and test the risky ones.',
-  'In 5 working days you get the report and a 30-minute walkthrough.',
+  'You fill in the form below: company, website, your Odoo version and the email to send the check to.',
+  `I reply by email within ${contact.responseTime}. If I need to see your custom modules, I ask for a Git link, a zip or just the module list. You do not need to book a call.`,
+  'You get the one-page check by email within two working days of me having what I need.',
+];
+
+const versions = [
+  'Odoo 17',
+  'Odoo 16',
+  'Odoo 15',
+  'Odoo 14',
+  'Odoo 13 or older',
+  'Odoo 18',
+  'Odoo 19',
+  'I am not sure',
 ];
 
 const jsonLd = [
@@ -29,7 +68,7 @@ const jsonLd = [
   breadcrumbs([
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
-    { name: 'Upgrade Readiness Check', path },
+    { name: 'Odoo Upgrade Check', path },
   ]),
 ];
 ---
@@ -41,40 +80,59 @@ const jsonLd = [
       <nav class="crumbs rv-h" data-h="1" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span>
         <a href="/services/">Services</a> <span aria-hidden="true">/</span>
-        <span>Upgrade Readiness Check</span>
+        <span>Odoo Upgrade Check</span>
       </nav>
-      <h1 class="rv-h ur-h1" data-h="2">Still on Odoo 16 or 17? Know what breaks before you upgrade.</h1>
+      <h1 class="rv-h ur-h1" data-h="2">On Odoo 17 or older? Get a one-page upgrade check in two working days.</h1>
       <p class="lede rv-h" data-h="3">
-        Odoo 20 is out. Odoo now supports only versions 18, 19 and 20, so Odoo 16 and 17 no
-        longer get fixes or security updates. Odoo's upgrade service moves your standard data,
-        but it does not fix your custom modules. That part is on you, and it is where upgrades
-        stall, run over budget or break accounting.
-      </p>
-      <p class="lede rv-h" data-h="3">
-        The <strong>Odoo Upgrade Readiness Check</strong> tells you exactly what you are facing,
-        in 5 working days, before you commit to anything.
+        Odoo 17 standard support ended in September 2026, and Odoo 20 came out the same month.
+        Tell me your Odoo version and I send you one page that shows what an upgrade involves.
+        No call needed.
       </p>
       <div class="ur-actions rv-h" data-h="4">
-        <a href="/book/?utm_source=site&utm_medium=upgrade-readiness" class="btn btn--primary btn--lg" data-cta="book">
-          Book the readiness check <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+        <a href="#check-form" class="btn btn--primary btn--lg" data-cta="upgrade-check">
+          Get the upgrade check <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- ===== What you get ===== -->
+  <!-- ===== Why now ===== -->
   <section class="section">
     <div class="container">
-      <SectionHeader eyebrow="The report" title="What you get" />
-      <ul class="check-list ur-list after-label reveal">
-        {deliverables.map((d) => <li>{d}</li>)}
+      <SectionHeader eyebrow="Why now" title="Three facts about Odoo support" />
+      <ul class="ur-facts after-label">
+        {facts.map((f) => (
+          <li class="reveal">
+            <h3>{f.title}</h3>
+            <p>{f.body}</p>
+          </li>
+        ))}
       </ul>
-      <p class="ur-note after-label reveal">The report is yours to keep, whoever does the upgrade.</p>
+      <p class="ur-source after-label">
+        Source: Odoo documentation, <a href={supportUrl} target="_blank" rel="noopener">Standard and extended support</a>
+        and <a href={upgradeUrl} target="_blank" rel="noopener">Upgrade</a> (checked 21 November 2026).
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== What the check contains ===== -->
+  <section class="section section--subtle">
+    <div class="container">
+      <SectionHeader eyebrow="The check" title="What is on the page" />
+      <ul class="ur-contents after-label">
+        {contents.map((c) => (
+          <li class="reveal">
+            <h3>{c.title}</h3>
+            <p>{c.body}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="ur-note after-label reveal">The page is yours to keep, whoever does the upgrade.</p>
     </div>
   </section>
 
   <!-- ===== How it works ===== -->
-  <section class="section section--subtle">
+  <section class="section">
     <div class="container">
       <SectionHeader eyebrow="Three steps" title="How it works" />
       <ol class="ur-steps after-label">
@@ -88,51 +146,75 @@ const jsonLd = [
     </div>
   </section>
 
-  <!-- ===== Who + partners ===== -->
+  <!-- ===== Form ===== -->
+  <section class="section section--subtle" id="check-form">
+    <div class="container ur-narrow">
+      <h2 class="ur-form-title">Get your upgrade check</h2>
+      <form
+        id="upgradeForm"
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        class="card ur-form reveal"
+        data-response={contact.responseTime}
+      >
+        <input type="hidden" name="access_key" value={contact.web3formsKey} />
+        <input type="hidden" name="subject" value="Upgrade check request" />
+        <input type="hidden" name="from_name" value="Website: upgrade check" />
+        <input type="hidden" name="source" value="upgrade-readiness page" />
+        <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <div class="form-row">
+          <div class="field">
+            <label for="u-company">Company *</label>
+            <input id="u-company" type="text" name="company" placeholder="Company name" required autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="u-website">Website *</label>
+            <input id="u-website" type="text" name="website" placeholder="yourcompany.com" required autocomplete="url" inputmode="url" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="u-version">Current Odoo version *</label>
+            <select id="u-version" name="odoo_version" required>
+              <option value="" selected>Choose one</option>
+              {versions.map((v) => <option>{v}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="u-email">Email to send the check to *</label>
+            <input id="u-email" type="email" name="email" placeholder="you@company.com" required autocomplete="email" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg form-submit">
+          Send my details <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+        </button>
+        <p class="form-privacy">
+          Your details are used only to prepare and send this check. Any code you share is never
+          passed on and is deleted after the check unless you ask me to keep it. I sign your NDA on
+          request. <a href="/privacy/">Privacy</a>
+        </p>
+        <div class="form-status" id="upgradeStatus" role="status" aria-live="polite"></div>
+      </form>
+      <p class="ur-alt">
+        Prefer to write? Email <!--email_off--><a href={`mailto:${contact.email}`}>{contact.email}</a><!--/email_off-->
+        or <a href={whatsappUrl("Hi Dhiren, I'd like an Odoo upgrade check.")} target="_blank" rel="noopener">WhatsApp me</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Who ===== -->
   <section class="section">
-    <div class="container cards">
+    <div class="container ur-narrow">
       <div class="card reveal">
         <h2 class="ur-card-title">Who is behind it</h2>
         <p>
           I'm Dhiren Narola, an Odoo architect working on Odoo since 2021, from version 11 to 20.
           I'm Odoo 18 certified and have taken 22 projects live in 13 countries, with no failed
-          go-live. Upgrades and rescues of stuck projects are a large part of that work.
-        </p>
-      </div>
-      <div class="card reveal reveal-d1">
-        <h2 class="ur-card-title">For Odoo partners</h2>
-        <p>
-          Need this for a client? I run the check white-label, under your name, and can take on
-          the migration as your extra capacity.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Price + booking ===== -->
-  <section class="section section--subtle">
-    <div class="container ur-narrow">
-      <div class="card ur-price reveal">
-        <p class="ur-price-line">
-          <strong>Price:</strong> fixed, agreed before we start, and credited against the
-          migration if you go ahead within 60 days.
-        </p>
-        <div class="ur-actions">
-          <a href="/book/?utm_source=site&utm_medium=upgrade-readiness" class="btn btn--primary btn--lg" data-cta="book">
-            Book the readiness check <span class="arr" aria-hidden="true"><svg class="i-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
-          </a>
-          <a
-            href={whatsappUrl("Hi Dhiren, I'd like to book an Odoo Upgrade Readiness Check.")}
-            target="_blank"
-            rel="noopener"
-            class="btn btn--outline btn--lg"
-          >
-            WhatsApp me
-          </a>
-        </div>
-        <p class="ur-small">
-          Your code is used only for this check, is never shared, and is deleted after the report
-          unless you ask me to keep it. I sign your NDA on request.
+          go-live. Upgrades and rescues of stuck projects are a large part of that work. You deal
+          with me directly.
         </p>
       </div>
     </div>
@@ -156,8 +238,46 @@ const jsonLd = [
     max-width: 820px;
   }
 
-  .ur-list li {
-    margin-bottom: var(--s-3);
+  .ur-facts,
+  .ur-contents {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--s-5);
+  }
+
+  .ur-facts li,
+  .ur-contents li {
+    border-top: 1px solid var(--line);
+    padding-top: var(--s-4);
+  }
+
+  @media (min-width: 900px) {
+    .ur-facts {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .ur-contents {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .ur-facts h3,
+  .ur-contents h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--s-2);
+  }
+
+  .ur-facts p,
+  .ur-contents p {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  .ur-source {
+    margin: var(--s-5) 0 0;
+    font-size: var(--text-sm);
+    color: var(--ink-faint);
   }
 
   .ur-note {
@@ -212,18 +332,104 @@ const jsonLd = [
     margin-bottom: 0;
   }
 
-  .ur-price-line {
-    font-size: var(--text-lg);
+  .ur-form-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--s-4);
+  }
+
+  .ur-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .form-row {
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  @media (min-width: 560px) {
+    .form-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .form-submit {
+    align-self: flex-start;
+  }
+
+  .form-privacy {
+    font-size: var(--text-xs);
+    color: var(--ink-faint);
     margin: 0;
   }
 
-  .ur-price .ur-actions {
-    margin-top: var(--s-5);
+  .form-status {
+    font-size: var(--text-sm);
+    font-weight: 560;
   }
 
-  .ur-small {
-    margin: var(--s-5) 0 0;
+  .form-status:empty {
+    display: none;
+  }
+
+  .form-status.success {
+    color: var(--ok-ink);
+  }
+
+  .form-status.error {
+    color: var(--rescue);
+  }
+
+  .ur-alt {
+    margin: var(--s-4) 0 0;
     font-size: var(--text-sm);
-    color: var(--ink-faint);
+    color: var(--ink-soft);
   }
 </style>
+
+<script>
+  const form = document.getElementById('upgradeForm') as HTMLFormElement | null;
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = document.getElementById('upgradeStatus')!;
+      const btn = form.querySelector('.form-submit') as HTMLButtonElement;
+      status.textContent = 'Sending…';
+      status.className = 'form-status';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        const data = await res.json();
+        if (data.success) {
+          // A real lead landed in the inbox. Non-personal values only.
+          const w = window as any;
+          if (typeof w.__track === 'function') {
+            w.__track('generate_lead', {
+              method: 'upgrade_check_form',
+              odoo_version: String(new FormData(form).get('odoo_version') || ''),
+            });
+          }
+          form.reset();
+          status.textContent =
+            `Thank you, your details are in my inbox. I will reply by email within ${form.dataset.response}. Your one-page upgrade check follows within two working days of me having what I need. You do not need to book a call.`;
+          status.className = 'form-status success';
+          btn.style.display = 'none';
+        } else {
+          status.textContent =
+            'Something went wrong. Please email me directly and I will send the check from there.';
+          status.className = 'form-status error';
+          btn.disabled = false;
+        }
+      } catch {
+        status.textContent =
+          'The message did not go through. Please email or WhatsApp me directly.';
+        status.className = 'form-status error';
+        btn.disabled = false;
+      }
+    });
+  }
+</script>

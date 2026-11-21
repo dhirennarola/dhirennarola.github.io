@@ -91,7 +91,8 @@ export const professionalServiceSchema = () => ({
     'Custom Odoo Development',
     'ZATCA e-Invoicing Compliance',
     'Odoo Integration',
-    'Dedicated Odoo Teams',
+    'Odoo Upgrade',
+    'Odoo Contract Consulting',
   ],
   founder: { '@type': 'Person', '@id': `${site.url}/#person`, name: site.name },
 });

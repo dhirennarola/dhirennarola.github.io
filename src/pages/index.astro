@@ -33,6 +33,13 @@ const featuredWork = work.slice(0, 3);
    first column, so nobody has to read the whole page to find the right service. */
 const paths = [
   {
+    situation: 'Your Odoo is version 17 or older, or a deadline is coming.',
+    service: 'Odoo upgrade',
+    what: 'Upgrade to Odoo 20, and e-invoicing deadlines that touch your system. A one-page upgrade check shows what will break.',
+    first: 'The upgrade check, in two working days, no call needed.',
+    href: '/services/upgrade-readiness/',
+  },
+  {
     situation: 'You are starting on Odoo, or replacing a patchwork of tools.',
     service: 'ERP implementation',
     what: 'Requirements, architecture, custom modules, data migration, training and go-live, all led by one person.',
@@ -61,10 +68,10 @@ const paths = [
     href: '/services/ai-odoo/',
   },
   {
-    situation: 'You are an Odoo partner and need senior delivery capacity.',
-    service: 'Dedicated team',
-    what: 'Architecture and development under your brand, from overflow work to a long-term team.',
-    first: 'A short call about scope and how your team works.',
+    situation: 'You need one senior Odoo person for a few weeks or months.',
+    service: 'Contract cover',
+    what: 'One senior Odoo person on a remote contract for a few weeks or months. You deal with me directly.',
+    first: 'A short message about the work and the dates.',
     href: '/services/dedicated-team/',
   },
 ];
@@ -128,7 +135,7 @@ const steps = [
 const faqs = [
   {
     q: 'Do you handle the full implementation yourself?',
-    a: 'Yes — one accountable lead from requirements to go-live. I architect the solution, build or direct the custom development, run data migration and UAT, and train your team. For larger scopes I bring in vetted developers under my direction, but ownership never fragments.',
+    a: 'Yes — one accountable lead from requirements to go-live. I architect the solution, build the custom development, run data migration and UAT, and train your team. One person owns it from start to finish.',
   },
   {
     q: 'We already have a failed or stalled Odoo project. Can it be saved?',
