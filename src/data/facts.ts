@@ -42,8 +42,8 @@ export const availability = {
 
 /** Engagement / pricing signal (approved: replaces the old "$200" line). */
 export const engagement = {
-  models: ['Project-based', 'Monthly retainer', 'Dedicated team', 'Advisory'],
-  note: 'Typical engagements start at $2,000 USD. Full implementations are quoted per scope — you get a written, fixed proposal before any work begins.',
+  models: ['Project-based', 'Monthly retainer', 'Contract cover', 'Advisory'],
+  note: 'Every engagement is quoted per scope. You get a written, fixed proposal before any work begins.',
   budgetTiers: [
     'Under $2,000',
     '$2,000 – $10,000',

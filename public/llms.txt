@@ -7,7 +7,7 @@
 > each project himself, from the first workshop to go-live, instead of handing it to
 > a junior team. Work: Odoo implementation, rescue of failed or stalled Odoo projects,
 > ZATCA Phase 2 e-invoicing and integrations, AI on Odoo 19 and 20, and senior
-> white-label delivery for Odoo partners.
+> contract cover (one senior Odoo person on a remote contract).
 
 Contact: hello@dhirennarola.com · https://dhirennarola.com/contact/
 Discovery call: https://calendly.com/dhnarola12/30min
@@ -19,7 +19,7 @@ Discovery call: https://calendly.com/dhnarola12/30min
 - Main Odoo areas: Accounting, Sales, Purchase, Inventory, Manufacturing (MRP), HR and Payroll, Helpdesk, Subscriptions.
 - Published Odoo App Store apps (Odoo 19 and 20): Chatter Panel Control, Chatter Access Control, POS Product Quick Favourites.
 - Previously Development Team Lead at Synodica Solutions (Odoo Silver Partner), leading 7 developers.
-- Engagements start at $2,000 USD; full implementations are quoted as a fixed written proposal.
+- Every engagement is quoted as a fixed written proposal before work starts.
 
 ## Services
 
@@ -27,7 +27,8 @@ Discovery call: https://calendly.com/dhnarola12/30min
 - [ERP Rescue](https://dhirennarola.com/services/erp-rescue/): Recovery of failed or stalled Odoo projects, starting with a written assessment within days and a fixed quote
 - [AI + Odoo](https://dhirennarola.com/services/ai-odoo/): Setting up the AI built into Odoo 19 and 20 (AI agents and skills, Ask AI, AI fields, bill scanning, the Odoo 20 MCP server) with business rules, access control and cost limits, plus custom AI where Odoo stops, such as WhatsApp conversations
 - [Integrations & e-Invoicing](https://dhirennarola.com/services/integrations-einvoicing/): ZATCA Phase 2 (Saudi Arabia), WooCommerce, WhatsApp Business API, payment gateways and legacy bridges
-- [Dedicated Team](https://dhirennarola.com/services/dedicated-team/): Senior-led Odoo delivery capacity for partners, agencies and product companies, under the partner's brand
+- [Odoo Upgrade Check](https://dhirennarola.com/services/upgrade-readiness/): A one-page upgrade check in two working days for companies on Odoo 17 or older: custom modules that will break, data checks, a rough effort range and the order of work. No call needed
+- [Contract cover](https://dhirennarola.com/services/dedicated-team/): One senior Odoo person on a remote contract for a few weeks or months, working directly with the client
 
 ## Case Studies
 

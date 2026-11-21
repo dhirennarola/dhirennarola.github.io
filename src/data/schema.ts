@@ -80,7 +80,6 @@ export const professionalServiceSchema = () => ({
   name: `${site.name} — Odoo ERP & AI Automation Consulting`,
   url: site.url,
   image: `${site.url}/assets/dhiren-narola.jpg`,
-  priceRange: '$$',
   areaServed: ['Saudi Arabia', 'UAE', 'Qatar', 'Netherlands', 'Germany', 'New Zealand', 'Australia', 'India', 'United States'],
   serviceType: [
     'Odoo ERP Implementation',
@@ -91,7 +90,8 @@ export const professionalServiceSchema = () => ({
     'Custom Odoo Development',
     'ZATCA e-Invoicing Compliance',
     'Odoo Integration',
-    'Dedicated Odoo Teams',
+    'Odoo Upgrade',
+    'Odoo Contract Consulting',
   ],
   founder: { '@type': 'Person', '@id': `${site.url}/#person`, name: site.name },
 });

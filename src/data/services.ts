@@ -93,8 +93,8 @@ export const services: Service[] = [
         a: 'A focused single-company implementation typically runs 2–4 months; multi-entity programs with compliance requirements (like ZATCA) run 6–12. You get a phased timeline in the proposal, with phased go-lives so value lands early.',
       },
       {
-        q: 'What will it cost?',
-        a: 'Implementations are quoted per scope after discovery, always as a written, fixed proposal. Typical engagements start at $2,000 USD. Full implementations vary widely with scope, and you’ll know your number before we begin.',
+        q: 'How will it be priced?',
+        a: 'Implementations are quoted per scope after discovery, always as a written, fixed proposal. Scope varies widely, and you’ll know your number before we begin.',
       },
     ],
     ctaTitle: 'Planning an Odoo implementation?',
@@ -325,63 +325,67 @@ export const services: Service[] = [
   },
   {
     slug: 'dedicated-team',
-    nav: 'Dedicated Team',
-    name: 'Dedicated Odoo Team',
-    pill: { label: 'For partners & agencies', kind: 'ok' },
-    headline: 'Senior-led Odoo capacity for agencies, partners, and product companies.',
-    lede: 'Overflow delivery, long-term development capacity or a build team for your Odoo-based product. The work is led by an architect who ran a 7-developer team at an Odoo Silver Partner and hired every one of them.',
-    metaTitle: 'Dedicated Odoo Development Team | Dhiren Narola',
+    nav: 'Contract cover',
+    name: 'Contract cover for Odoo',
+    pill: { label: 'A few weeks or months', kind: 'ok' },
+    headline: 'One senior Odoo person on a remote contract, for the weeks or months you need.',
+    lede: 'You need extra senior Odoo skill for a project, a gap in your team or a busy period. I work with you directly, on a fixed term, and you deal with me and nobody else.',
+    metaTitle: 'Senior Odoo Contract Cover, Remote | Dhiren Narola',
     metaDescription:
-      'Dedicated Odoo development capacity led by an Odoo 18 certified architect, for agencies, Odoo partners and companies that need senior-led offshore delivery.',
+      'One senior Odoo architect on a remote contract for a few weeks or months. For companies hiring Odoo staff and for Odoo partners with too much work. You deal with me directly.',
     problems: [
       {
-        title: 'Overflow work arrives in waves',
-        body: 'Partners and agencies win projects faster than they can hire for them. Turning work away is expensive; hiring for a wave that recedes is worse.',
+        title: 'Hiring a senior Odoo person takes months',
+        body: 'A full-time hire can take a quarter to find and settle in. Meanwhile the project waits, or the work lands on people who are already busy.',
       },
       {
-        title: 'Offshore capacity without senior ownership fails quietly',
-        body: 'Bodies-for-hours arrangements produce code, not outcomes. Without an architect reviewing every decision, you discover the quality gap at UAT, which is the most expensive moment possible.',
+        title: 'Work arrives in waves',
+        body: 'Partners and in-house teams often get more work than they can handle for a few weeks. Turning the work away costs money. Hiring for a wave that fades costs more.',
       },
     ],
     approach: [
       {
-        title: 'Architect-led delivery',
-        body: 'Every engagement runs under my technical direction: architecture reviews, code review standards and delivery process. It is the same system that cut post-deployment issues ~30% at Synodica.',
-      },
-      {
-        title: 'Vetted developers, deliberately',
-        body: 'I led talent acquisition for my previous team. I ran the technical interviews and finalized every hire. The same bar applies to anyone who touches your project.',
+        title: 'One person, directly',
+        body: 'You talk to me, not to an account manager. I do the architecture and the hands-on work myself, and I tell you early if something looks wrong.',
       },
       {
         title: 'Your process or mine',
-        body: 'Plug into your sprint cadence, tooling and standards, or adopt my delivery framework as a whole. Either way you get written updates, demo-driven progress and no surprises.',
+        body: 'I fit into your sprints, tools and code standards, or I bring my own way of working. Either way you get written updates and demos you can check.',
+      },
+      {
+        title: 'Senior from day one',
+        body: 'I have worked on Odoo since 2021, from version 11 to 20, and led a team of 7 developers before going independent. You do not pay for anyone to learn Odoo.',
       },
     ],
     deliverables: [
-      'Dedicated developer(s) under senior architectural direction',
-      'Code review & quality gate on every merge',
-      'Sprint reporting your PM can forward to clients',
-      'Flexible scaling on monthly terms, with no long lock-ins',
+      'One senior Odoo architect, working with you directly',
+      'A fixed term of a few weeks or months, set up front',
+      'Code review and a quality check on what I deliver',
+      'Weekly written updates your project manager can forward',
     ],
     proof: {
       stats: [
-        { value: '7', label: 'developers led & hired' },
-        { value: '4', label: 'concurrent projects managed' },
+        { value: '7', label: 'developers led at my last job' },
+        { value: '4', label: 'projects run at the same time' },
         { value: '~30%', label: 'fewer post-deployment issues' },
       ],
       quoteFrom: 'Nikunj Antala',
     },
     faqs: [
       {
-        q: 'Is this white-label?',
-        a: 'Yes, if you need it to be. Your clients, your brand and your front line, with my team’s delivery quality behind it. NDAs are standard.',
+        q: 'Do I get a team?',
+        a: 'No. You get me, one senior person, working remotely. If the work needs more people, I will tell you early, so you can plan for it.',
       },
       {
-        q: 'Minimum commitment?',
-        a: 'Monthly, renewable. Long enough to be productive, short enough that the quality has to keep earning the renewal.',
+        q: 'I am an Odoo partner. Can I use this for a busy period?',
+        a: 'Yes. I join your project, follow your process and your code standards, and sign an NDA on request. You deal with me directly.',
+      },
+      {
+        q: 'How long is the contract?',
+        a: 'A few weeks to a few months, agreed before we start. If it goes well, we can extend it.',
       },
     ],
-    ctaTitle: 'Need senior-led Odoo capacity?',
-    whatsappMsg: "Hi Dhiren, I'm interested in dedicated Odoo team capacity.",
+    ctaTitle: 'Need one senior Odoo person for a while?',
+    whatsappMsg: "Hi Dhiren, I'd like to talk about contract cover for an Odoo project.",
   },
 ];

@@ -4,34 +4,44 @@
  * The site is static, so the label is fixed at build time. The deploy
  * workflow rebuilds the site every day, which keeps it current.
  *
- * Rules (by calendar quarter: Q1 = Jan–Mar, Q2 = Apr–Jun, Q3 = Jul–Sep,
- * Q4 = Oct–Dec). "Days left" counts from today to the last day of the
- * quarter, both days included.
- *   60 days or more   -> "Accepting 3–4 new engagements · Q1 2027"
- *   36 to 59 days     -> "Accepting 2–3 new engagements · Q1 2027"
- *   21 to 35 days     -> "Accepting 1–2 new engagements · Q1 2027"
- *   20 days or fewer  -> "Accepting 3–4 new engagements · Q1–Q2 2027"
- *                        (the next quarter is shown too; across a year end
- *                        it reads "Q4 2026–Q1 2027")
+ * Which quarter is shown: new work starts a few weeks after the first
+ * message, so the label names the quarter that work would start in. That is
+ * the quarter of "today + 42 days". (Late November shows Q1 2027, not Q4 2026.)
+ * Quarters: Q1 = Jan–Mar, Q2 = Apr–Jun, Q3 = Jul–Sep, Q4 = Oct–Dec.
+ *
+ * How many engagements (unchanged): "days left" counts from today to the
+ * last day of today's calendar quarter, both days included.
+ *   60 days or more   -> "Accepting 3–4 new engagements"
+ *   36 to 59 days     -> "Accepting 2–3 new engagements"
+ *   21 to 35 days     -> "Accepting 1–2 new engagements"
+ *   20 days or fewer  -> "Accepting 3–4 new engagements" and the quarter after
+ *                        is shown too, e.g. "Q1–Q2 2027" (across a year end,
+ *                        "Q4 2026–Q1 2027")
  * The short form is always "Available for new projects".
  *
  * Dates are read in UTC, so a local check and the GitHub build agree.
  */
 
 const DAY_MS = 24 * 60 * 60 * 1000;
+/** Days from the first message to the start of the work. */
+const START_LEAD_DAYS = 42;
 
 export type Availability = { label: string; short: string };
 
 export function getAvailability(date: Date | string = new Date()): Availability {
   const d = new Date(date);
-  const year = d.getUTCFullYear();
-  const quarter = Math.floor(d.getUTCMonth() / 3) + 1; // 1 to 4
 
   // Today at 00:00 UTC, so only the calendar date counts.
-  const today = Date.UTC(year, d.getUTCMonth(), d.getUTCDate());
-  // Day 0 of the month after the quarter = the quarter's last day.
-  const lastDay = Date.UTC(year, quarter * 3, 0);
+  const today = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+  // Day 0 of the month after today's quarter = that quarter's last day.
+  const nowQuarter = Math.floor(d.getUTCMonth() / 3) + 1;
+  const lastDay = Date.UTC(d.getUTCFullYear(), nowQuarter * 3, 0);
   const daysLeft = Math.round((lastDay - today) / DAY_MS) + 1;
+
+  // The quarter the work would start in.
+  const start = new Date(today + START_LEAD_DAYS * DAY_MS);
+  const year = start.getUTCFullYear();
+  const quarter = Math.floor(start.getUTCMonth() / 3) + 1; // 1 to 4
 
   let label: string;
   if (daysLeft <= 20) {
