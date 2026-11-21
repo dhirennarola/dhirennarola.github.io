@@ -93,8 +93,8 @@ export const services: Service[] = [
         a: 'A focused single-company implementation typically runs 2–4 months; multi-entity programs with compliance requirements (like ZATCA) run 6–12. You get a phased timeline in the proposal, with phased go-lives so value lands early.',
       },
       {
-        q: 'What will it cost?',
-        a: 'Implementations are quoted per scope after discovery, always as a written, fixed proposal. Typical engagements start at $2,000 USD. Full implementations vary widely with scope, and you’ll know your number before we begin.',
+        q: 'How will it be priced?',
+        a: 'Implementations are quoted per scope after discovery, always as a written, fixed proposal. Scope varies widely, and you’ll know your number before we begin.',
       },
     ],
     ctaTitle: 'Planning an Odoo implementation?',

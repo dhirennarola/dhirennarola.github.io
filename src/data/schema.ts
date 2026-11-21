@@ -80,7 +80,6 @@ export const professionalServiceSchema = () => ({
   name: `${site.name} — Odoo ERP & AI Automation Consulting`,
   url: site.url,
   image: `${site.url}/assets/dhiren-narola.jpg`,
-  priceRange: '$$',
   areaServed: ['Saudi Arabia', 'UAE', 'Qatar', 'Netherlands', 'Germany', 'New Zealand', 'Australia', 'India', 'United States'],
   serviceType: [
     'Odoo ERP Implementation',

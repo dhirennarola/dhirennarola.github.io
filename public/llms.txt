@@ -19,7 +19,7 @@ Discovery call: https://calendly.com/dhnarola12/30min
 - Main Odoo areas: Accounting, Sales, Purchase, Inventory, Manufacturing (MRP), HR and Payroll, Helpdesk, Subscriptions.
 - Published Odoo App Store apps (Odoo 19 and 20): Chatter Panel Control, Chatter Access Control, POS Product Quick Favourites.
 - Previously Development Team Lead at Synodica Solutions (Odoo Silver Partner), leading 7 developers.
-- Engagements start at $2,000 USD; full implementations are quoted as a fixed written proposal.
+- Every engagement is quoted as a fixed written proposal before work starts.
 
 ## Services
 
